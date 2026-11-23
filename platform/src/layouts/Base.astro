@@ -1,0 +1,36 @@
+---
+// Shared page shell for the master site and every course. The site passes its config;
+// the platform supplies header, menu, footer and base styles.
+import '../styles/base.css';
+import type { SiteConfig } from '../config';
+import { url } from '../url';
+interface Props { site: SiteConfig; title: string; description?: string; nav?: string }
+const { site, title, description = site.description, nav } = Astro.props;
+const accent = site.accent;
+const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
+---
+<!doctype html>
+<html lang={site.lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  {/* html:root outranks the platform's :root default, whatever order the bundled CSS lands in. */}
+  {accent && <style set:html={`html:root{--accent:${accent.light}}@media (prefers-color-scheme: dark){html:root:not([data-theme="light"]){--accent:${accent.dark}}}html:root[data-theme="dark"]{--accent:${accent.dark}}`} />}
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <a class="brand" href={url()}>{site.title}</a>
+      {site.nav.length > 0 && (
+        <nav aria-label="Main">
+          {site.nav.map(([p, l]) => <a href={url(p)} aria-current={nav === p ? 'page' : undefined}>{l}</a>)}
+        </nav>
+      )}
+    </div>
+  </header>
+  <main class="wrap"><slot /></main>
+  <footer class="site"><div class="wrap"><slot name="footer" /></div></footer>
+</body>
+</html>

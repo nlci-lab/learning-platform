@@ -1,0 +1,15 @@
+{
+  "name": "@cohorts/platform",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./config": "./src/config.ts",
+    "./url": "./src/url.ts",
+    "./layouts/*": "./src/layouts/*",
+    "./styles/*": "./src/styles/*"
+  },
+  "peerDependencies": {
+    "astro": "^5.18.2"
+  }
+}

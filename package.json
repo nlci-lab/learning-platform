@@ -1,0 +1,16 @@
+{
+  "name": "cohorts-cit",
+  "private": true,
+  "type": "module",
+  "workspaces": ["platform", "site", "courses/*"],
+  "scripts": {
+    "dev:site": "npm run dev -w @cohorts/site",
+    "dev:logos": "npm run dev -w @cohorts/logos",
+    "build": "npm run build --workspaces --if-present",
+    "check": "npm run check --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^5.9.3"
+  }
+}

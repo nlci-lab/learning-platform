@@ -1,0 +1,9 @@
+---
+import Base from '@cohorts/platform/layouts/Base.astro';
+import { course } from '../course.config';
+---
+<Base site={course} title={course.title}>
+  <h1>{course.title}</h1>
+  <p>{course.description}</p>
+  <p><em>This course is in preparation.</em></p>
+</Base>

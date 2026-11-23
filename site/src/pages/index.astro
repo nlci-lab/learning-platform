@@ -1,0 +1,15 @@
+---
+import Base from '@cohorts/platform/layouts/Base.astro';
+import { site, courses } from '../site.config';
+---
+<Base site={site} title={site.title}>
+  <h1>{site.title}</h1>
+  <p>{site.description}</p>
+  <ul>
+    {courses.map((c) => (
+      <li>
+        <strong>{c.title}</strong>: {c.blurb} <em>({c.status})</em>
+      </li>
+    ))}
+  </ul>
+</Base>

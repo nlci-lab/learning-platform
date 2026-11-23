@@ -1,0 +1,7 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "site", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev:site"], "port": 4320 },
+    { "name": "logos", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev:logos"], "port": 4322 }
+  ]
+}

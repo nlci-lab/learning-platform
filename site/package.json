@@ -1,0 +1,15 @@
+{
+  "name": "@cohorts/site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 4320",
+    "build": "astro build",
+    "preview": "astro preview --port 4320",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@cohorts/platform": "*",
+    "astro": "^5.18.2"
+  }
+}
