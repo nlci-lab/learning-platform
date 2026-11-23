@@ -1,36 +1,84 @@
 ---
-// Shared page shell for the master site and every course. The site passes its config;
-// the platform supplies header, menu, footer and base styles.
+// Shared page shell for the master site and every course, taken from the Textual Criticism site.
+// The site passes its config; the platform supplies header, menu, theme switch, footer and base styles.
 import '../styles/base.css';
 import type { SiteConfig } from '../config';
 import { url } from '../url';
+import gentiumRegular from '../fonts/GentiumBookPlus-Regular.woff2?url';
 interface Props { site: SiteConfig; title: string; description?: string; nav?: string }
 const { site, title, description = site.description, nav } = Astro.props;
 const accent = site.accent;
 const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
 ---
 <!doctype html>
-<html lang={site.lang}>
+<html lang={site.lang} data-theme="light">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
+  {/* Light by default; the Dark button switches (and is remembered). */}
+  <meta name="color-scheme" content="light" />
+  {/* Under construction: keep search engines out. (A robots.txt would not work on GitHub Pages under a sub-path.) */}
+  {site.underConstruction && <meta name="robots" content="noindex, nofollow" />}
+  <link rel="preload" href={gentiumRegular} as="font" type="font/woff2" crossorigin />
   {/* html:root outranks the platform's :root default, whatever order the bundled CSS lands in. */}
-  {accent && <style set:html={`html:root{--accent:${accent.light}}@media (prefers-color-scheme: dark){html:root:not([data-theme="light"]){--accent:${accent.dark}}}html:root[data-theme="dark"]{--accent:${accent.dark}}`} />}
+  {accent && <style set:html={`html:root{--accent:${accent.light}}html:root[data-theme="dark"]{--accent:${accent.dark}}`} />}
+  <script is:inline>
+    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <slot name="head" />
 </head>
 <body>
-  <header class="site">
+  {site.underConstruction && (
+    <div class="construction" role="note">
+      <div class="wrap"><strong>Under construction.</strong> The content and structure of this site will change quickly. Do not rely on it as a source for serious decisions.</div>
+    </div>
+  )}
+  <header class="site-head">
     <div class="wrap">
-      <a class="brand" href={url()}>{site.title}</a>
+      <a class="brand" href={url()}>{site.mark && <i aria-hidden="true">{site.mark}</i>}{site.title}</a>
       {site.nav.length > 0 && (
         <nav aria-label="Main">
           {site.nav.map(([p, l]) => <a href={url(p)} aria-current={nav === p ? 'page' : undefined}>{l}</a>)}
         </nav>
       )}
+      <button class="theme-toggle" type="button" id="theme-toggle" hidden>Dark</button>
     </div>
   </header>
   <main class="wrap"><slot /></main>
-  <footer class="site"><div class="wrap"><slot name="footer" /></div></footer>
+  <footer class="site-foot">
+    <div class="wrap">
+      {site.footer && <p set:html={site.footer} />}
+      <slot name="footer" />
+    </div>
+  </footer>
+  <script is:inline>
+    (function () {
+      var b = document.getElementById('theme-toggle'); if (!b) return; b.hidden = false;
+      var root = document.documentElement;
+      function cur() { return root.dataset.theme || 'light'; }
+      function label() { b.textContent = cur() === 'dark' ? 'Light' : 'Dark'; b.setAttribute('aria-label', 'Switch to ' + b.textContent.toLowerCase() + ' theme'); }
+      label();
+      b.addEventListener('click', function () { var t = cur() === 'dark' ? 'light' : 'dark'; root.dataset.theme = t; try { localStorage.setItem('theme', t); } catch (e) {} label(); });
+    })();
+  </script>
+  <script is:inline>
+    // Mirrors the platform's external-links integration (which rewrites built HTML) so `astro dev` matches.
+    (function () {
+      document.querySelectorAll('a[href]').forEach(function (a) {
+        if (a.dataset.extDone || !/^https?:$/i.test(a.protocol) || a.origin === location.origin) return;
+        a.dataset.extDone = '1';
+        if (!a.getAttribute('target')) a.target = '_blank';
+        var rel = (a.getAttribute('rel') || '').split(/\s+/).filter(Boolean);
+        if (rel.indexOf('noopener') < 0) { rel.push('noopener'); a.setAttribute('rel', rel.join(' ')); }
+        var lab = a.getAttribute('aria-label');
+        if (lab !== null) { if (!/new tab/i.test(lab)) a.setAttribute('aria-label', lab + ' (opens in a new tab)'); }
+        else if (!/new tab/i.test(a.textContent)) {
+          var s = document.createElement('span'); s.className = 'visually-hidden'; s.textContent = ' (opens in a new tab)'; a.appendChild(s);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,7 @@
+---
+// Source markers, linking to the numbered list made by <Sources>. A claim whose sources are all
+// unchecked is flagged in place. Get the props from citer() in @cohorts/platform/schemas.
+interface Props { ns: number[]; unchecked?: boolean }
+const { ns, unchecked = false } = Astro.props;
+---
+<sup class="cite">[{ns.map((x, i) => <>{i > 0 && ','}<a href={`#src-n${x}`} aria-label={`source ${x}`}>{x}</a></>)}]</sup>{unchecked && <span class="tag">to check</span>}

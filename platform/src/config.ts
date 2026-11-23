@@ -13,6 +13,25 @@ export interface SiteConfig {
   nav: [string, string][];
   /** Accent colour for light and dark themes. Defaults come from the platform. */
   accent?: { light: string; dark: string };
+  /** A short mark before the name in the header, e.g. '𝔓'. */
+  mark?: string;
+  /** Footer text (HTML). */
+  footer?: string;
+  /** Shows the "under construction" strip and keeps search engines out. Remove at launch. */
+  underConstruction?: boolean;
+  /** The "Was this page helpful?" Google Form. Without it, no feedback box is shown. */
+  feedback?: FeedbackForm;
+  /** Names of the difficulty levels, level 1 first. Without them, levels show as "Level 1" etc. */
+  levels?: [string, string, string, string];
+}
+
+export interface FeedbackForm {
+  /** Form URL up to (not including) /viewform, e.g. https://docs.google.com/forms/d/e/<id> */
+  form: string;
+  /** Google Forms entry ids, e.g. 'entry.1446309272'. */
+  fields: { page: string; helpful: string; comment: string; name: string };
 }
 
 export const defineSite = (c: SiteConfig) => c;
+
+export const levelName = (site: SiteConfig, level: number) => site.levels?.[level - 1] ?? `Level ${level}`;

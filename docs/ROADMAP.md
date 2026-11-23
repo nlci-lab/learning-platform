@@ -4,7 +4,7 @@
 
 npm workspaces, working rules (`CLAUDE.md`), ADRs, a minimal platform layout, the master site and an empty Logos course that build and run.
 
-## Phase 1: platform v0
+## Phase 1: platform v0 (done)
 
 Copy the generic pieces out of the Textual Criticism site, leaving that site untouched:
 
@@ -15,7 +15,9 @@ Copy the generic pieces out of the Textual Criticism site, leaving that site unt
 - glossary, Learn and Practice pages, and search
 - the sourced-fact schema helpers and the external-links integration
 
-Define the question schema (ADR 0003).
+Define the question schema (ADR 0003, 0004).
+
+Left for later: the names of the four difficulty levels, a feedback form for each course (the Textual Criticism form belongs to that site), and adding Learn, Glossary and Search to the Logos menu once they have content.
 
 ## Phase 2: Logos course
 

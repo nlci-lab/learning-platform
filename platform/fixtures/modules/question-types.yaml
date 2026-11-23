@@ -1,0 +1,70 @@
+# Test fixture: one step per question type, to check that each renders and checks (with and without
+# JavaScript). The content is about the module format itself, so it states no outside facts.
+id: question-types
+title: Every question type
+topic: Platform test
+question: Does each question type work?
+skill: Checks the micro module format
+level: 1
+minutes: 5
+description: A test module with one question of each type the platform supports.
+lead: One step for each question type that Moodle can import.
+draft: true
+sources:
+  - id: adr-0003
+    cite: Root ADR 0003, “Keep a path into Moodle open”.
+    checked: true
+steps:
+  - id: intro
+    title: A step without a question
+    body: Some steps only explain. **Next step** is shown at once.
+  - id: choice-many
+    title: Multiple choice, more than one answer
+    question:
+      id: qt-multi
+      type: multichoice
+      single: false
+      prompt: Which of these are question types in this format?
+      options:
+        - { text: Matching, correct: true, feedback: Yes. }
+        - { text: Essay, correct: true, feedback: Yes. }
+        - { text: Drag and drop, feedback: Not in this format. }
+  - id: tf
+    title: True or false
+    question:
+      id: qt-tf
+      type: truefalse
+      prompt: Every question has a stable id.
+      answer: true
+      if_true: Right. The id never changes once published.
+      if_false: Not so. Every question has an id (ADR 0002).
+      general_feedback: Stable ids let a later export update questions instead of copying them.
+  - id: short
+    title: Short answer
+    question:
+      id: qt-short
+      type: shortanswer
+      prompt: Which file format holds a micro module? (One word.)
+      answers:
+        - { text: YAML, feedback: Right. }
+        - { text: yml }
+      if_wrong: Micro modules are YAML files.
+  - id: match
+    title: Matching
+    question:
+      id: qt-match
+      type: matching
+      prompt: Match each field to what it holds.
+      pairs:
+        - { item: "`topic`", match: What the module is about }
+        - { item: "`skill`", match: The skill it practises }
+        - { item: "`lead`", match: The opening paragraph }
+      distractors: [The page colour]
+  - id: essay
+    title: Essay
+    question:
+      id: qt-essay
+      type: essay
+      prompt: Why keep questions in data rather than in the page?
+      model_answer: |
+        Data can be checked by a schema, reused, and exported (for example to Moodle) without rebuilding the pages.

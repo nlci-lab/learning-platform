@@ -7,6 +7,8 @@ export const site = defineSite({
   description: 'Short online courses for Bible translators and consultants.',
   lang: 'en',
   nav: [],
+  underConstruction: true,
+  footer: 'Short online courses for Bible translators and consultants, from NLCI. Text CC BY-SA 4.0; code MIT.',
 });
 
 // Courses listed on the master page. A course's path is its id.

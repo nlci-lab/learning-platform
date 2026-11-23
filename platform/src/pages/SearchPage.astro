@@ -1,0 +1,82 @@
+---
+// Search across a course's micro modules, guides and glossary. The index (search.json) is built with
+// the site and loaded on first use. Without JavaScript the page says so and links to the lists.
+// Simplified from the Textual Criticism home search (its sigla and verse lookup stay in that site).
+// Course route (src/pages/search.astro): <SearchPage site={course} />
+import Base from '../layouts/Base.astro';
+import type { SiteConfig } from '../config';
+import { url } from '../url';
+import { PATHS } from '../paths';
+interface Props { site: SiteConfig; placeholder?: string }
+const { site, placeholder = 'Search the course' } = Astro.props;
+---
+<Base site={site} title="Search" nav={PATHS.search} description={`Search ${site.title}.`}>
+  <div class="sx prose">
+    <h1>Search</h1>
+    <form class="search" id="search" role="search" action={url(PATHS.search)} method="get" data-index={url(PATHS.searchIndex)} data-base={url()}>
+      <label class="visually-hidden" for="q">Search</label>
+      <input id="q" name="q" type="search" placeholder={placeholder} autocomplete="off" />
+    </form>
+    <div id="results" class="results" aria-live="polite"></div>
+    <noscript><p class="muted">Search needs JavaScript. Browse the <a href={url(PATHS.learn)}>Learn</a> page or the <a href={url(PATHS.glossary)}>glossary</a> instead.</p></noscript>
+  </div>
+</Base>
+
+<script>
+  import type { SearchEntry } from '../search';
+  const form = document.getElementById('search') as HTMLFormElement;
+  const q = document.getElementById('q') as HTMLInputElement;
+  const out = document.getElementById('results')!;
+  const base = form.dataset.base!;
+  let idx: SearchEntry[] | null = null, loading: Promise<void> | null = null;
+  const load = () => (loading ??= fetch(form.dataset.index!).then((r) => r.json()).then((d) => { idx = d; show(); }).catch(() => { idx = []; show(); }));
+
+  function show() {
+    const words = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    out.replaceChildren();
+    if (!words.length) return;
+    if (!idx) { const p = document.createElement('p'); p.className = 'none'; p.textContent = 'Searching…'; out.append(p); return; }
+    const hits = idx.filter((e) => words.every((w) => e.text.includes(w)))
+      .sort((a, b) => +b.title.toLowerCase().includes(words[0]) - +a.title.toLowerCase().includes(words[0]))
+      .slice(0, 30);
+    if (!hits.length) { const p = document.createElement('p'); p.className = 'none'; p.textContent = 'Nothing found. Try another word.'; out.append(p); return; }
+    const ul = document.createElement('ul');
+    for (const h of hits) {
+      const li = document.createElement('li'), a = document.createElement('a');
+      const k = document.createElement('span'), t = document.createElement('span'), c = document.createElement('span');
+      a.href = base + h.href;
+      k.className = 'k'; k.textContent = h.kind;
+      t.className = 't'; t.textContent = h.title;
+      c.className = 'ctx'; c.textContent = h.ctx;
+      a.append(k, t, c); li.append(a); ul.append(li);
+    }
+    out.append(ul);
+  }
+
+  q.addEventListener('focus', load, { once: true });
+  q.addEventListener('input', () => { load(); show(); });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const first = out.querySelector('a');
+    if (first) location.href = first.href;
+  });
+  const pre = new URLSearchParams(location.search).get('q');
+  if (pre) { q.value = pre; load(); show(); }
+</script>
+
+<style>
+  .sx { margin: 1.75rem 0 3rem; }
+  .sx h1 { margin-bottom: 1rem; }
+  .search input { width: 100%; font: 1.15rem var(--serif); padding: 0.8rem 1rem; color: var(--ink); background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; }
+  .search input:focus { border-color: var(--accent); outline: 3px solid color-mix(in srgb, var(--accent) 30%, transparent); outline-offset: 1px; }
+  .results:empty { display: none; }
+  .results { margin-top: 0.75rem; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; font-family: var(--sans); }
+  .results :global(ul) { list-style: none; margin: 0; padding: 0; }
+  .results :global(li + li) { border-top: 1px solid var(--rule); }
+  .results :global(a) { display: grid; gap: 0.15rem; padding: 0.6rem 1rem; color: var(--ink); text-decoration: none; }
+  .results :global(a:hover), .results :global(a:focus-visible) { background: var(--paper-2); }
+  .results :global(.k) { font: 600 0.7rem var(--sans); letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); }
+  .results :global(.t) { font: 600 1rem var(--serif); }
+  .results :global(.ctx) { font-size: 0.9rem; line-height: 1.45; color: var(--ink-2); }
+  .results :global(.none) { margin: 0; padding: 0.75rem 1rem; font-size: 0.9rem; }
+</style>
