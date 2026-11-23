@@ -6,7 +6,11 @@ import { z } from 'astro/zod';
 
 /** A stable id: lower-case letters, digits and hyphens. Never changes once published. */
 export const stableId = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'ids use a-z, 0-9 and single hyphens');
-export const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'dates are YYYY-MM-DD');
+/** YYYY-MM-DD. YAML reads an unquoted date as a Date, so that is accepted and turned back into text. */
+export const isoDate = z.preprocess(
+  (v) => (v instanceof Date ? v.toISOString().slice(0, 10) : v),
+  z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'dates are YYYY-MM-DD'),
+);
 
 /* ---------- Sourced facts (ADR 0002 in this repo; ADR 0004 in the Textual Criticism site) ---------- */
 

@@ -17,7 +17,7 @@ Copy the generic pieces out of the Textual Criticism site, leaving that site unt
 
 Define the question schema (ADR 0003, 0004).
 
-Left for later: the names of the four difficulty levels, a feedback form for each course (the Textual Criticism form belongs to that site), and adding Learn, Glossary and Search to the Logos menu once they have content.
+Left for later: a feedback form for each course (the Textual Criticism form belongs to that site), and adding Learn, Glossary and Search to the Logos menu once they have content.
 
 ## Phase 2: Logos course
 

@@ -21,7 +21,7 @@ export interface SiteConfig {
   underConstruction?: boolean;
   /** The "Was this page helpful?" Google Form. Without it, no feedback box is shown. */
   feedback?: FeedbackForm;
-  /** Names of the difficulty levels, level 1 first. Without them, levels show as "Level 1" etc. */
+  /** Names of the four difficulty levels, level 1 first. Shown with the number: "Level 1 · First steps". */
   levels?: [string, string, string, string];
 }
 
@@ -34,4 +34,8 @@ export interface FeedbackForm {
 
 export const defineSite = (c: SiteConfig) => c;
 
-export const levelName = (site: SiteConfig, level: number) => site.levels?.[level - 1] ?? `Level ${level}`;
+/** "Level 2 · Everyday use", or "Level 2" when the site has no level names. */
+export const levelName = (site: SiteConfig, level: number) => {
+  const name = site.levels?.[level - 1];
+  return name ? `Level ${level} · ${name}` : `Level ${level}`;
+};

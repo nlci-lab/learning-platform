@@ -12,4 +12,4 @@ Every question reads without JavaScript: the reader sees the question and a "Sho
 
 The Textual Criticism site's Mark 1:2 module, ported to this format, is kept in `platform/fixtures/` as a test until that site joins (ROADMAP Phase 5).
 
-Still open: the names of the four difficulty levels. A site sets them in its config (`levels`); until then pages show "Level 1" to "Level 4".
+Levels are shown as a number and a name, "Level 1 · First steps". The names describe the material, not the reader, so an experienced consultant who is new to a tool is not called a novice. A site sets the names in its config (`levels`). Without names, pages show "Level 1" to "Level 4".
