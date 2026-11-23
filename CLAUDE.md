@@ -1,4 +1,4 @@
-# cohorts-cit: working rules
+# learning-platform: working rules
 
 This monorepo holds a shared course platform and the course sites built on it. Read this file at the start of every session. A course's own `CLAUDE.md` (in `courses/<name>/`) adds rules for that course.
 

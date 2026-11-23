@@ -1,4 +1,4 @@
-// Logos course. Base path is a build setting: SITE_BASE=/cohorts-cit/logos/ on GitHub Pages.
+// Logos course. Base path is a build setting: SITE_BASE=/learning-platform/logos/ on GitHub Pages.
 import { defineConfig } from 'astro/config';
 import platform from '@cohorts/platform/integration';
 

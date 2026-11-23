@@ -1,4 +1,4 @@
-// Master site. Base path is a build setting: SITE_BASE=/cohorts-cit/ on GitHub Pages.
+// Master site. Base path is a build setting: SITE_BASE=/learning-platform/ on GitHub Pages.
 import { defineConfig } from 'astro/config';
 import platform from '@cohorts/platform/integration';
 

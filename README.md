@@ -1,4 +1,4 @@
-# cohorts-cit
+# learning-platform
 
 A shared course platform and the course sites built on it, for Bible translators and consultants.
 
