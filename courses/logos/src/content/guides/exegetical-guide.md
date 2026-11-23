@@ -26,7 +26,7 @@ last_checked: 2026-11-23
 
 ## How it differs from the Passage Guide
 
-The [Passage Guide](../passage-guide/) gives a broad overview of a passage. The **Exegetical Guide** looks at the words and phrases of the passage, especially the Greek and Hebrew words.
+The [Passage Guide](~/guides/passage-guide/) gives a broad overview of a passage. The **Exegetical Guide** looks at the words and phrases of the passage, especially the Greek and Hebrew words.
 
 ## Open it
 

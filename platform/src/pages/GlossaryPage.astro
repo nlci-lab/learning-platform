@@ -26,7 +26,7 @@ const signs = groups.filter((g) => g.style === 'sign').flatMap((g) => g.entries)
           <input id="g-q" type="search" placeholder={placeholder} autocomplete="off" />
           <p class="g-count small muted" aria-live="polite"></p>
         </div>
-        {signs.length > 0 && <p class="g-jump small" aria-label="Signs on this page">{signs.map((t) => <a href={`#${t.id}`} class="g-chip">{t.term}</a>)}</p>}
+        {signs.length > 0 && <nav class="g-jump small" aria-label="Signs on this page">{signs.map((t) => <a href={`#${t.id}`} class="g-chip">{t.term}</a>)}</nav>}
         {groups.map((g) => (
           <section class="g-grp">
             <h2 id={g.id}>{g.title}</h2>
@@ -81,7 +81,7 @@ const signs = groups.filter((g) => g.style === 'sign').flatMap((g) => g.entries)
   .g-find { margin: 1rem 0 .5rem; }
   .g-find[hidden] { display: none; }
   .g-find input { width: 100%; max-width: 30rem; font: 1rem var(--serif); padding: .6rem .8rem; color: var(--ink); background: var(--paper); border: 1.5px solid var(--ink-2); border-radius: 8px; }
-  .g-find input:focus { border-color: var(--accent); outline: none; }
+  .g-find input:focus { border-color: var(--accent); }
   .g-count { margin: .3rem 0 0; min-height: 1.2em; }
   .g-jump { display: flex; flex-wrap: wrap; gap: .35rem; margin: .75rem 0 1rem; }
   .g-chip { font: 1rem var(--serif); padding: .15rem .6rem; border: 1px solid var(--rule); border-radius: 999px; text-decoration: none; color: var(--accent); background: var(--paper); }

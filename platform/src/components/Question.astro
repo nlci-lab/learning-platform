@@ -22,9 +22,11 @@ const choice: { opts: Opt[]; single: boolean } | null =
 if (choice && q.type === 'multichoice' && q.shuffle) {
   let h = [...q.id].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
   const rnd = () => ((h = (h * 1103515245 + 12345) >>> 0) / 2 ** 32);
-  choice.opts = [...choice.opts].sort(() => rnd() - 0.5);
+  const a = [...choice.opts];
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  choice.opts = a;
 }
-const matches = q.type === 'matching' ? [...new Set([...q.pairs.map((p) => p.match), ...q.distractors])].sort((a, b) => a.localeCompare(b)) : [];
+const matches = q.type === 'matching' ? [...new Set([...q.pairs.map((p) => p.match), ...q.distractors])].sort((a, b) => a.localeCompare(b, 'en')) : [];
 const short = q.type === 'shortanswer'
   ? JSON.stringify({ cs: q.case_sensitive, a: q.answers.map((a) => ({ t: a.text, f: mdInline(a.feedback ?? '') })), w: mdInline(q.if_wrong) })
   : undefined;
@@ -39,7 +41,7 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
         <label class="q-opt" data-correct={o.correct ? '1' : undefined}>
           <input type={choice.single ? 'radio' : 'checkbox'} name={name} value={String(i)} />
           <span set:html={mdInline(o.text)} />
-          <span class="q-why" hidden set:html={mdInline(o.feedback)} />
+          <span class="q-why" hidden><strong class="q-mark"></strong> <span set:html={mdInline(o.feedback)} /></span>
         </label>
       ))}
     </div>
@@ -47,8 +49,8 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
 
   {q.type === 'shortanswer' && (
     <div class="q-short">
-      <label class="visually-hidden" for={`${name}-a`}>Your answer</label>
-      <input id={`${name}-a`} type="text" autocomplete="off" spellcheck="false" />
+      <label class="visually-hidden" for={`${name}__a`}>Your answer</label>
+      <input id={`${name}__a`} type="text" autocomplete="off" spellcheck="false" />
       <p class="q-fb" hidden></p>
     </div>
   )}
@@ -57,9 +59,9 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
     <ol class="q-match">
       {q.pairs.map((p, i) => (
         <li>
-          <label for={`${name}-${i}`} set:html={mdInline(p.item)} />
+          <label for={`${name}__m${i}`} set:html={mdInline(p.item)} />
           <span class="q-pick">
-            <select id={`${name}-${i}`} data-answer={p.match}>
+            <select id={`${name}__m${i}`} data-answer={p.match}>
               <option value="">Choose…</option>
               {matches.map((m) => <option value={m}>{m}</option>)}
             </select>
@@ -72,8 +74,8 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
 
   {q.type === 'essay' && (
     <div class="q-essay">
-      <label class="visually-hidden" for={`${name}-a`}>Your answer</label>
-      <textarea id={`${name}-a`} rows="5" placeholder="Write your answer here. It stays on this page; nothing is sent."></textarea>
+      <label class="visually-hidden" for={`${name}__a`}>Your answer</label>
+      <textarea id={`${name}__a`} rows="5" placeholder="Write your answer here. It stays on this page; nothing is sent."></textarea>
     </div>
   )}
 
@@ -107,7 +109,8 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
 </fieldset>
 
 <script>
-  const norm = (s: string, cs: boolean) => { const t = s.normalize('NFC').trim().replace(/\s+/g, ' '); return cs ? t : t.toLocaleLowerCase(); };
+  // Spaces and final punctuation do not count. Lower-casing is not locale-dependent (Turkish I).
+  const norm = (s: string, cs: boolean) => { const t = s.normalize('NFC').trim().replace(/\s+/g, ' ').replace(/[.,;:!?]+$/, ''); return cs ? t : t.toLowerCase(); };
 
   document.querySelectorAll<HTMLElement>('[data-q]').forEach((q) => {
     q.classList.add('js');
@@ -118,8 +121,10 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
     const model = q.querySelector<HTMLElement>('.q-model');
     const type = q.dataset.type;
     act.hidden = false;
-    q.addEventListener('input', () => { btn.disabled = false; });
-    q.addEventListener('change', () => { btn.disabled = false; });
+    const ready = () => { btn.disabled = false; res.textContent = ''; };
+    q.addEventListener('input', ready);
+    q.addEventListener('change', ready);
+    q.querySelector<HTMLInputElement>('.q-short input')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); btn.click(); } });
 
     function check(): string | null {
       if (type === 'choice') {
@@ -132,6 +137,8 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
           o.classList.toggle('right', right);
           o.classList.toggle('wrong', isOn(o) && !right);
           o.querySelector<HTMLElement>('.q-why')!.hidden = !(isOn(o) || right);
+          // Not colour alone (WCAG 1.4.1): each shown option says in words whether it is right.
+          o.querySelector<HTMLElement>('.q-mark')!.textContent = right ? (isOn(o) ? 'Right.' : 'Right answer.') : 'Not right.';
         });
         const ok = opts.every((o) => isOn(o) === !!o.dataset.correct);
         return ok ? 'Yes, that is right.' : multi ? 'Not quite. The right answers are marked.' : 'Not quite. The right answer is marked.';
@@ -169,7 +176,7 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
 
     btn.addEventListener('click', () => {
       const msg = check();
-      if (msg === null) return;
+      if (msg === null) { res.textContent = 'Choose or type an answer first.'; return; }
       res.textContent = msg;
       if (general) general.hidden = false;
       q.dispatchEvent(new CustomEvent('q:checked', { bubbles: true }));

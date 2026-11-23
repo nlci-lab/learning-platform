@@ -17,8 +17,14 @@ export async function getModules() {
   return all.sort((a, b) => a.data.level - b.data.level || a.data.title.localeCompare(b.data.title));
 }
 
+/** Guides, easiest first. Fails the build if `before` or `related` names a guide that does not exist. */
 export async function getGuides() {
-  return (await getCollection('guides')).filter(live).sort((a, b) => a.data.level - b.data.level || a.data.title.localeCompare(b.data.title));
+  const all = (await getCollection('guides')).filter(live);
+  const ids = new Set(all.map((g) => g.data.id));
+  for (const { data: g } of all) for (const ref of [g.before, ...g.related].filter(Boolean) as string[]) {
+    if (!ids.has(ref)) throw new Error(`Guide "${g.id}" links to guide "${ref}", which does not exist (or is a draft).`);
+  }
+  return all.sort((a, b) => a.data.level - b.data.level || a.data.title.localeCompare(b.data.title, 'en'));
 }
 
 /** Glossary groups in order, each with its entries (file order). Fails the build on an unknown group. */

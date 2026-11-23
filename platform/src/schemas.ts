@@ -21,7 +21,13 @@ export const source = z.object({
   url: z.string().url().optional(),
   checked: z.boolean(),
 });
-export const sources = z.array(source);
+export const sources = z.array(source).superRefine((list, ctx) => {
+  const seen = new Set<string>();
+  list.forEach((s, i) => {
+    if (seen.has(s.id)) ctx.addIssue({ code: 'custom', path: [i, 'id'], message: `duplicate source id "${s.id}"` });
+    seen.add(s.id);
+  });
+});
 
 /** A fact with the ids of its sources, e.g. sourced(z.string()) → { value, src: ['metzger'] }. */
 export const sourced = <T extends z.ZodTypeAny>(value: T) => z.object({ value, src: z.array(z.string()).min(1) });
@@ -111,13 +117,20 @@ const essay = z.object({
 
 export const question = z.discriminatedUnion('type', [multichoice, truefalse, shortanswer, matching, essay])
   .superRefine((q, ctx) => {
+    if (q.type === 'matching') {
+      // Moodle needs at least three answers to choose from (ADR 0003: not yet checked on a Moodle site).
+      const answers = new Set([...q.pairs.map((p) => p.match), ...q.distractors]);
+      if (answers.size < 3) ctx.addIssue({ code: 'custom', path: ['distractors'], message: `matching question "${q.id}" needs at least 3 different answers; add a distractor` });
+      const items = q.pairs.map((p) => p.item);
+      if (new Set(items).size !== items.length) ctx.addIssue({ code: 'custom', path: ['pairs'], message: `matching question "${q.id}" has the same item twice` });
+      return;
+    }
     if (q.type !== 'multichoice') return;
     const right = q.options.filter((o) => o.correct).length;
     if (q.single && right !== 1) ctx.addIssue({ code: 'custom', path: ['options'], message: `single-answer question "${q.id}" needs exactly one correct option (has ${right})` });
     if (!q.single && right < 1) ctx.addIssue({ code: 'custom', path: ['options'], message: `question "${q.id}" needs at least one correct option` });
   });
 export type Question = z.infer<typeof question>;
-export const QUESTION_TYPES = ['multichoice', 'truefalse', 'shortanswer', 'matching', 'essay'] as const;
 
 /* ---------- Micro modules (ADR 0002, 0004) ---------- */
 
@@ -149,6 +162,7 @@ export const moduleSchema = z.object({
   /** Shown when the reader finishes (Markdown). */
   done: z.string().optional(),
   sources,
+  unverified,
   /** Drafts are built only in `astro dev`. */
   draft: z.boolean().default(false),
   last_checked: isoDate.optional(),
@@ -198,6 +212,7 @@ export const guide = z.object({
   before: stableId.optional(),
   related: z.array(stableId).default([]),
   sources,
+  unverified,
   /** true once checked line by line against its sources. */
   checked: z.boolean().default(false),
   last_checked: isoDate.optional(),

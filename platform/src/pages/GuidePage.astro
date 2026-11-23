@@ -10,6 +10,7 @@ import Base from '../layouts/Base.astro';
 import Cover from '../components/Cover.astro';
 import Sources from '../components/Sources.astro';
 import Feedback from '../components/Feedback.astro';
+import Unverified from '../components/Unverified.astro';
 import { getGuides, type GuideEntry } from '../data';
 import { levelName, type SiteConfig } from '../config';
 import { url } from '../url';
@@ -59,6 +60,7 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
         <p class="notice"><span class="tag">not yet checked</span> Written from the sources listed at the end, but not yet checked line by line against them. Use it as a guide, not as a source.</p>
       )}
       <Content />
+      <Unverified items={g.unverified} />
       <Sources sources={g.sources} lastChecked={g.last_checked} />
       <Feedback site={site} title={g.title} />
     </article>

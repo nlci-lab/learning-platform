@@ -14,8 +14,11 @@ npm install
 npm run dev:site     # master site, http://localhost:4320
 npm run dev:logos    # Logos course, http://localhost:4322
 npm run build        # build every workspace
-npm run check        # type-check every workspace
+npm run check        # type-check every workspace (the platform is checked through the Logos course)
+npm test             # platform schema and link tests
 ```
+
+Needs Node 22.18 or later (`.nvmrc`). CI runs check, test and build on every push and pull request.
 
 On Git Bash for Windows, prefix builds that set `SITE_BASE` with `MSYS_NO_PATHCONV=1` so the base path is not rewritten.
 

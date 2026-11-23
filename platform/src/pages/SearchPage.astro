@@ -13,11 +13,12 @@ const { site, placeholder = 'Search the course' } = Astro.props;
 <Base site={site} title="Search" nav={PATHS.search} description={`Search ${site.title}.`}>
   <div class="sx prose">
     <h1>Search</h1>
-    <form class="search" id="search" role="search" action={url(PATHS.search)} method="get" data-index={url(PATHS.searchIndex)} data-base={url()}>
+    <form class="search" id="search" role="search" hidden action={url(PATHS.search)} method="get" data-index={url(PATHS.searchIndex)} data-base={url()}>
       <label class="visually-hidden" for="q">Search</label>
       <input id="q" name="q" type="search" placeholder={placeholder} autocomplete="off" />
     </form>
-    <div id="results" class="results" aria-live="polite"></div>
+    <p id="count" class="small muted" role="status"></p>
+    <div id="results" class="results"></div>
     <noscript><p class="muted">Search needs JavaScript. Browse the <a href={url(PATHS.learn)}>Learn</a> page or the <a href={url(PATHS.glossary)}>glossary</a> instead.</p></noscript>
   </div>
 </Base>
@@ -27,19 +28,25 @@ const { site, placeholder = 'Search the course' } = Astro.props;
   const form = document.getElementById('search') as HTMLFormElement;
   const q = document.getElementById('q') as HTMLInputElement;
   const out = document.getElementById('results')!;
+  const count = document.getElementById('count')!;
+  form.hidden = false;
+  let failed = false;
   const base = form.dataset.base!;
   let idx: SearchEntry[] | null = null, loading: Promise<void> | null = null;
-  const load = () => (loading ??= fetch(form.dataset.index!).then((r) => r.json()).then((d) => { idx = d; show(); }).catch(() => { idx = []; show(); }));
+  const load = () => (loading ??= fetch(form.dataset.index!).then((r) => r.json()).then((d) => { idx = d; show(); }).catch(() => { idx = []; failed = true; show(); }));
 
   function show() {
     const words = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
     out.replaceChildren();
+    count.textContent = '';
     if (!words.length) return;
+    if (failed) { count.textContent = 'Search could not load. Check your connection and try again.'; return; }
     if (!idx) { const p = document.createElement('p'); p.className = 'none'; p.textContent = 'Searching…'; out.append(p); return; }
     const hits = idx.filter((e) => words.every((w) => e.text.includes(w)))
       .sort((a, b) => +b.title.toLowerCase().includes(words[0]) - +a.title.toLowerCase().includes(words[0]))
       .slice(0, 30);
-    if (!hits.length) { const p = document.createElement('p'); p.className = 'none'; p.textContent = 'Nothing found. Try another word.'; out.append(p); return; }
+    count.textContent = hits.length ? `${hits.length} result${hits.length === 1 ? '' : 's'}` : 'Nothing found. Try another word.';
+    if (!hits.length) return;
     const ul = document.createElement('ul');
     for (const h of hits) {
       const li = document.createElement('li'), a = document.createElement('a');
@@ -68,7 +75,8 @@ const { site, placeholder = 'Search the course' } = Astro.props;
   .sx { margin: 1.75rem 0 3rem; }
   .sx h1 { margin-bottom: 1rem; }
   .search input { width: 100%; font: 1.15rem var(--serif); padding: 0.8rem 1rem; color: var(--ink); background: var(--paper); border: 1.5px solid var(--ink); border-radius: 10px; }
-  .search input:focus { border-color: var(--accent); outline: 3px solid color-mix(in srgb, var(--accent) 30%, transparent); outline-offset: 1px; }
+  .search[hidden] { display: none; }
+  .search input:focus-visible { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
   .results:empty { display: none; }
   .results { margin-top: 0.75rem; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; font-family: var(--sans); }
   .results :global(ul) { list-style: none; margin: 0; padding: 0; }

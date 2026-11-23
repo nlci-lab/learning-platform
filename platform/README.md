@@ -12,9 +12,9 @@ Shared code for the master site and every course. No course-specific code goes h
 | `schemas` | Zod schemas: sourced facts (`source`, `sourced()`, `unverified`, `checkSourceIds()`, `citer()`), questions, micro modules, guides, glossary |
 | `content` | `courseCollections()` for a course's `src/content.config.ts` |
 | `data` | `getModules()`, `getGuides()`, `getGlossary()`, and `getStaticPaths` helpers. Drafts show only in `astro dev` |
-| `markdown` | `md()`, `mdInline()`, `plain()`. In content, `[text](~/learn/)` is an internal link |
+| `markdown` | `md()`, `mdInline()`, `plain()`. In content data and in guide Markdown, `[text](~/learn/)` is an internal link that gets the base path |
 | `search` | The `search.json` route and `searchIndex()` |
-| `integration` | Astro integration: external links open in a new tab, safely and accessibly |
+| `integration` | Astro integration: `~/` internal links in Markdown pages; external links open in a new tab, safely and accessibly |
 | `layouts/Base.astro` | Page shell: header, menu, theme switch, under-construction strip, footer |
 | `components/*` | `Question`, `Cite`, `Sources`, `Unverified`, `Feedback`, `Figure`, `Thumb` + `Lightbox`, `Cover` |
 | `pages/*` | `ModulePage`, `LearnPage`, `GuidePage`, `GlossaryPage`, `SearchPage`: mounted by thin route files in a course |
@@ -46,7 +46,9 @@ A step that needs a course widget names it (`embed: { name: collation, args: {..
 
 ## Tests
 
-`npm test` (at the root or in this folder) checks the fixtures in `fixtures/modules/` against the schema, and checks that bad data is rejected. It needs Node 22.18 or later, which runs TypeScript directly.
+`npm test` (at the root or in this folder) checks the fixtures in `fixtures/modules/` against the schema, checks that bad data is rejected, and tests the two link passes. It needs Node 22.18 or later, which runs TypeScript directly.
+
+Type-checking: the platform has no Astro app of its own, so `courses/logos/tsconfig.json` includes `platform/src` and `npm run check` checks it there.
 
 ## Not moved (stays in Textual Criticism until Phase 5)
 

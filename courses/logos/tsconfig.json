@@ -1,1 +1,6 @@
-{ "extends": "astro/tsconfigs/strict", "include": [".astro/types.d.ts", "**/*"], "exclude": ["dist"] }
+{
+  "extends": "astro/tsconfigs/strict",
+  // The platform has no Astro app of its own, so it is type-checked here, with this course's collection types.
+  "include": [".astro/types.d.ts", "**/*", "../../platform/src/**/*"],
+  "exclude": ["dist"]
+}

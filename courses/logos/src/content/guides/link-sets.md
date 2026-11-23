@@ -63,4 +63,4 @@ Some of these need a Bible in Greek or Hebrew, or an English Bible linked word b
 
 ## Keep your links
 
-Links are lost when you close the panel or Logos. To keep them, save the layout (see [Layouts](../layouts/)). The **Bible and Commentary** QuickStart Layout comes already linked.
+Links are lost when you close the panel or Logos. To keep them, save the layout (see [Layouts](~/guides/layouts/)). The **Bible and Commentary** QuickStart Layout comes already linked.

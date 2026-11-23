@@ -11,6 +11,7 @@ import Base from '../layouts/Base.astro';
 import Question from '../components/Question.astro';
 import Sources from '../components/Sources.astro';
 import Feedback from '../components/Feedback.astro';
+import Unverified from '../components/Unverified.astro';
 import { levelName, type SiteConfig } from '../config';
 import type { MicroModule } from '../schemas';
 import { md } from '../markdown';
@@ -53,9 +54,10 @@ const learn = url(PATHS.learn);
     })}
 
     <section class="mm-done" hidden>
-      <h2>Well done</h2>
+      <h2 tabindex="-1">Well done</h2>
       {m.done ? <div set:html={md(m.done)} /> : <p>You have finished “{m.title}”. Try <a href={`${learn}#modules`}>another micro module</a>.</p>}
     </section>
+    <Unverified items={m.unverified} />
     <Sources sources={m.sources} lastChecked={m.last_checked} />
     <Feedback site={site} title={m.title} />
   </article>
@@ -81,11 +83,17 @@ const learn = url(PATHS.learn);
       steps.forEach((s, i) => (s.hidden = i > n));
       dots.forEach((d, i) => { d.classList.toggle('on', i <= n); if (i === n) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current'); });
     }
+    const behavior: ScrollBehavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
     function go(n: number) {
-      if (n >= steps.length) { done.hidden = false; done.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+      if (n >= steps.length) {
+        done.hidden = false;
+        done.scrollIntoView({ behavior, block: 'start' });
+        done.querySelector<HTMLElement>('h2')?.focus({ preventScroll: true });   // announce the end
+        return;
+      }
       open = Math.max(open, n);
       show(open);
-      steps[n].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      steps[n].scrollIntoView({ behavior, block: 'start' });
       steps[n].querySelector<HTMLElement>('h2')?.focus({ preventScroll: true });
     }
     steps.forEach((step, i) => {
@@ -120,4 +128,5 @@ const learn = url(PATHS.learn);
   .mm-done { margin: 2rem 0; padding: 1rem 1.1rem; border-radius: 10px; background: var(--paper-2); border: 1px solid var(--rule); }
   .mm-done[hidden] { display: none; }
   .mm-done h2 { margin-top: 0; }
+  .mm-done h2:focus { outline: none; }
 </style>

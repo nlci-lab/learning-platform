@@ -39,3 +39,25 @@ test('a bad id fails', () => {
   m.id = 'Mark 1:2';
   assert.equal(moduleSchema.safeParse(m).success, false);
 });
+
+test('a matching question with fewer than 3 answers fails', () => {
+  const m = load('question-types.yaml');
+  const q = m.steps.find((s) => s.question?.type === 'matching').question;
+  q.pairs = q.pairs.slice(0, 2);
+  q.distractors = [];
+  assert.equal(moduleSchema.safeParse(m).success, false);
+});
+
+test('duplicate source ids fail', () => {
+  const m = load('mark-1-2.yaml');
+  m.sources[1].id = m.sources[0].id;
+  assert.equal(moduleSchema.safeParse(m).success, false);
+});
+
+test('an unquoted YAML date is accepted as YYYY-MM-DD', () => {
+  const m = load('mark-1-2.yaml');
+  m.last_checked = new Date('2026-11-23');
+  const r = moduleSchema.safeParse(m);
+  assert.ok(r.success);
+  assert.equal(r.data.last_checked, '2026-11-23');
+});

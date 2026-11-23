@@ -2,7 +2,16 @@
   "name": "cohorts-cit",
   "private": true,
   "type": "module",
-  "workspaces": ["platform", "site", "courses/*"],
+  "description": "A shared course platform and the course sites built on it, for Bible translators and consultants.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "workspaces": [
+    "platform",
+    "site",
+    "courses/*"
+  ],
   "scripts": {
     "dev:site": "npm run dev -w @cohorts/site",
     "dev:logos": "npm run dev -w @cohorts/logos",
@@ -12,6 +21,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@types/node": "^22.15.0",
     "typescript": "^5.9.3"
   }
 }

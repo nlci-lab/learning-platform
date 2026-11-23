@@ -40,7 +40,7 @@ A **guide** is a report that Logos builds from your library. The **Passage Guide
 - **Media Resources**, such as maps and pictures
 - **Topics** and **Sermons**
 
-For a close look at the Greek or Hebrew words, use the [Exegetical Guide](../exegetical-guide/) instead.
+For a close look at the Greek or Hebrew words, use the [Exegetical Guide](~/guides/exegetical-guide/) instead.
 
 ## Open it
 

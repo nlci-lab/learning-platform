@@ -25,11 +25,12 @@ const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
   {/* html:root outranks the platform's :root default, whatever order the bundled CSS lands in. */}
   {accent && <style set:html={`html:root{--accent:${accent.light}}html:root[data-theme="dark"]{--accent:${accent.dark}}`} />}
   <script is:inline>
-    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    try { const t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
   <slot name="head" />
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
   {site.underConstruction && (
     <div class="construction" role="note">
       <div class="wrap"><strong>Under construction.</strong> The content and structure of this site will change quickly. Do not rely on it as a source for serious decisions.</div>
@@ -46,7 +47,7 @@ const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
       <button class="theme-toggle" type="button" id="theme-toggle" hidden>Dark</button>
     </div>
   </header>
-  <main class="wrap"><slot /></main>
+  <main class="wrap" id="main" tabindex="-1"><slot /></main>
   <footer class="site-foot">
     <div class="wrap">
       {site.footer && <p set:html={site.footer} />}
@@ -63,7 +64,8 @@ const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
       b.addEventListener('click', function () { var t = cur() === 'dark' ? 'light' : 'dark'; root.dataset.theme = t; try { localStorage.setItem('theme', t); } catch (e) {} label(); });
     })();
   </script>
-  <script is:inline>
+  {/* Dev only: the build rewrites external links itself (integrations/external-links.mjs). */}
+  {import.meta.env.DEV && <script is:inline>
     // Mirrors the platform's external-links integration (which rewrites built HTML) so `astro dev` matches.
     (function () {
       document.querySelectorAll('a[href]').forEach(function (a) {
@@ -79,6 +81,6 @@ const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
         }
       });
     })();
-  </script>
+  </script>}
 </body>
 </html>
