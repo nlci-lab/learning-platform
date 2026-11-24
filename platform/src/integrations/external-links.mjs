@@ -20,10 +20,12 @@ const attr = (tag, name) => {
   const m = tag.match(attrRe(name));
   return m ? (m[2] ?? m[3]) : null;
 };
+// Values read by attr() may hold " (from single-quoted attributes): escape them when writing double-quoted.
+const esc = (v) => String(v).replace(/&(?!(?:[a-z]+|#\d+|#x[0-9a-f]+);)/gi, '&amp;').replace(/"/g, '&quot;');
 const setAttr = (tag, name, value) =>
   attrRe(name).test(tag)
-    ? tag.replace(attrRe(name), ` ${name}="${value}"`)
-    : tag.replace(/\s*>$/, ` ${name}="${value}">`);
+    ? tag.replace(attrRe(name), () => ` ${name}="${esc(value)}"`)
+    : tag.replace(/\s*>$/, () => ` ${name}="${esc(value)}">`);
 
 export function isExternal(href, siteOrigin, base) {
   if (!/^https?:\/\//i.test(href)) return false; // relative, #anchor, mailto:, tel:

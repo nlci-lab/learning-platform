@@ -98,4 +98,4 @@ To search only a collection, click **Your Books** in Search and choose it under 
 
 ## Translator's Workplace books
 
-In a Logos setup with Translator's Workplace, you may see a **TW Menu** among the shortcuts on the main toolbar (seen in the app). Faithlife's help pages do not describe it. TW books are in your Library like any other books.
+In a Logos setup with Translator's Workplace, you may see a **TW Menu** among the shortcuts on the main toolbar (seen in the app). Faithlife's help pages do not describe it. In the app checked for this guide, TW books such as the UBS Handbooks are listed in the Library with the other books (seen in the app).

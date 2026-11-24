@@ -4,7 +4,7 @@
 // With JavaScript: the reader answers, presses Check, and sees the feedback for their own answer.
 // Fires a bubbling 'q:checked' event when checked, so a micro module can open its next step.
 import type { Question } from '../schemas';
-import { md, mdInline } from '../markdown';
+import { md, mdInline, plain } from '../markdown';
 interface Props { q: Question }
 const { q } = Astro.props;
 const name = `q-${q.id}`;
@@ -28,7 +28,7 @@ if (choice && q.type === 'multichoice' && q.shuffle) {
 }
 const matches = q.type === 'matching' ? [...new Set([...q.pairs.map((p) => p.match), ...q.distractors])].sort((a, b) => a.localeCompare(b, 'en')) : [];
 const short = q.type === 'shortanswer'
-  ? JSON.stringify({ cs: q.case_sensitive, a: q.answers.map((a) => ({ t: a.text, f: mdInline(a.feedback ?? '') })), w: mdInline(q.if_wrong) })
+  ? JSON.stringify({ cs: q.case_sensitive, a: q.answers.map((a) => ({ t: plain(a.text), f: mdInline(a.feedback ?? '') })), w: mdInline(q.if_wrong) })
   : undefined;
 const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer';
 ---

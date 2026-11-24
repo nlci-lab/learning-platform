@@ -10,7 +10,7 @@ export interface SearchEntry { kind: 'Micro module' | 'Guide' | 'Glossary' | 'Se
 export async function searchIndex(): Promise<SearchEntry[]> {
   const out: SearchEntry[] = [];
   for (const { data: m } of await getModules()) {
-    const words = [m.title, m.topic, m.question, m.skill, m.lead, ...m.steps.flatMap((s) => [s.title, s.question?.prompt ?? ''])];
+    const words = [m.title, m.topic, m.question, m.skill, m.lead, ...m.steps.flatMap((s) => [s.title, s.body ?? '', s.question?.prompt ?? ''])];
     out.push({ kind: 'Micro module', title: m.title, ctx: m.skill, href: PATHS.module(m.id), text: plain(words.join(' ')).toLowerCase() });
   }
   for (const g of await getGuides()) {
