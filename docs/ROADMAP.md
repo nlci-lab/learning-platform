@@ -41,4 +41,4 @@ Move it to `courses/textual-criticism/` with its git history, switch it to platf
 
 ## Open
 
-- A name for the master site. "Courses" is a placeholder.
+- ~~A name for the master site.~~ Decided: "Learning Hub" (the repo and URL stay `learning-platform`).

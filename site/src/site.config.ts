@@ -1,9 +1,9 @@
 import { defineSite } from '@cohorts/platform/config';
 
-// "Courses" is a placeholder name until the master site is named (docs/ROADMAP.md).
+// The master site is called "Learning Hub" (decided 2026-11-24). The repo and URL stay learning-platform.
 export const site = defineSite({
   id: 'site',
-  title: 'Courses',
+  title: 'Learning Hub',
   description: 'Short online courses for Bible translators and consultants.',
   lang: 'en',
   nav: [],
