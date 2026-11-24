@@ -53,7 +53,7 @@ const learn = url(PATHS.learn);
       );
     })}
 
-    <section class="mm-done" hidden>
+    <section class="mm-done">
       <h2 tabindex="-1">Well done</h2>
       {m.done ? <div set:html={md(m.done)} /> : <p>You have finished “{m.title}”. Try <a href={`${learn}#modules`}>another micro module</a>.</p>}
     </section>
@@ -69,6 +69,7 @@ const learn = url(PATHS.learn);
     const steps = [...root.querySelectorAll<HTMLElement>('.mm-step')];
     const prog = root.querySelector<HTMLOListElement>('.mm-progress')!;
     const done = root.querySelector<HTMLElement>('.mm-done')!;
+    done.hidden = true;   // shown on Finish; without JavaScript it stays visible
     prog.hidden = false;
     steps.forEach((s, i) => {
       const li = document.createElement('li');

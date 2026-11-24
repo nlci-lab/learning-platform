@@ -33,7 +33,11 @@ const { site, placeholder = 'Search the course' } = Astro.props;
   let failed = false;
   const base = form.dataset.base!;
   let idx: SearchEntry[] | null = null, loading: Promise<void> | null = null;
-  const load = () => (loading ??= fetch(form.dataset.index!).then((r) => r.json()).then((d) => { idx = d; show(); }).catch(() => { idx = []; failed = true; show(); }));
+  // A failed fetch is not cached: the next keystroke or focus tries again.
+  const load = () => (loading ??= fetch(form.dataset.index!)
+    .then((r) => { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+    .then((d) => { idx = d; failed = false; show(); })
+    .catch(() => { loading = null; failed = true; show(); }));
 
   function show() {
     const words = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -60,7 +64,7 @@ const { site, placeholder = 'Search the course' } = Astro.props;
     out.append(ul);
   }
 
-  q.addEventListener('focus', load, { once: true });
+  q.addEventListener('focus', load);
   q.addEventListener('input', () => { load(); show(); });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
