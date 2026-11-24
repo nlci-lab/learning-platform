@@ -9,7 +9,7 @@ level: 3
 order: 14
 minutes: 8
 description: "A short guided problem for Part 4 of Making textual decisions: read the UBS apparatus entry at John 1:18 and its {B} rating."
-lead: "The UBS apparatus lists the readings at John 1:18 with their witnesses and a rating. Practise what [Part 4: The apparatus](~/learn/decisions/the-apparatus/) teaches: read the entry, count the readings by meaning, and see what the rating does and does not tell you."
+lead: "The UBS apparatus lists the readings at John 1:18 with their witnesses (the manuscripts and other sources for each reading) and a rating. Practise what [Part 4: The apparatus](~/learn/decisions/the-apparatus/) teaches: read the entry, count the readings by meaning, and see what the rating does and does not tell you."
 sources:
   - id: part
     cite: "This site's series part [The apparatus](~/learn/decisions/the-apparatus/), with its sources (UBS Greek New Testament, 5th ed., apparatus at John 1:18)."
@@ -40,7 +40,7 @@ steps:
       options:
         - text: "As one reading in meaning: both are “the only God” in English, and both count as “God”."
           correct: true
-          feedback: "Right. Count readings by meaning, not by small words that do not change it."
+          feedback: "Right. For translation, both count as “God”. The article still matters as evidence: see Part 5."
         - text: As two different readings for your translation.
           feedback: "Not for translation. In English both are “the only God”. The article does not change who is meant."
   - id: witnesses

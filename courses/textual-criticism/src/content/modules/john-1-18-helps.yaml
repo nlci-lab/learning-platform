@@ -47,7 +47,7 @@ steps:
       if_false: "Right. The Display itself advises against it. A meaning line shows the meaning. Think how to say that meaning in your language."
   - id: handbook
     title: The UBS Handbook (HBKENG)
-    body: "The Handbook says the first sentence of the verse is easy, but the second has a serious textual problem. Then it lists the readings."
+    body: "The Handbook says the first sentence of the verse is easy, but the second has a serious textual problem. Then it lists four readings and says something about each. Open HBKENG at John 1:18 in Paratext to read the whole note."
     question:
       id: john-1-18-helps-handbook
       type: matching
@@ -69,9 +69,9 @@ steps:
           correct: true
           feedback: "Right. It names the TEV as one English Bible that has chosen this text. Ask how your language can say both parts naturally."
         - text: "“the only Son” and “who is God”"
-          feedback: "Not the Handbook's suggestion, though some Bibles say this. The Handbook divides “the only God” into “the only one” and “one who is the same as the Father”."
+          feedback: "Close, but not the Handbook's two parts. The Handbook notes that the TEV makes the first part “the only Son”. Its own two parts are “the only one” and “one who is the same as the Father”."
         - text: "“God” and “the Son”, as two different persons"
-          feedback: "No. That would make readers hear two Gods. The Handbook's suggestion avoids this."
+          feedback: "No. The Handbook does not suggest this. Its two parts both describe one person."
   - id: limits
     title: What the helps cannot tell you
     question:
@@ -79,10 +79,10 @@ steps:
       type: multichoice
       prompt: Your Review Committee asks which manuscripts read “Son”. Can the helps answer?
       options:
-        - text: "Only in general terms. For the witnesses, go on to the NET notes or the apparatus."
+        - text: "Only in general terms. For the witnesses (the manuscripts and other sources behind each reading), go on to the NET notes or the apparatus."
           correct: true
           feedback: "Right. The helps summarise the evidence and recommend a reading. [Part 3: The NET notes](~/learn/decisions/net-notes/) names the main witnesses."
         - text: Yes, they list every manuscript.
-          feedback: "No. The helps speak of “the strongest Greek support” but do not list the manuscripts in detail."
+          feedback: "No. The Handbook speaks of the strongest Greek manuscript evidence, but it does not list the manuscripts in detail."
         - text: "It does not matter: follow the Handbook."
           feedback: "You can follow its recommendation, but then you trust its judgement. Your committee may want to see the evidence."

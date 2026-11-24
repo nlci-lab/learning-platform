@@ -29,13 +29,13 @@ steps:
     question:
       id: john-1-18-manuscripts-list
       type: multichoice
-      prompt: "In the card, which Greek word is the difference about?"
+      prompt: "The card shows several differences, some small. Which word is the main difference about?"
       options:
         - text: "θεός (“God”) or υἱός (“Son”), with or without ὁ (“the”)"
           correct: true
-          feedback: "Right. That is the whole problem: who has made the Father known."
+          feedback: "Right. That is the main problem: who has made the Father known. The card also shows smaller differences, such as word order."
         - text: "μονογενής (“only”)"
-          feedback: "Almost every witness has μονογενής. The difference is the word after it."
+          feedback: "No. Every reading in the apparatus has μονογενής. The main difference is the word after it."
   - id: external
     title: External evidence
     body: "Take the questions about the witnesses in order; number comes last."
@@ -48,7 +48,7 @@ steps:
           correct: true
           feedback: "Right. Age points to “God”; the spread of the witnesses points to “Son”."
         - text: "“Son” wins, because most manuscripts have it."
-          feedback: "No. Number comes last. Many later copies can go back to one changed ancestor."
+          feedback: "No. Number comes last. Many later copies may go back to a few ancestors."
         - text: "“God” wins clearly; there is nothing on the other side."
           feedback: "Not clearly. “Son” is found widely, in Greek and in most Latin witnesses."
   - id: internal
@@ -59,7 +59,8 @@ steps:
       prompt: Match each argument to the scholar or committee that makes it.
       pairs:
         - { item: "“Son” is the easier reading; scribes made 1:18 match John 3:16 and John 3:18", match: The UBS committee (Metzger's Textual Commentary) }
-        - { item: "A scribe who wanted to stress Christ's deity had a reason to change “Son” to “God”", match: Bart Ehrman }
+        - { item: "A scribe who wanted to stress Christ's deity (that he is God) had a reason to change “Son” to “God”", match: Bart Ehrman }
+        - { item: "A copying slip: in short form, “God” and “Son” were easily confused", match: One member of the UBS committee }
       distractors: [The KJV translators]
       general_feedback: "Each side can explain how the other reading arose. That is why careful scholars disagree here."
   - id: weigh
@@ -81,10 +82,10 @@ steps:
       model_answer: |
         A good recommendation names the reading, gives the main reasons from both kinds of evidence, and includes a footnote. For example:
 
-        **Proposal:** Follow the UBS text, “the only God”, worded so that readers do not hear a second God (for example “the only one, who is himself God”).
+        **Proposal:** Follow the UBS text, “the only God”, worded so that readers do not hear a second God (for example “God the only Son”, as in the NRSV).
 
         **Reasons:** The oldest Greek witnesses (𝔓⁶⁶, 𝔓⁷⁵, א, B) read “God”. The UBS committee judged “Son” the easier reading, made to match John 3:16 and John 3:18. Ehrman argues the opposite, so the case is not certain ({B}, by a majority).
 
-        **Footnote:** “Some manuscripts read ‘the only Son’.”
+        **Footnote:** “Other manuscripts read ‘the only Son’.”
 
         Choosing “the only Son” to match the regional-language Bible is also a sound recommendation, with “God” in the footnote. The Review Committee decides.

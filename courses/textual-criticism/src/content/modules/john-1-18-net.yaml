@@ -29,9 +29,9 @@ steps:
           correct: true
           feedback: "Right. tc notes discuss the readings of the manuscripts."
         - text: The tn note
-          feedback: "No. A tn note discusses how to translate the text, not which text to translate."
+          feedback: "No. tn notes are translator's notes. The textual problems are in the tc notes."
         - text: The sn note
-          feedback: "No. An sn note gives background for study."
+          feedback: "No. sn notes are study notes. The textual problems are in the tc notes."
   - id: slip
     title: One letter apart
     body: "In the manuscripts, sacred names such as “God” and “Son” were often written in a short form (*nomina sacra*, see [Writing materials](~/background/materials/))."
@@ -47,7 +47,7 @@ steps:
     question:
       id: john-1-18-net-evidence
       type: matching
-      prompt: Match each argument in the note to the kind of evidence it is.
+      prompt: "Match each argument in the note to the kind of evidence it is. (Papyri are manuscripts on papyrus; codices are books of parchment pages.)"
       pairs:
         - { item: "The oldest papyri and major early codices read “God”", match: External evidence (the witnesses) }
         - { item: "Most manuscripts, especially later ones, read “Son”", match: External evidence (the witnesses) }
@@ -65,10 +65,10 @@ steps:
       options:
         - text: Ask what the other side would say.
           correct: true
-          feedback: "Yes. The note answers Bart Ehrman's objection, but read the case for “Son” too."
+          feedback: "Yes. The note replies to an objection from Bart Ehrman about the grammar, but read the case for “Son” too."
         - text: Check the witnesses it names against the UBS apparatus.
           correct: true
-          feedback: "Yes. Notes shorten the lists, and the signs can differ: the NET writes א¹ where the UBS apparatus writes א² for the same corrector."
+          feedback: "Yes. Notes shorten the lists, and the signs can differ: the NET writes א¹ where the UBS apparatus writes א² for the same corrector (a later hand that corrected Codex Sinaiticus)."
         - text: Copy its verdict into your translation.
           feedback: "No. The weighing is still the NET team's. Your Review Committee decides."
         - text: Quote the whole note in your footnote.

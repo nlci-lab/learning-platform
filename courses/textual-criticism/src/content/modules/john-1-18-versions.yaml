@@ -67,7 +67,7 @@ steps:
         - text: Which reading is older.
           feedback: "No. A Bible does not tell you which manuscripts it follows or how old they are."
         - text: What your team should decide.
-          feedback: "No. You have only found the problem. The decision needs more evidence and your Review Committee."
+          feedback: "No. You have only found the problem. The decision needs more evidence and your [Review Committee](~/guide/text-policy/)."
   - id: hidden
     title: The hidden decision
     body: "Most Indian-language Bibles checked so far stand mainly on the side of the Textus Receptus: the printed Greek text behind the KJV and many older Bibles."
@@ -93,7 +93,7 @@ steps:
         - text: "Look at the translation helps, which explain what is happening in the Greek."
           correct: true
           feedback: "Right. That is [Part 2: Translation helps](~/learn/decisions/translation-helps/)."
-        - text: Choose the reading most of the four Bibles have.
+        - text: Choose the reading most Bibles in your collection have.
           feedback: "No. Counting Bibles tells you nothing about the Greek text. Two of these Bibles say “God” and two say only “Son”."
         - text: Follow the newest Bible.
           feedback: "No. A newer Bible is not automatically right. You need to know why the Bibles differ."
