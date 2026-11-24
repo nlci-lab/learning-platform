@@ -4,10 +4,7 @@ import type { APIRoute } from 'astro';
 import { getModules, getGuides, getGlossary, getGuidePaths } from './data';
 import { plain } from './markdown';
 import { PATHS } from './paths';
-import GithubSlugger from 'github-slugger';
-
-// Same heading ids as Astro's Markdown (github-slugger).
-const slugger = new GithubSlugger();
+import { render } from 'astro:content';
 
 export interface SearchEntry { kind: 'Micro module' | 'Guide' | 'Glossary' | 'Section'; title: string; ctx: string; href: string; text: string }
 
@@ -26,10 +23,8 @@ export async function searchIndex(): Promise<SearchEntry[]> {
     const body = plain(source.replace(/^#+\s.*$/gm, ' ')).slice(0, 4000);
     const tags = d.tags.map((t) => `#${t} ${t.replace(/-/g, ' ')}`).join(' ');
     out.push({ kind: 'Guide', title: d.title, ctx: `${d.summary} ${d.tags.map((t) => '#' + t).join(' ')}`, href: guidePaths.get(d.id)!, text: plain([d.title, d.cover, d.summary, ...d.learn].join(' ')).toLowerCase() + ' ' + tags + ' ' + body.toLowerCase() });
-    // Markdown guides carry their headings; for MDX, read the ## and ### lines from the source.
-    slugger.reset();
-    const headings = (g.rendered?.metadata?.headings as { depth: number; slug: string; text: string }[] | undefined)
-      ?? [...source.matchAll(/^(#{2,3})\s+(.+?)\s*$/gm)].map((m) => ({ depth: m[1].length, text: plain(m[2]), slug: slugger.slug(plain(m[2])) }));
+    // Headings as Astro renders them (the same ids GuidePage links to), for .md and .mdx alike.
+    const { headings } = await render(g);
     for (const h of headings) {
       if (h.depth === 2 || h.depth === 3)
         out.push({ kind: 'Section', title: h.text, ctx: `Section in “${d.title}”`, href: `${guidePaths.get(d.id)}#${h.slug}`, text: `${h.text} ${d.title}`.toLowerCase() });
