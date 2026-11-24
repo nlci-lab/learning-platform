@@ -10,7 +10,7 @@ const sources = [
   { cite: 'This site\'s guides "Which variants deserve your attention" (when to add a footnote; Adapted from Thomas Hemphill, used with permission), "Doubtful passages" and "Two Greek texts behind our Bibles" (how Bibles mark long passages and whole verses).', checked: true },
   { cite: 'UBS5 Introduction, via Paratext 9 help: the double brackets ⟦ ⟧, as given in this site\'s glossary.', checked: true },
   { cite: 'Unified Standard Format Markers (USFM) 3.0 documentation, "Footnotes": the \\f … \\f* syntax, the callers + - ?, the markers \\fr, \\ft, \\fq, \\fqa, \\fk, and the example at Mark 1:1 (GNT). https://ubsicap.github.io/usfm/notes_basic/fnotes.html (opened 25 Nov 2026).', checked: true },
-  { cite: 'Paratext 9.5 Training Manual, task 4 "Keyboarding your draft", section 4.8 "Insert Footnotes", SIL Global. https://manual.paratext.org/4.KD (opened 25 Nov 2026).', checked: true },
+  { cite: 'Paratext Manual (training manual), 4 "Keyboarding your draft", section 4.8 "Insert Footnotes", SIL Global (CC BY-SA 4.0). https://manual.paratext.org/4.KD (opened 25 Nov 2026).', checked: true },
 ];
 ---
 <Context title="Writing textual footnotes" label="Guide" lastChecked="2026-11-25" sources={sources}
@@ -26,11 +26,11 @@ const sources = [
   <p>See <a href={url('guide/which-variants-matter/#when-to-add-a-footnote')}>When to add a footnote</a> for how to sort variants first. Whether your translation uses footnotes at all, and how a disputed passage is printed, is decided under your project's <a href={url('guide/text-policy/')}>text policy</a>. The Review Committee decides. The footnotes on this site are recommendations.</p>
 
   <h2>How to word one</h2>
-  <p>Give the other reading in a few words. Readers want to know <em>what</em> is different, not the whole argument.</p>
+  <p>Give the other reading in a few words: <em>what</em> is different, not the whole argument. We recommend:</p>
   <ul class="rules">
     <li><strong>Name the other reading.</strong> Quote the words, or say which verses are missing.</li>
     <li><strong>Keep it short.</strong> One sentence is usually enough. Two at most.</li>
-    <li><strong>Use the same formula every time.</strong> Readers learn what it means.</li>
+    <li><strong>Use the same formula every time.</strong> Word the same kind of note the same way across the whole translation.</li>
     <li><strong>Do not judge.</strong> Say what the manuscripts have, not which Bible is wrong.</li>
   </ul>
 
@@ -48,7 +48,7 @@ const sources = [
   </div>
 
   <h3>These words are not a count</h3>
-  <p>"Some", "other" and "many" tell readers that the manuscripts differ. They do not say how many manuscripts, or how old.</p>
+  <p>These words are not exact counts. "Some" can stand for a few manuscripts or for most of them. Other Bibles use the words loosely, so do not read them as numbers. In your own notes, use "many" or "a few" only when the evidence page supports it.</p>
   <figure class="fn-quote">
     <blockquote><p>1:18 Some manuscripts <i>but the only Son, who</i></p></blockquote>
     <figcaption>NIV footnote at John 1:18, quoted for teaching.</figcaption>
@@ -65,7 +65,8 @@ const sources = [
     </section>
     <section class="tool">
       <p class="tool-k">Brackets</p>
-      <p>For a long passage that stays in its place. The UBS Greek text prints Mark 16:9–20 and John 7:53–8:11 inside <a href={g('double-brackets')}>⟦ ⟧</a>: added later, but very old and important. Many Bibles put such a passage in brackets and add a footnote. Brackets are not used for a one-word difference.</p>
+      <p>For a long passage that stays in its place. The UBS Greek text prints Mark 16:9–20 and John 7:53–8:11 inside <a href={g('double-brackets')}>⟦ ⟧</a>. In the editors' system these mark a passage they think was added later, but which is very old and important.</p>
+      <p>The UBS text also uses single square brackets [ ] for shorter words that the editors were less sure of (see <a href={url('guide/which-variants-matter/')}>Which variants matter</a>). Brackets do not work where one word replaces another, as at John 1:18. They can mark words that some manuscripts have and others lack.</p>
     </section>
     <section class="tool">
       <p class="tool-k">Heading or note</p>
@@ -106,7 +107,7 @@ const sources = [
   <p>Paratext stores your text in <em>USFM</em>, a set of markers that start with a backslash. A footnote sits inside the verse, at the place it refers to.</p>
   <h3>With the menu</h3>
   <ol>
-    <li>Put the cursor where the footnote belongs, usually after the word or at the end of the verse.</li>
+    <li>Put the cursor where you want the footnote.</li>
     <li>Open the <strong>≡</strong> menu of the tab, and under <strong>Insert</strong> choose <strong>Footnote</strong>.</li>
     <li>Type the footnote text after the <code>\ft</code> marker.</li>
   </ol>
