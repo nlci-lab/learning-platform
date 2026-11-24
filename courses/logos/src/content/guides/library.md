@@ -10,7 +10,7 @@ learn:
   - How to choose your Top Bible
   - How to make a collection of books
 before: moving-around
-related: [search, passage-guide]
+related: [resources, search]
 sources:
   - id: library
     cite: Faithlife, “Find Your Books in the Library”, Logos Help Center (edited 25 Aug 2026)
@@ -32,10 +32,13 @@ sources:
     cite: Faithlife, “Create and Use Book Collections”, Logos Help Center (edited 13 Mar 2026)
     url: https://support.logos.com/hc/en-us/articles/360016299092
     checked: true
-last_checked: 2026-11-23
+  - id: app
+    cite: Checked in the Logos desktop app (version 55, with Translator's Workplace), 24 Nov 2026
+    checked: true
+last_checked: 2026-11-24
 ---
 
-*Written from Faithlife's help pages for Logos version 55 (November 2026). Not yet checked in the app.*
+*Written from Faithlife's help pages for Logos version 55 (November 2026). Points marked “checked in the app” or “seen in the app” were tried in Logos 55 on 24 Nov 2026.*
 
 ## Open the Library
 
@@ -45,9 +48,13 @@ Choose how it looks from the **Views** list: **Cover View**, **Tile View** or **
 
 ## Find a book
 
-- **Type** a few words of the title or author in the Library's search bar.
-- **Filter:** click the **Sidebar** icon to open the filters. You can filter by **Type** (for example Bible, commentary or lexicon), subject, **Collection**, reading status or date added.
-- **Field search:** type a field and a word, for example `title:John` or `author:Augustine`.
+There are three ways, and you can combine them.
+
+1. **Simple search:** type a few words of the title, author or series in the Library's search bar.
+2. **Field search:** type a field name, a colon and a word, so that Logos looks only in that field. For example `title:John`, `author:Augustine` or `subject:leadership`. Any filter heading in the sidebar can be used as a field.
+3. **Filters:** click the **Sidebar** icon (three lines) to open the filters. Choose a **Type** (for example Bible, Bible Commentary or Lexicon), a subject, a **Collection**, a reading status or a date added.
+
+Some types are not what you might expect. The UBS Handbooks and SIL Exegetical Summaries are filed as **Bible Commentary**, and Bible dictionaries as **Encyclopedia**. See [Kinds of resources](~/guides/resources/).
 
 ## Prioritise books
 
@@ -83,4 +90,4 @@ To search only a collection, click **Your Books** in Search and choose it under 
 
 ## Translator's Workplace books
 
-Faithlife's help pages say nothing about Translator's Workplace. TW books appear in your Library like any other books. Check in your own Library how they are listed and filtered.
+In a Logos setup with Translator's Workplace, you may see a **TW Menu** among the shortcuts on the main toolbar (seen in the app). Faithlife's help pages do not describe it. TW books are in your Library like any other books.
