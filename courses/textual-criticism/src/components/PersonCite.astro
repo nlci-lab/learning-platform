@@ -1,0 +1,9 @@
+---
+// Source markers for one person on background/people/: like the platform Cite, but the targets are
+// that person's own numbered list (#<id>-s1, #<id>-s2 …), since the page holds many lists.
+interface Props { person: { id: string; sources: { id: string; checked: boolean }[] }; src: string[] }
+const { person, src } = Astro.props;
+const ns = src.map((s) => person.sources.findIndex((x) => x.id === s) + 1).filter((n) => n > 0).sort((a, b) => a - b);
+const unchecked = !src.some((s) => person.sources.find((x) => x.id === s)?.checked);
+---
+{ns.length > 0 && <><sup class="cite">[{ns.map((x, i) => <>{i > 0 && ','}<a href={`#${person.id}-s${x}`} aria-label={`source ${x}`}>{x}</a></>)}]</sup>{unchecked && <span class="tag">to check</span>}</>}
