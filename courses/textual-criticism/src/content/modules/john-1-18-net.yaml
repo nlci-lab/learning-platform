@@ -10,7 +10,7 @@ level: 2
 order: 13
 minutes: 6
 description: "A short guided problem for Part 3 of Making textual decisions: follow the NET Bible's textual note on John 1:18 and read it critically."
-lead: "The NET Bible's textual note on John 1:18 names the witnesses and gives the arguments on both sides. Open it in Paratext (NET08) if you can. Practise what [Part 3: The NET notes](~/learn/decisions/net-notes/) teaches: follow the argument, and remember whose judgement it is."
+lead: "The NET Bible's textual note on John 1:18 names the witnesses and gives the arguments on both sides. Open it in Paratext (NET08) if you can. Practise what Part 3: The NET notes teaches: follow the argument, and remember whose judgement it is."
 sources:
   - id: part
     cite: "This site's series part [The NET notes](~/learn/decisions/net-notes/), with its sources (NET Bible, tc note on John 1:18, paraphrased)."
@@ -47,7 +47,7 @@ steps:
     question:
       id: john-1-18-net-evidence
       type: matching
-      prompt: "Match each argument in the note to the kind of evidence it is. (Papyri are manuscripts on papyrus; codices are books of parchment pages.)"
+      prompt: "Match each argument in the note to the kind of evidence it is. (Papyri are manuscripts on papyrus; codices are manuscripts made as books with pages, not scrolls.)"
       pairs:
         - { item: "The oldest papyri and major early codices read “God”", match: External evidence (the witnesses) }
         - { item: "Most manuscripts, especially later ones, read “Son”", match: External evidence (the witnesses) }

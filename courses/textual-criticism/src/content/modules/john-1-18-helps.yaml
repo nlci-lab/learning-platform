@@ -9,7 +9,7 @@ level: 2
 order: 12
 minutes: 6
 description: "A short guided problem for Part 2 of Making textual decisions: read what the Translator's Notes Display and the UBS Handbook say at John 1:18."
-lead: "The Translator's Notes and the UBS Handbook explain the problem at John 1:18 in plain English. Practise what [Part 2: Translation helps](~/learn/decisions/translation-helps/) teaches: what the helps say, how to use them, and what they leave out."
+lead: "The Translator's Notes and the UBS Handbook explain the problem at John 1:18 in plain English. Practise what Part 2: Translation helps teaches: what the helps say, how to use them, and what they leave out."
 sources:
   - id: part
     cite: "This site's series part [Translation helps](~/learn/decisions/translation-helps/), with its sources (Translator's Notes Display and UBS Handbook Series at John 1:18, read in Paratext)."

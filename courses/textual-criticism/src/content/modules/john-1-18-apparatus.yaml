@@ -9,7 +9,7 @@ level: 3
 order: 14
 minutes: 8
 description: "A short guided problem for Part 4 of Making textual decisions: read the UBS apparatus entry at John 1:18 and its {B} rating."
-lead: "The UBS apparatus lists the readings at John 1:18 with their witnesses (the manuscripts and other sources for each reading) and a rating. Practise what [Part 4: The apparatus](~/learn/decisions/the-apparatus/) teaches: read the entry, count the readings by meaning, and see what the rating does and does not tell you."
+lead: "The UBS apparatus lists the readings at John 1:18 with their witnesses (the manuscripts and other sources for each reading) and a rating. Practise what Part 4: The apparatus teaches: read the entry, count the readings by meaning, and see what the rating does and does not tell you."
 sources:
   - id: part
     cite: "This site's series part [The apparatus](~/learn/decisions/the-apparatus/), with its sources (UBS Greek New Testament, 5th ed., apparatus at John 1:18)."

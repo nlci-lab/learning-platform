@@ -9,7 +9,7 @@ level: 1
 order: 11
 minutes: 6
 description: "A short guided problem for Part 1 of Making textual decisions: compare four Bibles at John 1:18 and see what they can and cannot tell you."
-lead: "Four Bibles in a text collection disagree at John 1:18. Practise what [Part 1: Compare versions](~/learn/decisions/compare-versions/) teaches: find the difference, tell a textual difference from a translation difference, and notice the decision hiding in it."
+lead: "Four Bibles in a text collection disagree at John 1:18. Practise what Part 1: Compare versions teaches: find the difference, tell a textual difference from a translation difference, and notice the decision hiding in it."
 sources:
   - id: part
     cite: "This site's series part [Compare versions](~/learn/decisions/compare-versions/), with its sources (Paratext text collection at John 1:18; Paratext Manual, “Text collections”)."

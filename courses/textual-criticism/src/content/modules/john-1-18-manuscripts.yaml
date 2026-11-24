@@ -10,7 +10,7 @@ level: 4
 order: 15
 minutes: 10
 description: "A short guided problem for Part 5 of Making textual decisions: compare the manuscripts at John 1:18, weigh both kinds of evidence, and write a recommendation."
-lead: "This is the deepest level. Practise what [Part 5: Full textual criticism](~/learn/decisions/full-textual-criticism/) teaches: compare the manuscripts, weigh the external and internal evidence, and write a recommendation for your Review Committee."
+lead: "This is the deepest level. Practise what Part 5: Full textual criticism teaches: compare the manuscripts, weigh the external and internal evidence, and write a recommendation for your Review Committee."
 sources:
   - id: part
     cite: "This site's series part [Full textual criticism](~/learn/decisions/full-textual-criticism/) and worked example [John 1:18: only God or only Son?](~/guide/examples/john-1-18/), with their sources (UBS5 apparatus; Metzger, Textual Commentary, pp. 169–70; Ehrman, The Orthodox Corruption of Scripture)."
