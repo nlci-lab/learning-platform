@@ -27,6 +27,12 @@ export const KICKER: Record<Section, string> = { guide: 'Guide', example: 'Worke
 
 export const GUIDES: GuideMeta[] = [
   {
+    path: 'guide/what-is-textual-criticism/', cover: 'What is textual criticism?', section: 'guide', level: 'Start here',
+    summary: 'Why copies of the Bible differ, what textual criticism does with them, and why a translator needs it.',
+    learn: ['Why no two manuscripts agree', 'What textual criticism compares, and what it asks', 'External and internal evidence in brief', 'Why your draft may differ from the Bible your readers know', 'What textual criticism does not decide'],
+    related: ['guide/which-variants-matter/', 'guide/apparatus/', 'background/nt-text/', 'guide/base-texts/'],
+  },
+  {
     path: 'guide/apparatus/', cover: 'Reading the apparatus', section: 'guide', level: 'Start here',
     summary: 'John 1:18 taken apart piece by piece: the rating, the readings, the witnesses and their marks.',
     learn: ['What each part of a UBS entry means', 'How to read sigla, correctors and fathers', 'What a translator does with an entry', 'What the {A}–{D} ratings do and do not tell you'],
@@ -39,6 +45,12 @@ export const GUIDES: GuideMeta[] = [
     learn: ['The kinds of variants', 'How to sort a variant quickly', 'What a rating does not tell you', 'When to add a footnote'],
     before: 'guide/apparatus/', related: ['guide/weighing-evidence/', 'guide/text-policy/', 'guide/examples/'],
     practice: ['guide/examples/romans-16-7/', 'guide/examples/john-7-53/'],
+  },
+  {
+    path: 'guide/decision-tree/', cover: 'Decision tree', section: 'guide', level: 'Start here',
+    summary: 'A few short questions that tell you whether a variant needs a decision, and what to do next.',
+    learn: ['When you can simply follow the UBS text', 'When a variant needs study', 'Where to study it', 'How the decision is made with your Review Committee'],
+    before: 'guide/what-is-textual-criticism/', related: ['guide/which-variants-matter/', 'guide/text-policy/', 'guide/apparatus/'],
   },
   {
     path: 'guide/doubtful-passages/', cover: 'Doubtful passages', section: 'guide', level: 'Going further',
@@ -57,7 +69,7 @@ export const GUIDES: GuideMeta[] = [
   },
   {
     path: 'guide/examples/', cover: 'Worked examples', section: 'example', level: 'Going further',
-    summary: 'Real places where Greek manuscripts differ, worked through step by step.',
+    summary: 'Real places where Greek and Hebrew manuscripts differ, worked through step by step.',
     learn: ['How to apply the guides to a real verse', 'What UBS5 prints and why', 'What to tell your readers'],
     related: ['guide/examples/john-7-53/', 'guide/examples/john-1-18/', 'guide/examples/james-2-20/', 'guide/examples/romans-16-7/'],
   },
@@ -90,6 +102,13 @@ export const GUIDES: GuideMeta[] = [
     question: 'Junia or Junias: a woman or a man?', skill: 'When the variant is an accent, not a word',
   },
   {
+    path: 'guide/examples/1-samuel-17-4/', cover: '1 Samuel 17:4', section: 'example', level: 'Going further',
+    summary: 'How tall was Goliath? The Masoretic Text says six cubits; the oldest Hebrew scroll and the Greek say four.',
+    learn: ['Working an Old Testament variant in six steps', 'Weighing a Dead Sea Scroll against the Masoretic Text', 'Explaining a copying slip in Hebrew', 'Following the MT with a fair footnote'],
+    before: 'guide/ot-decisions/', related: ['guide/ot-decisions/', 'background/ot-text/', 'guide/text-policy/'], verses: ['1 Samuel 17:4'],
+    question: 'How tall was Goliath: six cubits or four?', skill: 'An Old Testament case: the MT against the oldest Hebrew scroll',
+  },
+  {
     path: 'guide/base-texts/', cover: 'Two Greek texts', section: 'guide', level: 'Going further',
     summary: 'Why the Bible your church reads may differ from the UBS text, and which text Indian-language Bibles follow.',
     learn: ['The UBS text and the Textus Receptus', 'Where they differ', 'Which text each Indian-language Bible follows', 'The case for the TR and the Byzantine text'],
@@ -100,6 +119,28 @@ export const GUIDES: GuideMeta[] = [
     summary: 'Guidance on base texts: the critical text, the regional-language Bible, and the Review Committee.',
     learn: ['What translation teams are asked to do', 'The reasoning behind it', 'What it means for your team'],
     before: 'guide/base-texts/', related: ['guide/base-texts/', 'guide/which-variants-matter/'],
+  },
+  {
+    path: 'guide/footnotes/', cover: 'Writing footnotes', section: 'guide', level: 'Going further',
+    summary: 'When a textual footnote is needed, how to word one in a few plain words, and how to enter it in Paratext.',
+    learn: ['When a variant needs a footnote', 'Common formulas, and why they are not a count', 'Footnote, brackets or heading', 'Model footnotes from the worked examples', 'Entering a footnote in Paratext'],
+    before: 'guide/which-variants-matter/', related: ['guide/which-variants-matter/', 'guide/text-policy/', 'guide/examples/john-7-53/', 'guide/explaining-variants/'],
+    verses: ['John 1:18', 'John 7:53–8:11', 'James 2:20', 'Romans 16:7', 'Mark 1:2'],
+    practice: ['guide/examples/john-1-18/', 'guide/examples/john-7-53/'],
+  },
+  {
+    path: 'guide/explaining-variants/', cover: 'Explaining differences', section: 'guide', level: 'Going further',
+    summary: 'What to say when church members or reviewers ask why a verse is missing or a word has changed.',
+    learn: ['How to start from the Bible people know', 'Explaining the policy, not your opinion', 'Footnotes as the bridge', 'Short sample answers for common questions', 'Words to choose with care'],
+    before: 'guide/base-texts/', related: ['guide/base-texts/', 'guide/text-policy/', 'guide/footnotes/', 'background/nt-text/'],
+    verses: ['Acts 8:37', '1 John 5:7–8', 'John 7:53–8:11'],
+  },
+  {
+    path: 'guide/ot-decisions/', cover: 'Old Testament decisions', section: 'guide', level: 'Going further',
+    summary: 'Meeting textual problems in the Hebrew Bible: the BHS apparatus, the help available, and when the Masoretic Text should stand.',
+    learn: ['How Old Testament problems differ from New Testament ones', 'Reading a BHS apparatus note', 'Using the UBS Hebrew Old Testament Text Project and its A–D ratings', 'The six steps for the Old Testament', 'When to keep the Masoretic Text'],
+    before: 'background/ot-text/', related: ['background/ot-text/', 'guide/text-policy/', 'guide/weighing-evidence/'],
+    practice: ['guide/examples/1-samuel-17-4/'],
   },
   {
     path: 'glossary/', cover: 'Glossary', section: 'guide', level: 'Start here',
@@ -120,6 +161,18 @@ export const GUIDES: GuideMeta[] = [
     related: ['background/materials/', 'background/ot-text/', 'guide/base-texts/'],
   },
   {
+    path: 'background/printed-text/', cover: 'From Erasmus to UBS5', section: 'background', level: 'Going further',
+    summary: 'How the first published Greek New Testament of 1516 became two traditions, the Textus Receptus and the critical text, told without taking sides.',
+    learn: ['How the Textus Receptus was made and named', 'Who collected the variants, and how', 'Why 19th-century editors broke with the TR', 'How Nestle–Aland and UBS5 came about', 'Where the TR and the Byzantine text are used today'],
+    before: 'background/nt-text/', related: ['background/people/', 'guide/base-texts/', 'guide/text-policy/'],
+  },
+  {
+    path: 'background/people/', cover: 'Key figures', section: 'background', level: 'Going further',
+    summary: 'Erasmus, Stephanus, Westcott and Hort, Burgon, the Alands, Metzger, Ehrman, Robinson and others: what each made, and where you meet their work today.',
+    learn: ['Who made the printed Greek texts you use', 'What each person made: editions, methods, books', 'Their stated positions, in their own name', 'Where their work appears in your tools today'],
+    before: 'background/printed-text/', related: ['background/printed-text/', 'background/nt-text/', 'guide/base-texts/'],
+  },
+  {
     path: 'background/ot-text/', cover: 'The Old Testament text', section: 'background', level: 'Start here',
     summary: 'The Masoretic Text, the Dead Sea Scrolls, the Septuagint, and how BHS and BHQ cite them.',
     learn: ['What the Masoretic Text is', 'What the Dead Sea Scrolls add', 'Other witnesses', 'How BHS and BHQ cite them'],
@@ -130,6 +183,12 @@ export const GUIDES: GuideMeta[] = [
     summary: 'Papyrus and parchment, scrolls and books, scripts, nomina sacra, and the mistakes copyists made.',
     learn: ['Writing surfaces and book forms', 'Scripts and nomina sacra', 'How copyists changed the text', 'What correctors did'],
     related: ['background/nt-text/', 'witnesses/', 'guide/weighing-evidence/'],
+  },
+  {
+    path: 'background/church-fathers/', cover: 'Church fathers as witnesses', section: 'background', level: 'Going further',
+    summary: 'Why quotations by early Christian writers help date and place a reading, what limits them, and how the apparatus cites them.',
+    learn: ['Why a father’s date and place matter', 'Quotation, allusion and later copyists', 'Why the form of a father’s work matters', 'How UBS5 and NA28 cite fathers'],
+    before: 'guide/apparatus/', related: ['guide/examples/john-1-18/', 'background/nt-text/', 'witnesses/'], verses: ['John 1:18'],
   },
 ];
 

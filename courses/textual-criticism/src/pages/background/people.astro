@@ -1,0 +1,105 @@
+---
+// Key figures in the printed Greek New Testament, rendered from src/content/people/*.md (ADR 0002).
+// Each person keeps their own numbered sources; anchors (#erasmus, #hort, …) are the stable ids.
+import { getCollection } from 'astro:content';
+import Context from '../../layouts/Context.astro';
+import PersonCite from '../../components/PersonCite.astro';
+import { url } from '../../lib/url';
+
+// Period order for the page; the ids match the `period` enum in content.config.ts.
+const PERIOD_TITLE = {
+  'first-printed': 'The first printed texts (1516–1633)',
+  collecting: 'Collecting the variants (1700s)',
+  break: 'The break with the received text (1831–1881)',
+  debate: 'The debate over the Revised Version (1880s)',
+  modern: 'The modern editions (1898 to today)',
+} as const;
+const all = (await getCollection('people')).map((e) => e.data);
+const groups = (Object.keys(PERIOD_TITLE) as (keyof typeof PERIOD_TITLE)[]).map((p) => ({ id: p, title: PERIOD_TITLE[p], people: all.filter((x) => x.period === p).sort((a, b) => a.order - b.order) }));
+
+---
+<Context title="Key figures" label="Background" lastChecked="2026-11-25"
+  description="The people behind the printed Greek New Testament, from Erasmus to the editors of UBS5, and where you meet their work today.">
+  <p class="lead">These are the people whose editions, methods and books shaped the Greek New Testament you use. Each entry says what they made, and where you meet their work today.</p>
+  <p>The story that links them is told in <a href={url('background/printed-text/')}>From Erasmus to UBS5</a>. Where a person argued for a position, the entry says so in their name. This site does not judge between them. For the guidance your project follows, see <a href={url('guide/text-policy/')}>Which text should a translation follow?</a></p>
+
+  <nav class="pp-jump" aria-label="People on this page">
+    {groups.map((g) => (
+      <p><a class="pp-period" href={`#${g.id}`}>{g.title}</a>{' '}
+        {g.people.map((p, i) => <>{i > 0 && ' · '}<a href={`#${p.id}`}>{p.name}</a></>)}
+      </p>
+    ))}
+  </nav>
+
+  {groups.map((g) => (
+    <>
+      <h2 id={g.id}>{g.title}</h2>
+      {g.people.map((p) => (
+        <section class="person" id={p.id} aria-labelledby={`${p.id}-h`}>
+          <h3 id={`${p.id}-h`}>{p.name}</h3>
+          <p class="pp-dates">{p.dates.label}<PersonCite person={p} src={p.dates.src} /></p>
+          <p class="pp-role">{p.role}</p>
+
+          <p class="pp-h">What they made</p>
+          <ul class="pp-made">
+            {p.made.map((m) => <li><strong>{m.title}</strong>{m.year && <span class="muted"> ({m.year})</span>}. {m.note}<PersonCite person={p} src={m.src} /></li>)}
+          </ul>
+
+          {p.positions.length > 0 && (
+            <>
+              <p class="pp-h">In their own words and arguments</p>
+              <ul class="pp-made">
+                {p.positions.map((x) => <li>{x.text}<PersonCite person={p} src={x.src} /></li>)}
+              </ul>
+            </>
+          )}
+
+          <p class="pp-h">Where you meet their work today</p>
+          <p>{p.today.text}<PersonCite person={p} src={p.today.src} /></p>
+
+          {p.links.length > 0 && (
+            <p class="pp-links small">See also: {p.links.map((l, i) => <>{i > 0 && ' · '}<a href={url(l.path)}>{l.label}</a></>)}</p>
+          )}
+
+          {p.unverified.length > 0 && (
+            <aside class="unverified pp-unv" aria-label={`Not yet verified: ${p.name}`}>
+              <p class="pp-h">Not yet verified</p>
+              <p>No source we can name has confirmed these points yet. Do not rely on them.</p>
+              <ul>{p.unverified.map((u) => <li>{u.claim} <em>(from: {u.from})</em></li>)}</ul>
+            </aside>
+          )}
+
+          <details class="pp-src">
+            <summary class="small">Sources for {p.name} ({p.sources.length})</summary>
+            <ol class="small">
+              {p.sources.map((s, i) => <li id={`${p.id}-s${i + 1}`}>{s.url ? <a href={s.url}>{s.cite}</a> : s.cite}{!s.checked && <span class="tag">not yet checked</span>}</li>)}
+            </ol>
+            <p class="small muted">Last checked {p.last_checked}.</p>
+          </details>
+        </section>
+      ))}
+    </>
+  ))}
+
+  <p class="small muted">Many of these entries are checked only against general web reference pages, such as Wikipedia, so far. Facts that rest only on such pages carry a "to check" tag. They will be checked again against the printed handbooks.</p>
+</Context>
+
+<style>
+  .pp-jump { font-family: var(--sans); font-size: 0.875rem; line-height: 1.6; border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem 0.9rem; margin: 1rem 0 1.5rem; }
+  .pp-jump p { margin: 0.35rem 0; }
+  .pp-period { font-weight: 600; display: block; }
+  .person { border-top: 1px solid var(--rule); padding: 0.75rem 0 1rem; scroll-margin-top: 1rem; }
+  .person h3 { margin: 0.25rem 0 0; }
+  .pp-dates { margin: 0.1rem 0 0.4rem; font-family: var(--sans); font-size: 0.875rem; color: var(--ink-2); }
+  .pp-role { margin: 0.3rem 0 0.6rem; }
+  .pp-h { font-family: var(--sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--rubric); margin: 0.8rem 0 0.25rem; }
+  .pp-made { margin: 0; padding-left: 1.1rem; }
+  .pp-made li { margin: 0.3rem 0; }
+  .pp-links { margin-top: 0.6rem; }
+  .pp-unv { margin: 0.75rem 0; }
+  .pp-unv .pp-h { color: inherit; margin-top: 0; }
+  .pp-src { margin-top: 0.6rem; }
+  .pp-src summary { cursor: pointer; font-family: var(--sans); }
+  .pp-src ol { padding-left: 1.4rem; }
+  .pp-src li { overflow-wrap: anywhere; }
+</style>

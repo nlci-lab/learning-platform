@@ -1,0 +1,60 @@
+---
+import Context from '../../layouts/Context.astro';
+import { url } from '../../lib/url';
+const w = (id: string) => url(`w/${id}/`);
+const g = (id: string) => url(`glossary/#${id}`);
+const sources = [
+  { cite: 'UBS Greek New Testament, 5th ed., apparatus at John 1:18, as shown in Paratext 9 (seen 19 Nov 2026).', checked: true },
+  { cite: 'UBS Greek New Testament, 5th ed., Introduction pp. 58*–63*, list of symbols, as given in Paratext 9 help: the marks gr and lat with a church father, "it" for the Old Latin (Itala) version, and fractions such as 2/4.', checked: true },
+  { cite: 'David Trobisch, A User\'s Guide to the Nestle-Aland 28 Greek New Testament (Society of Biblical Literature and Deutsche Bibelgesellschaft, 2013), online at sbl-site.org: quotations come last in an NA28 entry, after a semicolon, pp. 16–17 and 60 (Acts 1:10, "Eus"); early quotations, allusions, scribes who replaced quotations, NA28\'s caution (quoting NA28 p. 78*), and the dates in the NA28 list of fathers (NA28 p. 80*), pp. 35–36; the canon tables of Eusebius, p. 36.', checked: true },
+  { cite: 'The Catholic Encyclopedia (1908–1912), online at New Advent, articles "St. Irenaeus" (A. Poncelet), "Origen and Origenism" (F. Prat), "Clement of Alexandria" (F. Havey), "Tertullian" (J. Chapman) and "Eusebius of Caesarea" (F. J. Bacchus), opened 25 Nov 2026: dates, places, languages and surviving works.', checked: true },
+  { cite: 'Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), the section on patristic quotations. Not yet checked for this page; see the box at the end.', checked: false },
+];
+---
+<Context title="Church fathers as witnesses" label="Background" lastChecked="2026-11-25" sources={sources}
+  description="Why quotations by early Christian writers help date and place a reading, what limits them, and how the apparatus cites them.">
+  <p class="lead">Early Christian writers quoted the New Testament in their sermons, letters and commentaries. When we know when and where a writer lived, his quotations show which wording was read in that time and place. The apparatus calls these writers <em>church fathers</em> and lists them after the manuscripts and the versions.</p>
+
+  <h2>Why their quotations help</h2>
+  <p>Trobisch writes that quotations in ancient Christian writings "can provide valuable insights into the text of early manuscripts". For many fathers we know roughly when they lived and in which city they worked. So a father's quotation can link a reading to a time and a place.</p>
+  <p>Some fathers are early. NA28 dates <a href={w('irenaeus')}>Irenaeus</a> to the 2nd century, for example. <a href={w('origen')}>Origen</a> worked in Alexandria and then in Caesarea in Palestine in the 3rd century. <a href={w('tertullian')}>Tertullian</a> wrote in Latin at Carthage in North Africa around 200. Their quotations can show which readings were known in their time and region.</p>
+
+  <h2>Their limits</h2>
+  <p>Quotations are harder to use than manuscripts. The main problems are these. The first, second and fourth are from Trobisch; the third is from the Catholic Encyclopedia articles on Irenaeus and Origen.</p>
+  <ul>
+    <li><strong>Quotation or allusion?</strong> A writer may quote a verse word for word, or only refer to it in his own words. It is often hard to tell which.</li>
+    <li><strong>Later copyists.</strong> The fathers' own works were copied by hand for centuries. Scribes often replaced a quotation they did not know with the wording of the Bible they used. Then the quotation shows the scribe's Bible, not the father's.</li>
+    <li><strong>Which form of the work?</strong> Many works survive only in translation. <a href={w('irenaeus')}>Irenaeus</a> wrote in Greek, but his <i>Against Heresies</i> survives whole only in an old Latin translation. Much of <a href={w('origen')}>Origen</a> survives only in Latin. That is why the apparatus marks which form of a father's text it cites (see below).</li>
+    <li><strong>Dates are a rough guide.</strong> The dates in the NA28 list of fathers sometimes give the writer's lifetime and sometimes the date of one work. NA28 dates the Armenian translation of Irenaeus to the 4th and 5th centuries, but Irenaeus himself to the 2nd. Trobisch notes that this translation may still keep a 2nd-century form of the text.</li>
+  </ul>
+  <p>A father who wrote in Latin may also have translated as he wrote. The Catholic Encyclopedia says Tertullian "seems frequently to have translated from the Greek Bible as he wrote". So a Latin quotation in Tertullian may show his own wording, not a Latin Bible.</p>
+  <p>Because of these limits, the NA28 editors decided to be careful. Trobisch quotes their rule: they cite the fathers "only when they can be considered reliable witnesses to the text of the manuscripts quoted" (NA28 p. 78*).</p>
+
+  <h2>How they appear in the apparatus</h2>
+  <p>In UBS5 the fathers come last in each list of witnesses, after the Greek manuscripts and the ancient versions. UBS5 names them in full: Origen, Clement, Irenaeus. NA28 uses short forms such as Ir for Irenaeus and Eus for <a href={w('eusebius')}>Eusebius</a>, and puts the quotations after a semicolon.</p>
+  <p>Small marks follow the name:</p>
+  <dl class="terms">
+    <dt><a href={g('gr-lat')}>gr, lat</a></dt><dd><b>gr</b>: a quotation from a Greek fragment of a father's work that survives whole only in a translation. <b>lat</b>: a Latin translation of a Greek father.</dd>
+    <dt><a href={g('fraction')}>2/4</a></dt><dd>The father quotes the verse in four places; two of them support this reading.</dd>
+  </dl>
+  <p>The entry for <a href={url('guide/apparatus/')}>John 1:18</a> shows all of this. Origen<sup>gr 2/4</sup> stands with the reading μονογενὴς θεός, the one printed in the text. <a href={w('clement')}>Clement</a><sup>2/3</sup> stands with ὁ μονογενὴς θεός. Irenaeus<sup>lat 1/3</sup> stands with μονογενὴς υἱὸς θεοῦ, "only Son of God", together with one manuscript of the Old Latin version, the old Latin translation that the apparatus marks <i>it</i> (for <i>Itala</i>). One father can stand on more than one side: the fractions show that Origen, Clement and Irenaeus quote the verse in more than one way.</p>
+
+  <h2>What this means for your work</h2>
+  <p>Treat a father as one witness among others. Look at the marks first: is this his own Greek, or a translation? Does he support the reading every time, or only in some places? Then ask what his date and place add to the picture. A father seldom decides a question alone. Work through the full example at <a href={url('guide/examples/john-1-18/')}>John 1:18</a>, and see <a href={url('guide/weighing-evidence/')}>Weighing the evidence</a> for how external evidence fits with the rest. The project's Review Committee makes the final decision, following the <a href={url('guide/text-policy/')}>text policy</a>.</p>
+  <p>Profiles so far: <a href={w('irenaeus')}>Irenaeus</a>, <a href={w('clement')}>Clement of Alexandria</a>, <a href={w('tertullian')}>Tertullian</a>, <a href={w('origen')}>Origen</a> and <a href={w('eusebius')}>Eusebius of Caesarea</a>. All are on the <a href={url('witnesses/')}>witnesses page</a>.</p>
+
+  <section class="unchecked-box" aria-labelledby="unverified">
+    <h2 id="unverified">Not yet verified <span class="tag">not yet checked</span></h2>
+    <p class="small muted">Not checked against a source in our files yet.</p>
+    <ul>
+      <li>Metzger and Ehrman discuss patristic quotations in <i>The Text of the New Testament</i>, including fathers who quoted from memory. We have not yet checked their pages for this page.</li>
+      <li>That translators of a father's work, such as Rufinus for Origen, sometimes changed his quotations to match the Bible they knew.</li>
+      <li>The full list of fathers UBS5 cites, with their dates and the forms of their names, is in the UBS5 introduction. We have not yet checked it, so the profiles do not give UBS5 forms for Tertullian and Eusebius.</li>
+    </ul>
+  </section>
+</Context>
+<style>
+  .lead { font-size: var(--step-1); line-height: 1.45; }
+  .unchecked-box { border: 1px dashed var(--rule); border-radius: 6px; padding: 0 1rem 0.25rem; margin-top: 2rem; }
+  .unchecked-box h2 { margin-top: 1rem; }
+</style>

@@ -6,6 +6,7 @@ import type { CollectionEntry } from 'astro:content';
 import CoverageBar from './CoverageBar.astro';
 import { coverage, lettersGroups } from '../lib/coverage';
 import { url } from '../lib/url';
+import { lookupAliases } from '../lib/witnesses';
 interface Props { w: CollectionEntry<'witnesses'>['data']; link?: boolean }
 const { w, link = true } = Astro.props;
 
@@ -23,7 +24,7 @@ const groups = cov ? Object.entries(cov).filter(([, v]) => v !== 'off').map(([k]
 const groupsAttr = (groups.length ? groups : lettersGroups(g?.content_letters?.value)).join(' ');
 // Search text for the gallery filter: siglum, GA number, names and aliases, folded like lib/sigla toKey.
 const fold = (x: string) => x.normalize('NFKC').toLowerCase();
-const search = [w.siglum, g?.ga, ...w.names, ...w.aliases].filter(Boolean).map((x) => fold(x!)).join(' | ');
+const search = [w.siglum, g?.ga, ...w.names, ...lookupAliases(w)].filter(Boolean).map((x) => fold(x!)).join(' | ');
 ---
 <Tag class="tile" href={link ? url(`w/${w.id}/`) : undefined}
   data-kind={g?.category ?? w.kind} data-search={search} data-from={w.date?.from} data-id={w.id} data-groups={groupsAttr}>
@@ -36,7 +37,7 @@ const search = [w.siglum, g?.ga, ...w.names, ...w.aliases].filter(Boolean).map((
         <span class="scr" aria-hidden="true">{[...scr].reverse().join('').repeat(2)}</span>
       </>
     )}
-    <span class="sg" lang={w.siglum_lang} dir={w.siglum_lang === 'he' ? 'ltr' : undefined}>{w.siglum}</span>
+    <span class:list={['sg', [...w.siglum].length > 5 && 'long']} lang={w.siglum_lang} dir={w.siglum_lang === 'he' ? 'ltr' : undefined}>{w.siglum}</span>
   </div>
   <div class="tile-meta">
     <b>{w.names[0]}</b>

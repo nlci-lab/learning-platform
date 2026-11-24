@@ -2,6 +2,7 @@
 // Witness sigla are resolved on the page itself from the alias index (ADR 0003); this file adds
 // passages (every place a verse is discussed), pages, and glossary terms.
 import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
 import { allWitnesses } from '../lib/witnesses';
 import { parseRef, formatRef } from '../lib/refs';
 import { GUIDES, KICKER } from '../data/guides';
@@ -18,7 +19,9 @@ const slug = (t: string) => t.toLowerCase().normalize('NFKD').replace(/[^\w\s-]/
 // Page sources, read as text at build time to list their section headings.
 const SRC = import.meta.glob('./{guide,background}/**/*.astro', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 
-const BOOKNAMES = 'Matthew|Mark|Luke|John|Acts|Romans|Corinthians|Galatians|Ephesians|Philippians|Colossians|Thessalonians|Timothy|Titus|Philemon|Hebrews|James|Peter|Jude|Revelation';
+const BOOKNAMES = 'Matthew|Mark|Luke|John|Acts|Romans|Corinthians|Galatians|Ephesians|Philippians|Colossians|Thessalonians|Timothy|Titus|Philemon|Hebrews|James|Peter|Jude|Revelation'
+  + '|Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|Samuel|Kings|Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs'
+  + '|Ecclesiastes|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi';
 const REF_RE = new RegExp(String.raw`\b(?:[1-3] )?(?:${BOOKNAMES}) \d+:\d+(?:[–-]\d+(?::\d+)?)?`, 'g');
 
 export const GET: APIRoute = async () => {
@@ -26,7 +29,7 @@ export const GET: APIRoute = async () => {
   for (const w of await allWitnesses()) {
     for (const u of w.key_units) {
       const ref = parseRef(u.ref);
-      if (ref) out.push({ k: 'v', ref, label: u.ref, title: `${w.siglum} ${w.names[0]}`, ctx: plain(u.note), href: `w/${w.id}/` });
+      if (ref) out.push({ k: 'v', ref, label: u.ref, title: w.kind === 'father' && w.names[0].startsWith(w.siglum) ? w.names[0] : `${w.siglum} ${w.names[0]}`, ctx: plain(u.note), href: `w/${w.id}/` });
     }
   }
   for (const g of GUIDES) {
@@ -77,6 +80,10 @@ export const GET: APIRoute = async () => {
       seen.add(label);
       out.push({ k: 'v', ref, label, title: g.title, ctx: `Discussed in “${g.title}”`, href: paths.get(g.id)! });
     }
+  }
+  // Key figures (src/content/people): their headings come from data, so index each by name.
+  for (const { data: p } of await getCollection('people')) {
+    out.push({ k: 'p', title: p.name, kicker: 'Key figures', ctx: p.role, href: `background/people/#${p.id}`, text: `${p.name} ${p.role} ${p.made.map((m) => m.title).join(' ')}`.toLowerCase() });
   }
   for (const t of await getGlossaryEntries()) {
     out.push({ k: 'g', title: t.term, kicker: 'Glossary', ctx: t.plain, href: `glossary/#${t.id}`, text: `${t.term} ${t.plain}`.toLowerCase() });

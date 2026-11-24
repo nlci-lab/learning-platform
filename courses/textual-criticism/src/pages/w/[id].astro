@@ -19,6 +19,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const w = entry.data;
 const ms = w.greek_ms;
+const fa = w.father;
 const { Content } = await render(entry);
 
 const n = new Map(w.sources.map((s, i) => [s.id, i + 1]));
@@ -28,12 +29,15 @@ const cites = (src: string[]) => ({ ns: src.map((s) => n.get(s)!).sort((a, b) =>
 const CAT: Record<string, string> = { papyrus: 'Papyrus', majuscule: 'Majuscule', minuscule: 'Minuscule', lectionary: 'Lectionary' };
 const KIND: Record<string, string> = { greek_ms: 'Greek manuscript', group: 'Group reading', version: 'Ancient version', father: 'Church father', ot_ms: 'OT manuscript' };
 const sl = w.siglum_lang;
+// A father's siglum is his name ("Irenaeus"), so don't print it twice.
+const sameAsName = w.kind === 'father' && w.names[0].startsWith(w.siglum);
+const label = sameAsName ? w.names[0] : `${w.siglum} ${w.names[0]}`;
 ---
-<Base title={`${w.siglum} ${w.names[0]}`} description={w.lead}>
+<Base title={label} description={w.lead}>
   <article class="profile">
     <header class="p-head">
       <p class="label">{ms ? `${CAT[ms.category]} · GA ${ms.ga}` : KIND[w.kind]}{w.siglum_scope && ` · siglum ${w.siglum} in ${w.siglum_scope}`}</p>
-      <h1><span class="siglum" lang={sl} dir="ltr">{w.siglum}</span> <span class="p-name">{w.names[0]}</span></h1>
+      <h1>{!sameAsName && <><span class="siglum" lang={sl} dir="ltr">{w.siglum}</span> </>}<span class="p-name">{w.names[0]}</span></h1>
       {w.names.length > 1 && <p class="muted small">Also called {w.names.slice(1).join(', ')}.</p>}
       <p class="lead prose" set:html={heSigla(w.lead)} />
     </header>
@@ -53,7 +57,7 @@ const sl = w.siglum_lang;
     <h2>At a glance</h2>
     <table class="facts">
       <tbody>
-        {w.date && <tr><th scope="row">Date</th><td>{w.date.label}. <span class="muted">{w.date.basis}</span><Cite {...cites(w.date.src)} /></td></tr>}
+        {w.date && <tr><th scope="row">{fa ? 'Dates' : 'Date'}</th><td>{w.date.label}. <span class="muted">{w.date.basis}</span><Cite {...cites(w.date.src)} /></td></tr>}
         {ms?.material && <tr><th scope="row">Material</th><td>{ms.material.value}{ms.format && `, ${ms.format.value}`}<Cite {...cites(ms.material.src)} /></td></tr>}
         {ms?.leaves && <tr><th scope="row">Leaves</th><td>{ms.leaves.value}<Cite {...cites(ms.leaves.src)} /></td></tr>}
         {ms && <tr><th scope="row">Contents</th><td>
@@ -63,6 +67,11 @@ const sl = w.siglum_lang;
         </td></tr>}
         {ms && <tr><th scope="row">Held at</th><td>
           {ms.holdings.map((h) => <div>{h.institution}, {h.place}: <span class="shelf">{h.shelfmark}</span>{h.note && <span class="muted"> ({h.note})</span>}<Cite {...cites(h.src)} /></div>)}
+        </td></tr>}
+        {fa?.place && <tr><th scope="row">Place</th><td>{fa.place.value}<Cite {...cites(fa.place.src)} /></td></tr>}
+        {fa && <tr><th scope="row">Wrote in</th><td>{fa.language.value}.{fa.language.note && <span class="muted"> {fa.language.note}</span>}<Cite {...cites(fa.language.src)} /></td></tr>}
+        {fa && <tr><th scope="row">In the apparatus</th><td>
+          {fa.cited_as.map((c) => <div><span class="siglum">{c.form}</span> <span class="muted small">in {c.edition}</span>{c.note && <span class="muted">. {c.note}</span>}<Cite {...cites(c.src)} /></div>)}
         </td></tr>}
         {w.group && <tr><th scope="row">Stands for</th><td>{w.group.members_note}<Cite {...cites(w.group.src)} /></td></tr>}
         {w.text_character && <tr><th scope="row">Text character</th><td><Fragment set:html={heSigla(w.text_character.label)} />. <span class="muted" set:html={heSigla(w.text_character.contested_note)} /><Cite {...cites(w.text_character.src)} /></td></tr>}
@@ -76,6 +85,16 @@ const sl = w.siglum_lang;
         <dl class="correctors">
           {ms.correctors.map((c) => <div><dt><span class="siglum" lang={sl} dir="ltr">{ltrHe(c.siglum)}</span></dt><dd><Fragment set:html={heSigla(c.note)} /><Cite {...cites(c.src)} /></dd></div>)}
         </dl>
+      </section>
+    )}
+
+    {fa && fa.works.length > 0 && (
+      <section id="works">
+        <h2>Main works</h2>
+        <ul class="units">
+          {fa.works.map((x) => <li><strong>{x.title}</strong>{x.note && <> {x.note}</>}<Cite {...cites(x.src)} /></li>)}
+        </ul>
+        <p class="small muted"><a href={url('background/church-fathers/')}>Church fathers as witnesses</a>: why their quotations help, and their limits.</p>
       </section>
     )}
 
@@ -96,8 +115,8 @@ const sl = w.siglum_lang;
       </section>
     )}
 
-    <section>
-      <h2>See the manuscript</h2>
+    <section hidden={fa && !w.links.length && !w.page_image}>
+      <h2>{fa ? 'Read more' : 'See the manuscript'}</h2>
       {w.page_image && <PageImage img={w.page_image} siglum={w.siglum} name={w.names[0]} siglumLang={sl} />}
       {ms?.cntr && <CntrViewer w={ms.cntr.w} v={ms.cntr.v} label={`${w.siglum} ${w.names[0]}`} />}
       <ul class="links">
@@ -122,7 +141,7 @@ const sl = w.siglum_lang;
     </section>
     </div>
     </div>
-    <Feedback site={course} title={`${w.siglum} ${w.names[0]}`} />
+    <Feedback site={course} title={label} />
   </article>
 </Base>
 
@@ -139,6 +158,7 @@ const sl = w.siglum_lang;
     .p-side :global(.tile) { display: flex; }
     .p-side :global(.tile-spec) { height: 12rem; }
     .p-side :global(.tile-spec:not(.photo) .sg) { font-size: 4.5rem; }
+    .p-side :global(.tile-spec:not(.photo) .sg.long) { font-size: 2.2rem; }
   }
   .p-head h1 { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; align-items: baseline; }
   .p-head h1 .siglum { font-size: 1.15em; }
