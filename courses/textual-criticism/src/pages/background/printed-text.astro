@@ -1,0 +1,141 @@
+---
+import Context from '../../layouts/Context.astro';
+import { url } from '../../lib/url';
+const p = (id: string) => url(`background/people/#${id}`);
+const w = (id: string) => url(`w/${id}/`);
+const wp = (title: string) => `Wikipedia, "${title}" (opened 25 Nov 2026).`;
+const sources = [
+  { cite: 'Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005): Erasmus 1516, pp. 142–3; Stephanus 1550 and 1551, p. 150; the Elzevir edition of 1633, the name Textus Receptus and the King James Version, p. 152; Tischendorf, p. 172; Westcott and Hort, p. 174; Nestle 1898, p. 190; the first UBS edition, 1966, p. 192; editions of the Majority text, p. 219.', checked: true },
+  { cite: 'NLCI base-text survey of Indian-language Bibles (2026), as reported on "Two Greek texts behind our Bibles".', checked: true },
+  { cite: `${wp('Textus Receptus')} Erasmus's editions and Revelation; Stephanus; Beza; the Elzevir preface; the King James translators' Greek; Mill, Bengel, Wettstein and Griesbach.`, checked: true },
+  { cite: `${wp('John Mill (theologian)')} ${wp('Johann Albrecht Bengel')} ${wp('Johann Jakob Wettstein')} ${wp('Johann Jakob Griesbach')}`, checked: true },
+  { cite: `${wp('Karl Lachmann')} ${wp('Constantin von Tischendorf')} ${wp('Samuel Prideaux Tregelles')}`, checked: true },
+  { cite: `${wp('Westcott and Hort')} ${wp('Fenton John Anthony Hort')} ${wp('Revised Version')}`, checked: true },
+  { cite: `${wp('John William Burgon')} ${wp('Frederick Henry Ambrose Scrivener')}`, checked: true },
+  { cite: `${wp('Novum Testamentum Graece')} ${wp('Eberhard Nestle')} ${wp('Barbara Aland')} ${wp('Editio Critica Maior')}`, checked: true },
+  { cite: `${wp('Byzantine text-type')} ${wp('Maurice A. Robinson')} ${wp('Trinitarian Bible Society')}`, checked: true },
+];
+---
+<Context title="From Erasmus to UBS5" label="Background" lastChecked="2026-11-25" sources={sources}
+  description="The history of the printed Greek New Testament: how one printed text in 1516 became two traditions, the Textus Receptus and the critical text, told without taking sides.">
+  <p class="lead">In 1516 the Greek New Testament was printed for the first time. For about three hundred years, almost every printed Greek New Testament came from that first edition. In the 19th century the line split. Today there are two main traditions of printed text, and both are still in use.</p>
+  <p>This page tells that history. It expands the short timeline in <a href={url('background/nt-text/#printed-editions')}>How we got the New Testament text</a>. The people named here have their own entries in <a href={url('background/people/')}>Key figures</a>.</p>
+  <p class="pt-note">This page describes what each tradition holds and who holds it. It does not say which is right. For the guidance your project follows, see <a href={url('guide/text-policy/')}>Which text should a translation follow?</a> Your project's Review Committee makes the final decision.</p>
+
+  <h2>The first printed texts</h2>
+  <ol class="timeline">
+    <li><span class="yr">1516</span><a href={p('erasmus')}>Erasmus</a> prepares the first published Greek New Testament. Froben prints it in Basel. Erasmus used a few late Greek manuscripts. He had only one manuscript of Revelation, and its last verses were missing, so he translated the last six verses back into Greek from the Latin Vulgate.</li>
+    <li><span class="yr">1519–1527</span>Erasmus revises his text. His third edition (1522) adds the longer form of 1 John 5:7–8, which speaks of "the Father, the Word, and the Holy Spirit".</li>
+    <li><span class="yr">1550</span><a href={p('stephanus')}>Robert Stephanus</a>, a printer in Paris, prints a Greek New Testament with variant readings in the margin.</li>
+    <li><span class="yr">1551</span>Stephanus's next edition, printed in Geneva, divides the chapters into numbered verses. We still use these verse numbers.</li>
+    <li><span class="yr">1565–1598</span><a href={p('beza')}>Theodore Beza</a> in Geneva reissues Stephanus's text several times, with small changes. He owned the manuscript now called <a href={w('bezae')}>Codex Bezae</a>, but made little use of it.</li>
+    <li><span class="yr">1611</span>The King James Version (KJV) is published in English. Its translators worked from several of these printed Greek editions, among them those of Erasmus, Stephanus and Beza.</li>
+    <li><span class="yr">1633</span>The Elzevir printers in Leiden publish an edition. Its Latin preface says: "textum ergo habes, nunc ab omnibus receptum", "so you have the text, now received by all". From this comes the name <a href={url('glossary/#tr')}><em>Textus Receptus</em></a> (TR), "received text".</li>
+  </ol>
+  <p>The TR is not one book. It is a family of printed editions that are very close to each other. It is close to the <a href={w('byz')}>Byzantine text</a>, the form found in most late Greek manuscripts, but not exactly the same.</p>
+
+  <h2>Collecting the variants</h2>
+  <p>In the 18th century scholars began to collect the differences between manuscripts (the <a href={url('glossary/#variant')}>variants</a>). Most of them still printed the received text. They gave the variants in notes or in the margin.</p>
+  <ol class="timeline">
+    <li><span class="yr">1707</span>John Mill, at Oxford, publishes a Greek New Testament with notes on about 30,000 variants, from some 100 manuscripts. The work took him thirty years. He died two weeks after it appeared.</li>
+    <li><span class="yr">1734</span><a href={p('bengel')}>Johann Albrecht Bengel</a> prints a Greek New Testament at Tübingen. He mostly keeps the received text but grades the variants in the margin. He groups manuscripts into families and states a rule: the harder reading is to be preferred to the easier one.</li>
+    <li><span class="yr">1751–52</span>Johann Jakob Wettstein, in Amsterdam, prints the received text with variants. He is the first to label the majuscules (manuscripts written in capital letters) with capital letters, and the minuscules (written in small letters) with numbers. The apparatus in your UBS5 still uses letters like <a href={w('vaticanus')}>B</a> and <a href={w('bezae')}>D</a>.</li>
+    <li><span class="yr">1774–75</span><a href={p('griesbach')}>Johann Jakob Griesbach</a> publishes a critical edition. He sorts the manuscripts into three groups, Alexandrian, Western and Byzantine. These names are still used for the <a href={url('background/nt-text/#text-types')}>text-types</a>.</li>
+  </ol>
+
+  <h2>The break with the received text</h2>
+  <p>In the 19th century some editors stopped starting from the printed TR. They built their text directly from the oldest manuscripts they could find.</p>
+  <ol class="timeline">
+    <li><span class="yr">1831</span><a href={p('lachmann')}>Karl Lachmann</a> publishes a Greek New Testament built from the most ancient readings he knew. He is the first major editor to break with the TR.</li>
+    <li><span class="yr">1844–1862</span><a href={p('tischendorf')}>Constantin von Tischendorf</a> visits St Catherine's Monastery at Sinai. In 1859 he is shown <a href={w('sinaiticus')}>Codex Sinaiticus</a>, a fourth-century manuscript of the whole New Testament. It is published in 1862.</li>
+    <li><span class="yr">1857–1872</span><a href={p('tregelles')}>Samuel Prideaux Tregelles</a> publishes his Greek text in parts. He judged that the TR did not rest on ancient authority, so he built his text from ancient manuscripts and early church writers.</li>
+    <li><span class="yr">1869–72</span>Tischendorf's eighth edition, with a large apparatus that includes Sinaiticus.</li>
+    <li><span class="yr">1881</span><a href={p('westcott')}>B. F. Westcott</a> and <a href={p('hort')}>F. J. A. Hort</a> publish <em>The New Testament in the Original Greek</em>, after work that began in 1853. Their text rests mainly on <a href={w('vaticanus')}>Codex Vaticanus (B)</a> and Codex Sinaiticus (א). Hort's Introduction follows in 1882.</li>
+    <li><span class="yr">1881</span>The English Revised Version (RV) New Testament is published. The revision committee, of which Hort was a member, largely accepted the Westcott and Hort text.</li>
+  </ol>
+
+  <h2>The debate in the 1880s</h2>
+  <p>The new text and the Revised Version met strong opposition. The arguments made then are still heard today.</p>
+  <div class="pt-cards">
+    <section class="pt-card">
+      <p class="pt-kicker">Westcott and Hort</p>
+      <p>Westcott and Hort grouped the manuscripts into four kinds of text. They favoured the one they called "Neutral", found mainly in B and א, and built their text mainly on it.</p>
+    </section>
+    <section class="pt-card">
+      <p class="pt-kicker">Burgon</p>
+      <p><a href={p('burgon')}>John William Burgon</a> defended the Byzantine text, which he called the "Traditional Text", and the continued use of the received text in the church. He opposed Westcott and Hort's principles and the Revised Version, notably in <em>The Revision Revised</em> (1883). He had earlier defended Mark 16:9–20 as part of Mark's Gospel (1871).</p>
+    </section>
+    <section class="pt-card">
+      <p class="pt-kicker">Scrivener</p>
+      <p><a href={p('scrivener')}>F. H. A. Scrivener</a> sat on the revision committee but did not accept Westcott and Hort's idea of a "Syrian" revision of the text. In 1881 he published the Greek text that the King James translators had followed.</p>
+    </section>
+  </div>
+
+  <h2>From Nestle to UBS5</h2>
+  <ol class="timeline">
+    <li><span class="yr">1898</span><a href={p('eberhard-nestle')}>Eberhard Nestle</a> publishes a handy Greek New Testament with the Württemberg Bible Society. He builds its text by comparing the leading editions of the time: Tischendorf, Westcott and Hort, and Weymouth.</li>
+    <li><span class="yr">1927</span>His son Erwin Nestle issues the 13th edition, with a separate apparatus.</li>
+    <li><span class="yr">1952</span><a href={p('kurt-aland')}>Kurt Aland</a> becomes associate editor with the 21st edition. Later editions carry both names: Nestle–Aland (NA). In 1959 he founds the Institute for New Testament Textual Research (INTF) in Münster.</li>
+    <li><span class="yr">1966</span>The first United Bible Societies (UBS) Greek New Testament is published, made for Bible translators. Its committee: Kurt Aland, Matthew Black, <a href={p('metzger')}>Bruce Metzger</a> and Allen Wikgren.</li>
+    <li><span class="yr">1997</span><a href={p('barbara-aland')}>Barbara Aland</a>, director of INTF, publishes the first parts of the <em>Editio Critica Maior</em> (ECM), a very large edition made book by book.</li>
+    <li><span class="yr">2012–14</span>NA28 (2012) and UBS5 (2014) print the same Greek text. In the Catholic letters (James to Jude) they follow the ECM. The ECM is made with the <a href={url('glossary/#cbgm')}>CBGM</a>, a computer-aided way of comparing whole manuscripts.</li>
+  </ol>
+  <p>The ECM is planned to be complete by 2030. Where it is finished, the printed text may change in small ways. <a href={url('background/nt-text/#the-ecm-and-the-cbgm')}>The ECM and the CBGM</a> explains what this means for you.</p>
+
+  <h2>The received text and the Byzantine text today</h2>
+  <p>The TR did not go away when the critical text appeared. It is still printed and still translated.</p>
+  <ul>
+    <li>The King James Version, made from TR editions, is still in print and in use.</li>
+    <li>The Trinitarian Bible Society bases its translations on the TR as compiled by Scrivener and published in 1894.</li>
+    <li>Most older Indian-language Bibles checked so far follow the TR. <a href={url('guide/base-texts/')}>Two Greek texts behind our Bibles</a> shows which.</li>
+    <li>The New Testament text of the Eastern Orthodox Church, and its Patriarchal Text, are based on the Byzantine text.</li>
+  </ul>
+  <p>Some scholars defend the Byzantine text itself rather than the TR. <a href={p('robinson')}>Maurice Robinson</a> holds the "Byzantine priority" view: where manuscripts differ, the original wording is usually kept where most manuscripts agree. With William Pierpont he published a Byzantine text (1991; accented edition 2005). Zane Hodges and Arthur Farstad also published an edition of the Majority text.</p>
+  <p>Those who hold these views point to the large number of Byzantine manuscripts and to the text's long use in the church. Most textual critics today, including the UBS committee, give more weight to the oldest manuscripts. <a href={url('guide/base-texts/#the-case-for-the-tr-and-the-byzantine-text')}>The case for the TR and the Byzantine text</a> sets out both sides.</p>
+
+  <h2>One start, two lines</h2>
+  <div class="pt-cards three">
+    <section class="pt-card">
+      <p class="pt-kicker">Textus Receptus</p>
+      <p>Erasmus 1516 → Stephanus 1550 → Beza → Elzevir 1633 → King James Version 1611 → Scrivener's text of 1881/1894 → older Bibles in many languages today.</p>
+    </section>
+    <section class="pt-card">
+      <p class="pt-kicker">Critical text</p>
+      <p>Mill, Bengel, Wettstein and Griesbach collect variants → Lachmann 1831 → Tischendorf and Tregelles → Westcott and Hort 1881 → Nestle 1898 → UBS 1966 → NA28 and UBS5, with the ECM.</p>
+    </section>
+    <section class="pt-card">
+      <p class="pt-kicker">Byzantine text</p>
+      <p>The text of most later manuscripts → defended by Burgon in the 1880s → modern editions by Hodges and Farstad, and by Robinson and Pierpont.</p>
+    </section>
+  </div>
+
+  <h2>What this means for your work</h2>
+  <p>The Bible your readers already know may come from one line of this history, and your draft from another. Neither side is careless. They start from different judgements about which evidence weighs most.</p>
+  <ol>
+    <li>Read <a href={url('guide/text-policy/')}>Which text should a translation follow?</a> for the guidance on base texts.</li>
+    <li>Check which Greek text your regional-language Bible follows in <a href={url('guide/base-texts/')}>Two Greek texts behind our Bibles</a>.</li>
+    <li>Take differences between them to your Review Committee. It decides.</li>
+  </ol>
+
+  <aside class="unverified" aria-labelledby="unv">
+    <h2 id="unv">Not yet verified</h2>
+    <p>These statements are kept apart because no source we can name has confirmed them yet. Do not rely on them.</p>
+    <ul>
+      <li>Exactly which Greek manuscripts Erasmus used in 1516. The lists in secondary sources do not agree. <em>(from: Wikipedia, "Textus Receptus")</em></li>
+      <li>The date of Erasmus's fifth edition (1535), and the year Beza gave Codex Bezae to Cambridge (often given as 1581). <em>(from: general knowledge)</em></li>
+      <li>Whether The Revision Revised first appeared as articles in 1881–82 before the book of 1883. The sources opened give 1881 or 1883. <em>(from: Wikipedia pages that disagree)</em></li>
+      <li>The publication years of each ECM volume after the Catholic letters (Acts, Mark, Revelation). <em>(from: general knowledge)</em></li>
+      <li>A 2018 edition of the Robinson–Pierpont text, and the date of the Hodges–Farstad edition (1982). <em>(from: general knowledge)</em></li>
+    </ul>
+  </aside>
+  <p class="small muted">Most dates on this page have been checked only against general web reference pages so far, besides the Metzger and Ehrman pages listed. They will be checked again against the printed handbooks.</p>
+</Context>
+
+<style>
+  .pt-note { font-family: var(--sans); font-size: var(--step--1); border-left: 3px solid var(--rubric); padding-left: 0.75rem; }
+  .pt-cards { display: grid; gap: 0.75rem; margin: 1rem 0; }
+  @media (min-width: 700px) { .pt-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .pt-card { background: var(--paper-2); border: 1px solid var(--rule); border-top: 3px solid var(--rubric); border-radius: 6px; padding: 0.75rem 1rem; }
+  .pt-card p { margin: 0.4rem 0; }
+  .pt-kicker { font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--rubric); font-weight: 600; }
+</style>

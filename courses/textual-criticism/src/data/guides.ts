@@ -120,6 +120,18 @@ export const GUIDES: GuideMeta[] = [
     related: ['background/materials/', 'background/ot-text/', 'guide/base-texts/'],
   },
   {
+    path: 'background/printed-text/', cover: 'From Erasmus to UBS5', section: 'background', level: 'Going further',
+    summary: 'How the first printed Greek New Testament of 1516 became two traditions, the Textus Receptus and the critical text, told without taking sides.',
+    learn: ['How the Textus Receptus was made and named', 'Who collected the variants, and how', 'Why 19th-century editors broke with the TR', 'How Nestle–Aland and UBS5 came about', 'Where the TR and the Byzantine text are used today'],
+    before: 'background/nt-text/', related: ['background/people/', 'guide/base-texts/', 'guide/text-policy/'],
+  },
+  {
+    path: 'background/people/', cover: 'Key figures', section: 'background', level: 'Going further',
+    summary: 'Erasmus, Stephanus, Westcott and Hort, Burgon, the Alands, Metzger, Ehrman, Robinson and others: what each made, and where you meet their work today.',
+    learn: ['Who made the printed Greek texts you use', 'What each person made: editions, methods, books', 'Their stated positions, in their own name', 'Where their work appears in your tools today'],
+    before: 'background/printed-text/', related: ['background/printed-text/', 'background/nt-text/', 'guide/base-texts/'],
+  },
+  {
     path: 'background/ot-text/', cover: 'The Old Testament text', section: 'background', level: 'Start here',
     summary: 'The Masoretic Text, the Dead Sea Scrolls, the Septuagint, and how BHS and BHQ cite them.',
     learn: ['What the Masoretic Text is', 'What the Dead Sea Scrolls add', 'Other witnesses', 'How BHS and BHQ cite them'],

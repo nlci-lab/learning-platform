@@ -104,6 +104,46 @@ const witnesses = defineCollection({
   }),
 });
 
-// Platform collections (micro modules, glossary, …) plus this course's witness profiles.
-export const collections = { ...courseCollections(), witnesses };
-export { BOOKS };
+// Key figures in the history of the printed Greek New Testament (content as data, ADR 0002).
+// Each fact names its sources by id; anything unsourced goes in `unverified` (ADR 0004).
+// Describe what each person made and said, attributed to them; no verdicts on their beliefs or conclusions.
+const PERIODS = ['first-printed', 'collecting', 'break', 'debate', 'modern'] as const;
+const people = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/people' }),
+  schema: z.object({
+    id: z.string().regex(/^[a-z0-9-]+$/),   // stable: also the anchor on background/people/
+    name: z.string(),
+    dates: z.object({ label: z.string(), ...sourced }),   // e.g. "1466?–1536"
+    period: z.enum(PERIODS),
+    order: z.number().int(),                // order within the period
+    role: z.string(),                       // one line: who they were, for this subject
+    made: z.array(z.object({
+      title: z.string(),                    // edition, method or book
+      year: z.string().optional(),
+      note: z.string(),
+      ...sourced,
+    })).min(1),
+    /** Where a translator meets this person's work today. */
+    today: z.object({ text: z.string(), src: z.array(z.string()).default([]) }),
+    /** Stated positions, always attributed ("Burgon argued …"), never the site's own voice. */
+    positions: z.array(z.object({ text: z.string(), ...sourced })).default([]),
+    /** Related site pages, as paths without base (e.g. "w/bezae/", "glossary/#tr"). */
+    links: z.array(z.object({ label: z.string(), path: z.string() })).default([]),
+    sources: z.array(z.object({ id: z.string(), cite: z.string(), url: z.string().url().optional(), checked: z.boolean() })).min(1),
+    unverified: z.array(z.object({ claim: z.string(), from: z.string() })).default([]),
+    last_checked: isoDate,
+  }).superRefine((p, ctx) => {
+    const ids = new Set(p.sources.map((s) => s.id));
+    const check = (src: string[], where: string) => {
+      for (const s of src) if (!ids.has(s)) ctx.addIssue({ code: 'custom', message: `${p.id} ${where}: unknown source "${s}"` });
+    };
+    check(p.dates.src, 'dates');
+    p.made.forEach((m, i) => check(m.src, `made[${i}]`));
+    check(p.today.src, 'today');
+    p.positions.forEach((x, i) => check(x.src, `positions[${i}]`));
+  }),
+});
+
+// Platform collections (micro modules, glossary, …) plus this course's witness profiles and key figures.
+export const collections = { ...courseCollections(), witnesses, people };
+export { BOOKS, PERIODS };
