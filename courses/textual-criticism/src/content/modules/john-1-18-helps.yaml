@@ -1,0 +1,88 @@
+# Micro module for Part 2 of the series "Making textual decisions" (learn/decisions/translation-helps/).
+# Facts come from that part and its Paratext screenshots (checked 24 Nov 2026); no new claims.
+id: john-1-18-helps
+title: "John 1:18 in the translation helps"
+topic: John 1:18 · Part 2
+question: "What do the Translator's Notes and the Handbook say?"
+skill: Use translation helps at a textual problem
+level: 2
+order: 12
+minutes: 6
+description: "A short guided problem for Part 2 of Making textual decisions: read what the Translator's Notes Display and the UBS Handbook say at John 1:18."
+lead: "The Translator's Notes and the UBS Handbook explain the problem at John 1:18 in plain English. Practise what [Part 2: Translation helps](~/learn/decisions/translation-helps/) teaches: what the helps say, how to use them, and what they leave out."
+sources:
+  - id: part
+    cite: "This site's series part [Translation helps](~/learn/decisions/translation-helps/), with its sources (Translator's Notes Display and UBS Handbook Series at John 1:18, read in Paratext)."
+    checked: true
+done: "You have used the translation helps at John 1:18. Next, see the evidence a step closer: read [Part 3: The NET notes](~/learn/decisions/net-notes/) and try [its micro module](~/practice/john-1-18-net/)."
+steps:
+  - id: display
+    title: The Display (TND)
+    body: |
+      The Translator's Notes Display gives 1:18b as a source line from the NRSV, “It is God the Only Son”, then three meaning lines:
+
+      - “the unique One, who himself is God”
+      - “the One and Only Son, himself God”
+      - “the only Son, who is truly God” (from the CEV)
+    question:
+      id: john-1-18-helps-display
+      type: multichoice
+      prompt: Which reading does the Display follow?
+      options:
+        - text: "“God”: every meaning line says this one is himself God."
+          correct: true
+          feedback: "Right. Two lines also say “Son”, but each one says he is God."
+        - text: "“Son”: two of the lines say “Son”."
+          feedback: "Look again. Every line also says he is God. That is the reading “God”."
+        - text: It does not choose.
+          feedback: "It does choose. All three meaning lines say this one is God."
+  - id: use
+    title: Using a meaning line
+    question:
+      id: john-1-18-helps-use
+      type: truefalse
+      prompt: You should translate a meaning line word for word into your language.
+      answer: false
+      if_true: "No. The Display itself advises against it. A meaning line shows the meaning. Think how to say that meaning in your language."
+      if_false: "Right. The Display itself advises against it. A meaning line shows the meaning. Think how to say that meaning in your language."
+  - id: handbook
+    title: The UBS Handbook (HBKENG)
+    body: "The Handbook says the first sentence of the verse is easy, but the second has a serious textual problem. Then it lists the readings."
+    question:
+      id: john-1-18-helps-handbook
+      type: matching
+      prompt: Match each reading to what the Handbook says about it.
+      pairs:
+        - { item: "“the only God”", match: Has the strongest Greek support }
+        - { item: "“the only Son”", match: "An easier reading, perhaps made to match John 3:16 and John 3:18" }
+        - { item: "“God's only Son”", match: An attempt to combine the two readings }
+        - { item: "“the only one”", match: Has very weak manuscript support }
+  - id: say
+    title: Saying “the only God”
+    body: "If you follow the UBS committee, the Handbook suggests saying “the only God” in two parts."
+    question:
+      id: john-1-18-helps-say
+      type: multichoice
+      prompt: Which two parts does the Handbook suggest?
+      options:
+        - text: "“the only one” and “one who is the same as the Father”"
+          correct: true
+          feedback: "Right. It names the TEV as one English Bible that has chosen this text. Ask how your language can say both parts naturally."
+        - text: "“the only Son” and “who is God”"
+          feedback: "Not the Handbook's suggestion, though some Bibles say this. The Handbook divides “the only God” into “the only one” and “one who is the same as the Father”."
+        - text: "“God” and “the Son”, as two different persons"
+          feedback: "No. That would make readers hear two Gods. The Handbook's suggestion avoids this."
+  - id: limits
+    title: What the helps cannot tell you
+    question:
+      id: john-1-18-helps-limits
+      type: multichoice
+      prompt: Your Review Committee asks which manuscripts read “Son”. Can the helps answer?
+      options:
+        - text: "Only in general terms. For the witnesses, go on to the NET notes or the apparatus."
+          correct: true
+          feedback: "Right. The helps summarise the evidence and recommend a reading. [Part 3: The NET notes](~/learn/decisions/net-notes/) names the main witnesses."
+        - text: Yes, they list every manuscript.
+          feedback: "No. The helps speak of “the strongest Greek support” but do not list the manuscripts in detail."
+        - text: "It does not matter: follow the Handbook."
+          feedback: "You can follow its recommendation, but then you trust its judgement. Your committee may want to see the evidence."

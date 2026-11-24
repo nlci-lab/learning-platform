@@ -1,0 +1,75 @@
+# Micro module for Part 3 of the series "Making textual decisions" (learn/decisions/net-notes/).
+# Facts come from that part (a paraphrase of the NET tc note, checked 24 Nov 2026). The NET notes are
+# never quoted beyond a few words: the NET permission covers the text "without the NET Bible notes".
+id: john-1-18-net
+title: "John 1:18 in the NET notes"
+topic: John 1:18 · Part 3
+question: "How does the NET note argue its case?"
+skill: Read a textual note critically
+level: 2
+order: 13
+minutes: 6
+description: "A short guided problem for Part 3 of Making textual decisions: follow the NET Bible's textual note on John 1:18 and read it critically."
+lead: "The NET Bible's textual note on John 1:18 names the witnesses and gives the arguments on both sides. Open it in Paratext (NET08) if you can. Practise what [Part 3: The NET notes](~/learn/decisions/net-notes/) teaches: follow the argument, and remember whose judgement it is."
+sources:
+  - id: part
+    cite: "This site's series part [The NET notes](~/learn/decisions/net-notes/), with its sources (NET Bible, tc note on John 1:18, paraphrased)."
+    checked: true
+done: "You have read the NET note on John 1:18 critically. Next, read the evidence yourself: see [Part 4: The apparatus](~/learn/decisions/the-apparatus/) and try [its micro module](~/practice/john-1-18-apparatus/)."
+steps:
+  - id: kind
+    title: Which note?
+    body: "The NET Bible marks its notes by type: tc (textual criticism), tn (translator's note) and sn (study note)."
+    question:
+      id: john-1-18-net-kind
+      type: multichoice
+      prompt: Which note do you read for the question “Son” or “God”?
+      options:
+        - text: The tc note
+          correct: true
+          feedback: "Right. tc notes discuss the readings of the manuscripts."
+        - text: The tn note
+          feedback: "No. A tn note discusses how to translate the text, not which text to translate."
+        - text: The sn note
+          feedback: "No. An sn note gives background for study."
+  - id: slip
+    title: One letter apart
+    body: "In the manuscripts, sacred names such as “God” and “Son” were often written in a short form (*nomina sacra*, see [Writing materials](~/background/materials/))."
+    question:
+      id: john-1-18-net-slip
+      type: truefalse
+      prompt: "The NET note points out that in short form “God” and “Son” differed by only one letter."
+      answer: true
+      if_true: "Right. So one could be misread as the other. That is one possible cause of the difference."
+      if_false: "It does. In short form the two words differed by only one letter, so one could be misread as the other."
+  - id: evidence
+    title: The two kinds of evidence
+    question:
+      id: john-1-18-net-evidence
+      type: matching
+      prompt: Match each argument in the note to the kind of evidence it is.
+      pairs:
+        - { item: "The oldest papyri and major early codices read “God”", match: External evidence (the witnesses) }
+        - { item: "Most manuscripts, especially later ones, read “Son”", match: External evidence (the witnesses) }
+        - { item: "“God” is the harder reading", match: Internal evidence (what a scribe would do) }
+        - { item: "Scribes would easily change “God” to the familiar “only Son” of John 3:16", match: Internal evidence (what a scribe would do) }
+      distractors: [A translation difference]
+  - id: critical
+    title: Read it critically
+    body: "A note argues for the reading its own Bible chose. The NET translates: “The only one, himself God”."
+    question:
+      id: john-1-18-net-critical
+      type: multichoice
+      single: false
+      prompt: "How should you use the NET note? Choose all that apply."
+      options:
+        - text: Ask what the other side would say.
+          correct: true
+          feedback: "Yes. The note answers Bart Ehrman's objection, but read the case for “Son” too."
+        - text: Check the witnesses it names against the UBS apparatus.
+          correct: true
+          feedback: "Yes. Notes shorten the lists, and the signs can differ: the NET writes א¹ where the UBS apparatus writes א² for the same corrector."
+        - text: Copy its verdict into your translation.
+          feedback: "No. The weighing is still the NET team's. Your Review Committee decides."
+        - text: Quote the whole note in your footnote.
+          feedback: "No. A footnote gives the other reading in a few words. And the NET notes are not free to copy."
