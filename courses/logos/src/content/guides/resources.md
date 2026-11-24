@@ -41,9 +41,8 @@ sources:
     cite: Logos product pages on logos.com for each title named as a Logos resource (for example UBS5, product 55181; Louw–Nida, product 199; UBS Handbooks, products 6555 and 198409; SIL Exegetical Summaries, product 197853)
     url: https://www.logos.com/product/55181
     checked: true
-  - id: ptx-labels
-    cite: Paratext 10 source code (paranext-core), list of resource short names, data/pt9-css/README.md
-    url: https://github.com/paranext/paranext-core/blob/main/data/pt9-css/README.md
+  - id: tn-intros
+    cite: SIL, Translator's Notes series, “The purpose of the Translator's Notes series” (TNN resource) and “Introduction to the Display for Translator's Notes on 2 Kings” (TND resource), read in Paratext, 24 Nov 2026
     checked: true
   - id: tn-sil
     cite: SIL, “Translator's Notes” progress page (Bamboo TN)
@@ -64,7 +63,7 @@ sources:
 last_checked: 2026-11-24
 ---
 
-*Written from Faithlife's product and help pages and SIL's Translator's Workplace contents list (June 2025). Not yet checked in the app.*
+*Written from Faithlife's product and help pages and SIL's Translator's Workplace contents list (June 2025). The Translator's Notes section was checked against the resources in Paratext on 24 Nov 2026.*
 
 ## How Logos labels books
 
@@ -140,14 +139,16 @@ Books written for translators and consultants.
 | Key Biblical Terms in the New Testament (SIL) | An aid for translators on the important biblical terms | Yes |
 | The Bible Translator; Notes on Translation | Journals on translation problems and practice | Yes |
 
-### Translator's Notes
+### Translator's Notes: Notes (TNN) and Display (TND)
 
-Each Translator's Notes volume has two parts:
+The Translator's Notes are written for translators who speak English as a second language. Each book comes in two parts, and in Paratext each part is its own resource:
 
-- the **Notes**, which explain the verse in simple English: its meaning, other interpretations, customs, grammar, figures of speech and how the discourse is built;
-- the **Display**, which shows a line from a fairly literal English version and, below it, one or two lines that say the meaning in plain words.
+- **TNN, the Notes.** They help you understand the message of the whole book, how its parts fit together and what the text means in detail. They point out the parts that are hard to translate, and give other translators' ideas for how to say the meaning. They also explain customs, grammar, figures of speech and how the discourse is built.
+- **TND, the Display.** Each verse, or part of a verse, is shown first as a **source line** in bold, taken from the NIV. Where the NIV does not follow the interpretation the Notes recommend, a second source line comes from a version that does. Then come one or more **meaning lines**, which say the same meaning in plain words. Verse parts are numbered the same way in the Display and the Notes (1:5a, 1:5b).
 
-In Translator's Workplace the two parts are separate resources, for example "Translator's Notes on Proverbs: Notes". In Paratext, the Translator's Notes appear as resources named **TNN** and **TND**. (What each one holds is not yet checked in Paratext.)
+The two work together: the Notes *explain* the meaning, and the Display *says it again* in plain lines. The Display itself warns you not to translate any of its lines word for word. Think how to say the meaning in your own language.
+
+In Translator's Workplace the two parts are also separate resources, for example "Translator's Notes on Proverbs: Notes".
 
 ## Grammars
 
