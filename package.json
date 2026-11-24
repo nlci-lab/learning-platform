@@ -17,7 +17,8 @@
     "dev:logos": "npm run dev -w @cohorts/logos",
     "build": "npm run build --workspaces --if-present",
     "check": "npm run check --workspaces --if-present",
-    "test": "npm test -w @cohorts/platform"
+    "test": "npm test -w @cohorts/platform",
+    "build:pages": "node scripts/build-pages.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",

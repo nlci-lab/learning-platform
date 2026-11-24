@@ -1,5 +1,6 @@
 ---
 import Base from '@cohorts/platform/layouts/Base.astro';
+import { url } from '@cohorts/platform/url';
 import { site, courses } from '../site.config';
 ---
 <Base site={site} title={site.title}>
@@ -8,7 +9,7 @@ import { site, courses } from '../site.config';
   <ul>
     {courses.map((c) => (
       <li>
-        <strong>{c.title}</strong>: {c.blurb} <em>({c.status})</em>
+        {c.built ? <a href={url(`${c.id}/`)}><strong>{c.title}</strong></a> : <strong>{c.title}</strong>}: {c.blurb} <em>({c.status})</em>
       </li>
     ))}
   </ul>

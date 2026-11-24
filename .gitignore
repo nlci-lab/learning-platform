@@ -4,3 +4,4 @@ dist/
 .cache/
 docs/review/
 docs/drafts/
+_site/
