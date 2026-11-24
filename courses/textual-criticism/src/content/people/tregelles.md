@@ -19,10 +19,10 @@ made:
     note: "He went to Rome to study Codex Vaticanus. He was not allowed to copy it, but noted important readings."
     src: [wp-tregelles]
 today:
-  text: "His method, ancient evidence first, is the one the UBS editors still follow."
+  text: "The UBS editors, like him, give the most weight to the oldest witnesses. Those who prefer the Byzantine text do not accept this starting point."
 links:
   - { label: "Codex Vaticanus (B)", path: "w/vaticanus/" }
 sources:
-  - { id: wp-tregelles, cite: "Wikipedia, \"Samuel Prideaux Tregelles\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Samuel_Prideaux_Tregelles", checked: true }
+  - { id: wp-tregelles, cite: "Wikipedia, \"Samuel Prideaux Tregelles\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Samuel_Prideaux_Tregelles", checked: false }
 last_checked: "2026-11-25"
 ---

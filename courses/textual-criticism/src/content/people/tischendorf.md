@@ -23,8 +23,8 @@ today:
 links:
   - { label: "Codex Sinaiticus (א)", path: "w/sinaiticus/" }
 sources:
-  - { id: me-172, cite: "Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), p. 172.", checked: true }
-  - { id: wp-tischendorf, cite: "Wikipedia, \"Constantin von Tischendorf\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Constantin_von_Tischendorf", checked: true }
+  - { id: me-172, cite: "Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), p. 172. The page is confirmed for the main date only; the other details here have still to be checked against the book.", checked: true }
+  - { id: wp-tischendorf, cite: "Wikipedia, \"Constantin von Tischendorf\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Constantin_von_Tischendorf", checked: false }
 unverified:
   - { claim: "How the monastery and Tischendorf each understood the transfer of Sinaiticus to the Tsar. Accounts differ, and the monastery has disputed parts of it.", from: "Wikipedia, \"Constantin von Tischendorf\"; needs a fuller source" }
 last_checked: "2026-11-25"

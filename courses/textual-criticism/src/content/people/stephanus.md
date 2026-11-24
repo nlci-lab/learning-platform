@@ -20,8 +20,8 @@ today:
 links:
   - { label: "From Erasmus to UBS5", path: "background/printed-text/#the-first-printed-texts" }
 sources:
-  - { id: me-150, cite: "Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), p. 150.", checked: true }
-  - { id: wp-tr, cite: "Wikipedia, \"Textus Receptus\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Textus_Receptus", checked: true }
-  - { id: wp-estienne, cite: "Wikipedia, \"Robert Estienne\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Robert_Estienne", checked: true }
+  - { id: me-150, cite: "Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), p. 150. The page is confirmed for the main date only; the other details here have still to be checked against the book.", checked: true }
+  - { id: wp-tr, cite: "Wikipedia, \"Textus Receptus\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Textus_Receptus", checked: false }
+  - { id: wp-estienne, cite: "Wikipedia, \"Robert Estienne\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Robert_Estienne", checked: false }
 last_checked: "2026-11-25"
 ---

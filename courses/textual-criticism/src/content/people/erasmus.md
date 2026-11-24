@@ -24,11 +24,11 @@ links:
   - { label: "Two Greek texts behind our Bibles", path: "guide/base-texts/" }
   - { label: "Textus Receptus (glossary)", path: "glossary/#tr" }
 sources:
-  - { id: me-142, cite: "Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), pp. 142–3.", checked: true }
-  - { id: me-152, cite: "Metzger and Ehrman, The Text of the New Testament, 4th ed., p. 152.", checked: true }
+  - { id: me-142, cite: "Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), pp. 142–3. The page is confirmed for the main date only; the other details here have still to be checked against the book.", checked: true }
+  - { id: me-152, cite: "Metzger and Ehrman, The Text of the New Testament, 4th ed., p. 152. The page is confirmed for the main date only; the other details here have still to be checked against the book.", checked: true }
   - { id: nlci-survey, cite: "NLCI base-text survey of Indian-language Bibles (2026), as reported on \"Two Greek texts behind our Bibles\".", checked: true }
-  - { id: wp-tr, cite: "Wikipedia, \"Textus Receptus\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Textus_Receptus", checked: true }
-  - { id: wp-erasmus, cite: "Wikipedia, \"Erasmus\" (opened 25 Nov 2026). The year of his birth is uncertain.", url: "https://en.wikipedia.org/wiki/Erasmus", checked: true }
+  - { id: wp-tr, cite: "Wikipedia, \"Textus Receptus\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Textus_Receptus", checked: false }
+  - { id: wp-erasmus, cite: "Wikipedia, \"Erasmus\" (opened 25 Nov 2026). The year of his birth is uncertain.", url: "https://en.wikipedia.org/wiki/Erasmus", checked: false }
 unverified:
   - { claim: "Exactly which Greek manuscripts Erasmus used in 1516. The lists in secondary sources do not agree.", from: "Wikipedia, \"Textus Receptus\"" }
   - { claim: "A fifth edition in 1535.", from: "general knowledge; not in the sources opened" }

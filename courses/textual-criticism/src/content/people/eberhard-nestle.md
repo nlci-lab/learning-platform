@@ -19,9 +19,9 @@ today:
 links:
   - { label: "Kurt Aland", path: "background/people/#kurt-aland" }
 sources:
-  - { id: me-190, cite: "Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), p. 190.", checked: true }
-  - { id: wp-nestle, cite: "Wikipedia, \"Eberhard Nestle\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Eberhard_Nestle", checked: true }
-  - { id: wp-na, cite: "Wikipedia, \"Novum Testamentum Graece\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Novum_Testamentum_Graece", checked: true }
+  - { id: me-190, cite: "Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), p. 190. The page is confirmed for the main date only; the other details here have still to be checked against the book.", checked: true }
+  - { id: wp-nestle, cite: "Wikipedia, \"Eberhard Nestle\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Eberhard_Nestle", checked: false }
+  - { id: wp-na, cite: "Wikipedia, \"Novum Testamentum Graece\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Novum_Testamentum_Graece", checked: false }
 unverified:
   - { claim: "How the 1898 text chose between the three editions (usually described as following the reading of two out of three), and when Weiss's edition replaced Weymouth's.", from: "general knowledge; not in the sources opened" }
 last_checked: "2026-11-25"

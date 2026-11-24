@@ -8,7 +8,7 @@ role: "German scholar who grouped manuscripts into families and stated the rule 
 made:
   - title: "Greek New Testament"
     year: "1734"
-    note: "Printed at Tübingen. He mostly kept the received text, but graded the variants in the margin with Greek letters, from α (the reading he judged original) to δ (a reading worse than the one in the text)."
+    note: "Printed at Tübingen. He mostly kept the received text, but graded the variants in the margin with the first five Greek letters, α to ε. α marks a reading he judged original, though he did not put it in his printed text; β a reading better than the text; γ one equal to it; δ one worse than it; and ε the weakest."
     src: [wp-bengel]
   - title: "Manuscript families"
     note: "He divided the manuscripts into an older \"African\" family and a later \"Asiatic\" family, and gave the older family more weight."
@@ -26,6 +26,8 @@ links:
   - { label: "Weighing the evidence", path: "guide/weighing-evidence/" }
   - { label: "Internal evidence (glossary)", path: "glossary/#internal-evidence" }
 sources:
-  - { id: wp-bengel, cite: "Wikipedia, \"Johann Albrecht Bengel\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Johann_Albrecht_Bengel", checked: true }
+  - { id: wp-bengel, cite: "Wikipedia, \"Johann Albrecht Bengel\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Johann_Albrecht_Bengel", checked: false }
+unverified:
+  - { claim: "The exact meaning of the grade ε (often described as a reading to be rejected).", from: "secondary summaries; the Wikipedia page opened names five letters but explains only four" }
 last_checked: "2026-11-25"
 ---

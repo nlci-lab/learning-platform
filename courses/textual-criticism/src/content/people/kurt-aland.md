@@ -29,10 +29,10 @@ links:
   - { label: "Aland category (glossary)", path: "glossary/#aland-category" }
   - { label: "Barbara Aland", path: "background/people/#barbara-aland" }
 sources:
-  - { id: me-192, cite: "Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), p. 192.", checked: true }
-  - { id: wp-kaland, cite: "Wikipedia, \"Kurt Aland\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Kurt_Aland", checked: true }
-  - { id: wp-na, cite: "Wikipedia, \"Novum Testamentum Graece\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Novum_Testamentum_Graece", checked: true }
-  - { id: wp-categories, cite: "Wikipedia, \"Categories of New Testament manuscripts\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Categories_of_New_Testament_manuscripts", checked: true }
+  - { id: me-192, cite: "Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005), p. 192. The page is confirmed for the main date only; the other details here have still to be checked against the book.", checked: true }
+  - { id: wp-kaland, cite: "Wikipedia, \"Kurt Aland\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Kurt_Aland", checked: false }
+  - { id: wp-na, cite: "Wikipedia, \"Novum Testamentum Graece\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Novum_Testamentum_Graece", checked: false }
+  - { id: wp-categories, cite: "Wikipedia, \"Categories of New Testament manuscripts\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Categories_of_New_Testament_manuscripts", checked: false }
   - { id: aland-text, cite: "Kurt Aland and Barbara Aland, The Text of the New Testament, 2nd ed. (Eerdmans, 1989).", checked: false }
 unverified:
   - { claim: "That he published the official list of Greek New Testament manuscripts (the Kurzgefasste Liste), first in 1963.", from: "general knowledge; not in the sources opened" }

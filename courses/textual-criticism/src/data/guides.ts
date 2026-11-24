@@ -121,7 +121,7 @@ export const GUIDES: GuideMeta[] = [
   },
   {
     path: 'background/printed-text/', cover: 'From Erasmus to UBS5', section: 'background', level: 'Going further',
-    summary: 'How the first printed Greek New Testament of 1516 became two traditions, the Textus Receptus and the critical text, told without taking sides.',
+    summary: 'How the first published Greek New Testament of 1516 became two traditions, the Textus Receptus and the critical text, told without taking sides.',
     learn: ['How the Textus Receptus was made and named', 'Who collected the variants, and how', 'Why 19th-century editors broke with the TR', 'How Nestle–Aland and UBS5 came about', 'Where the TR and the Byzantine text are used today'],
     before: 'background/nt-text/', related: ['background/people/', 'guide/base-texts/', 'guide/text-policy/'],
   },

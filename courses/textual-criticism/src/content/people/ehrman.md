@@ -23,16 +23,14 @@ positions:
     src: [wp-misquoting]
   - text: "He also writes that most variants have no bearing at all on what a passage means, and says that Metzger agreed with him on this."
     src: [wp-misquoting]
-  - text: "Other scholars, among them Daniel B. Wallace and Craig A. Evans, have published replies to Misquoting Jesus."
-    src: [wp-misquoting]
 today:
   text: "His name is on the handbook this site cites most often. Readers who have seen his popular books may ask you about them."
 links:
   - { label: "How we got the New Testament text", path: "background/nt-text/" }
   - { label: "Which variants matter", path: "guide/which-variants-matter/" }
 sources:
-  - { id: wp-ehrman, cite: "Wikipedia, \"Bart D. Ehrman\" (opened 25 Nov 2026). The page carries a notice that its neutrality is disputed; only bibliographic facts are taken from it.", url: "https://en.wikipedia.org/wiki/Bart_D._Ehrman", checked: true }
-  - { id: wp-misquoting, cite: "Wikipedia, \"Misquoting Jesus\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Misquoting_Jesus", checked: true }
+  - { id: wp-ehrman, cite: "Wikipedia, \"Bart D. Ehrman\" (opened 25 Nov 2026). The page carries a notice that its neutrality is disputed; only bibliographic facts are taken from it.", url: "https://en.wikipedia.org/wiki/Bart_D._Ehrman", checked: false }
+  - { id: wp-misquoting, cite: "Wikipedia, \"Misquoting Jesus\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Misquoting_Jesus", checked: false }
   - { id: ehrman-oc, cite: "Bart D. Ehrman, The Orthodox Corruption of Scripture (Oxford University Press, 1993).", checked: false }
 last_checked: "2026-11-25"
 ---

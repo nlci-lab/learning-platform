@@ -18,7 +18,7 @@ today:
 links:
   - { label: "Text-types", path: "background/nt-text/#text-types" }
 sources:
-  - { id: wp-griesbach, cite: "Wikipedia, \"Johann Jakob Griesbach\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Johann_Jakob_Griesbach", checked: true }
+  - { id: wp-griesbach, cite: "Wikipedia, \"Johann Jakob Griesbach\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Johann_Jakob_Griesbach", checked: false }
 unverified:
   - { claim: "His list of rules (canons) for choosing between readings, including a preference for the shorter reading.", from: "general knowledge; not in the source opened" }
 last_checked: "2026-11-25"

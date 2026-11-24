@@ -15,10 +15,10 @@ made:
     note: "A second, larger edition in two volumes."
     src: [wp-lachmann]
 today:
-  text: "Every modern critical text, including UBS5, follows the step he took: start from the oldest evidence, not from the printed tradition."
+  text: "Modern critical texts, UBS5 among them, also start from the oldest evidence rather than from the printed tradition. Those who defend the Textus Receptus or the Byzantine text do not accept this starting point."
 links:
   - { label: "From Erasmus to UBS5", path: "background/printed-text/#the-break-with-the-received-text" }
 sources:
-  - { id: wp-lachmann, cite: "Wikipedia, \"Karl Lachmann\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Karl_Lachmann", checked: true }
+  - { id: wp-lachmann, cite: "Wikipedia, \"Karl Lachmann\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Karl_Lachmann", checked: false }
 last_checked: "2026-11-25"
 ---

@@ -13,9 +13,9 @@ made:
   - title: "Editio Critica Maior (ECM)"
     year: "from 1997"
     note: "She published the first parts of the ECM, the large edition that is now the basis of the UBS5 text in the Catholic letters (James to Jude)."
-    src: [wp-baland, wp-ecm]
+    src: [wp-baland, dbg-na28]
   - title: "Nestle–Aland and UBS"
-    note: "An editor of the Nestle–Aland 27th edition (1993, with Kurt Aland) and a member of the UBS5 committee."
+    note: "A member of the editorial committee of the UBS4 and UBS5 Greek New Testament."
     src: [wp-na]
   - title: "The Text of the New Testament (with Kurt Aland)"
     year: "1982; English 1987"
@@ -23,17 +23,18 @@ made:
     src: [wp-kaland, wp-categories]
 today:
   text: "In the Catholic letters, the UBS5 text you read follows the ECM that she began."
-  src: [wp-ecm]
+  src: [dbg-na28, wp-na]
 links:
   - { label: "Kurt Aland", path: "background/people/#kurt-aland" }
   - { label: "The ECM and the CBGM", path: "background/nt-text/#the-ecm-and-the-cbgm" }
 sources:
-  - { id: wp-baland, cite: "Wikipedia, \"Barbara Aland\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Barbara_Aland", checked: true }
-  - { id: wp-ecm, cite: "Wikipedia, \"Editio Critica Maior\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Editio_Critica_Maior", checked: true }
-  - { id: wp-na, cite: "Wikipedia, \"Novum Testamentum Graece\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Novum_Testamentum_Graece", checked: true }
-  - { id: wp-kaland, cite: "Wikipedia, \"Kurt Aland\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Kurt_Aland", checked: true }
-  - { id: wp-categories, cite: "Wikipedia, \"Categories of New Testament manuscripts\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Categories_of_New_Testament_manuscripts", checked: true }
+  - { id: wp-baland, cite: "Wikipedia, \"Barbara Aland\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Barbara_Aland", checked: false }
+  - { id: dbg-na28, cite: "Deutsche Bibelgesellschaft, \"The NA28\": the Catholic letters were aligned with the ECM, the only part finished at the time. Seen only in a search summary; the page itself could not be opened (25 Nov 2026).", url: "https://www.die-bibel.de/en/the-na-28", checked: false }
+  - { id: wp-na, cite: "Wikipedia, \"Novum Testamentum Graece\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Novum_Testamentum_Graece", checked: false }
+  - { id: wp-kaland, cite: "Wikipedia, \"Kurt Aland\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Kurt_Aland", checked: false }
+  - { id: wp-categories, cite: "Wikipedia, \"Categories of New Testament manuscripts\" (opened 25 Nov 2026).", url: "https://en.wikipedia.org/wiki/Categories_of_New_Testament_manuscripts", checked: false }
 unverified:
+  - { claim: "That she was an editor of the Nestle–Aland 27th edition (1993) with Kurt Aland.", from: "general knowledge; the sources opened do not state it" }
   - { claim: "That the first ECM part (1997) was James, the start of the Catholic letters volume.", from: "general knowledge; the sources opened give the year and the volume list, not which came first" }
 last_checked: "2026-11-25"
 ---
