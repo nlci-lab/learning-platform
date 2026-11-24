@@ -75,3 +75,31 @@ for (const course of rd(coursesDir)) {
     });
   }
 }
+
+// Decision trees: links between nodes are checked by the schema.
+import { decisionTree, series as seriesSchema } from '../src/schemas.ts';
+const tree = () => yaml.load(readFileSync(new URL('../fixtures/trees/sample.yaml', import.meta.url), 'utf8'));
+
+test('the sample decision tree is valid', () => {
+  const r = decisionTree.safeParse(tree());
+  assert.ok(r.success, r.success ? '' : JSON.stringify(r.error.issues, null, 2));
+});
+test('a tree option that leads nowhere fails', () => {
+  const t = tree(); t.nodes[0].options[0].to = 'missing';
+  assert.equal(decisionTree.safeParse(t).success, false);
+});
+test('a tree node that cannot be reached fails', () => {
+  const t = tree(); t.nodes.push({ id: 'orphan', kind: 'outcome', title: 'Never reached' });
+  assert.equal(decisionTree.safeParse(t).success, false);
+});
+test('a question with one option, or an outcome with options, fails', () => {
+  const q = tree(); q.nodes[0].options.pop();
+  assert.equal(decisionTree.safeParse(q).success, false);
+  const o = tree(); o.nodes[2].options = [{ label: 'x', to: 'changed' }];
+  assert.equal(decisionTree.safeParse(o).success, false);
+});
+test('a series path must look like learn/decisions/', () => {
+  const base = { id: 'decisions', title: 'T', summary: 'S' };
+  assert.equal(seriesSchema.safeParse({ ...base, path: 'learn/decisions/' }).success, true);
+  assert.equal(seriesSchema.safeParse({ ...base, path: '/learn/decisions' }).success, false);
+});

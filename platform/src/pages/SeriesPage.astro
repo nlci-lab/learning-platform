@@ -1,0 +1,40 @@
+---
+// A series landing page: its title and introduction, then its parts in order as cards.
+// Course route, e.g. src/pages/learn/decisions/index.astro:
+//   <SeriesPage site={course} id="decisions" />
+// Anything in the default slot appears after the parts (for example a decision tree).
+import Base from '../layouts/Base.astro';
+import GuideCard from '../components/GuideCard.astro';
+import { getSeries } from '../data';
+import { md } from '../markdown';
+import type { SiteConfig } from '../config';
+interface Props { site: SiteConfig; id: string }
+const { site, id } = Astro.props;
+const series = await getSeries(id);
+if (!series) throw new Error(`SeriesPage: no series "${id}" in series.yaml.`);
+const navItem = series.path.split('/')[0] + '/';
+---
+<Base site={site} title={series.title} description={series.summary} nav={navItem}>
+  <Fragment slot="head"><slot name="head" /></Fragment>
+  <article class="sx">
+    <header class="sx-head prose">
+      <p class="label">Series · {series.parts.length} parts</p>
+      <h1>{series.title}</h1>
+      <p class="lead">{series.summary}</p>
+      {series.intro && <div class="sx-intro" set:html={md(series.intro)} />}
+    </header>
+    {series.parts.length === 0 ? <p class="muted">The parts of this series are in preparation.</p> : (
+      <ol class="guide-cards sx-parts">
+        {series.parts.map((p) => <li><GuideCard site={site} guide={p.data} /></li>)}
+      </ol>
+    )}
+    <slot />
+  </article>
+</Base>
+
+<style>
+  .sx { margin: 1.75rem 0 3rem; }
+  .sx-head h1 { margin: 0.2rem 0 0.6rem; }
+  .sx-intro { margin-top: 1rem; }
+  .sx-parts { margin-top: 1.75rem; }
+</style>

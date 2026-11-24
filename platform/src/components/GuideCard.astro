@@ -6,12 +6,14 @@ import { levelName, type SiteConfig } from '../config';
 import type { Guide } from '../schemas';
 import { url } from '../url';
 import { PATHS } from '../paths';
+import { getGuidePaths } from '../data';
 interface Props { site: SiteConfig; guide: Guide }
 const { site, guide: g } = Astro.props;
+const href = (await getGuidePaths()).get(g.id) ?? PATHS.guide(g.id);
 ---
 <article class="gcard" data-tags={g.tags.join(' ')}>
-  <p class="gk">{levelName(site, g.level)}{g.draft && ' · draft'}</p>
-  <h3><a href={url(PATHS.guide(g.id))}>{g.title}</a></h3>
+  <p class="gk">{g.series && `Part ${g.series.part} · `}{levelName(site, g.level)}{g.draft && ' · draft'}</p>
+  <h3><a href={url(href)}>{g.title}</a></h3>
   <p class="gd">{g.summary}</p>
   <Tags tags={g.tags} />
 </article>
