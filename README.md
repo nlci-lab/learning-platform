@@ -16,6 +16,7 @@ npm run dev:logos    # Logos course, http://localhost:4322
 npm run build        # build every workspace
 npm run check        # type-check every workspace (the platform is checked through the Logos course)
 npm test             # platform schema and link tests
+npm run build:pages  # the whole public site in _site/, as GitHub Pages serves it, with a link check
 ```
 
 Needs Node 22.18 or later (`.nvmrc`). CI runs check, test and build on every push and pull request.

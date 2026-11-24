@@ -29,6 +29,8 @@ Before publishing, confirm Faithlife's guidelines on screenshots and use of the 
 
 One workflow builds the master site and every course into one GitHub Pages site, with a link check and Lighthouse. Creating the nlci-lab repo and pushing need the user's go-ahead.
 
+Done so far: the repo `nlci-lab/learning-platform`, CI on every push and pull request, and `.github/workflows/pages.yml`, which runs `scripts/build-pages.mjs` (all sites, base paths, internal link check) and publishes to https://nlci-lab.github.io/learning-platform/. Still to add: Lighthouse.
+
 ## Phase 4: Moodle proof (when the LMS decision comes)
 
 Export one module as SCORM and its questions as Moodle XML, then test the import on a Moodle test site.
