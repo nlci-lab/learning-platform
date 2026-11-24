@@ -7,12 +7,12 @@ question: "What can comparing Bibles tell you?"
 skill: Spot a textual difference between Bibles
 level: 1
 order: 11
-minutes: 6
+minutes: 7
 description: "A short guided problem for Part 1 of Making textual decisions: compare four Bibles at John 1:18 and see what they can and cannot tell you."
 lead: "Four Bibles in a text collection disagree at John 1:18. Practise what Part 1: Compare versions teaches: find the difference, tell a textual difference from a translation difference, and notice the decision hiding in it."
 sources:
   - id: part
-    cite: "This site's series part [Compare versions](~/learn/decisions/compare-versions/), with its sources (Paratext text collection at John 1:18; Paratext Manual, “Text collections”)."
+    cite: "This site's series part [Compare versions](~/learn/decisions/compare-versions/), with its sources (Paratext text collection at John 1:18; NIV footnote at John 1:18; Paratext Manual, “Text collections”)."
     checked: true
   - id: example
     cite: "This site's worked example [John 1:18: only God or only Son?](~/guide/examples/john-1-18/)."
@@ -49,6 +49,28 @@ steps:
       answer: false
       if_true: "Not quite. Both translate the same Greek words, so it is a translation difference. At John 1:18 “Son” and “God” are different Greek words: that is a textual difference."
       if_false: "Right. Both translate the same Greek words, so it is a translation difference. At John 1:18 “Son” and “God” are different Greek words: that is a textual difference."
+  - id: footnote
+    title: The footnote
+    body: |
+      The NIV has a footnote at John 1:18:
+
+      > 1:18 Some manuscripts *but the only Son, who*
+    question:
+      id: john-1-18-versions-footnote
+      type: multichoice
+      single: false
+      prompt: "What does this footnote tell you? Choose all that are true."
+      options:
+        - text: The Greek manuscripts differ at this verse.
+          correct: true
+          feedback: "Yes. So this is a textual difference, not only a translation difference."
+        - text: "The NIV put “God” in its text and “Son” in the footnote."
+          correct: true
+          feedback: "Yes. The footnote gives the reading the NIV did not choose."
+        - text: "Only a few manuscripts read “Son”."
+          feedback: "No. “Some manuscripts” is not a count. In fact most Greek manuscripts read “Son” here."
+        - text: "Which manuscripts read “Son”, and how old they are."
+          feedback: "No. The footnote does not name them. For that you need the NET notes or the apparatus."
   - id: limits
     title: What comparing can tell you
     body: "A text collection shows you what each Bible says. It does not show you which Greek manuscripts stand behind each one."
