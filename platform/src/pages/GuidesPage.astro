@@ -55,7 +55,8 @@ const allTags = [...new Set(guides.flatMap((g) => g.tags))].sort();
       c.closest('li')!.hidden = !on;
       if (on) n++;
     });
-    document.querySelectorAll<HTMLElement>('.gx-level').forEach((s) => { s.hidden = !s.querySelector('li:not([hidden])'); });
+    // Only the guide items themselves count, not the hashtag items inside each card.
+    document.querySelectorAll<HTMLElement>('.gx-level').forEach((s) => { s.hidden = !s.querySelector(':scope .guide-cards > li:not([hidden])'); });
     note.querySelector('.gx-tag')!.textContent = `#${tag} (${n})`;
     note.hidden = false;
   }
