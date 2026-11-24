@@ -8,10 +8,10 @@ import DecideStep from '../../../components/DecideStep.astro';
 const w = (id: string) => url(`w/${id}/`);
 const ot = url('guide/ot-decisions/');
 const sources = [
-  { cite: 'Hebrew text: Miqra according to the Masorah (MAM), 1 Samuel 17:4 and 17:7, CC BY-SA, read through the Sefaria API (25 Nov 2026). MAM follows the Aleppo Codex; BHS prints the Leningrad Codex.', checked: true },
+  { cite: 'Hebrew text: Miqra according to the Masorah (MAM), 1 Samuel 17:4 and 17:7, CC BY-SA, read through the Sefaria API (25 Nov 2026). MAM follows the Aleppo Codex; BHS prints the Leningrad Codex. MAM\'s qamats-qatan sign in the first word is shown here as an ordinary qamats, as in most printed editions; the form has not been checked against BHS.', checked: true },
   { cite: 'J. Daniel Hays, "Reconsidering the Height of Goliath", Journal of the Evangelical Theological Society 48/4 (2005), pp. 701–14: English Bibles p. 701 n. 1; 4QSamᵃ p. 702; Vaticanus, Alexandrinus, the Lucianic text and Josephus (Antiquities 6.171) pp. 703–4; the MT, Symmachus, Origen and the Vulgate p. 705; Codex Venetus pp. 705–6; the copying slip (citing McCarter) p. 706; the text of Samuel (citing Ulrich and Klein) p. 707.', checked: true },
   { cite: 'Clyde E. Billington, "Goliath and the Exodus Giants: How Tall Were They?", JETS 50/3 (2007), pp. 489–508, at pp. 489–90 and 507–8.', checked: true },
-  { cite: 'J. Daniel Hays, "The Height of Goliath: A Response to Clyde Billington", JETS 50/3 (2007), pp. 509–16.', checked: true },
+  { cite: 'J. Daniel Hays, "The Height of Goliath: A Response to Clyde Billington", JETS 50/3 (2007), pp. 509–16, at p. 513 (the date of 4QSamᵃ).', checked: true },
   { cite: 'NET Bible, 1 Samuel 17:4, verse text read through the bible.org labs API (25 Nov 2026). The NET notes on this verse were not read.', checked: true },
   { cite: 'United Bible Societies, Hebrew Old Testament Text Project (HOTTP), open data (ubsicap/ubs-open-license, HOTTP.XML), searched 25 Nov 2026: no entry for 1 Samuel 17:4.', checked: true },
   { cite: 'P. Kyle McCarter Jr., I Samuel (Anchor Bible 8; Doubleday, 1980), p. 286 (as cited by Hays, 2005; the book itself not checked).', checked: false },
@@ -22,7 +22,7 @@ const sources = [
 <Context title="1 Samuel 17:4: how tall was Goliath?" label="Guide" lastChecked="2026-11-25" sources={sources}
   description="An Old Testament worked example: the Masoretic Text and the oldest Hebrew scroll give Goliath different heights.">
   <div class="case">
-  <p class="lead">Most Bibles say Goliath was "six cubits and a span" tall, nearly three metres. Some say "four cubits and a span", about two metres. Here we work through the evidence in the six steps, using the Old Testament method from <a href={ot}>Old Testament textual decisions</a>.</p>
+  <p class="lead">Most Bibles say Goliath was "six cubits and a span" tall, nearly three metres. Some give the shorter height, "four cubits and a span", about two metres. Here we work through the evidence in the six steps, using the Old Testament method from <a href={ot}>Old Testament textual decisions</a>.</p>
 
   <ol class="route" aria-label="The steps">
     <li><a href="#step-1-find-the-problem">Find the problem</a></li>
@@ -38,8 +38,8 @@ const sources = [
     <h2 id="step-1-find-the-problem">Find the problem</h2>
     <p class="ask">What exactly differs between the witnesses?</p>
     <div class="banner">
-      <span class="ref">1 Samuel 17:4 · Masoretic Text (part)</span>
-      <p class="greek" lang="he" dir="rtl">גׇּבְה֕וֹ <mark>שֵׁ֥שׁ</mark> אַמּ֖וֹת וָזָֽרֶת</p>
+      <span class="ref">1 Samuel 17:4 · Masoretic Text (part, from MAM)</span>
+      <p class="greek" lang="he" dir="rtl">גָּבְה֕וֹ <mark>שֵׁ֥שׁ</mark> אַמּ֖וֹת וָזָֽרֶת</p>
       <p class="gloss">"His height was <strong>six</strong> cubits and a span."</p>
     </div>
     <p>Only one word differs: the number of cubits. A <em>cubit</em> is the length from the elbow to the tip of the fingers. A <em>span</em> is the width of a spread hand. Hays takes a cubit as about 18 inches (about 45 cm) and a span as about 9 inches (about 23 cm). On those figures, six cubits and a span is about 2.9 metres, and four cubits and a span about 2 metres.</p>
@@ -55,12 +55,12 @@ const sources = [
         <span class="tag">MT (BHS)</span>
         <p class="form">six cubits and a span</p>
         <p class="meaning">about 2.9 m</p>
-        <p class="wits">All manuscripts of the Masoretic Text, the earliest of them the Aleppo Codex (10th century). Also the Greek translation of Symmachus (about AD 200), the fifth column of Origen's Hexapla (3rd century), and Jerome's Latin Vulgate (4th century).</p>
+        <p class="wits">All manuscripts of the Masoretic Text, the earliest of them the Aleppo Codex (10th century). Also the Greek translation of Symmachus (a new Greek version made from the Hebrew, about AD 200), the fifth column of Origen's Hexapla (3rd century; the Hexapla was Origen's edition of the Old Testament in six columns, and the fifth column was his revised Greek text), and Jerome's Latin Vulgate (4th century).</p>
       </li>
       <li class="reading">
         <p class="form">four cubits and a span</p>
         <p class="meaning">about 2 m</p>
-        <p class="wits">4QSam<sup>a</sup>, a Dead Sea Scroll of Samuel from the 1st century BC. The Septuagint in Codex Vaticanus (<a href={w('vaticanus')}>B</a>, 4th century) and Codex Alexandrinus (<a href={w('alexandrinus')}>A</a>, 5th century), and the Lucianic form of the Greek. Josephus, <i>Antiquities</i> 6.171 (1st century AD).</p>
+        <p class="wits">4QSam<sup>a</sup>, a Dead Sea Scroll of Samuel from the 1st century BC (Hays dates it to about 50–25 BC). The Septuagint in Codex Vaticanus (<a href={w('vaticanus')}>B</a>, 4th century) and Codex Alexandrinus (<a href={w('alexandrinus')}>A</a>, 5th century), and the Lucianic form of the Greek (a later revision of the Greek text, linked with Lucian of Antioch). Josephus, <i>Antiquities</i> 6.171 (1st century AD).</p>
       </li>
       <li class="reading">
         <p class="form">five cubits and a span</p>
@@ -81,7 +81,7 @@ const sources = [
       <tbody>
         <tr><th scope="row">How old?</th><td data-h="Six">Hebrew manuscripts from the 10th century. Symmachus shows the reading was in Hebrew copies by about AD 200.</td><td data-h="Four">4QSam<sup>a</sup>, 1st century BC: the oldest Hebrew copy of this verse. Josephus, 1st century AD.</td><td data-h="Leans"><span class="lean b">"four"</span></td></tr>
         <tr><th scope="row">From where?</th><td data-h="Six">The Hebrew tradition that became the MT</td><td data-h="Four">The Hebrew tradition of 4QSam<sup>a</sup>, which in Samuel often agrees with the Septuagint against the MT</td><td data-h="Leans"><span class="lean even">open</span></td></tr>
-        <tr><th scope="row">How careful?</th><td data-h="Six">Hays reports that Ulrich and Klein find many copying slips in the MT of Samuel.</td><td data-h="Four">Hays judges 4QSam<sup>a</sup> an excellent text. This is one scholar's judgment.</td><td data-h="Leans"><span class="lean b">"four", a little</span></td></tr>
+        <tr><th scope="row">How careful?</th><td data-h="Six">Hays reports that Ulrich and Klein find many copying slips in the MT of Samuel. Billington does not accept that the MT is at fault in this verse.</td><td data-h="Four">Hays judges 4QSam<sup>a</sup> an excellent text. These are scholars' judgments, not evidence about this verse.</td><td data-h="Leans"><span class="lean even">open</span></td></tr>
         <tr><th scope="row">How widespread?</th><td data-h="Six">Hebrew, and Greek and Latin translations made from Hebrew</td><td data-h="Four">Hebrew, Greek and Josephus</td><td data-h="Leans"><span class="lean even">even</span></td></tr>
         <tr><th scope="row">Independent?</th><td data-h="Six">Symmachus, Origen and the Vulgate all follow the Hebrew of their time, so they show one tradition, not three.</td><td data-h="Four">Josephus used a Greek text like the Lucianic one, as Hays reports from Ulrich. So the Greek witnesses and Josephus are close to one tradition, which 4QSam<sup>a</sup> shares.</td><td data-h="Leans"><span class="lean even">two traditions</span></td></tr>
         <tr><th scope="row">How many?</th><td data-h="Six">Every MT manuscript</td><td data-h="Four">Fewer</td><td data-h="Leans"><span class="lean a">"six"</span></td></tr>
@@ -130,7 +130,7 @@ const sources = [
       <span class="badge" aria-hidden="true">?</span>
       <div>
         <p>There is no UBS rating here. The UBS Hebrew Old Testament Text Project has no entry for this verse.</p>
-        <p>Bibles divide. In 2005, Hays reported that most English Bibles kept "six" (the NRSV and HCSB with a note giving "four") and that the New American Bible followed "four". The NET Bible today has "close to seven feet tall", following "four".</p>
+        <p>Bibles divide. In 2005, Hays reported that most English Bibles kept "six" (some, such as the NRSV, HCSB and NLT, with a note giving "four") and that the New American Bible followed "four". The NET Bible today has "close to seven feet tall", following "four".</p>
       </div>
     </div>
   </section>
@@ -143,8 +143,8 @@ const sources = [
       policyNote={`Your project's text policy comes first. For NLCI teams it is in <a href="${url('guide/text-policy/#ot')}">Which text should a translation follow?</a>: translate the Old Testament from the Masoretic Text in BHS, follow another text only where the MT is judged doubtful, and let the Review Committee decide.`}
       ubs={`“six cubits and a span”. No rating: BHS does not give one, and HOTTP has no entry here.`}
       lwc={`Check it. In 2005 Hays found that most English Bibles had “six cubits” or about 9 feet; a few, such as the NET today, have the shorter height.`}
-      decides={`The MT here makes sense, so the policy points to the MT. Whether the MT is doubtful enough to leave is for your Review Committee.`}
-      recommendation={`<p>Follow the Masoretic Text and translate “six cubits and a span”, and give “four cubits and a span” in a footnote. The MT is not unreadable here, and the policy asks you to start from it. But the shorter reading has the oldest Hebrew witness, so readers should be told about it.</p><p>If your Review Committee judges the MT doubtful here and prints “four”, that is a sound choice too: then give “six” in the footnote. Either way the story is the same: a heavily armed champion, much bigger than the Israelites, whom David defeats.</p>`}
+      decides={`The MT here makes sense, so the policy points to the MT. But the tests for considering another reading in <a href="${ot}#when-should-the-masoretic-text-stand">Old Testament textual decisions</a> are partly met: a copying slip can be named, the shorter reading has Hebrew support, and some scholars prefer it. That is why this case belongs to your Review Committee, and why a footnote is needed either way.`}
+      recommendation={`<p>Follow the Masoretic Text and translate “six cubits and a span”, and give “four cubits and a span” in a footnote. The MT is not unreadable here, and the policy asks you to start from it. But the shorter reading has the oldest Hebrew witness, so readers should be told about it.</p><p>If your Review Committee judges the MT doubtful here and prints “four”, that is a sound choice too: then give “six” in the footnote. Either way the story is the same: a heavily armed fighter, much bigger than the Israelites, whom David defeats.</p>`}
       actions={[{ kind: 'footnote', text: `“One old Hebrew manuscript and the Greek translation say ‘four cubits and a span’ (about 2 metres).” (or, if you print “four”: “Most Hebrew manuscripts say ‘six cubits and a span’ (about 3 metres).”)` }, { kind: 'wording', text: `Decide how to give the measure: in cubits with a note, or in metres or feet. Say “about”: the length of a cubit is not known exactly.` }, { kind: 'committee', text: `Bring it to the Review Committee if you want to leave the MT, or if your regional-language Bible reads differently from your draft.` }, { kind: 'record', text: `Note the decision and the reason in your project records.` }]} />
   </section>
 

@@ -57,7 +57,7 @@ export const GUIDES: GuideMeta[] = [
   },
   {
     path: 'guide/examples/', cover: 'Worked examples', section: 'example', level: 'Going further',
-    summary: 'Real places where Greek manuscripts differ, worked through step by step.',
+    summary: 'Real places where Greek and Hebrew manuscripts differ, worked through step by step.',
     learn: ['How to apply the guides to a real verse', 'What UBS5 prints and why', 'What to tell your readers'],
     related: ['guide/examples/john-7-53/', 'guide/examples/john-1-18/', 'guide/examples/james-2-20/', 'guide/examples/romans-16-7/'],
   },
