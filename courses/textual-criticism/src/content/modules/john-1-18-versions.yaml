@@ -1,0 +1,99 @@
+# Micro module for Part 1 of the series "Making textual decisions" (learn/decisions/compare-versions/).
+# Facts come from that part (checked 24 Nov 2026); no new claims.
+id: john-1-18-versions
+title: "John 1:18 by comparing versions"
+topic: John 1:18 · Part 1
+question: "What can comparing Bibles tell you?"
+skill: Spot a textual difference between Bibles
+level: 1
+order: 11
+minutes: 6
+description: "A short guided problem for Part 1 of Making textual decisions: compare four Bibles at John 1:18 and see what they can and cannot tell you."
+lead: "Four Bibles in a text collection disagree at John 1:18. Practise what Part 1: Compare versions teaches: find the difference, tell a textual difference from a translation difference, and notice the decision hiding in it."
+sources:
+  - id: part
+    cite: "This site's series part [Compare versions](~/learn/decisions/compare-versions/), with its sources (Paratext text collection at John 1:18; Paratext Manual, “Text collections”)."
+    checked: true
+  - id: example
+    cite: "This site's worked example [John 1:18: only God or only Son?](~/guide/examples/john-1-18/)."
+    checked: true
+done: "You have compared versions at John 1:18. Next, see what the translation helps say: read [Part 2: Translation helps](~/learn/decisions/translation-helps/) and try [its micro module](~/practice/john-1-18-helps/)."
+steps:
+  - id: find
+    title: Find the problem
+    body: |
+      In a Paratext text collection at John 1:18:
+
+      - The **Hindi Old Version** says एकलौता पुत्र, “the only Son”.
+      - The **KJV** says “the only begotten Son”.
+      - The **NIV** says “the one and only Son, who is himself God”.
+      - The **NLT** says “the unique One, who is himself God”.
+    question:
+      id: john-1-18-versions-find
+      type: matching
+      prompt: "Does each Bible call him “God” at John 1:18? Match each Bible to what it says."
+      general_feedback: "The test is whether a Bible calls him “God”. The NIV also says “Son”, but only to make “the one and only” clear in English."
+      pairs:
+        - { item: Hindi Old Version, match: "“Son” only" }
+        - { item: KJV, match: "“Son” only" }
+        - { item: NIV, match: "Calls him “God”" }
+        - { item: NLT, match: "Calls him “God”" }
+      distractors: ["Neither “Son” nor “God”"]
+  - id: kind
+    title: Textual or translation difference?
+    body: "Not every difference between Bibles comes from the Greek text. Some are only different ways of translating the same Greek words."
+    question:
+      id: john-1-18-versions-kind
+      type: truefalse
+      prompt: "At John 3:16 the KJV says “his only begotten Son” and the NIV says “his one and only Son”. This is a textual difference."
+      answer: false
+      if_true: "Not quite. Both translate the same Greek words, so it is a translation difference. At John 1:18 “Son” and “God” are different Greek words: that is a textual difference."
+      if_false: "Right. Both translate the same Greek words, so it is a translation difference. At John 1:18 “Son” and “God” are different Greek words: that is a textual difference."
+  - id: limits
+    title: What comparing can tell you
+    body: "A text collection shows you what each Bible says. It does not show you which Greek manuscripts stand behind each one."
+    question:
+      id: john-1-18-versions-limits
+      type: multichoice
+      single: false
+      prompt: "From comparing these four Bibles alone, what can you know? Choose all that are true."
+      options:
+        - text: That the Bibles differ in meaning at this verse.
+          correct: true
+          feedback: "Yes. That is what a text collection is good for."
+        - text: Which reading your readers already know.
+          correct: true
+          feedback: "Yes. The Hindi Bible shows what Hindi readers are used to: “the only Son”."
+        - text: Which reading is older.
+          feedback: "No. A Bible does not tell you which manuscripts it follows or how old they are."
+        - text: What your team should decide.
+          feedback: "No. You have only found the problem. The decision needs more evidence and your [Review Committee](~/guide/text-policy/)."
+  - id: hidden
+    title: The hidden decision
+    body: "Most Indian-language Bibles checked so far stand mainly on the side of the Textus Receptus: the printed Greek text behind the KJV and many older Bibles."
+    question:
+      id: john-1-18-versions-hidden
+      type: multichoice
+      prompt: "Your team translates John 1:18 from the Hindi Bible and does not compare any other Bible. What has happened?"
+      options:
+        - text: "The team has decided for “Son”, the reading of the Textus Receptus, without noticing."
+          correct: true
+          feedback: "Right. Following one Bible is also a textual decision. Comparing versions shows you where such a decision is waiting."
+        - text: No textual decision has been made.
+          feedback: "Not so. By following the Hindi Bible, the team chose “Son” over “God”. It just did not see the choice."
+        - text: "The team has followed the UBS text."
+          feedback: "No. The UBS text reads “God” here. The Hindi Bible reads “Son”."
+  - id: next
+    title: When to go deeper
+    question:
+      id: john-1-18-versions-next
+      type: multichoice
+      prompt: "The Bibles differ in meaning at John 1:18. What is the next step?"
+      options:
+        - text: "Look at the translation helps, which explain what is happening in the Greek."
+          correct: true
+          feedback: "Right. That is [Part 2: Translation helps](~/learn/decisions/translation-helps/)."
+        - text: Choose the reading most Bibles in your collection have.
+          feedback: "No. Counting Bibles tells you nothing about the Greek text. Two of these Bibles say “God” and two say only “Son”."
+        - text: Follow the newest Bible.
+          feedback: "No. A newer Bible is not automatically right. You need to know why the Bibles differ."

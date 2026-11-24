@@ -1,0 +1,91 @@
+# Micro module for Part 5 of the series "Making textual decisions" (learn/decisions/full-textual-criticism/).
+# Facts come from that part and the worked example (UBS5; Metzger, Textual Commentary; Ehrman). Scholars'
+# arguments are attributed, never stated in the site's voice.
+id: john-1-18-manuscripts
+title: "John 1:18 from the manuscripts"
+topic: John 1:18 · Part 5
+question: "“only God” or “only Son”: what would you recommend?"
+skill: Weigh the evidence and write a recommendation
+level: 4
+order: 15
+minutes: 10
+description: "A short guided problem for Part 5 of Making textual decisions: compare the manuscripts at John 1:18, weigh both kinds of evidence, and write a recommendation."
+lead: "This is the deepest level. Practise what Part 5: Full textual criticism teaches: compare the manuscripts, weigh the external and internal evidence, and write a recommendation for your Review Committee."
+sources:
+  - id: part
+    cite: "This site's series part [Full textual criticism](~/learn/decisions/full-textual-criticism/) and worked example [John 1:18: only God or only Son?](~/guide/examples/john-1-18/), with their sources (UBS5 apparatus; Metzger, Textual Commentary, pp. 169–70; Ehrman, The Orthodox Corruption of Scripture)."
+    checked: true
+  - id: cntr
+    cite: "Manuscript transcriptions: Alan Bunning, Center for New Testament Restoration, transcriptions, CC BY-SA 4.0."
+    checked: true
+done: "You have worked through John 1:18 at every level of [Making textual decisions](~/learn/decisions/). Compare your recommendation with the [worked example](~/guide/examples/john-1-18/), then take it to your Review Committee with the [decision tree](~/learn/decisions/#dtn-textual-decision--decide)."
+steps:
+  - id: list
+    title: List the readings
+    body: The card compares the manuscripts at John 1:18 word by word.
+    embed:
+      name: collation
+      args: { passages: [john-1-18] }
+    question:
+      id: john-1-18-manuscripts-list
+      type: multichoice
+      prompt: "The card shows several differences, some small. Which word is the main difference about?"
+      options:
+        - text: "θεός (“God”) or υἱός (“Son”), with or without ὁ (“the”)"
+          correct: true
+          feedback: "Right. That is the main problem: who has made the Father known. The card also shows smaller differences, such as word order."
+        - text: "μονογενής (“only”)"
+          feedback: "No. Every reading in the apparatus has μονογενής. The main difference is the word after it."
+  - id: external
+    title: External evidence
+    body: "Take the questions about the witnesses in order; number comes last."
+    question:
+      id: john-1-18-manuscripts-external
+      type: multichoice
+      prompt: Which statement fits the external evidence?
+      options:
+        - text: "“God” has the oldest Greek witnesses (𝔓⁶⁶ and 𝔓⁷⁵, about 200–225; א and B, 4th century). “Son” is spread much more widely. The evidence leans a little to “God”, but not clearly."
+          correct: true
+          feedback: "Right. Age points to “God”; the spread of the witnesses points to “Son”."
+        - text: "“Son” wins, because most manuscripts have it."
+          feedback: "No. Number comes last. Many later copies may go back to a few ancestors."
+        - text: "“God” wins clearly; there is nothing on the other side."
+          feedback: "Not clearly. “Son” is found widely, in Greek and in most Latin witnesses."
+  - id: internal
+    title: Internal evidence
+    question:
+      id: john-1-18-manuscripts-internal
+      type: matching
+      prompt: Match each argument to the scholar or committee that makes it.
+      pairs:
+        - { item: "“Son” is the easier reading; scribes made 1:18 match John 3:16 and John 3:18", match: The UBS committee (Metzger's Textual Commentary) }
+        - { item: "A scribe who wanted to stress Christ's deity (that he is God) had a reason to change “Son” to “God”", match: Bart Ehrman }
+        - { item: "A copying slip: in short form, “God” and “Son” were easily confused", match: One member of the UBS committee }
+      distractors: [The KJV translators]
+      general_feedback: "Each side can explain how the other reading arose. That is why careful scholars disagree here."
+  - id: weigh
+    title: Weigh it up
+    question:
+      id: john-1-18-manuscripts-weigh
+      type: truefalse
+      prompt: "At John 1:18 a careful team can reach either reading."
+      answer: true
+      if_true: "Right. The UBS committee printed “only God” with a {B} rating, by a majority. The evidence is divided, so your recommendation must give reasons."
+      if_false: "Look again. The UBS committee printed “only God” with a {B} rating, but by a majority. The evidence is divided, and a careful team can reach either reading."
+  - id: decide
+    title: Write a recommendation
+    body: "Your regional-language Bible reads “the only Son”. Your text policy asks for the UBS text, and for the Review Committee to decide where the regional-language Bible differs."
+    question:
+      id: john-1-18-manuscripts-decide
+      type: essay
+      prompt: "Write a short recommendation for your Review Committee: the reading you propose, your main reasons, and a footnote giving the other reading."
+      model_answer: |
+        A good recommendation names the reading, gives the main reasons from both kinds of evidence, and includes a footnote. For example:
+
+        **Proposal:** Follow the UBS text, “the only God”, worded so that readers do not hear a second God (for example “God the only Son”, as in the NRSV).
+
+        **Reasons:** The oldest Greek witnesses (𝔓⁶⁶, 𝔓⁷⁵, א, B) read “God”. The UBS committee judged “Son” the easier reading, made to match John 3:16 and John 3:18. Ehrman argues the opposite, so the case is not certain ({B}, by a majority).
+
+        **Footnote:** “Other manuscripts read ‘the only Son’.”
+
+        Choosing “the only Son” to match the regional-language Bible is also a sound recommendation, with “God” in the footnote. The Review Committee decides.

@@ -1,0 +1,97 @@
+# Micro module for Part 4 of the series "Making textual decisions" (learn/decisions/the-apparatus/).
+# Facts come from that part and the worked example (UBS5 apparatus; Metzger, Textual Commentary, pp. 169–70).
+id: john-1-18-apparatus
+title: "John 1:18 in the UBS apparatus"
+topic: John 1:18 · Part 4
+question: "What does the apparatus entry tell you?"
+skill: Read an apparatus entry and its rating
+level: 3
+order: 14
+minutes: 8
+description: "A short guided problem for Part 4 of Making textual decisions: read the UBS apparatus entry at John 1:18 and its {B} rating."
+lead: "The UBS apparatus lists the readings at John 1:18 with their witnesses (the manuscripts and other sources for each reading) and a rating. Practise what Part 4: The apparatus teaches: read the entry, count the readings by meaning, and see what the rating does and does not tell you."
+sources:
+  - id: part
+    cite: "This site's series part [The apparatus](~/learn/decisions/the-apparatus/), with its sources (UBS Greek New Testament, 5th ed., apparatus at John 1:18)."
+    checked: true
+  - id: example
+    cite: "This site's worked example [John 1:18: only God or only Son?](~/guide/examples/john-1-18/) and guide [Reading the apparatus](~/guide/apparatus/) (Metzger, Textual Commentary, 2nd ed., pp. 169–70)."
+    checked: true
+done: "You have read the apparatus at John 1:18. To weigh the manuscripts yourself, read [Part 5: Full textual criticism](~/learn/decisions/full-textual-criticism/) and try [its micro module](~/practice/john-1-18-manuscripts/)."
+steps:
+  - id: entry
+    title: The entry
+    body: |
+      The UBS5 apparatus at John 1:18, simplified:
+
+      | Reading | Meaning | Some witnesses |
+      |---|---|---|
+      | μονογενὴς θεός (the UBS text) | “only God” | 𝔓⁶⁶, א*, B, C*, L |
+      | ὁ μονογενὴς θεός | “the only God” | 𝔓⁷⁵, א², 33 |
+      | ὁ μονογενὴς υἱός | “the only Son” | A, C³, Θ, Ψ, Byz, most Latin |
+      | μονογενὴς υἱὸς θεοῦ | “only Son of God” | one Old Latin manuscript, Irenaeus (Latin) |
+      | ὁ μονογενής | “the only one” | a Vulgate manuscript |
+
+      Byz means the Byzantine manuscripts: the large group of later Greek manuscripts.
+    question:
+      id: john-1-18-apparatus-same
+      type: multichoice
+      prompt: "The first two readings differ only by ὁ (“the”). How should you count them?"
+      options:
+        - text: "As one reading in meaning: both are “the only God” in English, and both count as “God”."
+          correct: true
+          feedback: "Right. For translation, both count as “God”. The article still matters as evidence: see Part 5."
+        - text: As two different readings for your translation.
+          feedback: "Not for translation. In English both are “the only God”. The article does not change who is meant."
+  - id: witnesses
+    title: The witnesses
+    question:
+      id: john-1-18-apparatus-witnesses
+      type: matching
+      prompt: Match each witness to the reading it supports.
+      pairs:
+        - { item: 𝔓⁶⁶, match: "“God”" }
+        - { item: 𝔓⁷⁵, match: "“God”" }
+        - { item: Codex Alexandrinus (A), match: "“Son”" }
+        - { item: Byz, match: "“Son”" }
+      distractors: ["“the only one”"]
+      general_feedback: "Both early papyri, 𝔓⁶⁶ and 𝔓⁷⁵ (about 200–225), read “God”. 𝔓⁷⁵ has the article. A and the Byzantine manuscripts read “Son”."
+  - id: rating
+    title: The rating
+    body: "The entry starts with a rating. Here it is {B}."
+    question:
+      id: john-1-18-apparatus-rating
+      type: multichoice
+      prompt: "What does {B} mean?"
+      options:
+        - text: "The text is almost certain, in the UBS committee's opinion."
+          correct: true
+          feedback: "Right. It is the committee's opinion, not a measure of the evidence. At John 1:18 the decision was a majority, and one member wrote that at least {D} would be better."
+        - text: The text is certain.
+          feedback: "No. That is {A}."
+        - text: Most manuscripts support the text.
+          feedback: "No. A rating says how sure the committee was, not how many manuscripts agree. Most manuscripts here read “Son”."
+  - id: study
+    title: Study or follow?
+    body: "The decision tree says: for {A} or {B}, follow the UBS text, but study the variant if a Bible your readers use follows another reading."
+    question:
+      id: john-1-18-apparatus-study
+      type: truefalse
+      prompt: "Because John 1:18 has a {B} rating, a team whose readers use the Hindi Old Version can simply follow the UBS text without study."
+      answer: false
+      if_true: "No. The Hindi Old Version reads “Son”. A Bible your readers use follows another reading, so the variant needs study, even with a {B}."
+      if_false: "Right. The Hindi Old Version reads “Son”. A Bible your readers use follows another reading, so the variant needs study, even with a {B}."
+  - id: commentary
+    title: Why the committee chose
+    question:
+      id: john-1-18-apparatus-commentary
+      type: multichoice
+      prompt: "Where do you find the committee's reasons for printing “God”?"
+      options:
+        - text: "In a textual commentary: Metzger's Textual Commentary, or Omanson's Textual Guide for translators."
+          correct: true
+          feedback: "Right. The apparatus gives the evidence; the commentary gives the reasons."
+        - text: In the apparatus itself.
+          feedback: "No. The apparatus lists readings, witnesses and a rating, but not the reasons."
+        - text: In the KJV.
+          feedback: "No. The KJV follows the Textus Receptus and reads “Son”. It gives no reasons."
