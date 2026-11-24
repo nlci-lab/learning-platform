@@ -69,7 +69,7 @@ export const GUIDES: GuideMeta[] = [
   },
   {
     path: 'guide/examples/', cover: 'Worked examples', section: 'example', level: 'Going further',
-    summary: 'Real places where Greek manuscripts differ, worked through step by step.',
+    summary: 'Real places where Greek and Hebrew manuscripts differ, worked through step by step.',
     learn: ['How to apply the guides to a real verse', 'What UBS5 prints and why', 'What to tell your readers'],
     related: ['guide/examples/john-7-53/', 'guide/examples/john-1-18/', 'guide/examples/james-2-20/', 'guide/examples/romans-16-7/'],
   },
@@ -102,6 +102,13 @@ export const GUIDES: GuideMeta[] = [
     question: 'Junia or Junias: a woman or a man?', skill: 'When the variant is an accent, not a word',
   },
   {
+    path: 'guide/examples/1-samuel-17-4/', cover: '1 Samuel 17:4', section: 'example', level: 'Going further',
+    summary: 'How tall was Goliath? The Masoretic Text says six cubits; the oldest Hebrew scroll and the Greek say four.',
+    learn: ['Working an Old Testament variant in six steps', 'Weighing a Dead Sea Scroll against the Masoretic Text', 'Explaining a copying slip in Hebrew', 'Following the MT with a fair footnote'],
+    before: 'guide/ot-decisions/', related: ['guide/ot-decisions/', 'background/ot-text/', 'guide/text-policy/'], verses: ['1 Samuel 17:4'],
+    question: 'How tall was Goliath: six cubits or four?', skill: 'An Old Testament case: the MT against the oldest Hebrew scroll',
+  },
+  {
     path: 'guide/base-texts/', cover: 'Two Greek texts', section: 'guide', level: 'Going further',
     summary: 'Why the Bible your church reads may differ from the UBS text, and which text Indian-language Bibles follow.',
     learn: ['The UBS text and the Textus Receptus', 'Where they differ', 'Which text each Indian-language Bible follows', 'The case for the TR and the Byzantine text'],
@@ -127,6 +134,13 @@ export const GUIDES: GuideMeta[] = [
     learn: ['How to start from the Bible people know', 'Explaining the policy, not your opinion', 'Footnotes as the bridge', 'Short sample answers for common questions', 'Words to choose with care'],
     before: 'guide/base-texts/', related: ['guide/base-texts/', 'guide/text-policy/', 'guide/footnotes/', 'background/nt-text/'],
     verses: ['Acts 8:37', '1 John 5:7–8', 'John 7:53–8:11'],
+  },
+  {
+    path: 'guide/ot-decisions/', cover: 'Old Testament decisions', section: 'guide', level: 'Going further',
+    summary: 'Meeting textual problems in the Hebrew Bible: the BHS apparatus, the help available, and when the Masoretic Text should stand.',
+    learn: ['How Old Testament problems differ from New Testament ones', 'Reading a BHS apparatus note', 'Using the UBS Hebrew Old Testament Text Project and its A–D ratings', 'The six steps for the Old Testament', 'When to keep the Masoretic Text'],
+    before: 'background/ot-text/', related: ['background/ot-text/', 'guide/text-policy/', 'guide/weighing-evidence/'],
+    practice: ['guide/examples/1-samuel-17-4/'],
   },
   {
     path: 'glossary/', cover: 'Glossary', section: 'guide', level: 'Start here',

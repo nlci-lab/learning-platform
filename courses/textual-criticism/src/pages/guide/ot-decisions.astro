@@ -1,0 +1,148 @@
+---
+// Old Testament textual decisions: how the method of the New Testament guides carries over to the
+// Hebrew Bible, what help exists, and when the Masoretic Text should stand.
+// HOTTP facts were read from the UBS open-licence data on 25 Nov 2026 (README, ratings, factors, HOTTP.XML).
+import Context from '../../layouts/Context.astro';
+import { url } from '../../lib/url';
+const HOTTP = 'https://github.com/ubsicap/ubs-open-license/tree/main/HOTTP';
+const sources = [
+  { cite: 'NLCI, Translation Guidelines (2019), "Text and textual variants" and "Review Committee checking", as restated in this site\'s guide "Which text should a translation follow?".', checked: true },
+  { cite: 'United Bible Societies, Preliminary and Interim Report for the Hebrew Old Testament Text Project (HOTTP), © UBS 1973–1980, 2003–2023, CC BY-SA 4.0. Read in the UBS open-licence repository on GitHub (ubsicap/ubs-open-license, folder HOTTP), 25 Nov 2026: README, "Basic principles employed by the Committee" (the ratings), "Factors involved in textual decisions", and the entries for 1 Samuel 17 and Psalm 22:17 in HOTTP.XML.', checked: true },
+  { cite: 'UBS Translations, "Preliminary and Interim Report for the Hebrew Old Testament Text Project", translation.bible (seen 25 Nov 2026): the report is the foundation of Barthélemy\'s Critique textuelle de l\'Ancien Testament.', checked: true },
+  { cite: 'J. Daniel Hays, "Reconsidering the Height of Goliath", Journal of the Evangelical Theological Society 48/4 (2005), pp. 701–14, at pp. 702–3 and 707 (the text of 1–2 Samuel; citing Ulrich and Klein, and for the 44% figure Emanuel Tov, The Greek and Hebrew Bible: Collected Essays on the Septuagint (Brill, 1999), p. 333, which we have not checked directly).', checked: true },
+  { cite: 'Emanuel Tov, Textual Criticism of the Hebrew Bible, 3rd ed. (Fortress, 2012), named here only as a handbook.', checked: false },
+  { cite: 'Biblia Hebraica Stuttgartensia, introduction and list of sigla (Deutsche Bibelgesellschaft).', checked: false },
+];
+---
+<Context title="Old Testament textual decisions" label="Guide" lastChecked="2026-11-25" sources={sources}
+  description="How a translator meets textual problems in the Hebrew Bible: the BHS apparatus, the help available, the six steps, and when the Masoretic Text should stand.">
+  <p class="lead">Most of this site is about the Greek New Testament. The Old Testament works differently. Here the usual base text is one Hebrew manuscript tradition, the Masoretic Text, and the question is when, if ever, to leave it.</p>
+  <p>The text policy for NLCI teams says: translate the Old Testament from the Masoretic Text (MT) as printed in <em>Biblia Hebraica Stuttgartensia</em> (BHS). Where the MT is judged doubtful, another text may be followed. See <a href={url('guide/text-policy/#ot')}>Which text should a translation follow?</a> This guide shows how to work out when that might apply.</p>
+
+  <h2>What is different in the Old Testament</h2>
+  <ul class="diffs">
+    <li><strong>The base text is a real manuscript.</strong> The UBS Greek New Testament is a text the editors built from many manuscripts. BHS prints one manuscript, the Leningrad Codex, and lists other readings at the foot of the page. So the question is not "which reading did the editors choose?" but "should we leave the MT here?"</li>
+    <li><strong>Much of the evidence is in other languages.</strong> Apart from the Dead Sea Scrolls and the Samaritan Pentateuch, most early witnesses that differ from the MT are translations: Greek, Syriac, Aramaic, Latin. A translation shows a different Hebrew text only if you can rule out the translator's own choices.</li>
+    <li><strong>Some differences are larger than copying.</strong> In some books the Greek and the Hebrew seem to come from two different forms of the book. Hays, citing Tov's <i>The Greek and Hebrew Bible</i>, reports that in Codex Vaticanus 1 Samuel 16–18 is 44% shorter than the MT. That is a question about how the book grew, not about one word. A translator usually cannot settle it, but should know it is there.</li>
+    <li><strong>BHS has no ratings.</strong> The UBS Greek New Testament tells you how sure its editors were. BHS does not. For a rating you need the UBS Hebrew Old Testament Text Project (below).</li>
+  </ul>
+  <p>For the manuscripts, the Dead Sea Scrolls, the Septuagint and the other witnesses, read <a href={url('background/ot-text/')}>How we got the Old Testament text</a> first. It is short.</p>
+
+  <h2>Reading the BHS apparatus</h2>
+  <p>The BHS apparatus is in abbreviated Latin, and it names witnesses with letters. The most common are G (the Greek <em>Septuagint</em>, LXX), Q (a scroll from Qumran, one of the Dead Sea Scrolls, for example 4QSam<sup>a</sup>), S (Syriac), T (Targum, the Aramaic translations) and V (the Latin Vulgate). BHS prints them in Gothic letters. The full list is on <a href={url('background/ot-text/#how-bhs-and-bhq-cite-them')}>How BHS and BHQ cite them</a>, and the abbreviations are explained in the introduction to BHS itself.</p>
+  <p>When you read a note, ask three questions:</p>
+  <ol class="checks">
+    <li><span class="q">Is the other reading in Hebrew?</span> A Qumran scroll or the Samaritan Pentateuch is a Hebrew witness. G, S, T and V are translations: they point to a Hebrew reading only if the translator was not simply explaining, smoothing or guessing.</li>
+    <li><span class="q">Is it a real reading or a suggestion?</span> Some notes propose a change that no manuscript has. Such a <em>conjecture</em> is a scholar's idea, not evidence.</li>
+    <li><span class="q">Does it change the meaning in your language?</span> If not, you can usually move on, just as in the New Testament. See <a href={url('guide/which-variants-matter/')}>Which variants deserve your attention</a>.</li>
+  </ol>
+
+  <h2>Help you can use</h2>
+  <h3 id="hottp">The UBS Hebrew Old Testament Text Project</h3>
+  <p>The United Bible Societies asked a committee of Hebrew scholars to study a large number of Old Testament passages with textual problems. Their findings are the <em>Preliminary and Interim Report for the Hebrew Old Testament Text Project</em> (copyright 1973–1980), often called HOTTP. UBS now gives it away under an open licence (CC BY-SA 4.0), in English and French: <a href={HOTTP} target="_blank" rel="noopener">HOTTP on GitHub ↗</a>. The open data has about 4,500 entries.</p>
+  <p>Each entry gives the MT first, then the other readings, each with a literal English and French translation, and shows which of five "base translations" (the RSV, the NEB, the French Bible de Jérusalem, the German Luther Bible and the French TOB) follows which reading. The committee then marks the reading it prefers with a letter:</p>
+  <dl class="ratings">
+    <div><dt>A</dt><dd>very probably the earliest text we can reach</dd></div>
+    <div><dt>B</dt><dd>probably, but with some doubt</dd></div>
+    <div><dt>C</dt><dd>possibly, but with considerable doubt</dd></div>
+    <div><dt>D</dt><dd>possibly, but highly uncertain</dd></div>
+  </dl>
+  <p>Note what the letters measure. The committee did not try to reach the words as first written. It aimed at the earliest form of the text that the surviving evidence can show, which it calls the "second phase". The committee says its letters work much like the UBS Greek ratings. Where its members were divided, the majority view is marked the same way.</p>
+  <p>The report also gives numbered <em>factors</em>, the reasons behind each decision. Factors 1–3 are about how much the witnesses are worth: one tradition alone is weak, and, in the report's words, one must not count text traditions but weigh them. Factors 4–13 are ways the text changed: easier readings, matching a parallel passage, a translator's adjustments, copying slips. Factor 14 marks a conjecture and 15 a text no one can explain.</p>
+  <p>HOTTP does not cover every problem. It has no entry at 1 Samuel 17:4, for example, which is worked through in <a href={url('guide/examples/1-samuel-17-4/')}>the Goliath example</a>.</p>
+
+  <h3>Barthélemy's <i>Critique textuelle</i></h3>
+  <p>The report is the foundation of Dominique Barthélemy's <i>Critique textuelle de l'Ancien Testament</i> (CTAT), which sets out the committee's reasons in full. It is in French. If your library has it, read it when the short HOTTP entry is not enough.</p>
+
+  <h3>BHQ and its commentary</h3>
+  <p><em>Biblia Hebraica Quinta</em> (BHQ) is replacing BHS book by book. Each volume has a fuller apparatus and a commentary that explains the cases. Check whether the volume for your book has appeared.</p>
+
+  <h3>Handbooks and translation notes</h3>
+  <p>Emanuel Tov's <i>Textual Criticism of the Hebrew Bible</i> is the standard handbook on the method. For a single verse, the UBS Handbook on your book and the NET Bible notes often explain a textual problem in plain terms. The series <a href={url('learn/decisions/')}>Making textual decisions</a> shows how to use such helps step by step; its examples are from the New Testament, but the same order works here.</p>
+
+  <h3>An example of the help at work</h3>
+  <p>The text policy names Psalm 22:15–16 as a place where the MT may be judged doubtful. HOTTP lists the problem word at Psalm 22:17 (Hebrew verse numbers; verse 16 in most English Bibles). There the MT has <span lang="he" dir="rtl">כארי</span>, which can be read "like a lion". Some of the base translations (RSV, NEB, Luther) follow a slightly different form, <span lang="he" dir="rtl">כארו</span>, "they have pierced". The committee kept the MT letters and rated them {'{B}'}, but suggested they may mean "mangling". It gave three factors against "they have pierced": an easier reading (4), a misunderstanding of the Hebrew (8), and a scribal error (12).</p>
+  <p>Note two things. First, HOTTP does not treat "they have pierced" as a scholar's guess. It prints <span lang="he" dir="rtl">כארו</span> without square brackets, and the report uses square brackets only for forms that no Hebrew witness has. The one bracketed form in this entry is a different conjecture, marked with factor 14. Second, the committee preferred the MT, but only with a {'{B}'}: "probably, but with some doubt". So this is a real textual question, not a settled one. Which witnesses have "they have pierced" is not yet verified on this site.</p>
+  <p>This shows how the help and the policy work together. HOTTP gives the evidence and one committee's judgment. Your project's Review Committee still decides what your translation prints, and a footnote can show the other reading.</p>
+
+  <h2>The six steps in the Old Testament</h2>
+  <p>The <a href={url('guide/examples/')}>worked examples</a> use six steps. They work for the Old Testament too, with these changes.</p>
+  <div class="scroll">
+    <table class="plain steps">
+      <thead><tr><th scope="col">Step</th><th scope="col">In the Old Testament</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1. Find the problem</th><td>Compare the MT (BHS) with your regional-language Bible and one or two others. Check the verse numbers first: in Psalms and elsewhere, Hebrew and English numbers can differ.</td></tr>
+        <tr><th scope="row">2. List the readings</th><td>Take them from the BHS apparatus, the HOTTP entry if there is one, or BHQ. Note for each reading whether its support is Hebrew or a translation.</td></tr>
+        <tr><th scope="row">3. External evidence</th><td>Ask the same <a href={url('guide/weighing-evidence/')}>six questions</a>. An old Hebrew witness, such as a Qumran scroll, counts for more than a translation. Check independence: the HOTTP report notes that the Syriac often simply follows the Septuagint or the Targum.</td></tr>
+        <tr><th scope="row">4. Internal evidence</th><td>The same scribal habits apply: easier readings, matching a nearby verse, eye-skips between similar words. Add one more question: did a translator change the sense on purpose?</td></tr>
+        <tr><th scope="row">5. Weigh it up</th><td>Use the HOTTP rating or the BHQ commentary where there is one. If there is none, say plainly how sure you are.</td></tr>
+        <tr><th scope="row">6. Decide</th><td>Start from the MT, as the policy asks. Take any departure, and any disagreement with the regional-language Bible, to your Review Committee.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Not sure whether a variant needs this much work at all? Use the <a href={url('learn/decisions/#dtt-textual-decision')}>decision tree</a> at the end of the series page.</p>
+
+  <h2>When should the Masoretic Text stand?</h2>
+  <p>These are recommendations, not rules. The policy starts from the MT, and your Review Committee decides each case.</p>
+  <div class="when">
+    <section class="w-box">
+      <h3>Keep the MT when</h3>
+      <ul>
+        <li>the MT makes sense, even if it is hard. A hard reading is often the older one.</li>
+        <li>the other reading is found only in a translation, and the translator may simply have explained or smoothed the text.</li>
+        <li>the other reading is a conjecture, found in no manuscript.</li>
+        <li>the difference belongs to a larger question about two forms of a book. Translate the MT and, if it helps your readers, explain in a note or an introduction.</li>
+      </ul>
+    </section>
+    <section class="w-box">
+      <h3>Consider another reading when</h3>
+      <ul>
+        <li>the MT cannot be understood, or seems damaged by a copying slip you can name;</li>
+        <li>and the other reading has Hebrew support, such as a Qumran scroll, or more than one independent ancient translation;</li>
+        <li>and HOTTP, BHQ or a good commentary also prefers it.</li>
+      </ul>
+    </section>
+  </div>
+  <p>Either way, if the other reading changes the meaning, give it in a footnote. Never choose a reading because it fits a theological view better; the policy says theology never changes the text.</p>
+
+  <h2>Where to go next</h2>
+  <ul>
+    <li><a href={url('guide/examples/1-samuel-17-4/')}>1 Samuel 17:4: how tall was Goliath?</a> works through one Old Testament case in six steps.</li>
+    <li><a href={url('learn/decisions/')}>Making textual decisions</a> and its decision tree.</li>
+    <li><a href={url('guide/text-policy/')}>Which text should a translation follow?</a></li>
+  </ul>
+
+  <aside class="unverified" aria-labelledby="unv">
+    <h2 id="unv">Not yet verified</h2>
+    <p>These statements are kept apart because no source we can name has confirmed them yet. Do not rely on them.</p>
+    <ul>
+      <li>The volumes and publication dates of Barthélemy's <i>Critique textuelle de l'Ancien Testament</i>, and which books each covers.</li>
+      <li>Which books of BHQ have been published so far.</li>
+      <li>The exact meaning of each Latin abbreviation in the BHS apparatus: check the BHS introduction.</li>
+      <li>The page numbers in Tov's handbook for the method described here.</li>
+      <li>Which Hebrew manuscripts and ancient translations support "they have pierced" at Psalm 22:17.</li>
+    </ul>
+  </aside>
+</Context>
+
+<style>
+  .diffs { padding-left: 1.2rem; }
+  .diffs li { margin-bottom: 0.6rem; }
+  .checks { counter-reset: c; list-style: none; padding: 0; margin: 1rem 0; }
+  .checks li { counter-increment: c; position: relative; padding: 0.55rem 0 0.55rem 2.6rem; border-bottom: 1px solid var(--rule); }
+  .checks li::before { content: counter(c); position: absolute; left: 0; top: 0.55rem; width: 1.8rem; height: 1.8rem; border-radius: 50%; display: grid; place-items: center; font-family: var(--sans); font-size: 0.85rem; color: var(--rubric); border: 1.5px solid var(--rubric); box-sizing: border-box; }
+  .q { display: block; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+  h3 { scroll-margin-top: 1rem; }
+  .ratings { display: grid; gap: 0; margin: 0.75rem 0 1rem; }
+  .ratings div { display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.75rem; align-items: baseline; padding: 0.4rem 0; border-top: 1px solid var(--rule); }
+  .ratings dt { font: 700 1rem var(--sans); color: var(--rubric); }
+  .ratings dd { margin: 0; }
+  .steps th[scope="row"] { font-family: var(--sans); font-size: 0.9rem; white-space: nowrap; padding-right: 1rem; }
+  @media (max-width: 40rem) { .steps th[scope="row"] { white-space: normal; } }
+  .when { display: grid; gap: 0.75rem; margin: 1rem 0; }
+  @media (min-width: 600px) { .when { grid-template-columns: 1fr 1fr; } }
+  .w-box { border: 1px solid var(--rule); border-top: 3px solid var(--rubric); border-radius: 8px; padding: 0.8rem 1rem; background: var(--paper-2); min-width: 0; }
+  .w-box h3 { margin: 0 0 0.4rem; font: 600 1rem var(--sans); }
+  .w-box ul { margin: 0; padding-left: 1.1rem; }
+  .w-box li { margin-bottom: 0.4rem; }
+</style>

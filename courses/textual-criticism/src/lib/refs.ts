@@ -1,5 +1,25 @@
 // Bible reference parsing for the concordance search. Shared by the build and the browser.
-// "John 1:18", "jn 1.18", "Jas 2:20", "Mark 16:9–20", "John 7:53–8:11", "Luke 23:34a", "Acts".
+// "John 1:18", "jn 1.18", "Jas 2:20", "Mark 16:9–20", "John 7:53–8:11", "Luke 23:34a", "Acts", "1 Samuel 17:4".
+
+// Old Testament books. Short aliases that are common English words ("is", "am", "ex") are left out on purpose,
+// and none of these aliases is also a New Testament alias, so New Testament parsing is unchanged.
+const OT_BOOKS: [string, string[]][] = [
+  ['Genesis', ['gen', 'gn', 'genesis']], ['Exodus', ['exo', 'exod', 'exodus']], ['Leviticus', ['lev', 'lv', 'leviticus']],
+  ['Numbers', ['num', 'nm', 'numbers']], ['Deuteronomy', ['deu', 'deut', 'dt', 'deuteronomy']], ['Joshua', ['jos', 'josh', 'joshua']],
+  ['Judges', ['jdg', 'judg', 'judges']], ['Ruth', ['rut', 'ruth']],
+  ['1 Samuel', ['1sa', '1sam', '1sm', '1samuel']], ['2 Samuel', ['2sa', '2sam', '2sm', '2samuel']],
+  ['1 Kings', ['1ki', '1kg', '1kgs', '1kings']], ['2 Kings', ['2ki', '2kg', '2kgs', '2kings']],
+  ['1 Chronicles', ['1ch', '1chr', '1chron', '1chronicles']], ['2 Chronicles', ['2ch', '2chr', '2chron', '2chronicles']],
+  ['Ezra', ['ezr', 'ezra']], ['Nehemiah', ['neh', 'nehemiah']], ['Esther', ['est', 'esth', 'esther']], ['Job', ['jb', 'job']],
+  ['Psalms', ['ps', 'psa', 'pss', 'psalm', 'psalms']], ['Proverbs', ['prov', 'prv', 'proverbs']],
+  ['Ecclesiastes', ['ecc', 'eccl', 'qoh', 'ecclesiastes', 'qoheleth']], ['Song of Songs', ['sng', 'sos', 'song', 'canticles']],
+  ['Isaiah', ['isa', 'isaiah']], ['Jeremiah', ['jer', 'jeremiah']], ['Lamentations', ['lam', 'lamentations']],
+  ['Ezekiel', ['ezk', 'eze', 'ezek', 'ezekiel']], ['Daniel', ['dan', 'dn', 'daniel']], ['Hosea', ['hos', 'hosea']],
+  ['Joel', ['jl', 'joel']], ['Amos', ['amo', 'amos']], ['Obadiah', ['oba', 'obad', 'obadiah']], ['Jonah', ['jnh', 'jon', 'jonah']],
+  ['Micah', ['mic', 'micah']], ['Nahum', ['nam', 'nah', 'nahum']], ['Habakkuk', ['hab', 'habakkuk']],
+  ['Zephaniah', ['zep', 'zeph', 'zephaniah']], ['Haggai', ['hag', 'haggai']], ['Zechariah', ['zec', 'zech', 'zechariah']],
+  ['Malachi', ['mal', 'malachi']],
+];
 
 const BOOKS: [string, string[]][] = [
   ['Matthew', ['mt', 'mat', 'matt', 'matthew']], ['Mark', ['mk', 'mr', 'mrk', 'mar', 'mark']],
@@ -15,6 +35,7 @@ const BOOKS: [string, string[]][] = [
 ];
 const ALIAS = new Map<string, string>();
 for (const [name, as] of BOOKS) for (const a of as) ALIAS.set(a, name);
+for (const [name, as] of OT_BOOKS) for (const a of as) if (!ALIAS.has(a)) ALIAS.set(a, name);   // never overrides a New Testament alias
 
 /** A passage as numbers: verse positions are chapter*1000+verse, so ranges across chapters compare simply. */
 export interface Ref { book: string; from?: number; to?: number }

@@ -4,8 +4,12 @@
 import { url } from '../lib/url';
 type ActionKind = 'footnote' | 'brackets' | 'wording' | 'committee' | 'consult' | 'record' | 'none';
 interface Props {
-  /** What the UBS text prints here (HTML). */
+  /** What the UBS text prints here (HTML). For an Old Testament example: what the Hebrew text (BHS) has. */
   ubs: string;
+  /** Label for the base-text row; defaults to "The UBS text". */
+  baseLabel?: string;
+  /** The short policy summary under "Check your text policy" (HTML); defaults to the New Testament summary. */
+  policyNote?: string;
   /** What to check in the regional-language Bible (HTML). */
   lwc: string;
   /** Who decides, and how the text policy applies here (HTML). */
@@ -14,7 +18,7 @@ interface Props {
   recommendation: string;
   actions: { kind: ActionKind; text: string }[];
 }
-const { ubs, lwc, decides, recommendation, actions } = Astro.props;
+const { ubs, lwc, decides, recommendation, actions, baseLabel = 'The UBS text', policyNote } = Astro.props;
 const LABEL: Record<ActionKind, string> = {
   footnote: 'Footnote', brackets: 'Brackets', wording: 'Wording', committee: 'Review Committee',
   consult: 'Consult', record: 'Record it', none: 'Not needed',
@@ -25,9 +29,11 @@ const policy = url('guide/text-policy/');
 <div class="decide">
   <section class="d-box">
     <h3><span class="d-n">1</span> Check your text policy</h3>
-    <p class="small muted">Your project's text policy comes first. For NLCI teams it is in <a href={policy}>Which text should a translation follow?</a>: translate from the UBS text, follow the regional-language Bible for passages with a long tradition, and let the Review Committee decide where the two differ.</p>
+    {policyNote
+      ? <p class="small muted" set:html={policyNote} />
+      : <p class="small muted">Your project's text policy comes first. For NLCI teams it is in <a href={policy}>Which text should a translation follow?</a>: translate from the UBS text, follow the regional-language Bible for passages with a long tradition, and let the Review Committee decide where the two differ.</p>}
     <dl class="d-checks">
-      <div><dt>The UBS text</dt><dd set:html={ubs} /></div>
+      <div><dt>{baseLabel}</dt><dd set:html={ubs} /></div>
       <div><dt>Your regional-language Bible</dt><dd set:html={lwc} /></div>
       <div><dt>Who decides</dt><dd set:html={decides} /></div>
     </dl>
