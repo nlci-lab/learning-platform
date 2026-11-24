@@ -8,7 +8,7 @@ role: "German scholar who grouped manuscripts into families and stated the rule 
 made:
   - title: "Greek New Testament"
     year: "1734"
-    note: "Printed at Tübingen. He mostly kept the received text, but graded the variants in the margin with the first five Greek letters, α to ε. α marks a reading he judged original, though he did not put it in his printed text; β a reading better than the text; γ one equal to it; δ one worse than it; and ε the weakest."
+    note: "Printed at Tübingen. He mostly kept the received text, but graded the variants in the margin with the first five Greek letters, α to ε. α marks a reading he judged original, though he did not put it in his printed text; β a reading better than the text; γ one equal to it; and δ one worse than it. (For ε, see Not yet verified.)"
     src: [wp-bengel]
   - title: "Manuscript families"
     note: "He divided the manuscripts into an older \"African\" family and a later \"Asiatic\" family, and gave the older family more weight."

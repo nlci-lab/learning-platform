@@ -30,7 +30,7 @@ const CAT: Record<string, string> = { papyrus: 'Papyrus', majuscule: 'Majuscule'
 const KIND: Record<string, string> = { greek_ms: 'Greek manuscript', group: 'Group reading', version: 'Ancient version', father: 'Church father', ot_ms: 'OT manuscript' };
 const sl = w.siglum_lang;
 // A father's siglum is his name ("Irenaeus"), so don't print it twice.
-const sameAsName = w.names[0].startsWith(w.siglum);
+const sameAsName = w.kind === 'father' && w.names[0].startsWith(w.siglum);
 const label = sameAsName ? w.names[0] : `${w.siglum} ${w.names[0]}`;
 ---
 <Base title={label} description={w.lead}>
