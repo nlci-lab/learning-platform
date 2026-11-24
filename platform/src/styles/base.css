@@ -121,12 +121,12 @@ img { max-width: 100%; height: auto; }
 .unverified ul { margin: 0; padding-left: 1.1rem; }
 .sources ol { font-size: var(--step--1); padding-left: 1.4rem; color: var(--ink-2); }
 
-/* Shelf: one horizontal row that scrolls on narrow screens. No JS. */
+/* Shelf: a row of covers or tiles that wraps onto new lines (no sideways scrolling). No JS.
+   --shelf-col sets each item's width range. */
 :is(div, ul).shelf {
-  display: grid; grid-auto-flow: column; grid-auto-columns: var(--shelf-col, minmax(10rem, 11.5rem));
-  gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0.25rem 0 0.75rem; margin: 0; list-style: none;
+  display: grid; grid-template-columns: repeat(auto-fill, var(--shelf-col, minmax(10rem, 11.5rem)));
+  gap: 1rem; padding: 0.25rem 0 0.75rem; margin: 0; list-style: none;
 }
-:is(div, ul).shelf > * { scroll-snap-align: start; }
 .shelf figure { margin: 0; }
 .shelf figcaption { font: 0.8rem var(--sans); color: var(--ink-2); margin-top: 0.4rem; }
 

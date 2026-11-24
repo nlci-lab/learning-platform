@@ -39,6 +39,8 @@ Export one module as SCORM and its questions as Moodle XML, then test the import
 
 Move it to `courses/textual-criticism/` with its git history, switch it to platform components, and leave redirect pages at the old URL.
 
+Done so far (24 Nov 2026): moved with its full history (git filter-repo, so each file's history follows it); switched to the platform layout, Feedback, Lightbox, Thumb, Cite and Cover; micro modules and glossary are now content data; comments dropped. Decided: the old site stays as it is for now and will be archived later, so no redirect pages yet.
+
 ## Open
 
-- A name for the master site. "Courses" is a placeholder.
+- ~~A name for the master site.~~ Decided: "Learning Hub" (the repo and URL stay `learning-platform`).

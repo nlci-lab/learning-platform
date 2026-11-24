@@ -6,7 +6,7 @@ interface Props { file: string; width: number; height: number; alt: string; capt
 const { file, width, height, alt, caption } = Astro.props;
 const src = url(file);
 ---
-<a class="thumb" href={src} data-full={src} data-w={width} data-h={height} data-caption={caption}
+<a class="thumb" href={src} data-full={src} data-caption={caption}
   aria-label={`Enlarge: ${alt}`}>
   <img src={src} width={width} height={height} alt={alt} loading="lazy" decoding="async" />
   <span class="zoom" aria-hidden="true">

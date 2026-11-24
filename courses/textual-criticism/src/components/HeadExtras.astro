@@ -1,0 +1,7 @@
+---
+// What this course adds to every page's <head>: the Hebrew font for the siglum א.
+// Used by layouts/Base.astro and passed to platform pages (e.g. the micro module page) through their "head" slot.
+---
+{/* Only the letter א. display=optional: no font swap flash; slow connections keep the system font. */}
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew&text=%D7%90&display=optional" />

@@ -155,6 +155,8 @@ export const moduleSchema = z.object({
   skill: text,
   /** Difficulty, 1 (easiest) to 4. Names come from the site config. */
   level: z.number().int().min(1).max(4),
+  /** Optional place in lists (lower first). Without it, modules sort by level, then title. */
+  order: z.number().int().optional(),
   minutes: z.number().int().positive(),
   description: text,
   lead: text,

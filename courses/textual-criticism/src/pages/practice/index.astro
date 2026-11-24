@@ -1,0 +1,16 @@
+---
+// The micro modules are listed on the Learn page; this address forwards there.
+import { url } from '../../lib/url';
+const to = url('learn/#modules');
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="refresh" content={`0; url=${to}`} />
+  <link rel="canonical" href={to} />
+  <title>Micro modules</title>
+</head>
+<body><p>The micro modules are now on the <a href={to}>Learn</a> page.</p></body>
+</html>

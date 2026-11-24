@@ -1,6 +1,6 @@
 ---
 // One question from content data (ADR 0003, 0004). Renders every Moodle-importable type.
-// Without JavaScript: the reader sees the question and a "Show the answer" box with every answer and its feedback.
+// Without JavaScript: the reader sees the question and a "Show the answer(s)" box with every answer and its feedback.
 // With JavaScript: the reader answers, presses Check, and sees the feedback for their own answer.
 // Fires a bubbling 'q:checked' event when checked, so a micro module can open its next step.
 import type { Question } from '../schemas';
@@ -11,6 +11,8 @@ const name = `q-${q.id}`;
 
 // True/false is a two-option choice; both share one renderer.
 type Opt = { text: string; correct: boolean; feedback: string };
+// Feedback that already opens with a verdict ("Right.", "No:") gets no added "Right."/"Not right." mark.
+const ownVerdict = (f: string) => /^(right|yes|correct|wrong|no|not)\b/i.test(f.trim());
 const choice: { opts: Opt[]; single: boolean } | null =
   q.type === 'multichoice' ? { opts: q.options, single: q.single }
   : q.type === 'truefalse' ? { single: true, opts: [
@@ -38,7 +40,7 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
   {choice && (
     <div class="q-opts">
       {choice.opts.map((o, i) => (
-        <label class="q-opt" data-correct={o.correct ? '1' : undefined}>
+        <label class="q-opt" data-correct={o.correct ? '1' : undefined} data-own-verdict={ownVerdict(o.feedback) ? '1' : undefined}>
           <input type={choice.single ? 'radio' : 'checkbox'} name={name} value={String(i)} />
           <span set:html={mdInline(o.text)} />
           <span class="q-why" hidden><strong class="q-mark"></strong> <span set:html={mdInline(o.feedback)} /></span>
@@ -93,7 +95,7 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
   {q.general_feedback && <div class="q-general" hidden set:html={md(q.general_feedback)} />}
 
   <details class="q-all">
-    <summary>Show the answer</summary>
+    <summary>{choice && choice.opts.length > 1 || q.type === 'matching' || (q.type === 'shortanswer' && q.answers.length > 1) ? 'Show the answers' : 'Show the answer'}</summary>
     {choice && (
       <ul>{choice.opts.map((o) => <li><strong>{o.correct ? 'Yes' : 'No'}:</strong> <span set:html={mdInline(o.text)} /> <span class="muted" set:html={mdInline(o.feedback)} /></li>)}</ul>
     )}
@@ -137,8 +139,8 @@ const checkLabel = q.type === 'essay' ? 'Show a model answer' : 'Check my answer
           o.classList.toggle('right', right);
           o.classList.toggle('wrong', isOn(o) && !right);
           o.querySelector<HTMLElement>('.q-why')!.hidden = !(isOn(o) || right);
-          // Not colour alone (WCAG 1.4.1): each shown option says in words whether it is right.
-          o.querySelector<HTMLElement>('.q-mark')!.textContent = right ? (isOn(o) ? 'Right.' : 'Right answer.') : 'Not right.';
+          // Not colour alone (WCAG 1.4.1): unless its feedback already says so, each shown option says in words whether it is right.
+          o.querySelector<HTMLElement>('.q-mark')!.textContent = o.dataset.ownVerdict ? '' : right ? (isOn(o) ? 'Right.' : 'Right answer.') : 'Not right.';
         });
         const ok = opts.every((o) => isOn(o) === !!o.dataset.correct);
         return ok ? 'Yes, that is right.' : multi ? 'Not quite. The right answers are marked.' : 'Not quite. The right answer is marked.';

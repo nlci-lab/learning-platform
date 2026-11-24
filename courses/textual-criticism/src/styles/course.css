@@ -1,0 +1,103 @@
+/* Textual Criticism styles: only what this course adds to the platform's base.css
+   (fonts, colours, typography, header, footer, facts, sources, cover, shelf, chip and sec come from the platform).
+   Sigla, Hebrew, witness tiles, coverage bars and the home search live here. */
+:root {
+  --rubric: var(--accent);   /* the site's older name for its accent; components still use it */
+  --sigla: "Gentium Book Plus", "Cambria Math", "STIX Two Math", "Noto Sans Math", "Segoe UI Symbol", serif;
+  --hebrew: "Noto Serif Hebrew", "SBL Hebrew", "Times New Roman", serif;
+  --bar-full: #3b3530;
+  --bar-part: #a39a90;
+  --bar-none: #e6e1da;
+}
+:root[data-theme="dark"] { --bar-full: #e8e3db; --bar-part: #8c857c; --bar-none: #33373b; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bar-full: #e8e3db; --bar-part: #8c857c; --bar-none: #33373b; }
+}
+
+/* The 𝔓 mark and cover ornaments need a font with mathematical letters. */
+html .site-head .brand i, html .cover .orn { font-family: var(--sigla); }
+
+/* Sigla: the one place the accent is used as type. */
+.siglum { font-family: var(--sigla); color: var(--rubric); font-variant-numeric: lining-nums; white-space: nowrap; }
+.siglum[lang="he"], [lang="he"] { font-family: var(--hebrew); }
+.siglum, [lang="he"] { unicode-bidi: isolate; }
+
+.facts td { font-size: var(--step-0); }
+.facts code { font-family: var(--sans); font-size: 0.875em; }
+.home { margin-top: 1.5rem; }
+.home h1 { margin-bottom: 0.25rem; }
+
+/* Search (home page) */
+.search { font-family: var(--sans); }
+.search input {
+  width: 100%; font: 1.25rem var(--sigla); padding: 0.6rem 0.75rem; color: var(--ink);
+  background: var(--paper); border: 2px solid var(--ink-2); border-radius: 6px;
+}
+.search input:focus { border-color: var(--rubric); }
+.keys { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
+.keys button {
+  min-width: 2.75rem; min-height: 2.75rem; font: 1.25rem var(--sigla); color: var(--ink);
+  background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px; cursor: pointer;
+}
+.keys button[lang="he"] { font-family: var(--hebrew); }
+.results { list-style: none; padding: 0; margin: 0.5rem 0 0; }
+.results li { border-top: 1px solid var(--rule); }
+.results a { display: flex; gap: 0.75rem; align-items: baseline; padding: 0.6rem 0; color: var(--ink); text-decoration: none; }
+.results a:hover .r-name { text-decoration: underline; }
+.results .siglum { min-width: 3.5rem; font-size: 1.15rem; }
+
+/* Witness tile */
+.tile {
+  display: flex; flex-direction: column; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden;
+  background: var(--paper); color: var(--ink); text-decoration: none; transition: border-color 0.15s, translate 0.15s;
+}
+a.tile:hover { border-color: var(--ink-2); translate: 0 -2px; }
+a.tile:hover b { text-decoration: underline; text-decoration-thickness: 1px; }
+.tile-spec { position: relative; height: 9.5rem; display: grid; place-items: center; overflow: hidden; border-bottom: 1px solid var(--rule); }
+.tile-spec img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tile-spec .sg {
+  position: relative; z-index: 1; font: 400 3.4rem/1 var(--sigla); color: var(--rubric);
+  font-variant-numeric: lining-nums; white-space: nowrap;
+}
+.tile-spec .sg[lang="he"] { font-family: var(--hebrew); }
+/* Over a photo the siglum sits on a paper label so it stays legible (AA) on any image. */
+.tile-spec.photo .sg {
+  position: absolute; left: 0.5rem; bottom: 0.5rem; font-size: 1.5rem; padding: 0.15rem 0.5rem;
+  background: var(--paper); border-radius: 4px;
+}
+.tile-spec .scr {
+  position: absolute; left: -0.25rem; right: -0.25rem; bottom: 0.55rem; font: 600 0.82rem/1 var(--serif);
+  letter-spacing: 0.32em; color: #2a2218; opacity: 0.38; white-space: nowrap; overflow: hidden;
+}
+.tile-spec .scr + .scr { bottom: 1.6rem; opacity: 0.22; }
+.tile-spec.papyrus {
+  background-color: #e8d9b5;
+  background-image: repeating-linear-gradient(90deg, rgb(110 80 30 / 0.10) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(0deg, rgb(110 80 30 / 0.08) 0 1px, transparent 1px 7px);
+}
+.tile-spec.parchment { background-color: #efe7da; background-image: radial-gradient(rgb(90 70 40 / 0.07) 1px, transparent 1.2px); background-size: 6px 6px; }
+.tile-spec.plain { background: var(--paper-2); }
+.tile-spec.plain .scr { color: var(--ink); }
+/* Textures keep their light ground in dark mode but are dimmed; rubric #9d2a1f on them stays AA. */
+.tile-spec.papyrus .sg, .tile-spec.parchment .sg { color: #9d2a1f; }
+:root[data-theme="dark"] .tile-spec.papyrus { background-color: #3a3222; }
+:root[data-theme="dark"] .tile-spec.parchment { background-color: #2e2b27; }
+:root[data-theme="dark"] :is(.tile-spec.papyrus, .tile-spec.parchment) .scr { color: #e8dcc4; }
+:root[data-theme="dark"] :is(.tile-spec.papyrus, .tile-spec.parchment) .sg { color: var(--rubric); }
+.tile-meta { padding: 0.65rem 0.8rem 0.8rem; display: grid; gap: 0.3rem; }
+.tile-meta b { font-size: 1.02rem; line-height: 1.25; font-weight: 600; }
+.tile-meta .ln { display: flex; justify-content: space-between; gap: 0.5rem; font: 0.8rem var(--sans); color: var(--ink-2); }
+@media (max-width: 400px) {
+  .tile-spec { height: 7rem; }
+  .tile-spec .sg { font-size: 2.6rem; }
+  .tile-meta b { font-size: 0.92rem; }
+}
+
+/* Coverage bar: Gospels / Acts / Paul / Catholic letters / Revelation */
+.cov { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; margin: 0.15rem 0 0; padding: 0; list-style: none; }
+.cov li { height: 5px; border-radius: 1px; background: var(--bar-none); }
+.cov li.on { background: var(--bar-full); }
+.cov li.part { background: var(--bar-part); }
+.cov.labelled li { height: auto; padding: 0.15rem 0; text-align: center; font: 600 0.65rem/1.3 var(--sans); color: var(--ink-2); }
+.cov.labelled li.on { color: var(--paper); }
+.cov.labelled li.part { color: var(--ink); }

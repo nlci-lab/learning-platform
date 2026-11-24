@@ -1,0 +1,34 @@
+---
+import Context from '../../../layouts/Context.astro';
+import ExampleCard from '../../../components/ExampleCard.astro';
+import { EXAMPLES } from '../../../data/guides';
+import { url } from '../../../lib/url';
+const sources = [
+  { cite: 'Thomas Hemphill, "New Testament Textual Criticism Examples". Adapted and used with permission (James 2:20, Romans 16:7).', checked: true },
+];
+---
+<Context title="Worked examples" label="Guide" lastChecked="2026-11-20" sources={sources} notice={false}
+  description="Real places where Greek manuscripts differ, worked through step by step for translators.">
+  <p class="lead">The guides explain the method. Each example here puts it into practice on one real verse, in the same six steps every time, so you can follow along and then do it yourself.</p>
+
+  <h2>The examples</h2>
+  <div class="excards">
+    {EXAMPLES.map((ex) => <ExampleCard ex={ex} steps />)}
+  </div>
+
+  <h2>The six steps</h2>
+  <ol class="six">
+    <li><b>Find the problem.</b> What exactly differs between the manuscripts?</li>
+    <li><b>List the readings.</b> Which readings are there, and who supports each one?</li>
+    <li><b>External evidence.</b> Ask the six questions about the witnesses; number comes last. See <a href={url('guide/weighing-evidence/')}>Weighing the evidence</a>.</li>
+    <li><b>Internal evidence.</b> What would a scribe do, and what would the author write?</li>
+    <li><b>Weigh it up.</b> Which reading came first, and how sure can we be? Compare the UBS rating.</li>
+    <li><b>Decide for your translation.</b> What will you print, and what will you tell your readers? See <a href={url('guide/which-variants-matter/')}>Which variants matter</a>.</li>
+  </ol>
+  <p>New to apparatus entries? Start with <a href={url('guide/apparatus/')}>How to read a UBS apparatus entry</a>, which takes John 1:18 apart piece by piece.</p>
+</Context>
+<style>
+  .excards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); margin: 1rem 0 0.5rem; }
+  .six { padding-left: 1.4rem; }
+  .six li { margin-bottom: 0.5rem; }
+</style>

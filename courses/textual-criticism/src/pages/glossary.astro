@@ -1,0 +1,88 @@
+---
+// Glossary as a guide: the signs and words of the UBS apparatus, grouped, with a find box.
+// Entry ids stay the same (glossary/#rating etc.), so links from other pages and the search keep working.
+import Context from '../layouts/Context.astro';
+import { getGlossary, getGlossaryEntries } from '@cohorts/platform/data';
+// Entries and groups are content data (src/content/glossary.yaml, glossary-groups.yaml).
+// Groups with style "sign" hold apparatus signs: shown in the sigla style and in the jump row.
+const groups = await getGlossary();
+const signs = (await getGlossaryEntries()).filter((t) => t.style === 'sign');   // file order, as before
+---
+<Context title="Glossary" label="Guide" notice={false}
+  description="The signs and short words of the UBS apparatus, and the terms used on this site, in plain English.">
+  <p class="lead">The signs and short words of the UBS apparatus, and the terms used on this site, in plain English. Each entry gives its source.</p>
+
+  <div class="g-find" hidden>
+    <label class="visually-hidden" for="g-q">Find a term</label>
+    <input id="g-q" type="search" placeholder="Find a sign or word: vid, *, Byz, CBGM…" autocomplete="off" />
+    <p class="g-count small muted" aria-live="polite"></p>
+  </div>
+  <p class="g-jump small" aria-label="Signs on this page">
+    {signs.map((t) => <a href={`#${t.id}`} class="g-chip">{t.term}</a>)}
+  </p>
+
+  {groups.map((g) => (
+    <section class="g-grp">
+      <h2 id={g.id}>{g.title}</h2>
+      {g.intro && <p class="muted">{g.intro}</p>}
+      <dl class="gloss">
+        {g.entries.map((t) => (
+          <div id={t.id} class="g-item" data-text={`${t.term} ${t.plain}`.toLowerCase()}>
+            <dt><span class:list={['g-term', { sign: g.style === 'sign' }]}>{t.term}</span></dt>
+            <dd>
+              <p>{t.plain}</p>
+              <p class="g-src small muted">Source: {t.source}.{!t.checked && <span class="tag">not yet checked</span>}</p>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  ))}
+</Context>
+
+<script>
+  const box = document.querySelector<HTMLElement>('.g-find');
+  if (box) {
+    box.hidden = false;
+    const q = box.querySelector('input')!;
+    const count = box.querySelector<HTMLElement>('.g-count')!;
+    const items = [...document.querySelectorAll<HTMLElement>('.g-item')];
+    const groups = [...document.querySelectorAll<HTMLElement>('.g-grp')];
+    q.addEventListener('input', () => {
+      const t = q.value.trim().toLowerCase();
+      let n = 0;
+      items.forEach((el) => { const ok = !t || (el.dataset.text ?? '').includes(t); el.hidden = !ok; if (ok) n++; });
+      groups.forEach((g) => { g.hidden = !g.querySelector('.g-item:not([hidden])'); });
+      count.textContent = t ? `${n} of ${items.length} entries` : '';
+    });
+    // A jump link to a hidden entry first clears the filter, so the target is visible.
+    document.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
+      if (!a || !q.value) return;
+      const el = document.getElementById(decodeURIComponent(a.hash.slice(1)));
+      if (el?.closest('[hidden]')) { q.value = ''; q.dispatchEvent(new Event('input')); }
+    }, true);
+  }
+</script>
+
+<style>
+  .g-find { margin: 1rem 0 .5rem; }
+  .g-find[hidden] { display: none; }
+  .g-find input { width: 100%; max-width: 30rem; font: 1rem var(--sigla); padding: .6rem .8rem; color: var(--ink); background: var(--paper); border: 1.5px solid var(--ink-2); border-radius: 8px; }
+  .g-find input:focus { border-color: var(--rubric); outline: none; }
+  .g-count { margin: .3rem 0 0; min-height: 1.2em; }
+  .g-jump { display: flex; flex-wrap: wrap; gap: .35rem; margin: .75rem 0 1rem; }
+  .g-chip { font: 1rem var(--sigla); padding: .15rem .6rem; border: 1px solid var(--rule); border-radius: 999px; text-decoration: none; color: var(--rubric); background: var(--paper); }
+  .g-chip:hover { border-color: var(--rubric); }
+  .g-grp[hidden], .g-item[hidden] { display: none; }
+  .gloss { margin: .5rem 0 0; }
+  .g-item { display: grid; grid-template-columns: minmax(6.5rem, 9rem) 1fr; gap: 1rem; padding: .8rem .5rem; border-top: 1px solid var(--rule); scroll-margin-top: 1rem; border-radius: 6px; }
+  .g-item:target { background: var(--paper-2); box-shadow: inset 3px 0 0 var(--rubric); }
+  .g-item dt { margin: 0; }
+  .g-term { font: 600 .95rem var(--sans); }
+  .g-term.sign { font: 1.35rem/1.2 var(--sigla); color: var(--rubric); }
+  .g-item dd { margin: 0; }
+  .g-item dd p { margin: 0; }
+  .g-src { margin-top: .3rem !important; }
+  @media (max-width: 30rem) { .g-item { grid-template-columns: 1fr; gap: .25rem; } }
+</style>

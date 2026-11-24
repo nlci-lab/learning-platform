@@ -1,0 +1,33 @@
+name: Textual Criticism – fetch INTF Liste records
+
+# Manual only. Runs the polite fetcher from GitHub's network and uploads the JSON records
+# as an artifact; nothing is committed. Copy the files into courses/textual-criticism/src/data/intf/ locally.
+on:
+  workflow_dispatch:
+    inputs:
+      ga:
+        description: Space-separated GA numbers (P45 02 1739 ...)
+        required: true
+      delay_seconds:
+        description: Seconds between requests
+        default: "90"
+
+permissions: { contents: read }
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version-file: .nvmrc }
+      - name: Fetch slowly
+        env:
+          FETCH_DELAY_MS: ${{ format('{0}000', inputs.delay_seconds) }}
+          GA_LIST: ${{ inputs.ga }}
+        working-directory: courses/textual-criticism
+        run: node scripts/intf-fetch.mjs $GA_LIST
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: intf-records, path: courses/textual-criticism/src/data/intf/, if-no-files-found: warn }

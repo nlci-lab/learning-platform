@@ -50,6 +50,6 @@ A step that needs a course widget names it (`embed: { name: collation, args: {..
 
 Type-checking: the platform has no Astro app of its own, so `courses/logos/tsconfig.json` includes `platform/src` and `npm run check` checks it there.
 
-## Not moved (stays in Textual Criticism until Phase 5)
+## Course-only code
 
-Witness profiles, sigla lookup, collation cards, coverage bars, the Decide step and the giscus comments. They are specific to that site, or tied to its GitHub repo.
+Textual Criticism keeps its witness profiles, sigla lookup, collation cards, coverage bars, the Decide step and its reference-book layout in `courses/textual-criticism/`: they are specific to that course. Its giscus comments were dropped in the move.

@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cover from '@cohorts/platform/components/Cover.astro';
+import { GUIDES, PIGMENT, KICKER } from '../../data/guides';
+import { url } from '../../lib/url';
+// Order follows src/data/guides.ts.
+const pages = GUIDES.filter((g) => g.section === 'background');
+---
+<Base title="Background" nav="background/">
+  <div class="ix-head">
+    <h1>Background</h1>
+    <p class="muted">Short pages on where the text came from, written for translators, not historians.</p>
+  </div>
+  <ul class="ix">
+    {pages.map((g) => (
+      <li>
+        <Cover title={g.cover} kicker={KICKER[g.section]} pigment={PIGMENT[g.section]} href={url(g.path)} />
+        <div><p class="label">{g.level}</p><p class="ix-sum">{g.summary}</p></div>
+      </li>
+    ))}
+  </ul>
+</Base>
+<style>
+  .ix-head { padding: 1.75rem 0 1rem; }
+  .ix-head p { max-width: var(--measure); }
+  .ix { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; gap: 1.5rem 1.25rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ix li { display: grid; gap: 0.6rem; align-content: start; }
+  .ix .label { margin: 0; }
+  .ix-sum { margin: 0.2rem 0 0; font-size: 0.95rem; line-height: 1.45; }
+  @media (min-width: 700px) { .ix { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 1000px) { .ix { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2rem 1.5rem; } }
+</style>

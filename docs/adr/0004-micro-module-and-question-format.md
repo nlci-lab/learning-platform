@@ -10,6 +10,6 @@ Why `embed`: some steps need a course-specific widget, for example the collation
 
 Every question reads without JavaScript: the reader sees the question and a "Show the answer" box with every answer and its feedback. JavaScript adds checking and opens the steps one by one.
 
-The Textual Criticism site's Mark 1:2 module, ported to this format, is kept in `platform/fixtures/` as a test until that site joins (ROADMAP Phase 5).
+The Textual Criticism course's modules (Mark 1:2 and 1 John 5:7–8) live in `courses/textual-criticism/src/content/modules/`. `platform/fixtures/` keeps a copy of Mark 1:2 and a module with every question type for the platform's own tests, and `npm test` also validates every course's module files. A module may set `order` to place it in lists; without it, modules sort by level, then title.
 
 Levels are shown as a number and a name, "Level 1 · First steps". The names describe the material, not the reader, so an experienced consultant who is new to a tool is not called a novice. A site sets the names in its config (`levels`). Without names, pages show "Level 1" to "Level 4".

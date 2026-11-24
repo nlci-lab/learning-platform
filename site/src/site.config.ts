@@ -1,9 +1,9 @@
 import { defineSite } from '@cohorts/platform/config';
 
-// "Courses" is a placeholder name until the master site is named (docs/ROADMAP.md).
+// The master site is called "Learning Hub" (decided 2026-11-24). The repo and URL stay learning-platform.
 export const site = defineSite({
   id: 'site',
-  title: 'Courses',
+  title: 'Learning Hub',
   description: 'Short online courses for Bible translators and consultants.',
   lang: 'en',
   nav: [],
@@ -14,5 +14,5 @@ export const site = defineSite({
 // Courses listed on the master page. A course's path is its id; `built` = it is in courses/ and published.
 export const courses = [
   { id: 'logos', title: 'Logos Bible Software', blurb: 'Using Logos for exegesis and translation work.', status: 'In preparation', built: true },
-  { id: 'textual-criticism', title: 'Textual Criticism', blurb: 'The manuscripts, the printed editions and their apparatus, and how to weigh the evidence.', status: 'Joins later', built: false },
+  { id: 'textual-criticism', title: 'Textual Criticism', blurb: 'The manuscripts, the printed editions and their apparatus, and how to weigh the evidence.', status: 'Under construction', built: true },
 ] as const;

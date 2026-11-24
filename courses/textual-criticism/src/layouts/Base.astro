@@ -1,0 +1,14 @@
+---
+// The course's page shell: the platform layout with this course's config and its own styles
+// (sigla, Hebrew, witness tiles, coverage bars, search). Pages keep importing this file.
+import PlatformBase from '@cohorts/platform/layouts/Base.astro';
+import HeadExtras from '../components/HeadExtras.astro';
+import '../styles/course.css';
+import { course } from '../course.config';
+interface Props { title: string; description?: string; nav?: string }
+const { title, description, nav } = Astro.props;
+---
+<PlatformBase site={course} title={title} description={description} nav={nav}>
+  <HeadExtras slot="head" />
+  <slot />
+</PlatformBase>

@@ -42,7 +42,7 @@ steps:
     body: Here is how the manuscripts in the CNTR transcriptions, and five printed editions, read the verse. Look at the first card.
     embed:
       name: collation
-      args: { passage: mark-1-2 }
+      args: { passages: [mark-1-2] }
     question:
       id: mark-1-2-list
       type: multichoice

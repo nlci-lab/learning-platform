@@ -1,0 +1,14 @@
+---
+// Micro modules from src/content/modules/*.yaml, on the platform's module page.
+// Steps may embed collation cards (CollationEmbed); the Hebrew font comes in through the head slot.
+import ModulePage from '@cohorts/platform/pages/ModulePage.astro';
+import { moduleStaticPaths } from '@cohorts/platform/data';
+import CollationEmbed from '../../components/CollationEmbed.astro';
+import HeadExtras from '../../components/HeadExtras.astro';
+import '../../styles/course.css';
+import { course } from '../../course.config';
+export const getStaticPaths = moduleStaticPaths;
+---
+<ModulePage site={course} entry={Astro.props.entry} embeds={{ collation: CollationEmbed }}>
+  <HeadExtras slot="head" />
+</ModulePage>

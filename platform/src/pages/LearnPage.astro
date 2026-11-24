@@ -13,6 +13,7 @@ const modules = await getModules();
 const guides = await getGuides();
 ---
 <Base site={site} title="Learn" nav={PATHS.learn} description={`Guides and short guided problems: ${site.description}`}>
+  <Fragment slot="head"><slot name="head" /></Fragment>
   <div class="lx">
     <header class="lx-head">
       <p class="label">Learn</p>
