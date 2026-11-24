@@ -1,91 +1,136 @@
 ---
-// A decision tree from src/content/trees/<id>.yaml (schema: decisionTree).
+// A decision tree from src/content/trees/<id>.yaml (schema: decisionTree). Use it once per page.
 // Without JavaScript: every node is a section; each option is a link to the node it leads to, and the
-// node you jump to is highlighted (:target). With JavaScript: one node at a time, with Back and Start again.
-// Use in a page or an .mdx guide:  <DecisionTree id="textual-decision" />
+// node you jump to is highlighted (:target). With JavaScript: one node at a time, driven by the address
+// (#dtn-<tree>--<node>), so the browser's Back button and links from elsewhere on the page work too;
+// Back and Start again buttons as well.
+// Use in a page or an .mdx guide:  <DecisionTree id="textual-decision" />   (level={3} under an h2 section)
 import { getEntry } from 'astro:content';
 import Sources from './Sources.astro';
 import { md, mdInline } from '../markdown';
-interface Props { id: string; sources?: boolean }
-const { id, sources = true } = Astro.props;
+interface Props { id: string; sources?: boolean; level?: 2 | 3 }
+const { id, sources = true, level = 2 } = Astro.props;
 const entry = await getEntry('trees', id);
 if (!entry) throw new Error(`DecisionTree: no tree "${id}" in src/content/trees/.`);
 const t = entry.data;
-const anchor = (node: string) => `dt-${t.id}-${node}`;
+// Ids use "--" between tree and node: stable ids never contain "--", so no two can collide.
+const anchor = (node: string) => `dtn-${t.id}--${node}`;
+const titleId = `dtt-${t.id}`;
+const H = `h${level}` as 'h2' | 'h3';
+const HN = `h${level + 1}` as 'h3' | 'h4';
 // Start first, then the rest in file order.
 const nodes = [...t.nodes].sort((a, b) => (a.id === t.start ? -1 : b.id === t.start ? 1 : 0));
 const KIND = { question: 'Question', step: 'Step', outcome: 'Outcome' } as const;
 ---
-<section class="dtree" data-dtree={t.id} data-start={anchor(t.start)} aria-labelledby={`${anchor('title')}`}>
-  <h2 id={anchor('title')}>{t.title}</h2>
+<section class="dtree" data-dtree={t.id} data-start={anchor(t.start)} aria-labelledby={titleId}>
+  <H id={titleId} class="dt-title">{t.title}</H>
   {t.intro && <div class="dt-intro" set:html={md(t.intro)} />}
   <div class="dt-bar" hidden>
     <button type="button" class="btn dt-back" disabled>← Back</button>
     <button type="button" class="btn dt-restart">Start again</button>
   </div>
-  <ol class="dt-nodes">
+  <div class="dt-nodes">
     {nodes.map((n) => (
-      <li id={anchor(n.id)} class:list={['dt-node', `dt-${n.kind}`, { 'dt-start': n.id === t.start }]} tabindex="-1">
+      <section id={anchor(n.id)} class:list={['dt-node', `dt-${n.kind}`, { 'dt-start': n.id === t.start }]} aria-labelledby={`${anchor(n.id)}-h`}>
         <p class="dt-kind">{KIND[n.kind]}{n.id === t.start && ' · start here'}</p>
-        <h3 set:html={mdInline(n.title)} />
+        <HN id={`${anchor(n.id)}-h`} tabindex="-1" set:html={mdInline(n.title)} />
         {n.body && <div class="dt-body" set:html={md(n.body)} />}
         {n.options.length > 0 && (
           <ul class="dt-opts">
             {n.options.map((o) => <li><a href={`#${anchor(o.to)}`} data-to={anchor(o.to)} set:html={mdInline(o.label)} /></li>)}
           </ul>
         )}
-      </li>
+      </section>
     ))}
-  </ol>
-  {sources && t.sources.length > 0 && <Sources sources={t.sources} title="Sources for this decision tree" />}
+  </div>
+  {sources && t.sources.length > 0 && <Sources sources={t.sources} title="Sources for this decision tree" idPrefix={`dts-${t.id}--`} />}
 </section>
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-dtree]').forEach((tree) => {
-    const nodes = [...tree.querySelectorAll<HTMLElement>('.dt-node')];
+    const nodes = [...tree.querySelectorAll<HTMLElement>(':scope > .dt-nodes > .dt-node')];
+    const isNode = (id: string) => nodes.some((n) => n.id === id);
     const bar = tree.querySelector<HTMLElement>('.dt-bar')!;
     const back = tree.querySelector<HTMLButtonElement>('.dt-back')!;
     const restart = tree.querySelector<HTMLButtonElement>('.dt-restart')!;
+    const start = tree.dataset.start!;
     const trail: string[] = [];
+    let pushed = 0;            // history entries this tree added (so its Back button can step back through them)
+    let keepFocus = false;     // set by the Back button: focus stays on it
     tree.classList.add('js');
     bar.hidden = false;
-    function show(id: string, focus = true) {
+
+    function show(id: string, focusHeading: boolean) {
       nodes.forEach((n) => { n.hidden = n.id !== id; });
       back.disabled = trail.length < 2;
-      if (focus) document.getElementById(id)?.focus({ preventScroll: true });
+      if (focusHeading) nodes.find((n) => n.id === id)?.querySelector<HTMLElement>('[tabindex="-1"]')?.focus({ preventScroll: true });
     }
-    function go(id: string) { trail.push(id); show(id); }
+    // The address decides the node. A step forward pushes it on the trail; going back to the previous node pops.
+    function follow(id: string, focusHeading: boolean) {
+      if (trail.length > 1 && trail[trail.length - 2] === id) trail.pop();
+      else if (trail[trail.length - 1] !== id) trail.push(id);
+      show(id, focusHeading);
+    }
     tree.addEventListener('click', (e) => {
       const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[data-to]');
       if (!a || !tree.contains(a)) return;
       e.preventDefault();
-      go(a.dataset.to!);
+      history.pushState(null, '', `#${a.dataset.to}`);
+      pushed++;
+      follow(a.dataset.to!, true);
     });
-    back.addEventListener('click', () => { if (trail.length > 1) { trail.pop(); show(trail[trail.length - 1]); } });
-    restart.addEventListener('click', () => { trail.length = 0; go(tree.dataset.start!); });
-    // Start at the node in the address (#dt-…), if it belongs to this tree; otherwise at the start.
-    const fromHash = location.hash.slice(1);
-    trail.push(nodes.some((n) => n.id === fromHash) ? fromHash : tree.dataset.start!);
+    // Browser Back/Forward, and links into the tree from elsewhere on the page.
+    // Browsers fire both popstate and hashchange for one step; the second finds the tree already there.
+    // An address with no #… (the page as first opened) means the start node.
+    const fromAddress = (e: Event) => {
+      const raw = decodeURIComponent(location.hash.slice(1));
+      const id = raw === '' ? start : raw;
+      if (e.type === 'popstate') pushed = Math.max(0, pushed - 1);
+      if (!isNode(id) || trail[trail.length - 1] === id) return;
+      follow(id, !keepFocus);
+      keepFocus = false;
+    };
+    window.addEventListener('popstate', fromAddress);
+    window.addEventListener('hashchange', fromAddress);
+    back.addEventListener('click', () => {
+      if (trail.length < 2) return;
+      keepFocus = true;            // focus stays on the Back button
+      if (pushed > 0) { history.back(); return; }   // the same step as the browser's Back button
+      keepFocus = false;
+      trail.pop();
+      const id = trail[trail.length - 1];
+      history.replaceState(null, '', `#${id}`);
+      show(id, false);
+    });
+    restart.addEventListener('click', () => {
+      trail.length = 0;
+      trail.push(start);
+      history.replaceState(null, '', `#${start}`);
+      show(start, false);
+    });
+    // Start at the node in the address, if it belongs to this tree; otherwise at the start.
+    const first = decodeURIComponent(location.hash.slice(1));
+    trail.push(isNode(first) ? first : start);
     show(trail[0], false);
   });
 </script>
 
 <style>
   .dtree { margin: 2rem 0; }
-  .dtree h2 { margin-bottom: 0.4rem; }
+  .dt-title { margin-bottom: 0.4rem; }
   .dt-bar { display: flex; gap: 0.5rem; margin: 0.75rem 0; }
   .dt-bar[hidden] { display: none; }
-  .dt-nodes { list-style: none; padding: 0; margin: 0.75rem 0 0; display: grid; gap: 0.75rem; }
+  .dt-nodes { margin: 0.75rem 0 0; display: grid; gap: 0.75rem; }
   .dt-node { padding: 0.9rem 1.1rem; border: 1px solid var(--rule); border-left: 4px solid var(--rule); border-radius: 10px; background: var(--paper); scroll-margin-top: 1rem; }
   .dt-node[hidden] { display: none; }
-  .dt-node:focus { outline: none; }
   .dt-node:target, .dtree.js .dt-node { border-color: var(--ink-2); }
   .dt-question { border-left-color: var(--accent); }
   .dt-step { border-left-color: var(--lapis); }
   .dt-outcome { border-left-color: var(--ok); background: var(--paper-2); }
   .dt-node:target { box-shadow: 0 0 0 2px var(--accent); }
   .dt-kind { margin: 0; font: 600 0.72rem var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
-  .dt-node h3 { margin: 0.15rem 0 0.4rem; font-size: 1.1rem; }
+  .dt-node :is(h3, h4) { margin: 0.15rem 0 0.4rem; font-size: 1.1rem; }
+  .dt-node :is(h3, h4):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .dt-body :global(p:last-child) { margin-bottom: 0; }
   .dt-opts { list-style: none; padding: 0; margin: 0.7rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .dt-opts a { display: inline-block; padding: 0.45rem 0.9rem; border: 1.5px solid var(--ink); border-radius: 999px; font: 600 0.9rem var(--sans); color: var(--ink); text-decoration: none; min-height: 2.25rem; }

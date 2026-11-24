@@ -7,12 +7,14 @@ import Base from '../layouts/Base.astro';
 import GuideCard from '../components/GuideCard.astro';
 import { getSeries } from '../data';
 import { md } from '../markdown';
-import type { SiteConfig } from '../config';
+import { navItemFor, type SiteConfig } from '../config';
+import { url } from '../url';
 interface Props { site: SiteConfig; id: string }
 const { site, id } = Astro.props;
 const series = await getSeries(id);
 if (!series) throw new Error(`SeriesPage: no series "${id}" in series.yaml.`);
-const navItem = series.path.split('/')[0] + '/';
+const navItem = navItemFor(site, series.path);
+if (Astro.url.pathname !== url(series.path)) throw new Error(`Series "${id}" is served at ${Astro.url.pathname} but its path is ${url(series.path)}. Check series.yaml and the route folder.`);
 ---
 <Base site={site} title={series.title} description={series.summary} nav={navItem}>
   <Fragment slot="head"><slot name="head" /></Fragment>
@@ -24,9 +26,12 @@ const navItem = series.path.split('/')[0] + '/';
       {series.intro && <div class="sx-intro" set:html={md(series.intro)} />}
     </header>
     {series.parts.length === 0 ? <p class="muted">The parts of this series are in preparation.</p> : (
-      <ol class="guide-cards sx-parts">
-        {series.parts.map((p) => <li><GuideCard site={site} guide={p.data} /></li>)}
-      </ol>
+      <>
+        <h2 class="visually-hidden">Parts</h2>
+        <ol class="guide-cards sx-parts">
+          {series.parts.map((p, i) => <li><GuideCard site={site} guide={p.data} part={i + 1} /></li>)}
+        </ol>
+      </>
     )}
     <slot />
   </article>

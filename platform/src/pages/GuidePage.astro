@@ -18,7 +18,7 @@ import GuideCard from '../components/GuideCard.astro';
 import Tags from '../components/Tags.astro';
 import Unverified from '../components/Unverified.astro';
 import { getGuides, getGuidePaths, getSeries, type GuideEntry } from '../data';
-import { levelName, type SiteConfig } from '../config';
+import { levelName, navItemFor, type SiteConfig } from '../config';
 import { url } from '../url';
 import { PATHS } from '../paths';
 interface Props { site: SiteConfig; entry: GuideEntry }
@@ -28,14 +28,16 @@ const { Content, headings } = await render(entry);
 const all = await getGuides();
 const byId = (id: string) => all.find((x) => x.data.id === id)?.data;
 const paths = await getGuidePaths();
-const hrefOf = (id: string) => url(paths.get(id) ?? PATHS.guide(id));
+const hrefOf = (id: string) => url(paths.get(id)!);
+// The route must serve the guide where the data says it lives (a series path and its route folder must agree).
+if (Astro.url.pathname !== hrefOf(g.id)) throw new Error(`Guide "${g.id}" is served at ${Astro.url.pathname} but its address is ${hrefOf(g.id)}. Check the series path in series.yaml and the route folder.`);
 const before = g.before ? byId(g.before) : undefined;
 // Series: this part's place, and its neighbours.
 const series = g.series ? await getSeries(g.series.id) : undefined;
 const at = series ? series.parts.findIndex((p) => p.data.id === g.id) : -1;
 const prev = at > 0 ? series!.parts[at - 1].data : undefined;
 const next = series && at >= 0 && at < series.parts.length - 1 ? series.parts[at + 1].data : undefined;
-const navItem = series ? series.path.split('/')[0] + '/' : PATHS.guides;
+const navItem = navItemFor(site, series ? series.path : PATHS.guides);
 const related = g.related.map(byId).filter((x) => x !== undefined);
 const toc = headings.filter((h) => h.depth === 2);
 if (g.sources.length) toc.push({ depth: 2, slug: 'sources', text: 'Sources' });
@@ -46,7 +48,7 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
   <Fragment slot="head"><slot name="head" /></Fragment>
   {series && (
     <nav class="series-strip" aria-label={`Series: ${series.title}`}>
-      <a href={url(series.path)}>{series.title}</a> · Part {g.series!.part} of {series.parts.length}
+      <a href={url(series.path)}>{series.title}</a> · Part {at + 1} of {series.parts.length}
     </nav>
   )}
   <section class="book">
@@ -55,7 +57,7 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
       <p class="label">Guide · {levelName(site, g.level)}{g.draft && ' · draft'}</p>
       <h1>{g.title}</h1>
       <p class="book-lead">{g.summary}</p>
-      <Tags tags={g.tags} />
+      <Tags tags={g.tags} links={site.guidesPage !== false} />
       <dl class="book-spec">
         {before && <><dt>Read first</dt><dd><a href={hrefOf(before.id)}>{before.cover}</a></dd></>}
         {g.sources.length > 0 && <><dt>Sources</dt><dd>{g.sources.length}{g.sources.some((s) => !s.checked) && ' (some not yet checked)'}</dd></>}
@@ -88,8 +90,8 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
   </div>
   {series && (prev || next) && (
     <nav class="series-pager" aria-label="Series parts">
-      {prev ? <a class="sp-prev" href={hrefOf(prev.id)}><span class="label">Previous · Part {prev.series!.part}</span>{prev.title}</a> : <span />}
-      {next ? <a class="sp-next" href={hrefOf(next.id)}><span class="label">Next · Part {next.series!.part}</span>{next.title}</a> : <a class="sp-next" href={url(series.path)}><span class="label">End of the series</span>{series.title}</a>}
+      {prev && <a class="sp-prev" href={hrefOf(prev.id)}><span class="label">Previous · Part {at}</span>{prev.title}</a>}
+      {next ? <a class="sp-next" href={hrefOf(next.id)}><span class="label">Next · Part {at + 2}</span>{next.title}</a> : <a class="sp-next" href={url(series.path)}><span class="label">End of the series</span>{series.title}</a>}
     </nav>
   )}
   {related.length > 0 && (
@@ -108,8 +110,8 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
   .series-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2.5rem 0 0; }
   .series-pager a { display: grid; gap: 0.2rem; padding: 0.8rem 1rem; border: 1px solid var(--rule); border-radius: 10px; text-decoration: none; color: var(--ink); font: 600 1rem/1.35 var(--serif); }
   .series-pager a:hover { border-color: var(--accent); }
-  .series-pager .sp-next { text-align: right; }
-  @media (max-width: 34rem) { .series-pager { grid-template-columns: 1fr; } .series-pager .sp-next { text-align: left; } }
+  .series-pager .sp-next { grid-column: 2; text-align: right; }
+  @media (max-width: 34rem) { .series-pager { grid-template-columns: 1fr; } .series-pager .sp-next { grid-column: 1; text-align: left; } }
   .book { display: grid; gap: 1.5rem; padding: 1.75rem 0 2rem; border-bottom: 1px solid var(--rule); }
   .book > :global(.cover) { width: 11rem; }
   .book h1 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); margin: 0.2rem 0 0.6rem; }

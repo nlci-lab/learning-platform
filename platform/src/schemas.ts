@@ -273,16 +273,31 @@ export const decisionTree = z.object({
     });
     if (n.kind === 'question' && n.options.length < 2) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'options'], message: `question "${n.id}" needs at least two options` });
     if (n.kind === 'outcome' && n.options.length) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'options'], message: `outcome "${n.id}" ends a path and cannot have options` });
-    if (n.kind === 'step' && n.options.length > 1) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'options'], message: `step "${n.id}" leads on to one node at most` });
+    if (n.kind === 'step' && n.options.length !== 1) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'options'], message: `step "${n.id}" must lead on to exactly one node` });
+    const labels = n.options.map((o) => o.label);
+    if (new Set(labels).size !== labels.length) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'options'], message: `node "${n.id}" has the same option label twice` });
   });
-  // Every node must be reachable from the start.
+  // Every node must be reachable from the start (explicit stack: no recursion limit).
   const seen = new Set<string>();
-  const walk = (id: string) => {
-    if (seen.has(id) || !ids.has(id)) return;
+  const stack = [t.start];
+  while (stack.length) {
+    const id = stack.pop()!;
+    if (seen.has(id) || !ids.has(id)) continue;
     seen.add(id);
-    t.nodes[ids.get(id)!].options.forEach((o) => walk(o.to));
-  };
-  walk(t.start);
+    for (const o of t.nodes[ids.get(id)!].options) stack.push(o.to);
+  }
   t.nodes.forEach((n, i) => { if (!seen.has(n.id)) ctx.addIssue({ code: 'custom', path: ['nodes', i], message: `node "${n.id}" cannot be reached from the start` }); });
+  // And from every node a reader must be able to reach an outcome (no loops or dead ends without a way out).
+  const leadsTo = new Map<string, string[]>();
+  for (const n of t.nodes) for (const o of n.options) leadsTo.set(o.to, [...(leadsTo.get(o.to) ?? []), n.id]);
+  const finishes = new Set<string>();
+  const back = t.nodes.filter((n) => n.kind === 'outcome').map((n) => n.id);
+  while (back.length) {
+    const id = back.pop()!;
+    if (finishes.has(id)) continue;
+    finishes.add(id);
+    back.push(...(leadsTo.get(id) ?? []));
+  }
+  t.nodes.forEach((n, i) => { if (!finishes.has(n.id)) ctx.addIssue({ code: 'custom', path: ['nodes', i], message: `from node "${n.id}" no path leads to an outcome` }); });
 });
 export type DecisionTree = z.infer<typeof decisionTree>;

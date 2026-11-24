@@ -5,26 +5,27 @@ import Tags from './Tags.astro';
 import { levelName, type SiteConfig } from '../config';
 import type { Guide } from '../schemas';
 import { url } from '../url';
-import { PATHS } from '../paths';
 import { getGuidePaths } from '../data';
-interface Props { site: SiteConfig; guide: Guide }
-const { site, guide: g } = Astro.props;
-const href = (await getGuidePaths()).get(g.id) ?? PATHS.guide(g.id);
+// part: the guide's position in its series, given by a series page (positions, not ids, so drafts leave no gap).
+interface Props { site: SiteConfig; guide: Guide; part?: number; headingLevel?: 2 | 3 }
+const { site, guide: g, part, headingLevel = 3 } = Astro.props;
+const href = (await getGuidePaths()).get(g.id)!;
+const H = `h${headingLevel}` as 'h2' | 'h3';
 ---
 <article class="gcard" data-tags={g.tags.join(' ')}>
-  <p class="gk">{g.series && `Part ${g.series.part} · `}{levelName(site, g.level)}{g.draft && ' · draft'}</p>
-  <h3><a href={url(href)}>{g.title}</a></h3>
+  <p class="gk">{part && `Part ${part} · `}{levelName(site, g.level)}{g.draft && ' · draft'}</p>
+  <H><a href={url(href)}>{g.title}</a></H>
   <p class="gd">{g.summary}</p>
-  <Tags tags={g.tags} />
+  <Tags tags={g.tags} links={site.guidesPage !== false} />
 </article>
 
 <style>
   .gcard { display: flex; flex-direction: column; gap: 0.45rem; height: 100%; padding: 1rem 1.1rem; border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 10px; background: var(--paper); }
   .gcard[hidden] { display: none; }
   .gk { margin: 0; font: 600 0.75rem var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
-  .gcard h3 { margin: 0; font: 600 1.15rem/1.3 var(--serif); }
-  .gcard h3 a { color: var(--ink); text-decoration: none; }
-  .gcard h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+  .gcard :is(h2, h3) { margin: 0; font: 600 1.15rem/1.3 var(--serif); }
+  .gcard :is(h2, h3) a { color: var(--ink); text-decoration: none; }
+  .gcard :is(h2, h3) a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
   .gd { margin: 0; font: 0.9rem/1.45 var(--sans); color: var(--ink-2); }
   .gcard :global(.tags) { margin-top: auto; padding-top: 0.25rem; }
   :global(.guide-cards) { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }

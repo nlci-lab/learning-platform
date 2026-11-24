@@ -1,7 +1,7 @@
 // Reading a course's content collections, with the checks a schema cannot do on one file alone.
 // Drafts are left out of production builds and shown in `astro dev`.
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { PATHS } from './paths';
+import { checkSeries, guidePath, seriesParts } from './series';
 
 const live = <T extends { data: { draft?: boolean } }>(e: T) => import.meta.env.DEV || !e.data.draft;
 
@@ -19,41 +19,39 @@ export async function getModules() {
   return all.sort((a, b) => ord(a) - ord(b) || a.data.level - b.data.level || a.data.title.localeCompare(b.data.title, 'en'));
 }
 
-/** Guides, easiest first. Fails the build if `before` or `related` names a guide that does not exist. */
-export async function getGuides() {
+/** Guides, easiest first. Fails the build if `before` or `related` names a guide that does not exist,
+    or on a series problem (see series.ts). Cached for the length of a production build. */
+export function getGuides() {
+  if (import.meta.env.PROD) return (guidesCache ??= loadGuides());
+  return loadGuides();
+}
+let guidesCache: ReturnType<typeof loadGuides> | undefined;
+async function loadGuides() {
   const all = (await getCollection('guides')).filter(live);
   const ids = new Set(all.map((g) => g.data.id));
   for (const { data: g } of all) for (const ref of [g.before, ...g.related].filter(Boolean) as string[]) {
     if (!ids.has(ref)) throw new Error(`Guide "${g.id}" links to guide "${ref}", which does not exist (or is a draft).`);
   }
-  // Series parts: the series must exist and part numbers must be unique within it.
-  const seriesIds = new Set((await getCollection('series')).map((s) => s.data.id));
-  const parts = new Map<string, string>();
-  for (const { data: g } of all) if (g.series) {
-    if (!seriesIds.has(g.series.id)) throw new Error(`Guide "${g.id}" is part of series "${g.series.id}", which is not in series.yaml.`);
-    const key = `${g.series.id}#${g.series.part}`;
-    if (parts.has(key)) throw new Error(`Guides "${parts.get(key)}" and "${g.id}" are both part ${g.series.part} of series "${g.series.id}".`);
-    parts.set(key, g.id);
-  }
-  return all.sort((a, b) => a.data.level - b.data.level || a.data.title.localeCompare(b.data.title, 'en'));
+  const series = (await getCollection('series')).map((s) => s.data);
+  checkSeries(series, all.map((g) => g.data));
+  const sorted = all.sort((a, b) => a.data.level - b.data.level || a.data.title.localeCompare(b.data.title, 'en'));
+  const bySeries = new Map(series.map((x) => [x.id, x]));
+  const paths = new Map(sorted.map((g) => [g.data.id, guidePath(g.data, bySeries)]));
+  return Object.assign(sorted, { series, paths });
 }
 
 /** Where each guide lives: a series part at <series path><id>/, any other guide at guides/<id>/. */
 export async function getGuidePaths() {
-  const series = new Map((await getCollection('series')).map((s) => [s.data.id, s.data]));
-  const out = new Map<string, string>();
-  for (const { data: g } of await getGuides()) {
-    const s = g.series && series.get(g.series.id);
-    out.set(g.id, s ? `${s.path}${g.id}/` : PATHS.guide(g.id));
-  }
-  return out;
+  return (await getGuides()).paths;
 }
 
-/** A series with its parts in order. Undefined if there is no such series. */
+/** A series with its live parts in reading order. Undefined if there is no such series.
+    Show a part's number as its position in `parts` (1-based), not its `series.part`, so drafts leave no gap. */
 export async function getSeries(id: string) {
-  const s = (await getCollection('series')).find((x) => x.data.id === id)?.data;
+  const all = await getGuides();
+  const s = all.series.find((x) => x.id === id);
   if (!s) return undefined;
-  const parts = (await getGuides()).filter((g) => g.data.series?.id === id).sort((a, b) => a.data.series!.part - b.data.series!.part);
+  const parts = seriesParts(id, all.map((g) => g.data)).map((d) => all.find((g) => g.data.id === d.id)!);
   return { ...s, parts };
 }
 
