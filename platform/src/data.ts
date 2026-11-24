@@ -1,6 +1,7 @@
 // Reading a course's content collections, with the checks a schema cannot do on one file alone.
 // Drafts are left out of production builds and shown in `astro dev`.
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { checkSeries, guidePath, seriesParts } from './series';
 
 const live = <T extends { data: { draft?: boolean } }>(e: T) => import.meta.env.DEV || !e.data.draft;
 
@@ -18,14 +19,40 @@ export async function getModules() {
   return all.sort((a, b) => ord(a) - ord(b) || a.data.level - b.data.level || a.data.title.localeCompare(b.data.title, 'en'));
 }
 
-/** Guides, easiest first. Fails the build if `before` or `related` names a guide that does not exist. */
-export async function getGuides() {
+/** Guides, easiest first. Fails the build if `before` or `related` names a guide that does not exist,
+    or on a series problem (see series.ts). Cached for the length of a production build. */
+export function getGuides() {
+  if (import.meta.env.PROD) return (guidesCache ??= loadGuides());
+  return loadGuides();
+}
+let guidesCache: ReturnType<typeof loadGuides> | undefined;
+async function loadGuides() {
   const all = (await getCollection('guides')).filter(live);
   const ids = new Set(all.map((g) => g.data.id));
   for (const { data: g } of all) for (const ref of [g.before, ...g.related].filter(Boolean) as string[]) {
     if (!ids.has(ref)) throw new Error(`Guide "${g.id}" links to guide "${ref}", which does not exist (or is a draft).`);
   }
-  return all.sort((a, b) => a.data.level - b.data.level || a.data.title.localeCompare(b.data.title, 'en'));
+  const series = (await getCollection('series')).map((s) => s.data);
+  checkSeries(series, all.map((g) => g.data));
+  const sorted = all.sort((a, b) => a.data.level - b.data.level || a.data.title.localeCompare(b.data.title, 'en'));
+  const bySeries = new Map(series.map((x) => [x.id, x]));
+  const paths = new Map(sorted.map((g) => [g.data.id, guidePath(g.data, bySeries)]));
+  return Object.assign(sorted, { series, paths });
+}
+
+/** Where each guide lives: a series part at <series path><id>/, any other guide at guides/<id>/. */
+export async function getGuidePaths() {
+  return (await getGuides()).paths;
+}
+
+/** A series with its live parts in reading order. Undefined if there is no such series.
+    Show a part's number as its position in `parts` (1-based), not its `series.part`, so drafts leave no gap. */
+export async function getSeries(id: string) {
+  const all = await getGuides();
+  const s = all.series.find((x) => x.id === id);
+  if (!s) return undefined;
+  const parts = seriesParts(id, all.map((g) => g.data)).map((d) => all.find((g) => g.data.id === d.id)!);
+  return { ...s, parts };
 }
 
 /** All glossary entries in file order, each with its group's style. */
@@ -50,7 +77,11 @@ export type GuideEntry = CollectionEntry<'guides'>;
 export async function moduleStaticPaths() {
   return (await getModules()).map((entry) => ({ params: { id: entry.data.id }, props: { entry } }));
 }
-/** getStaticPaths for src/pages/guides/[id].astro */
+/** getStaticPaths for src/pages/guides/[id].astro: every guide that is not part of a series. */
 export async function guideStaticPaths() {
-  return (await getGuides()).map((entry) => ({ params: { id: entry.data.id }, props: { entry } }));
+  return (await getGuides()).filter((g) => !g.data.series).map((entry) => ({ params: { id: entry.data.id }, props: { entry } }));
+}
+/** getStaticPaths for a series' part pages, e.g. src/pages/learn/decisions/[id].astro. */
+export function seriesStaticPaths(seriesId: string) {
+  return async () => (await getGuides()).filter((g) => g.data.series?.id === seriesId).map((entry) => ({ params: { id: entry.data.id }, props: { entry } }));
 }

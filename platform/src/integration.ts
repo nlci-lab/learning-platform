@@ -2,6 +2,7 @@
 import type { AstroIntegration } from 'astro';
 import externalLinks from './integrations/external-links.mjs';
 import { rehypeInternalLinks } from './integrations/internal-links.mjs';
+import mdx from '@astrojs/mdx';
 
 const internalLinks: AstroIntegration = {
   name: 'internal-links',
@@ -12,6 +13,8 @@ const internalLinks: AstroIntegration = {
   },
 };
 
+// MDX lets a guide include course components (e.g. collation cards). MDX extends the site's Markdown
+// settings, so the ~/ link rewriting (rehypeInternalLinks) applies to .mdx guides as well.
 export default function platform(): AstroIntegration[] {
-  return [internalLinks, externalLinks()];
+  return [internalLinks, mdx(), externalLinks()];
 }

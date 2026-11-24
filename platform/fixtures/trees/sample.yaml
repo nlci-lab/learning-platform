@@ -1,0 +1,24 @@
+# Test fixture: a small decision tree with every node kind. The content is about the format itself.
+id: sample
+title: Should this tree be tested?
+start: changed
+sources:
+  - id: adr-0004
+    cite: Root ADR 0004, micro modules and questions.
+    checked: true
+nodes:
+  - id: changed
+    kind: question
+    title: Did the tree format change?
+    options:
+      - { label: "Yes", to: test-it }
+      - { label: "No", to: done }
+  - id: test-it
+    kind: step
+    title: Run npm test
+    body: The schema checks every link between nodes.
+    options:
+      - { label: Then, to: done }
+  - id: done
+    kind: outcome
+    title: Ready to merge

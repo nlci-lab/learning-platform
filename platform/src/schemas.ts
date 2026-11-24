@@ -216,6 +216,8 @@ export const guide = z.object({
   /** Ids of guides to read first and related guides. */
   before: stableId.optional(),
   related: z.array(stableId).default([]),
+  /** Part of a series (see `series`): the series id and this guide's place in it, 1 first. */
+  series: z.object({ id: stableId, part: z.number().int().positive() }).optional(),
   sources,
   unverified,
   /** true once checked line by line against its sources. */
@@ -224,3 +226,78 @@ export const guide = z.object({
   draft: z.boolean().default(false),
 });
 export type Guide = z.infer<typeof guide>;
+
+/* ---------- Series: guides meant to be read in order (src/content/series.yaml) ---------- */
+
+export const series = z.object({
+  id: stableId,
+  title: text,
+  /** Where the series lives in the course, e.g. 'learn/decisions/'. Its parts are at <path><guide id>/. */
+  path: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*(\/[a-z0-9]+(-[a-z0-9]+)*)*\/$/, 'a path like learn/decisions/'),
+  summary: text,
+  /** Shown at the top of the series page (Markdown). */
+  intro: z.string().optional(),
+});
+export type Series = z.infer<typeof series>;
+
+/* ---------- Decision trees (src/content/trees/<id>.yaml) ----------
+   A tree is a set of nodes. A question node offers options that lead to other nodes; a step node says
+   what to do and usually leads on; an outcome node ends a path. Rendered as linked sections, so it
+   works without JavaScript. */
+
+export const decisionTree = z.object({
+  id: stableId,
+  title: text,
+  intro: z.string().optional(),
+  /** The node a reader starts at. */
+  start: stableId,
+  nodes: z.array(z.object({
+    id: stableId,
+    kind: z.enum(['question', 'step', 'outcome']),
+    title: text,
+    /** Markdown. */
+    body: z.string().optional(),
+    options: z.array(z.object({ label: text, to: stableId })).default([]),
+  })).min(1),
+  sources,
+}).superRefine((t, ctx) => {
+  const ids = new Map<string, number>();
+  t.nodes.forEach((n, i) => {
+    if (ids.has(n.id)) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'id'], message: `duplicate node id "${n.id}"` });
+    ids.set(n.id, i);
+  });
+  if (!ids.has(t.start)) ctx.addIssue({ code: 'custom', path: ['start'], message: `start node "${t.start}" does not exist` });
+  t.nodes.forEach((n, i) => {
+    n.options.forEach((o, j) => {
+      if (!ids.has(o.to)) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'options', j, 'to'], message: `node "${n.id}" leads to "${o.to}", which does not exist` });
+    });
+    if (n.kind === 'question' && n.options.length < 2) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'options'], message: `question "${n.id}" needs at least two options` });
+    if (n.kind === 'outcome' && n.options.length) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'options'], message: `outcome "${n.id}" ends a path and cannot have options` });
+    if (n.kind === 'step' && n.options.length !== 1) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'options'], message: `step "${n.id}" must lead on to exactly one node` });
+    const labels = n.options.map((o) => o.label);
+    if (new Set(labels).size !== labels.length) ctx.addIssue({ code: 'custom', path: ['nodes', i, 'options'], message: `node "${n.id}" has the same option label twice` });
+  });
+  // Every node must be reachable from the start (explicit stack: no recursion limit).
+  const seen = new Set<string>();
+  const stack = [t.start];
+  while (stack.length) {
+    const id = stack.pop()!;
+    if (seen.has(id) || !ids.has(id)) continue;
+    seen.add(id);
+    for (const o of t.nodes[ids.get(id)!].options) stack.push(o.to);
+  }
+  t.nodes.forEach((n, i) => { if (!seen.has(n.id)) ctx.addIssue({ code: 'custom', path: ['nodes', i], message: `node "${n.id}" cannot be reached from the start` }); });
+  // And from every node a reader must be able to reach an outcome (no loops or dead ends without a way out).
+  const leadsTo = new Map<string, string[]>();
+  for (const n of t.nodes) for (const o of n.options) leadsTo.set(o.to, [...(leadsTo.get(o.to) ?? []), n.id]);
+  const finishes = new Set<string>();
+  const back = t.nodes.filter((n) => n.kind === 'outcome').map((n) => n.id);
+  while (back.length) {
+    const id = back.pop()!;
+    if (finishes.has(id)) continue;
+    finishes.add(id);
+    back.push(...(leadsTo.get(id) ?? []));
+  }
+  t.nodes.forEach((n, i) => { if (!finishes.has(n.id)) ctx.addIssue({ code: 'custom', path: ['nodes', i], message: `from node "${n.id}" no path leads to an outcome` }); });
+});
+export type DecisionTree = z.infer<typeof decisionTree>;

@@ -3,13 +3,15 @@
 //   export const collections = courseCollections();
 // Files, relative to the course root:
 //   src/content/modules/<id>.yaml       one micro module per file
-//   src/content/guides/<id>.md          one guide per file
+//   src/content/guides/<id>.md(x)       one guide per file (.mdx may use course components)
+//   src/content/series.yaml             a list of series (guides read in order)
+//   src/content/trees/<id>.yaml         one decision tree per file
 //   src/content/glossary.yaml           a list of glossary entries
 //   src/content/glossary-groups.yaml    a list of glossary groups
 import { defineCollection } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { existsSync } from 'node:fs';
-import { moduleSchema, guide, glossaryEntry, glossaryGroup } from './schemas';
+import { moduleSchema, guide, glossaryEntry, glossaryGroup, series, decisionTree } from './schemas';
 
 /** A missing list file is an empty list, so a new course builds before it has a glossary. */
 const list = (path: string) =>
@@ -23,11 +25,18 @@ export function courseCollections() {
     }),
     guides: defineCollection({
       loader: existsSync('./src/content/guides')
-        ? glob({ pattern: '**/*.md', base: './src/content/guides', generateId: ({ data }) => String(data.id) })
+        ? glob({ pattern: '**/*.{md,mdx}', base: './src/content/guides', generateId: ({ data }) => String(data.id) })
         : { name: 'empty', load: async () => {} },
       schema: guide,
     }),
     glossary: defineCollection({ loader: list('./src/content/glossary.yaml'), schema: glossaryEntry }),
     glossaryGroups: defineCollection({ loader: list('./src/content/glossary-groups.yaml'), schema: glossaryGroup }),
+    series: defineCollection({ loader: list('./src/content/series.yaml'), schema: series }),
+    trees: defineCollection({
+      loader: existsSync('./src/content/trees')
+        ? glob({ pattern: '**/*.{yaml,yml}', base: './src/content/trees', generateId: ({ data }) => String(data.id) })
+        : { name: 'empty', load: async () => {} },
+      schema: decisionTree,
+    }),
   };
 }

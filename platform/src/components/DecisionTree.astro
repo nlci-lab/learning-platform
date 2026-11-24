@@ -1,0 +1,142 @@
+---
+// A decision tree from src/content/trees/<id>.yaml (schema: decisionTree). Use it once per page.
+// Without JavaScript: every node is a section; each option is a link to the node it leads to, and the
+// node you jump to is highlighted (:target). With JavaScript: one node at a time, driven by the address
+// (#dtn-<tree>--<node>) and history: each choice is a history entry that stores the reader's trail, so
+// the browser's Back/Forward, links from elsewhere on the page and the tree's Back button all agree.
+// Use in a page or an .mdx guide:  <DecisionTree id="textual-decision" />   (level={3} under an h2 section)
+import { getEntry } from 'astro:content';
+import Sources from './Sources.astro';
+import { md, mdInline } from '../markdown';
+interface Props { id: string; sources?: boolean; level?: 2 | 3 }
+const { id, sources = true, level = 2 } = Astro.props;
+const entry = await getEntry('trees', id);
+if (!entry) throw new Error(`DecisionTree: no tree "${id}" in src/content/trees/.`);
+const t = entry.data;
+// Ids use "--" between tree and node: stable ids never contain "--", so no two can collide.
+const anchor = (node: string) => `dtn-${t.id}--${node}`;
+const titleId = `dtt-${t.id}`;
+// Node headings have their own prefix, so they can never share an id with a node.
+const headingId = (node: string) => `dth-${t.id}--${node}`;
+const H = `h${level}` as 'h2' | 'h3';
+const HN = `h${level + 1}` as 'h3' | 'h4';
+// Start first, then the rest in file order.
+const nodes = [...t.nodes].sort((a, b) => (a.id === t.start ? -1 : b.id === t.start ? 1 : 0));
+const KIND = { question: 'Question', step: 'Step', outcome: 'Outcome' } as const;
+---
+<section class="dtree" data-dtree={t.id} data-start={anchor(t.start)} aria-labelledby={titleId}>
+  <H id={titleId} class="dt-title">{t.title}</H>
+  {t.intro && <div class="dt-intro" set:html={md(t.intro)} />}
+  <div class="dt-bar" hidden>
+    <button type="button" class="btn dt-back" disabled>← Back</button>
+    <button type="button" class="btn dt-restart">Start again</button>
+  </div>
+  <div class="dt-nodes">
+    {nodes.map((n) => (
+      <section id={anchor(n.id)} class:list={['dt-node', `dt-${n.kind}`, { 'dt-start': n.id === t.start }]} aria-labelledby={headingId(n.id)}>
+        <p class="dt-kind">{KIND[n.kind]}{n.id === t.start && ' · start here'}</p>
+        <HN id={headingId(n.id)} tabindex="-1" set:html={mdInline(n.title)} />
+        {n.body && <div class="dt-body" set:html={md(n.body)} />}
+        {n.options.length > 0 && (
+          <ul class="dt-opts">
+            {n.options.map((o) => <li><a href={`#${anchor(o.to)}`} data-to={anchor(o.to)} set:html={mdInline(o.label)} /></li>)}
+          </ul>
+        )}
+      </section>
+    ))}
+  </div>
+  {sources && t.sources.length > 0 && <Sources sources={t.sources} title="Sources for this decision tree" idPrefix={`dts-${t.id}--`} />}
+</section>
+
+<script>
+  // History: every choice is a history entry whose state holds this tree's whole trail, so the browser's
+  // Back/Forward and the tree's own Back restore exactly the right trail. Nothing is inferred.
+  type DtState = { dtree: string; trail: string[] };
+  document.querySelectorAll<HTMLElement>('[data-dtree]').forEach((tree) => {
+    const treeId = tree.dataset.dtree!;
+    const nodes = [...tree.querySelectorAll<HTMLElement>(':scope > .dt-nodes > .dt-node')];
+    const isNode = (id: string) => nodes.some((n) => n.id === id);
+    const bar = tree.querySelector<HTMLElement>('.dt-bar')!;
+    const back = tree.querySelector<HTMLButtonElement>('.dt-back')!;
+    const restart = tree.querySelector<HTMLButtonElement>('.dt-restart')!;
+    const start = tree.dataset.start!;
+    let trail: string[] = [];
+    let keepFocus = false;          // set by the tree's Back button: focus stays on it
+    tree.classList.add('js');
+    bar.hidden = false;
+
+    const mine = (s: unknown): s is DtState => !!s && (s as DtState).dtree === treeId && Array.isArray((s as DtState).trail);
+    function show(focusHeading: boolean) {
+      const id = trail[trail.length - 1];
+      nodes.forEach((n) => { n.hidden = n.id !== id; });
+      back.disabled = trail.length < 2;
+      if (focusHeading) nodes.find((n) => n.id === id)?.querySelector<HTMLElement>('[tabindex="-1"]')?.focus({ preventScroll: true });
+    }
+    function choose(id: string) {
+      trail = [...trail, id];
+      history.pushState({ dtree: treeId, trail } satisfies DtState, '', `#${id}`);
+      show(true);
+    }
+    tree.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[data-to]');
+      if (!a || !tree.contains(a)) return;
+      e.preventDefault();
+      choose(a.dataset.to!);
+    });
+    // Browser Back/Forward: restore the trail saved with that entry (or the start, for the page as first opened).
+    window.addEventListener('popstate', (e) => {
+      if (mine(e.state)) trail = [...e.state.trail];
+      else if (location.hash === '') trail = [start];
+      else return;
+      show(!keepFocus);
+      keepFocus = false;
+    });
+    // A link into the tree from elsewhere on the page: a new entry the browser made; record its trail.
+    window.addEventListener('hashchange', () => {
+      if (mine(history.state)) return;            // already handled by popstate
+      const id = decodeURIComponent(location.hash.slice(1));
+      if (!isNode(id) || trail[trail.length - 1] === id) return;
+      trail = [...trail, id];
+      history.replaceState({ dtree: treeId, trail } satisfies DtState, '');
+      show(true);
+    });
+    back.addEventListener('click', () => {
+      if (trail.length < 2) return;
+      keepFocus = true;
+      history.back();                              // the entry before holds the shorter trail
+    });
+    restart.addEventListener('click', () => {
+      if (trail.length === 1 && trail[0] === start) return;
+      trail = [start];
+      history.pushState({ dtree: treeId, trail } satisfies DtState, '', `#${start}`);
+      show(false);
+    });
+    // First view: the trail saved with this entry (after a reload), the node in the address, or the start.
+    const first = decodeURIComponent(location.hash.slice(1));
+    trail = mine(history.state) ? [...history.state.trail] : [isNode(first) ? first : start];
+    history.replaceState({ dtree: treeId, trail } satisfies DtState, '');
+    show(false);
+  });
+</script>
+
+<style>
+  .dtree { margin: 2rem 0; }
+  .dt-title { margin-bottom: 0.4rem; }
+  .dt-bar { display: flex; gap: 0.5rem; margin: 0.75rem 0; }
+  .dt-bar[hidden] { display: none; }
+  .dt-nodes { margin: 0.75rem 0 0; display: grid; gap: 0.75rem; }
+  .dt-node { padding: 0.9rem 1.1rem; border: 1px solid var(--rule); border-left: 4px solid var(--rule); border-radius: 10px; background: var(--paper); scroll-margin-top: 1rem; }
+  .dt-node[hidden] { display: none; }
+  .dt-node:target, .dtree.js .dt-node { border-color: var(--ink-2); }
+  .dt-question { border-left-color: var(--accent); }
+  .dt-step { border-left-color: var(--lapis); }
+  .dt-outcome { border-left-color: var(--ok); background: var(--paper-2); }
+  .dt-node:target { box-shadow: 0 0 0 2px var(--accent); }
+  .dt-kind { margin: 0; font: 600 0.72rem var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+  .dt-node :is(h3, h4) { margin: 0.15rem 0 0.4rem; font-size: 1.1rem; }
+  .dt-node :is(h3, h4):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .dt-body :global(p:last-child) { margin-bottom: 0; }
+  .dt-opts { list-style: none; padding: 0; margin: 0.7rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .dt-opts a { display: inline-block; padding: 0.45rem 0.9rem; border: 1.5px solid var(--ink); border-radius: 999px; font: 600 0.9rem var(--sans); color: var(--ink); text-decoration: none; min-height: 2.25rem; }
+  .dt-opts a:hover { background: var(--paper-2); }
+</style>

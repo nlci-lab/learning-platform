@@ -23,6 +23,8 @@ export interface SiteConfig {
   feedback?: FeedbackForm;
   /** Names of the four difficulty levels, level 1 first. Shown with the number: "Level 1 · First steps". */
   levels?: [string, string, string, string];
+  /** false when the course has no platform Guides page (guides/): hashtags then show as plain labels. Default true. */
+  guidesPage?: boolean;
 }
 
 export interface FeedbackForm {
@@ -33,6 +35,11 @@ export interface FeedbackForm {
 }
 
 export const defineSite = (c: SiteConfig) => c;
+
+/** The menu item a path belongs to: the longest menu path it starts with (so a page under guide/examples/
+    highlights "Examples", not "Guides"). Falls back to the path's first segment. */
+export const navItemFor = (site: SiteConfig, path: string) =>
+  site.nav.map(([p]) => p).filter((p) => path.startsWith(p)).sort((a, b) => b.length - a.length)[0] ?? path.split('/')[0] + '/';
 
 /** "Level 2 · Everyday use", or "Level 2" when the site has no level names. */
 export const levelName = (site: SiteConfig, level: number) => {

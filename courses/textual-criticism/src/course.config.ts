@@ -25,4 +25,6 @@ export const course = defineSite({
   },
   // The same four levels as the other courses.
   levels: ['First steps', 'Everyday use', 'Deeper study', 'Expert tools'],
+  // This course keeps its own guide index at guide/; it has no platform Guides page, so hashtags are plain labels.
+  guidesPage: false,
 });

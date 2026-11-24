@@ -27,6 +27,7 @@
     "astro": "^5.18.2"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.12",
     "marked": "^15.0.12"
   },
   "devDependencies": {
