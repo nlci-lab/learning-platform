@@ -4,12 +4,12 @@ kind: father
 siglum: "Tertullian"
 names: ["Tertullian"]
 aliases: ["Tertullian of Carthage"]
-lead: "Tertullian was a Christian writer at Carthage in North Africa, born about 160. He wrote in Latin, but he seems often to have translated from the Greek Bible himself as he wrote (Catholic Encyclopedia)."
+lead: "Tertullian was a Christian writer at Carthage in North Africa, born about 160. He wrote in Latin, but he seems often to have translated from the Greek Bible himself as he wrote (Catholic Encyclopedia). The form of his name in the UBS5 apparatus is not yet checked."
 date:
-  label: "born about 160; writing by 197"
+  label: "born about 160; writing from 197 to after 218"
   from: 160
-  to: 200
-  basis: "Born probably about 160 at Carthage. His Apology dates from 197 and his Prescription against Heretics from about 200. Jerome says he lived to extreme old age; the date of his death is not given (Catholic Encyclopedia)."
+  to: 220
+  basis: "Born probably about 160 at Carthage. His surviving writings date from 197 to after 218. Jerome says he lived to extreme old age; the date of his death is not given (Catholic Encyclopedia)."
   src: [ce]
 links:
   - { label: "\"Tertullian\", Catholic Encyclopedia (New Advent)", url: "https://www.newadvent.org/cathen/14520c.htm", kind: reading, licence: "unconfirmed" }

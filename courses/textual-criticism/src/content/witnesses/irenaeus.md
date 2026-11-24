@@ -6,10 +6,10 @@ names: ["Irenaeus of Lyons"]
 aliases: []
 lead: "Irenaeus was bishop of Lyons in Gaul in the 2nd century. He wrote in Greek, but his main work survives whole only in an old Latin translation, so the UBS apparatus often cites him as Irenaeusˡᵃᵗ."
 date:
-  label: "2nd century (born between 115 and 125)"
+  label: "2nd century (born between about 115 and 142; the date is disputed)"
   from: 115
-  to: 199
-  basis: "NA28 dates him to the 2nd century. The Catholic Encyclopedia gives his birth as between 115 and 125 and says the date of his death is not known."
+  to: 200
+  basis: "NA28 dates him to the 2nd century. The Catholic Encyclopedia says the date of his birth is disputed: between 115 and 125 according to some, between 130 and 142 according to others. It says nothing is known of the date of his death, which must have been at the end of the 2nd century or the beginning of the 3rd. The timeline starts at 115, the earliest of these dates."
   src: [trobisch, ce]
 key_units:
   - ref: "John 1:18"

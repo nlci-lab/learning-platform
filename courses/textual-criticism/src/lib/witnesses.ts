@@ -6,13 +6,14 @@ type Witness = CollectionEntry<'witnesses'>['data'];
 const ORDER: Record<string, number> = { papyrus: 0, majuscule: 1, minuscule: 2, lectionary: 3, version: 5, father: 6 };
 const rank = (w: Witness) => (w.greek_ms ? ORDER[w.greek_ms.category] : ORDER[w.kind] ?? 9);
 
-/** All witnesses in UBS citation order: papyri, majuscules, minuscules, lectionaries, versions, fathers (oldest first), then groups. */
+/** All witnesses in UBS citation order: papyri, majuscules, minuscules, lectionaries, versions, fathers (by the end of their dates), then groups. */
 export async function allWitnesses() {
   const all = (await getCollection('witnesses')).map((e) => e.data);
   return all.sort((a, b) => {
     const ka = rank(a), kb = rank(b);
     if (ka !== kb) return ka - kb;
-    if (a.kind === 'father' && b.kind === 'father') return (a.date?.from ?? 1e9) - (b.date?.from ?? 1e9);
+    // Fathers by the end of their dates: `from` is a birth for some and a start of work for others, but `to` is always the end.
+    if (a.kind === 'father' && b.kind === 'father') return (a.date?.to ?? 1e9) - (b.date?.to ?? 1e9) || (a.date?.from ?? 1e9) - (b.date?.from ?? 1e9);
     return (a.greek_ms?.ntvmr_doc_id ?? 1e9) - (b.greek_ms?.ntvmr_doc_id ?? 1e9);
   });
 }

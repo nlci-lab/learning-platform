@@ -13,7 +13,7 @@ date:
   src: [ce]
 key_units:
   - ref: "John 1:18"
-    note: "In his works in Greek, Origen quotes the verse four times. Two of those quotations read μονογενὴς θεός, the reading printed in the UBS text. The apparatus prints this as Origenᵍʳ ²ᐟ⁴."
+    note: "In Greek fragments of his works that survive whole only in translation, Origen quotes the verse four times. Two of those quotations read μονογενὴς θεός, the reading printed in the UBS text. The apparatus prints this as Origenᵍʳ ²ᐟ⁴."
     src: [ubs5-jn118, ubs5-intro]
 links:
   - { label: "\"Origen and Origenism\", Catholic Encyclopedia (New Advent)", url: "https://www.newadvent.org/cathen/11306b.htm", kind: reading, licence: "unconfirmed" }
@@ -30,7 +30,7 @@ ubs5_list_checked: false
 last_checked: "2026-11-25"
 father:
   place:
-    value: "Alexandria, where he led the catechetical school after Clement. From 232, Caesarea in Palestine, where he founded a new school. His last days were spent at Tyre."
+    value: "Alexandria, where he led the catechetical school (the church's school for teaching new believers) after Clement. From 232, Caesarea in Palestine, where he founded a new school. His last days were spent at Tyre."
     src: [ce]
   language:
     value: Greek
@@ -62,4 +62,4 @@ father:
       src: [waltz]
 ---
 
-Origen's works survive in two ways: in his own Greek, and in Latin translations made later. The apparatus marks the difference. Origenᵍʳ points to his Greek text and Origenˡᵃᵗ to a Latin translation. Read the marks before you weigh his evidence.
+Origen's works survive in two ways: in his own Greek, and in Latin translations made later. The apparatus marks the difference. Origenᵍʳ points to a Greek fragment of a work that survives whole only in translation. Origenˡᵃᵗ points to a Latin translation. Read the marks before you weigh his evidence.

@@ -19,7 +19,7 @@ const ALWAYS = new Set(['papyrus', 'majuscule', 'minuscule', 'lectionary']);
 const kinds = KINDS.filter(([k]) => ALWAYS.has(k) || count(k) > 0).map(([k, l]) => [k, l, count(k)] as const);
 const DATES: [string, string][] = [['early', 'Before 300'], ['mid', '300–499'], ['late', '500 and later']];
 ---
-<Base title="Witnesses" nav="witnesses/" description="Every manuscript and text group the site profiles, with filters by kind, date and contents.">
+<Base title="Witnesses" nav="witnesses/" description="Every manuscript, church father and text group the site profiles, with filters by kind, date and contents.">
   <div class="g-head">
     <p class="label">Witnesses</p>
     <h1>Manuscripts, fathers and text groups</h1>

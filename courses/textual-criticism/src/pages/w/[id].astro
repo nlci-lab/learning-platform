@@ -54,7 +54,7 @@ const sl = w.siglum_lang;
     <h2>At a glance</h2>
     <table class="facts">
       <tbody>
-        {w.date && <tr><th scope="row">{fa ? 'Lived' : 'Date'}</th><td>{w.date.label}. <span class="muted">{w.date.basis}</span><Cite {...cites(w.date.src)} /></td></tr>}
+        {w.date && <tr><th scope="row">{fa ? 'Dates' : 'Date'}</th><td>{w.date.label}. <span class="muted">{w.date.basis}</span><Cite {...cites(w.date.src)} /></td></tr>}
         {ms?.material && <tr><th scope="row">Material</th><td>{ms.material.value}{ms.format && `, ${ms.format.value}`}<Cite {...cites(ms.material.src)} /></td></tr>}
         {ms?.leaves && <tr><th scope="row">Leaves</th><td>{ms.leaves.value}<Cite {...cites(ms.leaves.src)} /></td></tr>}
         {ms && <tr><th scope="row">Contents</th><td>
@@ -87,7 +87,7 @@ const sl = w.siglum_lang;
 
     {fa && fa.works.length > 0 && (
       <section id="works">
-        <h2>Works that matter for the text</h2>
+        <h2>Main works</h2>
         <ul class="units">
           {fa.works.map((x) => <li><strong>{x.title}</strong>{x.note && <> {x.note}</>}<Cite {...cites(x.src)} /></li>)}
         </ul>

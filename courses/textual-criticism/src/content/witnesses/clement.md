@@ -4,12 +4,12 @@ kind: father
 siglum: "Clement"
 names: ["Clement of Alexandria"]
 aliases: []
-lead: "Clement was a Greek Christian teacher in Alexandria. He was there when persecution came in 202, and he died about 215. The UBS apparatus cites him simply as Clement."
+lead: "Clement was a Greek Christian teacher in Alexandria. He led its Christian school from about 190, left when persecution came in 202, and died about 215. The UBS apparatus cites him simply as Clement."
 date:
-  label: "died about 215"
-  from: 202
+  label: "active from about 190 to about 215"
+  from: 190
   to: 215
-  basis: "His birth date is not known. He was in Alexandria when persecution came to Egypt in 202, and he died about 215 (Catholic Encyclopedia)."
+  basis: "His birth date is not known. He first assisted and then succeeded Pantaenus as head of the school in Alexandria about 190, and was known as a Christian writer before the time of Pope Victor (188–199). He was in Alexandria when persecution came to Egypt in 202, and he died about 215 (Catholic Encyclopedia)."
   src: [ce]
 key_units:
   - ref: "John 1:18"
@@ -57,4 +57,4 @@ father:
       src: [waltz]
 ---
 
-The Catholic Encyclopedia says Clement knew nearly the whole New Testament; it names 2 Peter and 3 John as the books he does not use. Its author calls Clement's evidence for the early form of the apostolic writings "of the highest value". That is a judgement from 1908. Weigh each quotation for yourself.
+The Catholic Encyclopedia (1908) says Clement had read every New Testament book except 2 Peter and 3 John. It quotes the scholar Tixeront, who called Clement's evidence for the early form of the apostolic writings "of the highest value". That is one scholar's judgement. Weigh each quotation for yourself.

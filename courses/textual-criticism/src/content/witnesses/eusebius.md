@@ -4,7 +4,7 @@ kind: father
 siglum: "Eusebius"
 names: ["Eusebius of Caesarea"]
 aliases: []
-lead: "Eusebius was bishop of Caesarea in Palestine in the early 4th century. He wrote in Greek. He is best known for his Church History and for the Gospel canon tables that NA28 still prints."
+lead: "Eusebius was bishop of Caesarea in Palestine in the early 4th century. He wrote in Greek. He is best known for his Church History and for the Gospel canon tables that NA28 still prints. The form of his name in the UBS5 apparatus is not yet checked."
 date:
   label: "about 260 to before 341"
   from: 260
