@@ -5,11 +5,13 @@
 // An empty list or an unknown name fails the build.
 import Collation from './Collation.astro';
 import * as mark12 from '../data/collations/mark-1-2';
+import * as john118 from '../data/collations/john-1-18';
 import { v7, v8 } from '../data/collations/1-john-5-7';
 
 // Register a passage here to make it available to modules.
 const SETS = {
   'mark-1-2': { verse: mark12.verse, data: mark12.data_, base: mark12.base, english: mark12.english, witnesses: mark12.witnesses, units: mark12.units, phrases: mark12.phrases, glosses: mark12.glosses },
+  'john-1-18': { verse: john118.verse, data: john118.data_, base: john118.base, english: john118.english, witnesses: john118.witnesses, units: john118.units, phrases: john118.phrases, glosses: john118.glosses },
   '1-john-5-7': v7,
   '1-john-5-8': v8,
 } as const;

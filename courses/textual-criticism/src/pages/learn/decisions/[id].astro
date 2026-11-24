@@ -1,0 +1,12 @@
+---
+// The parts of "Making textual decisions" (src/content/guides/*.mdx with series: decisions).
+import GuidePage from '@cohorts/platform/pages/GuidePage.astro';
+import { seriesStaticPaths } from '@cohorts/platform/data';
+import HeadExtras from '../../../components/HeadExtras.astro';
+import '../../../styles/course.css';
+import { course } from '../../../course.config';
+export const getStaticPaths = seriesStaticPaths('decisions');
+---
+<GuidePage site={course} entry={Astro.props.entry}>
+  <HeadExtras slot="head" />
+</GuidePage>

@@ -15,3 +15,5 @@ Scripture quotations marked NLT in screenshots are taken from the Holy Bible, Ne
 Scripture quotations marked CSB in screenshots have been taken from the Christian Standard Bible®, Copyright © 2017 by Holman Bible Publishers. Used by permission. CSB® is a registered trademark of Holman Bible Publishers.
 
 Scripture quotations marked KJV are from the King James Version.
+
+Screenshots of Paratext in the Textual Criticism series "Making textual decisions" show Paratext's interface (United Bible Societies and SIL Global) and resources opened in it: the Hindi Old Version (re-edited) with the KJV, NIV and NLT; the Translator's Notes display; the UBS Handbook Series; and the apparatus of the UBS Greek New Testament, 5th edition (Deutsche Bibelgesellschaft). They are quoted for teaching, one verse at a time, credited where they are used, and are **not** covered by the CC BY-SA licence above. Notes from the NET Bible are not shown; they are described in our own words, because the NET Bible's published permission covers its text without the notes.

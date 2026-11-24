@@ -5,7 +5,8 @@ import type { APIRoute } from 'astro';
 import { allWitnesses } from '../lib/witnesses';
 import { parseRef, formatRef } from '../lib/refs';
 import { GUIDES, KICKER } from '../data/guides';
-import { getGlossaryEntries } from '@cohorts/platform/data';
+import { getGlossaryEntries, getGuides, getGuidePaths } from '@cohorts/platform/data';
+import { searchIndex } from '@cohorts/platform/search';
 
 export type Entry =
   | { k: 'v'; ref: { book: string; from?: number; to?: number }; label: string; title: string; ctx: string; href: string; ex?: boolean }
@@ -55,6 +56,26 @@ export const GET: APIRoute = async () => {
       if (!text || /^not yet verified$/i.test(text) || /[{}]/.test(m[3])) continue;
       const id = /\bid="([^"]+)"/.exec(m[2])?.[1] ?? (m[1] === '2' ? slug(text) : '');
       out.push({ k: 'p', title: text, kicker: g.cover, ctx: `Section in “${g.cover}”`, href: g.path + (id ? `#${id}` : ''), text: `${text} ${g.cover}`.toLowerCase() });
+    }
+  }
+  // Guides kept as content files (the series parts): the platform index gives each guide and its
+  // headings; this adds every passage a guide's text names to the passage index.
+  for (const e of await searchIndex()) {
+    if (e.kind === 'Guide') out.push({ k: 'p', title: e.title, kicker: 'Guide', ctx: e.ctx, href: e.href, text: e.text });
+    if (e.kind === 'Section') out.push({ k: 'p', title: e.title, kicker: e.ctx.replace(/^Section in “|”$/g, ''), ctx: e.ctx, href: e.href, text: e.text });
+  }
+  const paths = await getGuidePaths();
+  for (const x of (await getGuides()).series)
+    out.push({ k: 'p', title: x.title, kicker: 'Learn', ctx: x.summary, href: x.path, text: `${x.title} ${x.summary} decision tree`.toLowerCase() });
+  for (const { data: g, body = '' } of await getGuides()) {
+    const seen = new Set<string>();
+    for (const m of body.matchAll(REF_RE)) {
+      const ref = parseRef(m[0]);
+      if (!ref || ref.from === undefined) continue;
+      const label = formatRef(ref);
+      if (seen.has(label)) continue;
+      seen.add(label);
+      out.push({ k: 'v', ref, label, title: g.title, ctx: `Discussed in “${g.title}”`, href: paths.get(g.id)! });
     }
   }
   for (const t of await getGlossaryEntries()) {

@@ -1,0 +1,12 @@
+---
+// "Making textual decisions": the series page (src/content/series.yaml) with its decision tree below the parts.
+import SeriesPage from '@cohorts/platform/pages/SeriesPage.astro';
+import DecisionTree from '@cohorts/platform/components/DecisionTree.astro';
+import HeadExtras from '../../../components/HeadExtras.astro';
+import '../../../styles/course.css';
+import { course } from '../../../course.config';
+---
+<SeriesPage site={course} id="decisions">
+  <HeadExtras slot="head" />
+  <DecisionTree id="textual-decision" />
+</SeriesPage>
