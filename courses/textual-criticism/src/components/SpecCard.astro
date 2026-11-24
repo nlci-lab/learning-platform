@@ -41,7 +41,7 @@ const summary = hasContents
 ---
 <figure class="spec">
   <div class="spec-head">
-    <span class="spec-siglum siglum" lang={siglumLang} dir="ltr">{siglum}</span>
+    <span class:list={['spec-siglum', 'siglum', [...siglum].length > 5 && 'long']} lang={siglumLang} dir="ltr">{siglum}</span>
     <dl class="spec-meta">
       <div><dt class="label">Date</dt><dd>{dateLabel}</dd></div>
       {material && <div><dt class="label">Material</dt><dd>{material}</dd></div>}
@@ -77,6 +77,7 @@ const summary = hasContents
   .spec { margin: 1.25rem 0; padding: 1rem; background: var(--paper-2); border-radius: 6px; max-width: 30rem; }
   .spec-head { display: flex; gap: 1rem; align-items: center; margin-bottom: 0.5rem; }
   .spec-siglum { font-size: 2.75rem; line-height: 1; min-width: 3.5rem; }
+  .spec-siglum.long { font-size: 1.6rem; }
   .spec-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin: 0; font-family: var(--sans); }
   .spec-meta dd { margin: 0; font-size: 0.9375rem; font-variant-numeric: lining-nums tabular-nums; }
   svg { width: 100%; height: auto; display: block; font-family: var(--sans); }

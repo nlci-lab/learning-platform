@@ -158,6 +158,12 @@ export const GUIDES: GuideMeta[] = [
     learn: ['Writing surfaces and book forms', 'Scripts and nomina sacra', 'How copyists changed the text', 'What correctors did'],
     related: ['background/nt-text/', 'witnesses/', 'guide/weighing-evidence/'],
   },
+  {
+    path: 'background/church-fathers/', cover: 'Church fathers as witnesses', section: 'background', level: 'Going further',
+    summary: 'Why quotations by early Christian writers help date and place a reading, what limits them, and how the apparatus cites them.',
+    learn: ['Why a father’s date and place matter', 'Quotation, allusion and later copyists', 'Why the form of a father’s work matters', 'How UBS5 and NA28 cite fathers'],
+    before: 'guide/apparatus/', related: ['guide/examples/john-1-18/', 'background/nt-text/', 'witnesses/'], verses: ['John 1:18'],
+  },
 ];
 
 export const byPath = (p: string) => GUIDES.find((g) => g.path === p);

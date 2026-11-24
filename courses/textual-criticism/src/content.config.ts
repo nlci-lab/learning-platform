@@ -42,6 +42,20 @@ const group = z.object({
   ...sourced,
 });
 
+/** Church fathers (ADR 0002 kind block): who they were, and how the apparatus names them. */
+const father = z.object({
+  /** Where he lived and worked, e.g. "Lyons (Gaul)". */
+  place: z.object({ value: z.string(), ...sourced }).optional(),
+  /** The language he wrote in; `note` for works that survive only in translation. */
+  language: z.object({ value: z.enum(['Greek', 'Latin', 'Syriac', 'Coptic', 'Armenian']), note: z.string().optional(), ...sourced }),
+  /** Works that matter for the New Testament text. */
+  works: z.array(z.object({ title: z.string(), note: z.string().optional(), ...sourced })).default([]),
+  /** How an edition's apparatus cites him. Every `form` is also a lookup alias (ADR 0003). */
+  cited_as: z.array(z.object({
+    form: z.string(), edition: z.enum(['UBS5', 'NA28', 'NA27']), note: z.string().optional(), ...sourced,
+  })).min(1),
+});
+
 const witnesses = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/witnesses' }),
   schema: z.object({
@@ -83,8 +97,9 @@ const witnesses = defineCollection({
     last_checked: isoDate,
     greek_ms: greekMs.optional(),
     group: group.optional(),
+    father: father.optional(),
   }).superRefine((w, ctx) => {
-    const kindBlock: Record<string, unknown> = { greek_ms: w.greek_ms, group: w.group };
+    const kindBlock: Record<string, unknown> = { greek_ms: w.greek_ms, group: w.group, father: w.father };
     if (w.kind in kindBlock && !kindBlock[w.kind]) {
       ctx.addIssue({ code: 'custom', message: `kind "${w.kind}" needs a "${w.kind}" block` });
     }
