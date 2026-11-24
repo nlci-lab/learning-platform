@@ -1,4 +1,5 @@
 # Apparatus symbols and terms in our own plain words (not UBS's wording), moved from src/data/glossary.ts.
+# Entries keep the original file order (the jump row and search follow it); `group` places each one on the page.
 # Ids are stable once published (glossary/#id links depend on them). checked: false = not yet checked against its source.
 - id: rating
   term: "{A} {B} {C} {D}"
@@ -11,18 +12,6 @@
   group: ratings-and-separators
   plain: Separates one reading from the next in an apparatus entry.
   source: UBS5 apparatus at John 1:18, as shown in Paratext
-  checked: true
-- id: diamond
-  term: ♦
-  group: ratings-and-separators
-  plain: Two readings are equally good, and the editors could not choose between them.
-  source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
-  checked: true
-- id: double-brackets
-  term: ⟦ ⟧
-  group: ratings-and-separators
-  plain: "In the Greek text: a passage the editors think was added later, but which is very old and important (for example John 7:53–8:11)."
-  source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
   checked: true
 - id: star
   term: "*"
@@ -60,6 +49,24 @@
   plain: "Round brackets around a witness: it supports this reading but with small differences."
   source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
   checked: true
+- id: byz-brackets
+  term: Byz [ ]
+  group: groups-and-codes
+  plain: Square brackets after Byz list some particular Byzantine manuscripts that have this reading.
+  source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
+  checked: true
+- id: double-brackets
+  term: ⟦ ⟧
+  group: ratings-and-separators
+  plain: "In the Greek text: a passage the editors think was added later, but which is very old and important (for example John 7:53–8:11)."
+  source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
+  checked: true
+- id: diamond
+  term: ♦
+  group: ratings-and-separators
+  plain: Two readings are equally good, and the editors could not choose between them.
+  source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
+  checked: true
 - id: fraction
   term: 1/2, 2/4
   group: marks-after-a-witness
@@ -72,28 +79,22 @@
   plain: Latin partim, "in part". Byzᵖᵗ = part of the Byzantine manuscripts.
   source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
   checked: true
-- id: gr-lat
-  term: gr, lat
-  group: marks-after-a-witness
-  plain: "With a church father: gr = a Greek fragment of a work that survives whole only in translation; lat = a Latin translation of a Greek father."
-  source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
-  checked: true
 - id: byz
   term: Byz
   group: groups-and-codes
   plain: The reading of most Byzantine manuscripts.
   source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
   checked: true
-- id: byz-brackets
-  term: Byz [ ]
-  group: groups-and-codes
-  plain: Square brackets after Byz list some particular Byzantine manuscripts that have this reading.
-  source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
-  checked: true
 - id: lect
   term: Lect
   group: groups-and-codes
   plain: The reading of most of the lectionaries (church reading books) UBS selected, with the Apostoliki Diakonia edition.
+  source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
+  checked: true
+- id: gr-lat
+  term: gr, lat
+  group: marks-after-a-witness
+  plain: "With a church father: gr = a Greek fragment of a work that survives whole only in translation; lat = a Latin translation of a Greek father."
   source: UBS5 Introduction pp. 58*–63*, via Paratext 9 help
   checked: true
 - id: eapcr

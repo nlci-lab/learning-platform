@@ -5,7 +5,7 @@ import type { APIRoute } from 'astro';
 import { allWitnesses } from '../lib/witnesses';
 import { parseRef, formatRef } from '../lib/refs';
 import { GUIDES, KICKER } from '../data/guides';
-import { getGlossary } from '@cohorts/platform/data';
+import { getGlossaryEntries } from '@cohorts/platform/data';
 
 export type Entry =
   | { k: 'v'; ref: { book: string; from?: number; to?: number }; label: string; title: string; ctx: string; href: string; ex?: boolean }
@@ -57,7 +57,7 @@ export const GET: APIRoute = async () => {
       out.push({ k: 'p', title: text, kicker: g.cover, ctx: `Section in “${g.cover}”`, href: g.path + (id ? `#${id}` : ''), text: `${text} ${g.cover}`.toLowerCase() });
     }
   }
-  for (const t of (await getGlossary()).flatMap((g) => g.entries)) {
+  for (const t of await getGlossaryEntries()) {
     out.push({ k: 'g', title: t.term, kicker: 'Glossary', ctx: t.plain, href: `glossary/#${t.id}`, text: `${t.term} ${t.plain}`.toLowerCase() });
   }
   return new Response(JSON.stringify(out), { headers: { 'Content-Type': 'application/json' } });

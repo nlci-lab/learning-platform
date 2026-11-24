@@ -159,9 +159,7 @@ const related = (meta?.related ?? []).map((p) => byPath(p) ?? (p === 'witnesses/
   .book-spec dt { color: var(--ink-2); }
   .book-spec dd { margin: 0; }
   .book-act { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .btn { font: 600 0.95rem var(--sans); padding: 0.6rem 1.1rem; border-radius: 8px; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); }
-  .btn.primary { background: var(--ink); color: var(--paper); }
-  .btn:hover { text-decoration: underline; }
+  .book-act :global(.btn:hover) { text-decoration: underline; }   /* .btn itself comes from the platform */
   .book-learn { border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem; align-self: start; }
   .book-learn h2 { font: 600 1rem var(--sans); margin: 0 0 0.5rem; }
   .book-learn ul { margin: 0; padding-left: 1.1rem; }

@@ -11,6 +11,7 @@ interface Props { site: SiteConfig; placeholder?: string }
 const { site, placeholder = 'Search the course' } = Astro.props;
 ---
 <Base site={site} title="Search" nav={PATHS.search} description={`Search ${site.title}.`}>
+  <Fragment slot="head"><slot name="head" /></Fragment>
   <div class="sx prose">
     <h1>Search</h1>
     <form class="search" id="search" role="search" hidden action={url(PATHS.search)} method="get" data-index={url(PATHS.searchIndex)} data-base={url()}>

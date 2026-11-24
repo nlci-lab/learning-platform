@@ -2,11 +2,11 @@
 // Glossary as a guide: the signs and words of the UBS apparatus, grouped, with a find box.
 // Entry ids stay the same (glossary/#rating etc.), so links from other pages and the search keep working.
 import Context from '../layouts/Context.astro';
-import { getGlossary } from '@cohorts/platform/data';
+import { getGlossary, getGlossaryEntries } from '@cohorts/platform/data';
 // Entries and groups are content data (src/content/glossary.yaml, glossary-groups.yaml).
 // Groups with style "sign" hold apparatus signs: shown in the sigla style and in the jump row.
 const groups = await getGlossary();
-const signs = groups.filter((g) => g.style === 'sign').flatMap((g) => g.entries);
+const signs = (await getGlossaryEntries()).filter((t) => t.style === 'sign');   // file order, as before
 ---
 <Context title="Glossary" label="Guide" notice={false}
   description="The signs and short words of the UBS apparatus, and the terms used on this site, in plain English.">

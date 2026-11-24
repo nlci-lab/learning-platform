@@ -1,21 +1,23 @@
 ---
 // The `collation` embed for micro modules (ADR 0004): a module step names it in its data,
 //   embed: { name: collation, args: { passages: [mark-1-2] } }
-// and this component shows the collation card for each named passage. Unknown names fail the build.
+// and this component shows the collation card for each named passage, in order.
+// An empty list or an unknown name fails the build.
 import Collation from './Collation.astro';
 import * as mark12 from '../data/collations/mark-1-2';
 import { v7, v8 } from '../data/collations/1-john-5-7';
 
+// Register a passage here to make it available to modules.
 const SETS = {
   'mark-1-2': { verse: mark12.verse, data: mark12.data_, base: mark12.base, english: mark12.english, witnesses: mark12.witnesses, units: mark12.units, phrases: mark12.phrases, glosses: mark12.glosses },
   '1-john-5-7': v7,
   '1-john-5-8': v8,
 } as const;
 
-interface Props { passages?: string[]; passage?: string }
-const { passages, passage } = Astro.props;
-const ids = passages ?? (passage ? [passage] : []);
-const sets = ids.map((id) => {
+interface Props { passages: string[] }
+const { passages = [] } = Astro.props;
+if (!passages.length) throw new Error('collation embed: give at least one passage in args.passages.');
+const sets = passages.map((id) => {
   const s = SETS[id as keyof typeof SETS];
   if (!s) throw new Error(`collation embed: no collation named "${id}". Known: ${Object.keys(SETS).join(', ')}.`);
   return s;

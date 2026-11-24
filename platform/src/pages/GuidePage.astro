@@ -32,6 +32,7 @@ const PIGMENTS = ['lapis', 'verdigris', 'ochre', 'gall'] as const;
 const pig = (level: number) => PIGMENTS[(level - 1) % 4];
 ---
 <Base site={site} title={g.title} description={g.summary} nav={PATHS.guides}>
+  <Fragment slot="head"><slot name="head" /></Fragment>
   <section class="book">
     <Cover title={g.cover} kicker="Guide" pigment={pig(g.level)} href="#read" />
     <div class="book-main">

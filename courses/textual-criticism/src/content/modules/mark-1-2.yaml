@@ -7,6 +7,7 @@ topic: Mark 1:2
 question: "“in Isaiah” or “in the prophets”?"
 skill: A scribe “corrects” an apparent error
 level: 2
+order: 1
 minutes: 10
 description: "A short guided problem in six steps: a scribe 'corrects' an apparent error in Mark 1:2."
 lead: Mark begins with a quotation and names the prophet it comes from. Some manuscripts name Isaiah; others say only “the prophets”. Work out which came first, in the six steps of the worked examples.
@@ -22,7 +23,7 @@ steps:
   - id: find
     title: Find the problem
     body: |
-      Καθὼς γέγραπται ἐν τῷ Ἠσαΐᾳ τῷ προφήτῃ· Ἰδοὺ ἀποστέλλω τὸν ἄγγελόν μου πρὸ προσώπου σου …
+      <p lang="grc">Καθὼς γέγραπται ἐν τῷ Ἠσαΐᾳ τῷ προφήτῃ· Ἰδοὺ ἀποστέλλω τὸν ἄγγελόν μου πρὸ προσώπου σου …</p>
 
       “As it is written in Isaiah the prophet: ‘Look, I am sending my messenger ahead of you …’” The words that follow in verses 2–3 join two passages: Malachi 3:1 (“I am sending my messenger”) and Isaiah 40:3 (“a voice of one crying in the wilderness”).
     question:

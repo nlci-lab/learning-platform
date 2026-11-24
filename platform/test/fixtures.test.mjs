@@ -61,3 +61,17 @@ test('an unquoted YAML date is accepted as YYYY-MM-DD', () => {
   assert.ok(r.success);
   assert.equal(r.data.last_checked, '2026-11-23');
 });
+
+// Every course's real module files must pass the same schema.
+import { readdirSync as rd, existsSync } from 'node:fs';
+const coursesDir = new URL('../../courses/', import.meta.url);
+for (const course of rd(coursesDir)) {
+  const dir = new URL(`${course}/src/content/modules/`, coursesDir);
+  if (!existsSync(dir)) continue;
+  for (const f of rd(dir).filter((f) => f.endsWith('.yaml'))) {
+    test(`course module ${course}/${f} is valid`, () => {
+      const r = moduleSchema.safeParse(yaml.load(readFileSync(new URL(f, dir), 'utf8')));
+      assert.ok(r.success, r.success ? '' : JSON.stringify(r.error.issues, null, 2));
+    });
+  }
+}

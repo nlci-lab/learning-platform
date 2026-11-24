@@ -22,7 +22,9 @@ export function courseCollections() {
       schema: moduleSchema,
     }),
     guides: defineCollection({
-      loader: glob({ pattern: '**/*.md', base: './src/content/guides', generateId: ({ data }) => String(data.id) }),
+      loader: existsSync('./src/content/guides')
+        ? glob({ pattern: '**/*.md', base: './src/content/guides', generateId: ({ data }) => String(data.id) })
+        : { name: 'empty', load: async () => {} },
       schema: guide,
     }),
     glossary: defineCollection({ loader: list('./src/content/glossary.yaml'), schema: glossaryEntry }),

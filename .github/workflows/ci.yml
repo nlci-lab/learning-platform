@@ -23,8 +23,15 @@ jobs:
         run: npm run build -w @cohorts/logos
         env:
           SITE_BASE: /sub-path-test/logos/
+      - name: Build Textual Criticism under a sub-path
+        run: npm run build -w @cohorts/textual-criticism
+        env:
+          SITE_BASE: /sub-path-test/tc/
       - name: No internal link may miss the base path
         run: |
           if grep -rhoE '(href|src|action)="/[^"]*"' courses/logos/dist | grep -v '"/sub-path-test/' ; then
-            echo "Found internal links without the base path"; exit 1
+            echo "Found internal links without the base path (Logos)"; exit 1
+          fi
+          if grep -rhoE '(href|src|action)="/[^"]*"' courses/textual-criticism/dist | grep -v '"/sub-path-test/' ; then
+            echo "Found internal links without the base path (Textual Criticism)"; exit 1
           fi

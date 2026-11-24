@@ -16,6 +16,7 @@ const levels = [...new Set(guides.map((g) => g.level))].sort();
 const allTags = [...new Set(guides.flatMap((g) => g.tags))].sort();
 ---
 <Base site={site} title={heading} nav={PATHS.guides} description={`Guides: ${site.description}`}>
+  <Fragment slot="head"><slot name="head" /></Fragment>
   <div class="gx">
     <header>
       <p class="label">Guides</p>

@@ -14,7 +14,8 @@ export async function getModules() {
     if (seen.has(id)) throw new Error(`Question id "${id}" is used in module "${seen.get(id)}" and module "${m.data.id}". Question ids must be unique in a course.`);
     seen.set(id, m.data.id);
   }
-  return all.sort((a, b) => a.data.level - b.data.level || a.data.title.localeCompare(b.data.title));
+  const ord = (m: ModuleEntry) => m.data.order ?? Number.MAX_SAFE_INTEGER;
+  return all.sort((a, b) => ord(a) - ord(b) || a.data.level - b.data.level || a.data.title.localeCompare(b.data.title, 'en'));
 }
 
 /** Guides, easiest first. Fails the build if `before` or `related` names a guide that does not exist. */
@@ -25,6 +26,12 @@ export async function getGuides() {
     if (!ids.has(ref)) throw new Error(`Guide "${g.id}" links to guide "${ref}", which does not exist (or is a draft).`);
   }
   return all.sort((a, b) => a.data.level - b.data.level || a.data.title.localeCompare(b.data.title, 'en'));
+}
+
+/** All glossary entries in file order, each with its group's style. */
+export async function getGlossaryEntries() {
+  const style = new Map((await getCollection('glossaryGroups')).map((g) => [g.data.id, g.data.style]));
+  return (await getCollection('glossary')).map((e) => ({ ...e.data, style: style.get(e.data.group) ?? 'word' }));
 }
 
 /** Glossary groups in order, each with its entries (file order). Fails the build on an unknown group. */

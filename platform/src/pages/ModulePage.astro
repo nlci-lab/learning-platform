@@ -31,6 +31,7 @@ for (const s of m.steps) {
 const learn = url(PATHS.learn);
 ---
 <Base site={site} title={m.title} description={m.description} nav={PATHS.learn}>
+  <Fragment slot="head"><slot name="head" /></Fragment>
   <article class="mm" data-mm>
     {m.draft && <p class="tag">Draft: not in the published site</p>}
     <p class="mm-crumbs small"><a href={learn}>Learn</a> › <a href={`${learn}#modules`}>Micro modules</a> › {m.topic}</p>
