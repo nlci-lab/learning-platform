@@ -1,0 +1,63 @@
+---
+// The front door of the site: what textual criticism is, why a translator needs it, and where to go next.
+// Facts here are restated from other pages of this site and the sources they name; nothing new is claimed.
+import Context from '../../layouts/Context.astro';
+import { url } from '../../lib/url';
+const g = (id: string) => url(`glossary/#${id}`);
+const sources = [
+  { cite: 'Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005): Erasmus and the first Greek New Testament to be printed and published, 1516, pp. 142–3; the first UBS Greek New Testament (1966), made for Bible translators, p. 192. As checked for this site\'s background page "How we got the New Testament text".', checked: true },
+  { cite: 'Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005): about 5,700 Greek manuscripts in the official list kept at Münster, as reported in 2005. The page (p. 50 or p. 52) has still to be confirmed against the book.', checked: false },
+  { cite: 'Bruce M. Metzger and Bart D. Ehrman, The Text of the New Testament, 4th ed. (Oxford University Press, 2005): that the original documents are lost, that every book was copied by hand, and that copyists made both accidental and deliberate changes. Restated from this site\'s background page "How we got the New Testament text"; the page numbers have still to be checked.', checked: false },
+  { cite: 'Adapted from Thomas Hemphill, "New Testament Textual Criticism for Bible translators" (slides and talk "Textual criticism 1 - NT background, theory & principles"): external and internal evidence. Used with permission. As restated in this site\'s guide "Weighing the evidence".', checked: true },
+  { cite: 'Adapted from Thomas Hemphill, "Textual Criticism of the NT: background, theory and principles", slides and recorded talk: when a translator needs to make a textual decision. Used with permission. As restated in this site\'s guide "Which variants deserve your attention".', checked: true },
+  { cite: 'NLCI base-text survey of Indian-language Bibles (15 test verses in each version\'s Paratext text, 2026), as reported in this site\'s guide "Two Greek texts behind our Bibles".', checked: true },
+  { cite: 'NLCI, Translation Guidelines (2019): "Text and textual variants", "Handling theological issues" and "Review Committee checking", as restated in this site\'s guide "Which text should a translation follow?".', checked: true },
+];
+---
+<Context title="What is textual criticism?" label="Guide" lastChecked="2026-11-25" sources={sources}
+  description="Why copies of the Bible differ, what textual criticism does with them, and why a Bible translator needs it. Start here.">
+  <p class="lead">Bibles do not always agree. One has a verse that another leaves out, or puts a word in brackets with a footnote. Textual criticism is the study that explains why, and helps you decide what to translate.</p>
+
+  <h2>Why copies of the Bible differ</h2>
+  <p>The books of the New Testament were written in Greek in the first century. The original documents, written by the authors or their helpers, are lost. Scholars call them the <em>autographs</em>. No autograph of any New Testament book survives.</p>
+  <p>What we have are copies of copies. Each book was copied by hand, again and again, for many centuries. The first Greek New Testament to be printed and published, by Erasmus, appeared only in 1516. More than 5,000 Greek manuscripts (hand-written copies) of all or part of the New Testament survive. In 2005 Metzger and Ehrman reported about 5,700 in the official list.</p>
+  <p>Every copyist made some mistakes: an eye jumped a line, or a word was spelled another way. Some copyists also changed the text on purpose, for example to make a hard sentence clearer or to make one Gospel match another. So no two manuscripts agree in every detail. A place where they have different wording is called a <a href={g('variant')}>variant</a>.</p>
+  <p>Most variants do not change the meaning. A few do, and some affect whole verses or stories. See <a href={url('background/materials/')}>Materials and making</a> for how copyists worked, and <a href={url('background/nt-text/')}>How we got the New Testament text</a> for the longer story.</p>
+  <p>This page speaks of the New Testament. The Old Testament has its own history; see <a href={url('background/ot-text/')}>How we got the Old Testament text</a>.</p>
+
+  <h2>What textual criticism does</h2>
+  <p>Textual criticism compares the <em>witnesses</em> to the text and asks, at each variant, which wording is the earliest we can reach. A witness is any source for the text: a Greek manuscript, an early translation into another language (a <em>version</em>), or a quotation in an early church writer (a <em>father</em>).</p>
+  <p>Editors have done this work for the whole New Testament. The result is a printed Greek text with an <em>apparatus</em>: notes at the foot of the page that list the variants and the witnesses for each reading. The United Bible Societies (UBS) Greek New Testament was made for Bible translators. Its apparatus is the one you meet in Paratext, the translation software.</p>
+
+  <h2>Two kinds of evidence</h2>
+  <p><strong><a href={g('external-evidence')}>External evidence</a> asks: who says it?</strong> It looks at the witnesses for each reading. How old are they? Where do they come from? Were they copied carefully? Do witnesses from different places agree? The number of manuscripts comes last, because many late copies may all go back to one ancestor.</p>
+  <p><strong><a href={g('internal-evidence')}>Internal evidence</a> asks: what does it say?</strong> It looks at the wording itself. Which reading best explains how the others came about? What was a copyist likely to change, and what was the author likely to write? For example, copyists often made a hard reading easier, so the harder reading is often the older one. These rules of thumb have limits.</p>
+  <p>Editors weigh both kinds together. <a href={url('guide/weighing-evidence/')}>Weighing the evidence</a> explains how, with a worked example.</p>
+
+  <h2>Why a translator needs it</h2>
+  <p>The UBS Greek text is not the only Greek text behind the Bibles people read. Many older Bibles follow the <a href={g('tr')}>Textus Receptus</a> (TR), the line of printed Greek texts that began with Erasmus in 1516 and lies behind the King James Version. For example, in a survey of eight Indian-language Bibles, seven stand mainly on the side of the TR.</p>
+  <p>So your draft from the UBS text may differ from the Bible your readers already know. A verse may be missing, or a word may be different. When that happens you need to know why, to explain it to your team and your readers, and to decide with them what to do. <a href={url('guide/base-texts/')}>Two Greek texts behind our Bibles</a> shows where the two texts usually differ.</p>
+  <p>You do not need to become a textual critic. Most of the time you follow the UBS text. You need enough to see when a variant matters, to read the apparatus, and to bring a clear recommendation to your project's Review Committee (church leaders from the community). The committee decides. <a href={url('guide/text-policy/')}>Which text should a translation follow?</a> sets out one organisation's policy (NLCI's) on base texts and on who decides.</p>
+
+  <h2>What it does not do</h2>
+  <p>Textual criticism asks a question about history: which wording did the copies start from? It does not decide doctrine, and it does not tell you what a verse means. That is the work of interpretation.</p>
+  <p>A translator does not change the text to fit a theology. The text policy on this site (NLCI's guidance for its teams) puts it plainly: never change the text to fit a theological position. Where a passage is ambiguous, keep the ambiguity and let the church interpret it.</p>
+  <p>Scholars disagree about how much the variants matter and how confident we can be about the earliest text. This site reports their evidence and names who argues what. It does not take sides in that debate.</p>
+
+  <h2>Where to go next</h2>
+  <ol class="path">
+    <li><strong>This page.</strong> Why copies differ and why it matters to you.</li>
+    <li><a href={url('guide/apparatus/')}><strong>Reading the apparatus</strong></a>. One UBS entry taken apart piece by piece.</li>
+    <li><a href={url('guide/which-variants-matter/')}><strong>Which variants deserve your attention</strong></a>. Most variants do not change the meaning. Learn to sort them, and see when to add a footnote.</li>
+    <li><a href={url('learn/decisions/')}><strong>Making textual decisions</strong></a>. A series in five parts, from comparing Bibles to full textual criticism, all worked on one verse.</li>
+  </ol>
+  <p>Have a verse in front of you now? Use the <a href={url('guide/decision-tree/')}>decision tree</a> to see whether it needs a decision. Meet a word you do not know? Look in the <a href={url('glossary/')}>glossary</a>.</p>
+</Context>
+
+<style>
+  .path { list-style: none; padding: 0; counter-reset: p; }
+  .path li { counter-increment: p; position: relative; padding: 0 0 1rem 1.6rem; border-left: 2px solid var(--rule); margin-left: .9rem; }
+  .path li:last-child { border-left-color: transparent; }
+  .path li::before { content: counter(p); position: absolute; left: -.95rem; top: 0; width: 1.8rem; height: 1.8rem; border-radius: 50%;
+    display: grid; place-items: center; background: var(--rubric); color: var(--paper); font: 700 .9rem var(--sans); }
+</style>

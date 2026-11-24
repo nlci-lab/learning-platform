@@ -27,6 +27,12 @@ export const KICKER: Record<Section, string> = { guide: 'Guide', example: 'Worke
 
 export const GUIDES: GuideMeta[] = [
   {
+    path: 'guide/what-is-textual-criticism/', cover: 'What is textual criticism?', section: 'guide', level: 'Start here',
+    summary: 'Why copies of the Bible differ, what textual criticism does with them, and why a translator needs it.',
+    learn: ['Why no two manuscripts agree', 'What textual criticism compares, and what it asks', 'External and internal evidence in brief', 'Why your draft may differ from the Bible your readers know', 'What textual criticism does not decide'],
+    related: ['guide/which-variants-matter/', 'guide/apparatus/', 'background/nt-text/', 'guide/base-texts/'],
+  },
+  {
     path: 'guide/apparatus/', cover: 'Reading the apparatus', section: 'guide', level: 'Start here',
     summary: 'John 1:18 taken apart piece by piece: the rating, the readings, the witnesses and their marks.',
     learn: ['What each part of a UBS entry means', 'How to read sigla, correctors and fathers', 'What a translator does with an entry', 'What the {A}–{D} ratings do and do not tell you'],
@@ -39,6 +45,12 @@ export const GUIDES: GuideMeta[] = [
     learn: ['The kinds of variants', 'How to sort a variant quickly', 'What a rating does not tell you', 'When to add a footnote'],
     before: 'guide/apparatus/', related: ['guide/weighing-evidence/', 'guide/text-policy/', 'guide/examples/'],
     practice: ['guide/examples/romans-16-7/', 'guide/examples/john-7-53/'],
+  },
+  {
+    path: 'guide/decision-tree/', cover: 'Decision tree', section: 'guide', level: 'Start here',
+    summary: 'A few short questions that tell you whether a variant needs a decision, and what to do next.',
+    learn: ['When you can simply follow the UBS text', 'When a variant needs study', 'Where to study it', 'How the decision is made with your Review Committee'],
+    before: 'guide/what-is-textual-criticism/', related: ['guide/which-variants-matter/', 'guide/text-policy/', 'guide/apparatus/'],
   },
   {
     path: 'guide/doubtful-passages/', cover: 'Doubtful passages', section: 'guide', level: 'Going further',
