@@ -18,7 +18,9 @@ const slug = (t: string) => t.toLowerCase().normalize('NFKD').replace(/[^\w\s-]/
 // Page sources, read as text at build time to list their section headings.
 const SRC = import.meta.glob('./{guide,background}/**/*.astro', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 
-const BOOKNAMES = 'Matthew|Mark|Luke|John|Acts|Romans|Corinthians|Galatians|Ephesians|Philippians|Colossians|Thessalonians|Timothy|Titus|Philemon|Hebrews|James|Peter|Jude|Revelation';
+const BOOKNAMES = 'Matthew|Mark|Luke|John|Acts|Romans|Corinthians|Galatians|Ephesians|Philippians|Colossians|Thessalonians|Timothy|Titus|Philemon|Hebrews|James|Peter|Jude|Revelation'
+  + '|Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|Samuel|Kings|Chronicles|Ezra|Nehemiah|Esther|Job|Psalms|Psalm|Proverbs'
+  + '|Ecclesiastes|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi';
 const REF_RE = new RegExp(String.raw`\b(?:[1-3] )?(?:${BOOKNAMES}) \d+:\d+(?:[–-]\d+(?::\d+)?)?`, 'g');
 
 export const GET: APIRoute = async () => {

@@ -1,5 +1,6 @@
 ---
 import Context from '../../layouts/Context.astro';
+import { url } from '../../lib/url';
 const sources = [
   { cite: 'Emanuel Tov, Textual Criticism of the Hebrew Bible, 3rd ed. (Fortress, 2012).', checked: false },
   { cite: 'Ernst Würthwein, revised by Alexander Achilles Fischer, The Text of the Old Testament, 3rd ed. (Eerdmans, 2014).', checked: false },
@@ -48,4 +49,5 @@ const sources = [
 
   <h2>What this means for your work</h2>
   <p>Old Testament translators usually follow the MT and use the other witnesses where the MT is hard or seems damaged. When the apparatus says "G", ask whether the Greek translator had a different Hebrew text or was translating freely. BHQ's commentary and the UBS <em>Handbook</em> series help with that judgement.</p>
+  <p>For how to work through a problem step by step, see <a href={url('guide/ot-decisions/')}>Old Testament textual decisions</a> and the worked example <a href={url('guide/examples/1-samuel-17-4/')}>1 Samuel 17:4</a>.</p>
 </Context>

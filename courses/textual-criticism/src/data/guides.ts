@@ -90,6 +90,13 @@ export const GUIDES: GuideMeta[] = [
     question: 'Junia or Junias: a woman or a man?', skill: 'When the variant is an accent, not a word',
   },
   {
+    path: 'guide/examples/1-samuel-17-4/', cover: '1 Samuel 17:4', section: 'example', level: 'Going further',
+    summary: 'How tall was Goliath? The Masoretic Text says six cubits; the oldest Hebrew scroll and the Greek say four.',
+    learn: ['Working an Old Testament variant in six steps', 'Weighing a Dead Sea Scroll against the Masoretic Text', 'Explaining a copying slip in Hebrew', 'Following the MT with a fair footnote'],
+    before: 'guide/ot-decisions/', related: ['guide/ot-decisions/', 'background/ot-text/', 'guide/text-policy/'], verses: ['1 Samuel 17:4'],
+    question: 'How tall was Goliath: six cubits or four?', skill: 'An Old Testament case: the MT against the oldest Hebrew scroll',
+  },
+  {
     path: 'guide/base-texts/', cover: 'Two Greek texts', section: 'guide', level: 'Going further',
     summary: 'Why the Bible your church reads may differ from the UBS text, and which text Indian-language Bibles follow.',
     learn: ['The UBS text and the Textus Receptus', 'Where they differ', 'Which text each Indian-language Bible follows', 'The case for the TR and the Byzantine text'],
@@ -100,6 +107,13 @@ export const GUIDES: GuideMeta[] = [
     summary: 'Guidance on base texts: the critical text, the regional-language Bible, and the Review Committee.',
     learn: ['What translation teams are asked to do', 'The reasoning behind it', 'What it means for your team'],
     before: 'guide/base-texts/', related: ['guide/base-texts/', 'guide/which-variants-matter/'],
+  },
+  {
+    path: 'guide/ot-decisions/', cover: 'Old Testament decisions', section: 'guide', level: 'Going further',
+    summary: 'Meeting textual problems in the Hebrew Bible: the BHS apparatus, the help available, and when the Masoretic Text should stand.',
+    learn: ['How Old Testament problems differ from New Testament ones', 'Reading a BHS apparatus note', 'Using the UBS Hebrew Old Testament Text Project and its A–D ratings', 'The six steps for the Old Testament', 'When to keep the Masoretic Text'],
+    before: 'background/ot-text/', related: ['background/ot-text/', 'guide/text-policy/', 'guide/weighing-evidence/'],
+    practice: ['guide/examples/1-samuel-17-4/'],
   },
   {
     path: 'glossary/', cover: 'Glossary', section: 'guide', level: 'Start here',
