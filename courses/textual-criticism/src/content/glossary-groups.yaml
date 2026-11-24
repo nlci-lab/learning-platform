@@ -1,0 +1,22 @@
+# Glossary groups (moved from pages/glossary.astro). Ids are stable once published.
+# style: sign = apparatus signs, shown in the sigla style and in the jump row.
+- id: ratings-and-separators
+  title: Ratings and separators
+  intro: How an apparatus entry is laid out.
+  order: 1
+  style: sign
+- id: marks-after-a-witness
+  title: Marks after a witness
+  intro: Small marks written after a siglum. The witness is the same; the mark says which hand, how sure, or how often.
+  order: 2
+  style: sign
+- id: groups-and-codes
+  title: Groups of witnesses and codes
+  intro: Signs that stand for many manuscripts, and codes for what a manuscript contains.
+  order: 3
+  style: sign
+- id: words-and-ideas
+  title: Words and ideas
+  intro: Terms used across this site.
+  order: 4
+  style: word

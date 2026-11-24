@@ -1,8 +1,8 @@
 ---
 import Context from '../../layouts/Context.astro';
 import { url } from '../../lib/url';
-import Thumb from '../../components/Thumb.astro';
-import Lightbox from '../../components/Lightbox.astro';
+import Thumb from '@cohorts/platform/components/Thumb.astro';
+import Lightbox from '@cohorts/platform/components/Lightbox.astro';
 const g = (id: string) => url(`glossary/#${id}`);
 const sources = [
   { cite: 'Adapted from Thomas Hemphill, "Textual Criticism of the NT: background, theory and principles", slides and recorded talk: the UBS5 ratings of certainty, when a translator needs to make a textual decision, footnoting significant variation, and John 1:19. Used with permission.', checked: true },

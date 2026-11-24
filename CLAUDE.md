@@ -9,9 +9,10 @@ This monorepo holds a shared course platform and the course sites built on it. R
 | `platform/` | `@cohorts/platform`: shared layouts, components, styles, content schemas and (later) exporters. No course-specific code. |
 | `site/` | `@cohorts/site`: the master site at `/`, which lists the courses |
 | `courses/<name>/` | One Astro app per course: `course.config.ts` and content. Served at `/<name>/` |
+| `courses/logos/`, `courses/textual-criticism/` | The two courses so far. Each has its own `CLAUDE.md` with course rules |
 | `docs/adr/` | Decisions and why. Read them before changing structure |
 
-Run from the repo root: `npm install`, then `npm run dev:site` (port 4320) or `npm run dev:logos` (port 4322). `npm run build` builds every workspace. `npm run check` type-checks them. `npm test` checks the platform schemas against the fixtures.
+Run from the repo root: `npm install`, then `npm run dev:site` (port 4320), `npm run dev:logos` (port 4322) or `npm run dev:tc` (port 4323). `npm run build` builds every workspace. `npm run check` type-checks them. `npm test` checks the platform schemas against the fixtures.
 
 ## Git
 

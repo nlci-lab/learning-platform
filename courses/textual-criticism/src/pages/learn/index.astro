@@ -1,9 +1,11 @@
 ---
 // Learn: the site's online course (in preparation) and the micro modules.
 import Base from '../../layouts/Base.astro';
-import Cover from '../../components/Cover.astro';
-import { MODULES } from '../../data/modules';
+import Cover from '@cohorts/platform/components/Cover.astro';
+import { getModules } from '@cohorts/platform/data';
+import { PATHS } from '@cohorts/platform/paths';
 import { url } from '../../lib/url';
+const MODULES = (await getModules()).map(({ data: m }) => ({ href: PATHS.module(m.id), ref: m.topic, q: m.question, skill: m.skill, minutes: m.minutes, steps: m.steps.length }));
 ---
 <Base title="Learn" nav="learn/" description="Learn textual criticism step by step: an online course and short guided problems on single passages.">
   <div class="lx">

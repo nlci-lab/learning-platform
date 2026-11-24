@@ -1,0 +1,11 @@
+---
+// Micro modules from src/content/modules/*.yaml, on the platform's module page.
+// Steps may embed a collation card (CollationEmbed).
+import ModulePage from '@cohorts/platform/pages/ModulePage.astro';
+import { moduleStaticPaths } from '@cohorts/platform/data';
+import CollationEmbed from '../../components/CollationEmbed.astro';
+import '../../styles/course.css';
+import { course } from '../../course.config';
+export const getStaticPaths = moduleStaticPaths;
+---
+<ModulePage site={course} entry={Astro.props.entry} embeds={{ collation: CollationEmbed }} />

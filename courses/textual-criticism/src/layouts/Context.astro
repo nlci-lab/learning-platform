@@ -4,9 +4,9 @@
 // and a Related shelf. A "not yet checked" notice shows until the page is checked against its
 // listed sources (ADR 0004); the sources come at the end.
 import Base from './Base.astro';
-import Cover from '../components/Cover.astro';
-import Feedback from '../components/Feedback.astro';
-import Comments from '../components/Comments.astro';
+import Cover from '@cohorts/platform/components/Cover.astro';
+import Feedback from '@cohorts/platform/components/Feedback.astro';
+import { course } from '../course.config';
 import ExampleCard from '../components/ExampleCard.astro';
 import { byPath, PIGMENT, KICKER, EXAMPLES, type GuideMeta } from '../data/guides';
 import { url } from '../lib/url';
@@ -100,8 +100,7 @@ const related = (meta?.related ?? []).map((p) => byPath(p) ?? (p === 'witnesses/
               {lastChecked && <p class="small muted">Last revised {lastChecked}.</p>}
             </section>
           )}
-          <Feedback title={title} />
-          <Comments />
+          <Feedback site={course} title={title} />
         </article>
       </div>
       {practice.length > 0 && (
@@ -143,8 +142,7 @@ const related = (meta?.related ?? []).map((p) => byPath(p) ?? (p === 'witnesses/
           {lastChecked && <p class="small muted">Last revised {lastChecked}.</p>}
         </section>
       )}
-      <Feedback title={title} />
-          <Comments />
+      <Feedback site={course} title={title} />
     </article>
   )}
 </Base>

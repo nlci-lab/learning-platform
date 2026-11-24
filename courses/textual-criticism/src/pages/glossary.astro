@@ -2,20 +2,11 @@
 // Glossary as a guide: the signs and words of the UBS apparatus, grouped, with a find box.
 // Entry ids stay the same (glossary/#rating etc.), so links from other pages and the search keep working.
 import Context from '../layouts/Context.astro';
-import { GLOSSARY, type Term } from '../data/glossary';
-const GROUPS: { id: string; title: string; intro: string; ids: string[] }[] = [
-  { id: 'ratings-and-separators', title: 'Ratings and separators', intro: 'How an apparatus entry is laid out.', ids: ['rating', 'double-slash', 'diamond', 'double-brackets'] },
-  { id: 'marks-after-a-witness', title: 'Marks after a witness', intro: 'Small marks written after a siglum. The witness is the same; the mark says which hand, how sure, or how often.', ids: ['star', 'correctors', 'vid', 'supp', 'mg-txt', 'parens', 'fraction', 'pt', 'gr-lat'] },
-  { id: 'groups-and-codes', title: 'Groups of witnesses and codes', intro: 'Signs that stand for many manuscripts, and codes for what a manuscript contains.', ids: ['byz', 'byz-brackets', 'lect', 'eapcr', 'aland-category'] },
-  { id: 'words-and-ideas', title: 'Words and ideas', intro: 'Terms used across this site.', ids: ['variant', 'external-evidence', 'internal-evidence', 'tr', 'cbgm', 'vellum'] },
-];
-const byId = new Map(GLOSSARY.map((t) => [t.id, t]));
-const grouped = new Set(GROUPS.flatMap((g) => g.ids));
-const others = GLOSSARY.filter((t) => !grouped.has(t.id));   // entries added later still show
-const groups = others.length ? [...GROUPS, { id: 'more', title: 'More terms', intro: '', ids: others.map((t) => t.id) }] : GROUPS;
-// Everything outside 'Words and ideas' is an apparatus sign: shown in the sigla style and in the jump row.
-const words = new Set(GROUPS.find((g) => g.id === 'words-and-ideas')!.ids);
-const isSign = (t: Term) => !words.has(t.id);
+import { getGlossary } from '@cohorts/platform/data';
+// Entries and groups are content data (src/content/glossary.yaml, glossary-groups.yaml).
+// Groups with style "sign" hold apparatus signs: shown in the sigla style and in the jump row.
+const groups = await getGlossary();
+const signs = groups.filter((g) => g.style === 'sign').flatMap((g) => g.entries);
 ---
 <Context title="Glossary" label="Guide" notice={false}
   description="The signs and short words of the UBS apparatus, and the terms used on this site, in plain English.">
@@ -27,7 +18,7 @@ const isSign = (t: Term) => !words.has(t.id);
     <p class="g-count small muted" aria-live="polite"></p>
   </div>
   <p class="g-jump small" aria-label="Signs on this page">
-    {GLOSSARY.filter(isSign).map((t) => <a href={`#${t.id}`} class="g-chip">{t.term}</a>)}
+    {signs.map((t) => <a href={`#${t.id}`} class="g-chip">{t.term}</a>)}
   </p>
 
   {groups.map((g) => (
@@ -35,12 +26,12 @@ const isSign = (t: Term) => !words.has(t.id);
       <h2 id={g.id}>{g.title}</h2>
       {g.intro && <p class="muted">{g.intro}</p>}
       <dl class="gloss">
-        {g.ids.map((id) => byId.get(id)).filter(Boolean).map((t) => (
-          <div id={t!.id} class="g-item" data-text={`${t!.term} ${t!.plain}`.toLowerCase()}>
-            <dt><span class:list={['g-term', { sign: isSign(t!) }]}>{t!.term}</span></dt>
+        {g.entries.map((t) => (
+          <div id={t.id} class="g-item" data-text={`${t.term} ${t.plain}`.toLowerCase()}>
+            <dt><span class:list={['g-term', { sign: g.style === 'sign' }]}>{t.term}</span></dt>
             <dd>
-              <p>{t!.plain}</p>
-              <p class="g-src small muted">Source: {t!.source}.{!t!.checked && <span class="tag">not yet checked</span>}</p>
+              <p>{t.plain}</p>
+              <p class="g-src small muted">Source: {t.source}.{!t.checked && <span class="tag">not yet checked</span>}</p>
             </dd>
           </div>
         ))}

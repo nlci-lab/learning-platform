@@ -2,6 +2,7 @@
 // Unverified claims live in `unverified`, never in the core fields (ADR 0004).
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { courseCollections } from '@cohorts/platform/content';
 
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 
@@ -103,5 +104,6 @@ const witnesses = defineCollection({
   }),
 });
 
-export const collections = { witnesses };
+// Platform collections (micro modules, glossary, …) plus this course's witness profiles.
+export const collections = { ...courseCollections(), witnesses };
 export { BOOKS };

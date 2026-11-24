@@ -4,8 +4,8 @@
 // Every fact on the page is the same as in the text version; the chart only plots dates stated below.
 import Context from '../../layouts/Context.astro';
 import { url } from '../../lib/url';
-import Thumb from '../../components/Thumb.astro';
-import Lightbox from '../../components/Lightbox.astro';
+import Thumb from '@cohorts/platform/components/Thumb.astro';
+import Lightbox from '@cohorts/platform/components/Lightbox.astro';
 const w = (id: string) => url(`w/${id}/`);
 import { allWitnesses } from '../../lib/witnesses';
 // Other manuscripts on the site made of each material (from their profiles), for the "More" links.
