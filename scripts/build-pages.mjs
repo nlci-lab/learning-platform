@@ -2,11 +2,12 @@
 // course in courses/<id>/ at <base><id>/. Then checks that every internal link and image resolves.
 //   node scripts/build-pages.mjs                       base /learning-platform/ (GitHub Pages)
 //   PAGES_BASE=/ node scripts/build-pages.mjs          base / (local test)
-// SITE_URL sets the origin used for canonical and external-link checks (default https://nlci-lab.github.io).
+// SITE_URL sets the site origin (default https://nlci-lab.github.io).
 import { execSync } from 'node:child_process';
-import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { checkLinks } from './check-links.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const base = (process.env.PAGES_BASE ?? '/learning-platform/').replace(/\/?$/, '/');
@@ -27,25 +28,8 @@ mkdirSync(out, { recursive: true });
 cpSync(build('site', base), out, { recursive: true });
 for (const id of courses) cpSync(build(`courses/${id}`, `${base}${id}/`), join(out, id), { recursive: true });
 
-// Link check: every href/src that starts with the base must point to a file in _site.
-const htmlFiles = (dir) => readdirSync(dir).flatMap((f) => {
-  const p = join(dir, f);
-  return statSync(p).isDirectory() ? htmlFiles(p) : p.endsWith('.html') ? [p] : [];
-});
-const problems = [];
-let checked = 0;
-for (const file of htmlFiles(out)) {
-  const html = readFileSync(file, 'utf8');
-  for (const [, attr, value] of html.matchAll(/\s(href|src|action)="([^"]*)"/g)) {
-    if (!value.startsWith('/')) continue;                       // relative, external, #anchor, mailto
-    const rel = file.slice(out.length);
-    if (!value.startsWith(base)) { problems.push(`${rel}: ${attr}="${value}" is missing the base ${base}`); continue; }
-    let path = decodeURI(value.slice(base.length).split(/[?#]/)[0]);
-    if (path === '' || path.endsWith('/')) path += 'index.html';
-    checked++;
-    if (!existsSync(join(out, path))) problems.push(`${rel}: ${attr}="${value}" points to a missing file`);
-  }
-}
+// Every internal href/src/action must carry the base and resolve to a file in _site (scripts/check-links.mjs).
+const { checked, problems } = checkLinks(out, base);
 console.log(`\nLink check: ${checked} internal links and images, ${problems.length} problems.`);
 if (problems.length) { console.error(problems.join('\n')); process.exit(1); }
 console.log(`Site ready in _site/ (master site + ${courses.join(', ')}).`);
