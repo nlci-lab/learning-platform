@@ -1,5 +1,6 @@
 ---
-// Learn: the online course (in preparation), the series Making textual decisions, and the micro modules.
+// Learn: the series Making textual decisions, the micro modules, and the online course (in preparation),
+// with links to each section at the top so the modules are one click from the Learn menu item.
 import Base from '../../layouts/Base.astro';
 import Cover from '@cohorts/platform/components/Cover.astro';
 import GuideCard from '@cohorts/platform/components/GuideCard.astro';
@@ -16,19 +17,13 @@ const DECISIONS = await getSeries('decisions');
       <p class="label">Learn</p>
       <h1>Learn textual criticism step by step</h1>
       <p class="muted">The guides explain the method and the worked examples show it in use. Here you practise it yourself.</p>
+      <nav class="jump" aria-label="On this page">
+        <span class="small muted">On this page:</span>
+        {DECISIONS && <a href="#series">{DECISIONS.title}</a>}
+        <a href="#modules">Micro modules</a>
+        <a href="#course">Online course</a>
+      </nav>
     </header>
-
-    <section class="sec" id="course">
-      <header><h2>Online course</h2></header>
-      <div class="course">
-        <Cover title="Introduction to Textual Criticism" kicker="Online course" pigment="gall" ornament="𝔓" />
-        <div>
-          <p class="label">In preparation</p>
-          <p class="lead">A free, self-paced course for Bible translators and consultants who meet the UBS apparatus in their work: from why the manuscripts differ, to reading an entry, weighing the evidence and writing a footnote.</p>
-          <p class="muted">The lessons will be added here. Until then, start with the <a href={url('guide/apparatus/')}>apparatus guide</a> and the <a href={url('guide/examples/')}>worked examples</a>.</p>
-        </div>
-      </div>
-    </section>
 
     {DECISIONS && (
       <section class="sec" id="series">
@@ -53,6 +48,18 @@ const DECISIONS = await getSeries('decisions');
       </ul>
     </section>
 
+    <section class="sec" id="course">
+      <header><h2>Online course</h2></header>
+      <div class="course">
+        <Cover title="Introduction to Textual Criticism" kicker="Online course" pigment="gall" ornament="𝔓" />
+        <div>
+          <p class="label">In preparation</p>
+          <p class="lead">A free, self-paced course for Bible translators and consultants who meet the UBS apparatus in their work: from why the manuscripts differ, to reading an entry, weighing the evidence and writing a footnote.</p>
+          <p class="muted">The lessons will be added here. Until then, start with the <a href={url('guide/apparatus/')}>apparatus guide</a> and the <a href={url('guide/examples/')}>worked examples</a>.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="sec">
       <header><h2>Also useful</h2></header>
       <ul class="also">
@@ -67,6 +74,7 @@ const DECISIONS = await getSeries('decisions');
 <style>
   .lx { margin: 1.75rem 0 3rem; }
   .lx-head p { max-width: var(--measure); }
+  .jump { display: flex; flex-wrap: wrap; gap: .25rem 1rem; align-items: baseline; margin-top: .75rem; font: .95rem var(--sans); }
   .course { display: grid; gap: 1.5rem; align-items: start; }
   .course :global(.cover) { width: 11rem; }
   @media (min-width: 700px) { .course { grid-template-columns: 12rem minmax(0, 1fr); max-width: 52rem; } .course :global(.cover) { width: 100%; } }
