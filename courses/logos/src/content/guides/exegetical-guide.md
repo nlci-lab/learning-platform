@@ -35,6 +35,10 @@ The [Passage Guide](~/guides/passage-guide/) gives a broad overview of a passage
 
 For help on any section, point at its heading and click the **?** at the far right. This opens the matching help page.
 
+![An Exegetical Guide for Hebrews, with Textual Variants (textual commentaries and an apparatus) and Word by Word, which shows each Greek word with its grammar, sense and lexicon glosses](../../assets/screenshots/exegetical-guide.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence. Bible text: NIV.*
+
 ## The main sections
 
 - **Textual Variants:** links to textual commentaries, apparatuses and original-language texts for the passage.

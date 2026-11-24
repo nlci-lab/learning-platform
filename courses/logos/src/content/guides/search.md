@@ -112,7 +112,15 @@ Logos switches to Precise by itself when you use quotation marks or search words
 4. To search part of the Bible, click **All Passages** and type a range, for example `Matthew-John`.
 5. Type your words and press Enter.
 
-Results can be shown in several ways, for example as a list of passages, or as a **Grid** that lines up the results from several Bibles.
+![A Precise Bible search for the Hebrew lemma toledot in the NIV: 42 results in 39 verses, with the matching English words highlighted](../../assets/screenshots/precise-search.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence. Bible text: NIV.*
+
+Above the results, choose a view: **Passages**, **Aligned**, **Grid**, **Analysis** or **Fuzzy** (seen in the app).
+
+![The same search in Grid view: one row per verse, with the matching words highlighted](../../assets/screenshots/precise-search-grid.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence. Bible text: NIV.*
 
 ## Search your other books
 
@@ -137,8 +145,16 @@ Use brackets to group words, for example `(grace OR mercy) AND peace`.
 
 **Power Lookup** is not a search, but it saves many searches. Faithlife lists it under **Tools** › **Lookup**.
 
-- **Compare lexicons:** right-click a word in your Bible, choose the lemma on the left, then **Power Lookup** on the right. You see a part of the entry from each lexicon in your library, one after the other. Click a short title to open that lexicon.
+- **Compare lexicons:** right-click a word in your Bible, choose the lemma on the left, then **Power Lookup** on the right. You see a part of the entry from each lexicon in your library, one after the other. Click a short title to open that lexicon. In the Context Menu, **Power Lookup** is under **Look up** (seen in the app).
 - **Compare dictionaries:** right-click an English word, choose **Selection**, then **Power Lookup**. You see your dictionary entries for the word.
 - **Read the links in a book:** open **Tools** › **Lookup** › **Power Lookup** while a book is open. As you scroll, it shows the text of the Bible references and footnotes the book links to.
+
+![The Context Menu on the word generations: the lemma toledot is chosen on the left, and Power Lookup is under Look up on the right](../../assets/screenshots/power-lookup-menu.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
+
+![Power Lookup for toledot, showing the entries from two lexicons, BDB and Abridged BDB, one after the other](../../assets/screenshots/power-lookup-lemma.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
 
 You can copy, print or export what Power Lookup shows.

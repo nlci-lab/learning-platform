@@ -75,6 +75,10 @@ To compare a longer passage, type a range in the reference box and press Enter.
 
 **Change the order** by dragging a version up or down in the list (checked in the app).
 
+![Text Comparison of Genesis 3:12–17 with the LEB as base text and the NIV, NLT and KJV beside it; words that differ are in blue, and each verse ends with a difference percentage](../../assets/screenshots/text-comparison-genesis-3.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence. Bible text: LEB, NIV, NLT, KJV.*
+
 ## The base text
 
 Logos compares every version with one **base text**.
@@ -89,7 +93,15 @@ The two buttons are **Show differences** and **Show base text**:
 - **Show differences:** words that differ from the base text turn blue. Point at a small red circle to see the base wording. Each verse ends with how much it differs, as a percentage.
 - **Show base text:** shows the base wording inside each version. Base words that a version leaves out appear in grey, struck through. Turn on **Show differences** first.
 
+![Genesis 6:14–15 in four versions with Show differences and Show base text on: base words that a version leaves out are struck through](../../assets/screenshots/text-comparison-show-differences.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence. Bible text: LEB, NIV, NLT, KJV.*
+
 Small differences in capital letters, accents or punctuation can hide the real ones. In the **More Actions** menu (three dots), choose **Ignore case**, **Ignore marks** or **Ignore punctuation**. Faithlife's example: Romans 1:24 in Nestle-Aland 27 and the 1894 Textus Receptus looks completely different at first. With **Ignore marks** on, the difference drops to 14%.
+
+![Text Comparison's More Actions menu with Link set, Automatic, Horizontal and Vertical layout, Show differences, Show base text, Ignore case, Ignore marks, Ignore punctuation and Print/Export](../../assets/screenshots/text-comparison-more-actions.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
 
 ## Verses or Interlinear
 
@@ -112,6 +124,10 @@ Text Comparison works offline for the text of your Bibles. Only the Interlinear 
 
 Press **F7** for a quick comparison of the verse you are in, or the text you selected. A small window shows the verse in a set of Bibles and marks the differences. It is not the same as the Text Comparison tool (both checked in the app). Faithlife's help pages say nothing more about it.
 
+![The F7 quick comparison of Genesis 6:14 in the NIV, NLT, KJV and CSB, with differences marked](../../assets/screenshots/quick-comparison.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence. Bible text: NIV, NLT, KJV, CSB.*
+
 ## Related tools
 
 - **Multiple Books View** (also called Multiple Resources View): opens whole books side by side in one panel (**View** tab › **Add parallel text**). Faithlife's help page does not say that it marks differences.
@@ -119,6 +135,10 @@ Press **F7** for a quick comparison of the verse you are in, or the text you sel
   - **Compare Pericopes:** how each version divides the passage into sections (pericopes).
   - **Cluster Graph:** which versions are close to each other.
   - **Version River:** verse by verse, how far each version is from a base version.
+
+![Passage Analysis, Version River for Genesis 2:4–25: one coloured band each for the NLT, KJV and CSB, showing how far each differs from the NIV verse by verse](../../assets/screenshots/passage-analysis-version-river.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
 
 ## For translators and consultants
 

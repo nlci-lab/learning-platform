@@ -58,6 +58,10 @@ The main sections include:
 - **Senses:** the meanings of the word, from the Bible Sense Lexicon.
 - **Example Uses**, **Phrases** and **Lemma in Passage**.
 
+![A Bible Word Study on the Hebrew word toledot: the lemma with BDB glosses, a translation ring showing generations, genealogies, descendants and family records, and related words from the same root](../../assets/screenshots/word-study.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence. Bible text: LEB.*
+
 ## Studying an English word
 
 The sections include **Hebrew Words** and **Greek Words**, shown as a ring chart: the original words that this English word translates. **Textual Searches** uses your five highest-priority Bibles.

@@ -54,7 +54,15 @@ There are three ways, and you can combine them.
 2. **Field search:** type a field name, a colon and a word, so that Logos looks only in that field. For example `title:John`, `author:Augustine` or `subject:leadership`. Any filter heading in the sidebar can be used as a field.
 3. **Filters:** click the **Sidebar** icon (three lines) to open the filters. Choose a **Type** (for example Bible, Bible Commentary or Lexicon), a subject, a **Collection**, a reading status or a date added.
 
+![The Library with the Filter sidebar open, listing types such as Bible Commentary, Journal, Bible and Lexicon with the number of books of each](../../assets/screenshots/library-sidebar.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
+
 Some types are not what you might expect. The UBS Handbooks and SIL Exegetical Summaries are filed as **Bible Commentary**, and Bible dictionaries as **Encyclopedia**. See [Kinds of resources](~/guides/resources/).
+
+![The Library after the field search title:handbook: 81 results, and the Type filter shows Bible Commentary, Handbook, Grammar and others](../../assets/screenshots/library-search.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
 
 ## Prioritise books
 

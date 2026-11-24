@@ -32,6 +32,10 @@ last_checked: 2026-11-24
 
 Click the **More Actions** menu (three dots) on the main toolbar, then **Program Settings**.
 
+![The main toolbar's More Actions menu: Logos Help, Program Scaling, Application Theme (System, Light, Dark) and Program Settings](../../assets/screenshots/main-menu.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
+
 These settings apply to Logos as a whole, not to one book or tool. Most are Yes/No switches. A change takes effect at once and there is no Save button. A few changes, such as the program language, need a restart.
 
 For help on any setting, point just to the right of it and then at the **?** icon that appears.
@@ -71,7 +75,7 @@ To change the text size of **one** book only, open it and use **Zoom** on its **
 
 *Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
 
-- **Application Theme:** the colours of Logos. **System** follows your computer's light or dark setting.
+- **Application Theme:** **System**, **Light** or **Dark** (seen in the app). **System** follows your computer's setting. The More Actions menu has the same choice.
 - **Application Toolbar Location:** the main toolbar on the **left** or at the **top** of the window. This setting needs a Logos Premium subscription or higher.
 - **At Startup Open to:** what you see when Logos starts: the Dashboard, a blank layout, or one of your layouts (see [Layouts](~/guides/layouts/)).
 - **Citation Style:** the style Logos uses for citations, for example Turabian or APA.

@@ -46,6 +46,10 @@ Click **Layouts** on the main toolbar. The menu has three parts:
 - **On the left:** the **QuickStart Layouts** and your **Saved Layouts**.
 - **On the right:** your snapshots, newest first. The top one, marked **Now**, is your screen as it is now (checked in the app).
 
+![The Layouts menu: six Tile Arrangement buttons at the top, QuickStart Layouts and Saved Layouts on the left, and snapshots on the right with Save as named layout and Update Active](../../assets/screenshots/layouts-menu.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
+
 ## Start with a QuickStart Layout
 
 QuickStart Layouts are ready-made layouts for common tasks. Trying a few is a quick way to see what Logos can put on one screen. A good first one is **Bible and Commentary**. It opens your top Bible and the commentary that best matches it, set to move together. Others include **Passage Study**, **Greek Word Study**, **Hebrew Word Study** and **Topic Study**.
