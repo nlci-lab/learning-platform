@@ -1,0 +1,70 @@
+---
+import Context from '../../layouts/Context.astro';
+import { url } from '../../lib/url';
+const w = (id: string) => url(`w/${id}/`);
+const g = (id: string) => url(`glossary/#${id}`);
+---
+<Context title="How to read a UBS apparatus entry" label="Guide" notice={false}
+  description="A worked example from John 1:18, explained piece by piece.">
+    <p class="lead">An apparatus entry lists the different readings at one place in the text, and the witnesses for each. Here is the entry for John 1:18 as Paratext shows it, taken apart.</p>
+
+    <h2>The verse</h2>
+    <p>John 1:18 says that no one has ever seen God, but someone close to the Father has made him known. The manuscripts disagree on who that someone is called.</p>
+
+    <h2>The entry</h2>
+    <p class="small muted">Shortened here: the third reading has many more witnesses than shown. The marks ①–⑥ point to the notes below.</p>
+    <div class="entry" role="figure" aria-label="UBS5 apparatus entry for John 1:18, shortened">
+      <p><b>1.18</b> <span class="mk">①</span><span class="sig">{'{B}'}</span> <span lang="grc">μονογενὴς θεός</span> <span class="mk">②</span><span class="sig">𝔓⁶⁶ <span lang="he">א</span>* B C* L</span> syr<sup>p, hmg</sup> geo² <span class="mk">③</span>Origen<sup>gr 2/4</sup> Didymus Cyril<sup>1/4</sup></p>
+      <p><span class="mk">④</span><b>//</b> <span lang="grc">ὁ μονογενὴς θεός</span> <span class="sig">𝔓⁷⁵ <span lang="he">א</span>‎²</span> 33 cop<sup>bo</sup> Clement<sup>2/3</sup> … Cyril<sup>2/4</sup></p>
+      <p><b>//</b> <span lang="grc">ὁ μονογενὴς υἱός</span> <span class="sig">A C³ W<sup>supp</sup> Δ Θ Ψ</span> … <span class="mk">⑤</span><span class="sig">Byz [E F G H] Lect</span> it<sup>a, aur, b…</sup> vg syr<sup>c, h, pal</sup> … <span class="mk">⑥</span>REB BJ</p>
+      <p><b>//</b> <span lang="grc">μονογενὴς υἱὸς θεοῦ</span> it<sup>q</sup> Irenaeus<sup>lat 1/3</sup>; Ambrose<sup>1/11 vid</sup></p>
+      <p><b>//</b> <span lang="grc">ὁ μονογενής</span> vg<sup>ms</sup> Ps-Vigilius<sup>1/2</sup></p>
+    </div>
+    <p class="small muted">Source: UBS Greek New Testament, 5th ed., apparatus at John 1:18, as shown in Paratext 9 (seen 19 Nov 2026). Quoted in part for teaching.</p>
+
+    <h2>Piece by piece</h2>
+    <ol class="notes">
+      <li>The rating, <a href={g('rating')}>{'{B}'}</a>, comes first. It is the committee's letter for how sure it was of the reading printed in the text. It is an opinion, not a measure of the evidence: see <a href="#ratings">what the ratings do and do not tell you</a>.</li>
+      <li>The first reading is the one printed in the text. Its witnesses follow, always in the same order: Greek manuscripts (papyri, then majuscules, then minuscules), then ancient versions, then church fathers. Here: <a href={w('p66')}>𝔓⁶⁶</a>, the first hand of <a href={w('sinaiticus')}><span lang="he">א</span>*</a>, <a href={w('vaticanus')}>B</a>, the first hand of C, and L. Then the Peshitta Syriac and the margin of the Harclean Syriac, and the second Georgian revision.</li>
+      <li>Church fathers carry small marks. Origen<sup>gr 2/4</sup> means that Origen, in his works that survive in Greek (<a href={g('gr-lat')}>gr</a>), quotes the verse four times; two of those quotations support this reading (<a href={g('fraction')}>2/4</a>).</li>
+      <li>A double slash, <a href={g('double-slash')}>//</a>, starts the next reading. The second reading adds the article ὁ. Its witnesses include <span lang="he">א</span>‎², a later <a href={g('correctors')}>corrector</a> of Sinaiticus. So Sinaiticus appears twice in one entry: what the first scribe wrote, and what a corrector changed it to.</li>
+      <li>Some sigla stand for groups. <a href={w('byz')}>Byz</a> is the majority of Byzantine manuscripts; the letters in square brackets name some of them (<a href={g('byz-brackets')}>[ ]</a>). <a href={g('lect')}>Lect</a> is the majority of the lectionaries. W<sup>supp</sup> is a part of Codex W <a href={g('supp')}>supplied by a later hand</a>.</li>
+      <li>UBS5 also names some modern translations that follow a reading. Here REB (Revised English Bible) and BJ (Bible de Jérusalem) follow "the only Son".</li>
+    </ol>
+
+    <h2>What a translator does with this</h2>
+    <p>Do not count witnesses. The third reading has the most manuscripts by far, but most of them are Byzantine copies made centuries later. Look at how early the witnesses are and how widely spread: the first reading has early Greek witnesses (𝔓⁶⁶ was copied around 200), while the third reading is spread across Greek, Latin and Syriac and early fathers.</p>
+    <p>Read the readings as a story of change, and ask which reading best explains how the others arose. Scholars answer that question differently here:</p>
+    <ul>
+      <li><strong>For "God" (the UBS text).</strong> Metzger gives the committee's three reasons.<sup class="cite"><a href="#src-metzger">1</a></sup> First, the papyri 𝔓⁶⁶ and 𝔓⁷⁵, both reading θεός and known to scholars from the mid-1950s,<sup class="cite"><a href="#src-omanson">2</a></sup> made its external support much stronger. Second, "Son" is the easier reading, and probably came from scribes making the verse match John 3:16, 18 and 1 John 4:9. Third, θεός without the article, as in 1:1, looks older: no scribe had a reason to remove the article, but anyone changing the word to υἱός would add it.</li>
+      <li><strong>For "Son".</strong> It is found in every region and language, and in 2nd- and 3rd-century fathers, while "God" is found almost only in Egyptian ("Alexandrian") witnesses. "Son" fits how John writes elsewhere. And a scribe defending Christ's full deity had a reason to change "Son" to "God". Bart Ehrman argues this view (<i>The Orthodox Corruption of Scripture</i>, ch. 2, on John 1:18).</li>
+      <li><strong>The shortest reading, ὁ μονογενής.</strong> The committee found it attractive on internal grounds but too weakly attested to print.<sup class="cite"><a href="#src-metzger">1</a></sup></li>
+    </ul>
+    <p>The decision was by a majority, not unanimous. One committee member (initials A.W.) added a dissenting note: he doubted John wrote μονογενὴς θεός, suggested it may be an early copying slip in the Alexandrian tradition (ΥΣ read as ΘΣ, see <a href={url('background/materials/')}>nomina sacra</a>), and said at least a {'{D}'} rating would be better.<sup class="cite"><a href="#src-metzger">1</a></sup></p>
+    <p>So the <a href="#ratings">{'{B}'}</a> rating hides a real disagreement inside the committee as well as outside it.</p>
+    <p>Then check how your reference translations handle it. RSV and NJB follow "only Son".<sup class="cite"><a href="#src-omanson">2</a></sup> REB and BJ do too, as the apparatus itself shows. Translations that follow the UBS text render it in different ways: "It is God the only Son" (NRSV), "but God the One and Only" (NIV 1984).<sup class="cite"><a href="#src-omanson">2</a></sup> If you follow the UBS text, Beasley-Murray suggests reading θεός as standing beside μονογενής and meaning "God by nature", as in 1:1.<sup class="cite"><a href="#src-omanson">2</a></sup></p>
+    <p class="small muted">Metzger also notes that some commentators read μονογενής as a noun, giving three separate titles: "the only one, God, who is at the Father's side".<sup class="cite"><a href="#src-metzger">1</a></sup></p>
+    <ol class="small srcs"><li id="src-metzger">Bruce M. Metzger, <i>A Textual Commentary on the Greek New Testament</i>, 2nd ed. (United Bible Societies, 1994), pp. 169–70, on John 1:18. Written for UBS4, which gave the same {'{B}'} rating as UBS5.</li><li id="src-omanson">Roger L. Omanson, <i>A Textual Guide to the Greek New Testament</i> (Deutsche Bibelgesellschaft, 2006), p. 165, on John 1:18. Also confirms that 𝔓⁶⁶ and 𝔓⁷⁵ became known in the mid-1950s.</li></ol>
+
+    <section class="unchecked-box" aria-labelledby="ratings">
+      <h2 id="ratings">What the ratings do and do not tell you</h2>
+      <p>The rating is the committee's judgement about its own choice. {'{A}'} means the committee judged the text certain and {'{B}'} almost certain; {'{C}'} means it had difficulty deciding, and {'{D}'} great difficulty.<sup class="cite"><a href="#src-clarke">3</a></sup> The letters do not count manuscripts, and two {'{B}'} ratings in different books were not made on a common scale. <span class="tag">not yet checked</span></p>
+      <p>Scholars have criticised the system. For the 4th edition the committee raised many ratings, for example from {'{C}'} to {'{B}'}, without changing the printed text. {'{A}'} ratings went from about 9% of the rated places in the earlier editions to 36% in the 4th.<sup class="cite"><a href="#src-clarke">3</a></sup> Kent D. Clarke (<i>Textual Optimism</i>, 1997, and a 2002 article) argued that this gives readers a false sense of certainty.<sup class="cite"><a href="#src-clarke">3</a></sup> Treat the letter as one opinion, and read the reasons in Metzger's <i>Textual Commentary</i> or Omanson's <i>A Textual Guide to the Greek New Testament</i>, as this page does for John 1:18.</p>
+      <ol class="small srcs" start="3"><li id="src-clarke">Kent D. Clarke, "Textual Certainty in the United Bible Societies' <i>Greek New Testament</i>", <i>Novum Testamentum</i> 44 (2002), pp. 105–33: what the letters mean, p. 111; the rise in {'{A}'} ratings, pp. 111, 115; the committee's decision to raise ratings without changing the text, p. 117; his conclusion, p. 133.</li></ol>
+    </section>
+</Context>
+<style>
+  .lead { font-size: var(--step-1); line-height: 1.45; }
+  .entry { background: var(--paper-2); border-radius: 6px; padding: 0.75rem 1rem; overflow-x: auto; font-family: var(--sigla); line-height: 1.9; }
+  .entry p { margin: 0 0 0.35rem; }
+  .entry sup { font-size: 0.7em; }
+  .sig { color: var(--rubric); }
+  .mk { font-family: var(--sans); font-size: 0.8em; color: var(--ink-2); margin-right: 0.15em; }
+  .notes { padding-left: 1.4rem; }
+  .notes li { margin-bottom: 0.8rem; }
+  .srcs { padding-left: 1.4rem; color: var(--ink-2); }
+  .srcs li:target { background: var(--paper-2); }
+  [lang="grc"] { font-family: var(--serif); }
+  .unchecked-box { border: 1px dashed var(--rule); border-radius: 6px; padding: 0 1rem 0.25rem; margin-top: 2.5rem; }
+  .unchecked-box h2 { margin-top: 1rem; }
+</style>

@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import '../styles/components.css';
+import { url } from '../lib/url';
+import gentiumRegular from '../fonts/GentiumBookPlus-Regular.woff2?url';
+interface Props { title: string; description?: string; nav?: string }
+const { title, description = 'An introduction to textual criticism of the Bible for translators and consultants: the manuscripts, the printed editions and their apparatus, and how to weigh the evidence.', nav } = Astro.props;
+const links = [
+  ['witnesses/', 'Witnesses'],
+  ['guide/', 'Guides'],
+  ['guide/examples/', 'Examples'],
+  ['learn/', 'Learn'],
+  ['background/', 'Background'],
+];
+---
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <!-- Light by default; the Dark button switches (and is remembered). The system setting no longer decides. -->
+  <meta name="color-scheme" content="light" />
+  <!-- Under construction: keep search engines out. Remove at launch. (A robots.txt would not work:
+       on GitHub Pages it must sit at the domain root, and blocking crawling would hide this tag.) -->
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- display=optional: no font swap flash; slow connections keep the system serif. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew&text=%D7%90&display=optional" />
+  <link rel="preload" href={gentiumRegular} as="font" type="font/woff2" crossorigin />
+  <script is:inline>
+    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="construction" role="note">
+    <div class="wrap"><strong>Under construction.</strong> The content and structure of this site will change quickly. Do not rely on it as a source for serious decisions.</div>
+  </div>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href={url()}><i aria-hidden="true">𝔓</i>Textual Criticism</a>
+      <nav aria-label="Main">
+        {links.map(([p, l]) => <a href={url(p)} aria-current={nav === p ? 'page' : undefined}>{l}</a>)}
+      </nav>
+      <button class="theme-toggle" type="button" id="theme-toggle" hidden>Dark</button>
+    </div>
+  </header>
+  <main class="wrap"><slot /></main>
+  <footer class="site-foot">
+    <div class="wrap">
+      <p>An introductory resource on textual criticism for Bible translators and consultants, from NLCI. Text CC BY-SA 4.0; code MIT. Images stay under their holders' terms and are linked, not copied.</p>
+    </div>
+  </footer>
+  <script is:inline>
+    (function () {
+      var b = document.getElementById('theme-toggle'); if (!b) return; b.hidden = false;
+      var root = document.documentElement;
+      function cur() { return root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+      function label() { b.textContent = cur() === 'dark' ? 'Light' : 'Dark'; b.setAttribute('aria-label', 'Switch to ' + b.textContent.toLowerCase() + ' theme'); }
+      label();
+      b.addEventListener('click', function () { var t = cur() === 'dark' ? 'light' : 'dark'; root.dataset.theme = t; try { localStorage.setItem('theme', t); } catch (e) {} label(); });
+    })();
+  </script>
+  <script is:inline>
+    // Mirrors src/integrations/external-links.mjs (which rewrites built HTML) so `astro dev` matches.
+    (function () {
+      document.querySelectorAll('a[href]').forEach(function (a) {
+        if (a.dataset.extDone || !/^https?:$/i.test(a.protocol) || a.origin === location.origin) return;
+        a.dataset.extDone = '1';
+        if (!a.getAttribute('target')) a.target = '_blank';
+        var rel = (a.getAttribute('rel') || '').split(/\s+/).filter(Boolean);
+        if (rel.indexOf('noopener') < 0) { rel.push('noopener'); a.setAttribute('rel', rel.join(' ')); }
+        var lab = a.getAttribute('aria-label');
+        if (lab !== null) { if (!/new tab/i.test(lab)) a.setAttribute('aria-label', lab + ' (opens in a new tab)'); }
+        else if (!/new tab/i.test(a.textContent)) {
+          var s = document.createElement('span'); s.className = 'visually-hidden'; s.textContent = ' (opens in a new tab)'; a.appendChild(s);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cover from '../../components/Cover.astro';
+import { GUIDES, PIGMENT, KICKER } from '../../data/guides';
+import { url } from '../../lib/url';
+// Order follows src/data/guides.ts.
+const pages = GUIDES.filter((g) => g.section === 'guide');
+---
+<Base title="Guides" nav="guide/">
+  <div class="ix-head">
+    <h1>Guides</h1>
+    <p class="muted">Practical help for translators and consultants. To see the method used on real verses, go to the <a href={url('guide/examples/')}>worked examples</a>. These cover the UBS Greek New Testament; guides for the Hebrew Bible (BHS and BHQ) are being added.</p>
+  </div>
+  <ul class="ix">
+    {pages.map((g) => (
+      <li>
+        <Cover title={g.cover} kicker={KICKER[g.section]} pigment={PIGMENT[g.section]} href={url(g.path)} />
+        <div><p class="label">{g.level}</p><p class="ix-sum">{g.summary}</p></div>
+      </li>
+    ))}
+  </ul>
+</Base>
+<style>
+  .ix-head { padding: 1.75rem 0 1rem; }
+  .ix-head p { max-width: var(--measure); }
+  .ix { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; gap: 1.5rem 1.25rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ix li { display: grid; gap: 0.6rem; align-content: start; }
+  .ix .label { margin: 0; }
+  .ix-sum { margin: 0.2rem 0 0; font-size: 0.95rem; line-height: 1.45; }
+  @media (min-width: 700px) { .ix { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 1000px) { .ix { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2rem 1.5rem; } }
+</style>
