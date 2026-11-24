@@ -1,0 +1,76 @@
+# Decision tree for a textual variant. Steps 1-5 are the Decision guide in "Which variants matter"
+# (adapted from Thomas Hemphill, used with permission); the Decide step uses the "In brief" policy of
+# "Which text should a translation follow?" (NLCI Translation Guidelines). Ids are stable once published.
+id: textual-decision
+title: Does this variant need a decision?
+intro: Use this when two Bibles, or a Bible and the UBS text, differ at a verse you are translating. Work down the questions and stop as soon as one tells you to.
+start: meaning
+sources:
+  - id: hemphill
+    cite: "Adapted from Thomas Hemphill, “Textual Criticism of the NT: background, theory and principles”, slides and recorded talk (when a translator needs to make a textual decision; footnoting significant variation). Used with permission. As restated in this site's guide [Which variants matter](~/guide/which-variants-matter/)."
+    checked: true
+  - id: base-texts
+    cite: NLCI base-text survey of Indian-language Bibles (15 test verses in each version's Paratext text, 2026), as reported in this site's guide [Two Greek texts behind our Bibles](~/guide/base-texts/).
+    checked: true
+  - id: nlci
+    cite: NLCI, Translation Guidelines (2019), “Text and textual variants” and “Review Committee checking”, as restated in this site's guide [Which text should a translation follow?](~/guide/text-policy/).
+    checked: true
+nodes:
+  - id: meaning
+    kind: question
+    title: Does the difference change the meaning in your language?
+    body: Differences in spelling, word order or small words often disappear in translation. Ask whether your readers would understand something different.
+    options:
+      - { label: "No", to: follow-ubs }
+      - { label: "Yes", to: readers-bible }
+  - id: readers-bible
+    kind: question
+    title: Does a Bible your readers use follow a different reading?
+    body: For example the Bible in your language of wider communication (LWC). Most Indian-language Bibles checked so far stand mainly on the side of the Textus Receptus, the Greek text behind the KJV (see [Two Greek texts behind our Bibles](~/guide/base-texts/)).
+    options:
+      - { label: "Yes", to: study }
+      - { label: "No", to: rating }
+  - id: rating
+    kind: question
+    title: How sure was the UBS committee?
+    body: Look at the letter at the start of the UBS apparatus entry. See [what the ratings mean](~/guide/which-variants-matter/).
+    options:
+      - { label: "{C}, {D} or ♦", to: study }
+      - { label: "{A} or {B}", to: check-rating }
+  - id: check-rating
+    kind: question
+    title: Does the rating answer your question?
+    body: A rating covers only the question the committee asked. At Romans 16:7 the {A} covers the letters of the name, not whether it is a man's or a woman's name. The [Which variants matter](~/guide/which-variants-matter/) guide explains. The textual commentary tells you what the committee decided.
+    options:
+      - { label: "Yes", to: follow-ubs }
+      - { label: "No, or the variant is part of a larger problem in the verse", to: study }
+  - id: follow-ubs
+    kind: outcome
+    title: Follow the UBS text
+    body: No textual decision is needed here. Translate the UBS text.
+  - id: study
+    kind: step
+    title: Study the variant
+    body: |
+      Go only as far as you need. Stop when the case is clear.
+
+      1. [Compare versions](~/learn/decisions/compare-versions/): see that Bibles differ, and how.
+      2. [Translation helps](~/learn/decisions/translation-helps/): the Translator's Notes and the UBS Handbook explain the problem.
+      3. [The NET notes](~/learn/decisions/net-notes/): the witnesses (the manuscripts and other sources for each reading) and the arguments in one note.
+      4. [The apparatus](~/learn/decisions/the-apparatus/): read the evidence yourself in the UBS apparatus.
+      5. [Full textual criticism](~/learn/decisions/full-textual-criticism/): compare the manuscripts and weigh every piece of evidence.
+    options:
+      - { label: "Then decide", to: decide }
+  - id: decide
+    kind: outcome
+    title: Decide with your Review Committee
+    body: |
+      Follow your project's text policy. For NLCI teams, in brief:
+
+      - New Testament: the UBS or Nestle–Aland critical text.
+      - Old Testament: the Masoretic Text in BHS, with room for other texts where it is doubtful.
+      - Passages with a long tradition, such as John 7:53–8:11 (see [Doubtful passages](~/guide/doubtful-passages/)): follow the regional-language Bible. The Review Committee judges which passages these are.
+      - The Review Committee decides the base text and disputed passages.
+      - Theology never changes the text.
+
+      If the variant is significant, consider a footnote: one that changes the meaning, or one where your text differs from a Bible your readers know. Record the decision so the team applies it the same way every time.

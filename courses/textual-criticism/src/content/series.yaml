@@ -1,0 +1,11 @@
+# Series in this course (ADR 0005). Ids and paths are stable once published.
+- id: decisions
+  title: Making textual decisions
+  path: learn/decisions/
+  summary: "Five ways a translation team can decide a textual variant, from comparing Bibles to full textual criticism, all worked on John 1:18."
+  intro: |
+    Teams make textual decisions all the time, often without noticing. If you translate from a Bible in a language of wider communication (LWC), you take over the decisions its translators made. At John 1:18 the Hindi Old Version says “the only Son”; the UBS Greek text says “the only God”. A team that simply follows the Hindi has made a textual decision, whether it knows it or not.
+
+    This series shows five ways to make that decision on purpose. Each part uses more tools and goes deeper, and each one follows the same six steps: **find** the problem, **list** the readings, look at the **external** and **internal** evidence, **weigh** it up, and **decide**. You do not always need all five. Stop at the part that settles your case.
+
+    The decision tree at the end of this page shows when a variant needs your attention at all, and how the decision is made with your Review Committee.

@@ -1,11 +1,14 @@
 ---
-// Learn: the site's online course (in preparation) and the micro modules.
+// Learn: the online course (in preparation), the series Making textual decisions, and the micro modules.
 import Base from '../../layouts/Base.astro';
 import Cover from '@cohorts/platform/components/Cover.astro';
-import { getModules } from '@cohorts/platform/data';
+import GuideCard from '@cohorts/platform/components/GuideCard.astro';
+import { getModules, getSeries } from '@cohorts/platform/data';
+import { course } from '../../course.config';
 import { PATHS } from '@cohorts/platform/paths';
 import { url } from '../../lib/url';
 const MODULES = (await getModules()).map(({ data: m }) => ({ href: PATHS.module(m.id), ref: m.topic, q: m.question, skill: m.skill, minutes: m.minutes, steps: m.steps.length }));
+const DECISIONS = await getSeries('decisions');
 ---
 <Base title="Learn" nav="learn/" description="Learn textual criticism step by step: an online course and short guided problems on single passages.">
   <div class="lx">
@@ -26,6 +29,16 @@ const MODULES = (await getModules()).map(({ data: m }) => ({ href: PATHS.module(
         </div>
       </div>
     </section>
+
+    {DECISIONS && (
+      <section class="sec" id="series">
+        <header><h2>{DECISIONS.title}</h2><span class="small muted">A series in {DECISIONS.parts.length} parts</span></header>
+        <p class="muted intro">{DECISIONS.summary} <a href={url(DECISIONS.path)}>Start with the overview and the decision tree</a>.</p>
+        <ul class="guide-cards">
+          {DECISIONS.parts.map((g, i) => <li><GuideCard site={course} guide={g.data} part={i + 1} /></li>)}
+        </ul>
+      </section>
+    )}
 
     <section class="sec" id="modules">
       <header><h2>Micro modules</h2><span class="small muted">About ten minutes each</span></header>
