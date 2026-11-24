@@ -10,6 +10,7 @@ import Base from '../layouts/Base.astro';
 import Cover from '../components/Cover.astro';
 import Sources from '../components/Sources.astro';
 import Feedback from '../components/Feedback.astro';
+import Lightbox from '../components/Lightbox.astro';
 import Unverified from '../components/Unverified.astro';
 import { getGuides, type GuideEntry } from '../data';
 import { levelName, type SiteConfig } from '../config';
@@ -55,7 +56,7 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
         </details>
       </nav>
     )}
-    <article class="ctx prose">
+    <article class="ctx prose" data-zoomable>
       {!g.checked && (
         <p class="notice"><span class="tag">not yet checked</span> Written from the sources listed at the end, but not yet checked line by line against them. Use it as a guide, not as a source.</p>
       )}
@@ -73,6 +74,7 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
       </div>
     </section>
   )}
+  <Lightbox />
 </Base>
 
 <style>

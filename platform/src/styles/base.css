@@ -62,7 +62,8 @@ h1 { font-size: var(--step-3); margin: 0; }
 h2 { font-size: var(--step-1); margin: 2.25rem 0 0.5rem; }
 h3 { font-size: var(--step-0); margin: 1.5rem 0 0.25rem; }
 p, ul, ol { margin: 0 0 1rem; }
-img { max-width: 100%; }
+/* height: auto keeps the shape when an image is narrowed to fit (Astro sets width and height on images). */
+img { max-width: 100%; height: auto; }
 
 .wrap {
   max-width: var(--page); margin: 0 auto;
