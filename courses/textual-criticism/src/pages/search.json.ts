@@ -28,7 +28,7 @@ export const GET: APIRoute = async () => {
   for (const w of await allWitnesses()) {
     for (const u of w.key_units) {
       const ref = parseRef(u.ref);
-      if (ref) out.push({ k: 'v', ref, label: u.ref, title: `${w.siglum} ${w.names[0]}`, ctx: plain(u.note), href: `w/${w.id}/` });
+      if (ref) out.push({ k: 'v', ref, label: u.ref, title: w.names[0].startsWith(w.siglum) ? w.names[0] : `${w.siglum} ${w.names[0]}`, ctx: plain(u.note), href: `w/${w.id}/` });
     }
   }
   for (const g of GUIDES) {

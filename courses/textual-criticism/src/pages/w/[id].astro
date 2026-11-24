@@ -29,12 +29,15 @@ const cites = (src: string[]) => ({ ns: src.map((s) => n.get(s)!).sort((a, b) =>
 const CAT: Record<string, string> = { papyrus: 'Papyrus', majuscule: 'Majuscule', minuscule: 'Minuscule', lectionary: 'Lectionary' };
 const KIND: Record<string, string> = { greek_ms: 'Greek manuscript', group: 'Group reading', version: 'Ancient version', father: 'Church father', ot_ms: 'OT manuscript' };
 const sl = w.siglum_lang;
+// A father's siglum is his name ("Irenaeus"), so don't print it twice.
+const sameAsName = w.names[0].startsWith(w.siglum);
+const label = sameAsName ? w.names[0] : `${w.siglum} ${w.names[0]}`;
 ---
-<Base title={`${w.siglum} ${w.names[0]}`} description={w.lead}>
+<Base title={label} description={w.lead}>
   <article class="profile">
     <header class="p-head">
       <p class="label">{ms ? `${CAT[ms.category]} · GA ${ms.ga}` : KIND[w.kind]}{w.siglum_scope && ` · siglum ${w.siglum} in ${w.siglum_scope}`}</p>
-      <h1><span class="siglum" lang={sl} dir="ltr">{w.siglum}</span> <span class="p-name">{w.names[0]}</span></h1>
+      <h1>{!sameAsName && <><span class="siglum" lang={sl} dir="ltr">{w.siglum}</span> </>}<span class="p-name">{w.names[0]}</span></h1>
       {w.names.length > 1 && <p class="muted small">Also called {w.names.slice(1).join(', ')}.</p>}
       <p class="lead prose" set:html={heSigla(w.lead)} />
     </header>
@@ -138,7 +141,7 @@ const sl = w.siglum_lang;
     </section>
     </div>
     </div>
-    <Feedback site={course} title={`${w.siglum} ${w.names[0]}`} />
+    <Feedback site={course} title={label} />
   </article>
 </Base>
 
