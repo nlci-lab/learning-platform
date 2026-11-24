@@ -24,3 +24,8 @@ test('same host outside the base path counts as external', () => {
   assert.equal(isExternal('https://nlci-lab.github.io/logos/x/', 'https://nlci-lab.github.io', '/logos/'), false);
   assert.equal(isExternal('mailto:a@b.c', 'https://nlci-lab.github.io', '/logos/'), false);
 });
+
+test('quotes in a single-quoted aria-label survive the rewrite', () => {
+  const { out } = rewrite(`<a href="https://example.org/" aria-label='Read "Layout" guide, $1'>x</a>`, 'https://nlci-lab.github.io', '/logos/');
+  assert.match(out, /aria-label="Read &quot;Layout&quot; guide, \$1 \(opens in a new tab\)"/);
+});

@@ -37,6 +37,10 @@ This is the quickest way to read a passage in two translations side by side, or 
 2. In the first book, click **Link Set** on the **Home** tab and choose a letter.
 3. In the second book, choose the **same** letter.
 
+![A Bible's Home tab with the Link set menu open, showing the letters A to F and None, and Clear links in all open panels](../../assets/screenshots/link-set.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
+
 Now move in either book and watch the other follow.
 
 ## Make a tool follow your Bible

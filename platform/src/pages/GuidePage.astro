@@ -10,6 +10,7 @@ import Base from '../layouts/Base.astro';
 import Cover from '../components/Cover.astro';
 import Sources from '../components/Sources.astro';
 import Feedback from '../components/Feedback.astro';
+import Lightbox from '../components/Lightbox.astro';
 import Unverified from '../components/Unverified.astro';
 import { getGuides, type GuideEntry } from '../data';
 import { levelName, type SiteConfig } from '../config';
@@ -46,7 +47,7 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
       <ul>{g.learn.map((l) => <li>{l}</li>)}</ul>
     </aside>
   </section>
-  <div class="read" id="read">
+  <div class:list={['read', { 'has-toc': toc.length > 1 }]} id="read">
     {toc.length > 1 && (
       <nav class="toc" aria-label="On this page">
         <details open>
@@ -55,7 +56,7 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
         </details>
       </nav>
     )}
-    <article class="ctx prose">
+    <article class="ctx prose" data-zoomable>
       {!g.checked && (
         <p class="notice"><span class="tag">not yet checked</span> Written from the sources listed at the end, but not yet checked line by line against them. Use it as a guide, not as a source.</p>
       )}
@@ -73,6 +74,7 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
       </div>
     </section>
   )}
+  <Lightbox />
 </Base>
 
 <style>
@@ -100,7 +102,7 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
   .toc a:hover { color: var(--accent); text-decoration: underline; }
   @media (max-width: 999px) { .toc { border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem 0.9rem; } }
   @media (min-width: 1000px) {
-    .read { grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem; }
+    .read.has-toc { grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem; }
     .toc { position: sticky; top: 1rem; align-self: start; max-height: calc(100vh - 2rem); overflow: auto; }
   }
   .ctx :global(:is(h2, h3)[id]) { scroll-margin-top: 1rem; }

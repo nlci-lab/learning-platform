@@ -9,7 +9,7 @@ learn:
   - How to limit or pause downloads
   - Which features need the internet
   - How to turn internet use back on
-related: [layouts, moving-around]
+related: [program-settings, layouts]
 sources:
   - id: settings
     cite: Faithlife, “Adjust the Logos Program Settings”, Logos Help Center (edited 28 Aug 2026)
@@ -27,10 +27,13 @@ sources:
     cite: Faithlife, “Report Typos in Logos”, Logos Help Center (edited 29 Jan 2026)
     url: https://support.logos.com/hc/en-us/articles/360015575172
     checked: true
-last_checked: 2026-11-23
+  - id: app
+    cite: Checked in the Logos desktop app (version 55, with Translator's Workplace), 24 Nov 2026
+    checked: true
+last_checked: 2026-11-24
 ---
 
-*Written from Faithlife's help pages for Logos version 55 (November 2026). Not yet checked in the app.*
+*Written from Faithlife's help pages for Logos version 55 (November 2026). Points marked “checked in the app” or “seen in the app” were tried in Logos 55 on 24 Nov 2026.*
 
 ## Why this matters
 
@@ -55,9 +58,7 @@ When automatic downloads are off, you install updates yourself: type `update now
 
 ## Turn internet use off, and back on
 
-Program Settings has a setting called **Use Internet**. Set it to **No** to work offline and **Yes** to go back online.
-
-The help pages do not describe this setting in detail. Check its exact place in your own Program Settings.
+The first setting in the **Internet** section is **Use Internet** (checked in the app). Set it to **No** to work offline and **Yes** to go back online.
 
 ## What changes offline
 

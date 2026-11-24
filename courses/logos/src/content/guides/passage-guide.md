@@ -24,10 +24,13 @@ sources:
     cite: Faithlife, “Logos Platform Comparison”, Logos Help Center (edited 15 Dec 2025)
     url: https://support.logos.com/hc/en-us/articles/9785956686349
     checked: true
-last_checked: 2026-11-23
+  - id: app
+    cite: Checked in the Logos desktop app (version 55, with Translator's Workplace), 24 Nov 2026
+    checked: true
+last_checked: 2026-11-24
 ---
 
-*Written from Faithlife's help pages for Logos version 55 (November 2026). Not yet checked in the app.*
+*Written from Faithlife's help pages for Logos version 55 (November 2026). Points marked “in the app checked for this guide” were tried in Logos 55 on 24 Nov 2026.*
 
 ## What it is
 
@@ -47,6 +50,16 @@ For a close look at the Greek or Hebrew words, use the [Exegetical Guide](~/guid
 - **Guides menu:** click **Guides / Workflows**, then **Passage Guide**. Type the passage and press Enter.
 - **Right-click:** select the passage in a Bible and right-click. In the left pane, choose the reference. On the right, click **Passage Guide**.
 - **Selection Menu:** select the passage, then click **Study**.
+
+![The Guides / Workflows menu, with Passage Guide, Bible Word Study, Exegetical Guide, Topic Guide and Basic Bible Study at the top, and a list of workflows below](../../assets/screenshots/guides-workflows-menu.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
+
+In the app checked for this guide, typing “Passage Guide” in the Command Box did not find it. Open it from the **Guides / Workflows** menu.
+
+![A Passage Guide for Genesis 2:4, with sections such as Commentaries, Cross References, Atlas, Biblical Places, Biblical People and Biblical Things](../../assets/screenshots/passage-guide.png)
+
+*Screenshot: Copyright Logos ([logos.com](https://www.logos.com)). Not covered by this site's licence.*
 
 ## Shape it to your work
 

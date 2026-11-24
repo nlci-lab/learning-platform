@@ -1,0 +1,13 @@
+# Glossary groups for the Logos course. Ids are stable once published.
+- id: screen
+  title: The Logos screen and its tools
+  intro: Names of the parts of the Logos window and the tools you use most.
+  order: 1
+- id: library
+  title: Your library
+  intro: Words for the books you own and how Logos sorts them.
+  order: 2
+- id: texts
+  title: Bible texts and languages
+  intro: Words about the Bible text and the Greek and Hebrew behind it.
+  order: 3
