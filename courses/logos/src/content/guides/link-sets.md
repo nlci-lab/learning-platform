@@ -4,6 +4,7 @@ title: "Link sets: make books move together"
 cover: Link sets
 level: 2
 summary: Link a Bible with a commentary, a second Bible or a guide, so that when you move in one, the others follow.
+tags: [link-sets, panels, commentaries, workspace]
 learn:
   - What a link set is
   - How to link two books

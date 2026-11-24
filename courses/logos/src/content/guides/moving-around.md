@@ -4,6 +4,7 @@ title: Moving around in a Bible or a book
 cover: Moving around
 level: 1
 summary: Go to a passage, move chapter by chapter, use a book's contents, look up a word in a lexicon, and make the text larger.
+tags: [navigation, bible, lexicons, zoom, reference-box]
 learn:
   - Three ways to go to a passage
   - How to move through a Bible and go back

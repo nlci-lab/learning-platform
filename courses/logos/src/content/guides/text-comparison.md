@@ -4,6 +4,7 @@ title: "Text Comparison: see where translations differ"
 cover: Text Comparison
 level: 2
 summary: Put several Bible versions of a passage side by side, mark where they differ from a base text, and use what you see to find the questions a passage raises.
+tags: [text-comparison, translations, differences, consultants, passage-analysis]
 learn:
   - How to open Text Comparison and choose the versions
   - How the base text is set, and how to change it

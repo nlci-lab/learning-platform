@@ -8,7 +8,7 @@ Shared code for the master site and every course. No course-specific code goes h
 |---|---|
 | `config` | `SiteConfig`, `defineSite()`, `levelName()`: name, menu, accent, footer, feedback form, level names |
 | `url` | `url()`: every internal link goes through it |
-| `paths` | Where the platform pages live in a course (`learn/`, `practice/<id>/`, `guides/<id>/`, `glossary/`, `search/`) |
+| `paths` | Where the platform pages live in a course (`guides/`, `guides/<id>/`, `learn/`, `practice/<id>/`, `background/`, `glossary/`, `search/`) |
 | `schemas` | Zod schemas: sourced facts (`source`, `sourced()`, `unverified`, `checkSourceIds()`, `citer()`), questions, micro modules, guides, glossary |
 | `content` | `courseCollections()` for a course's `src/content.config.ts` |
 | `data` | `getModules()`, `getGuides()`, `getGlossary()`, and `getStaticPaths` helpers. Drafts show only in `astro dev` |
@@ -16,8 +16,8 @@ Shared code for the master site and every course. No course-specific code goes h
 | `search` | The `search.json` route and `searchIndex()` |
 | `integration` | Astro integration: `~/` internal links in Markdown pages; external links open in a new tab, safely and accessibly |
 | `layouts/Base.astro` | Page shell: header, menu, theme switch, under-construction strip, footer |
-| `components/*` | `Question`, `Cite`, `Sources`, `Unverified`, `Feedback`, `Figure`, `Thumb` + `Lightbox`, `Cover` |
-| `pages/*` | `ModulePage`, `LearnPage`, `GuidePage`, `GlossaryPage`, `SearchPage`: mounted by thin route files in a course |
+| `components/*` | `Question`, `GuideCard`, `Tags`, `Cite`, `Sources`, `Unverified`, `Feedback`, `Figure`, `Thumb` + `Lightbox`, `Cover` |
+| `pages/*` | `GuidesPage`, `GuidePage`, `ModulePage`, `LearnPage`, `GlossaryPage`, `SearchPage`, `ComingSoonPage`: mounted by thin route files in a course |
 | `styles/base.css` | Base styles and theme tokens. `--accent` comes from the course config |
 
 ## Setting up a course
@@ -38,7 +38,7 @@ Content files:
 | File | Holds |
 |---|---|
 | `src/content/modules/<id>.yaml` | One micro module (format: ADR 0004; examples in `fixtures/modules/`) |
-| `src/content/guides/<id>.md` | One guide: front matter per the `guide` schema, body in Markdown |
+| `src/content/guides/<id>.md` | One guide: front matter per the `guide` schema (including `summary`, its description, and `tags`, its hashtags), body in Markdown |
 | `src/content/glossary.yaml` | A list of entries: `id, term, plain, group, source, checked` |
 | `src/content/glossary-groups.yaml` | A list of groups: `id, title, intro, order, style (sign or word)` |
 

@@ -4,6 +4,7 @@ title: "Layouts: open the right books together"
 cover: Layouts
 level: 1
 summary: A layout is a saved set of open books and tools. Start with a ready-made QuickStart Layout, then save your own for the work you do every day.
+tags: [layouts, workspace, panels, tile-arrangements, snapshots]
 learn:
   - How panels, tabs and Tile Arrangements work
   - What a layout and a snapshot are

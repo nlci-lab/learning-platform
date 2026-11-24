@@ -5,7 +5,7 @@ export const course = defineSite({
   title: 'Logos Bible Software',
   description: 'Using Logos Bible Software for exegesis and translation work: an introduction for Bible translators and consultants.',
   lang: 'en',
-  nav: [['learn/', 'Learn'], ['glossary/', 'Glossary'], ['search/', 'Search']],
+  nav: [['guides/', 'Guides'], ['learn/', 'Learn'], ['background/', 'Background'], ['glossary/', 'Glossary'], ['search/', 'Search']],
   accent: { light: '#7a3b12', dark: '#e3a06e' },
   underConstruction: true,
   // Names describe the material, not the reader. Shown with the number: "Level 1 · First steps".

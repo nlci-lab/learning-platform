@@ -206,7 +206,10 @@ export const guide = z.object({
   /** Short title for the cover. */
   cover: text,
   level: z.number().int().min(1).max(4),
+  /** One or two sentences: shown on the guide's card and as its page description. */
   summary: text,
+  /** Searchable hashtags, without the #: lower case words joined by hyphens, e.g. [layouts, greek]. */
+  tags: z.array(stableId).min(1).max(8),
   learn: z.array(text).min(1),
   /** Ids of guides to read first and related guides. */
   before: stableId.optional(),

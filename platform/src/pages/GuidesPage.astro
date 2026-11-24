@@ -1,0 +1,74 @@
+---
+// Guides: every guide of the course as cards, grouped by level. Cards wrap onto new lines.
+// Hashtags link here with ?tag=…; JavaScript then shows only the guides with that tag.
+// Without JavaScript all guides show.
+// Course route (src/pages/guides/index.astro): <GuidesPage site={course} intro="…" />
+import Base from '../layouts/Base.astro';
+import GuideCard from '../components/GuideCard.astro';
+import { getGuides } from '../data';
+import { levelName, type SiteConfig } from '../config';
+import { url } from '../url';
+import { PATHS } from '../paths';
+interface Props { site: SiteConfig; heading?: string; intro?: string }
+const { site, heading = 'Guides', intro } = Astro.props;
+const guides = (await getGuides()).map((g) => g.data);
+const levels = [...new Set(guides.map((g) => g.level))].sort();
+const allTags = [...new Set(guides.flatMap((g) => g.tags))].sort();
+---
+<Base site={site} title={heading} nav={PATHS.guides} description={`Guides: ${site.description}`}>
+  <div class="gx">
+    <header>
+      <p class="label">Guides</p>
+      <h1>{heading}</h1>
+      {intro && <p class="muted intro">{intro}</p>}
+    </header>
+
+    {guides.length === 0 ? <p class="muted">The guides are in preparation.</p> : (
+      <>
+        <p class="gx-filter small" hidden>
+          Showing guides tagged <strong class="gx-tag"></strong>. <a href={url(PATHS.guides)}>Show all guides</a>
+        </p>
+        <details class="gx-tags">
+          <summary>Browse by hashtag ({allTags.length})</summary>
+          <ul class="tags-all">{allTags.map((t) => <li><a href={url(PATHS.tag(t))} data-tag={t}>#{t}</a></li>)}</ul>
+        </details>
+        {levels.map((lv) => (
+          <section class="sec gx-level">
+            <header><h2>{levelName(site, lv)}</h2></header>
+            <ul class="guide-cards">
+              {guides.filter((g) => g.level === lv).map((g) => <li><GuideCard site={site} guide={g} /></li>)}
+            </ul>
+          </section>
+        ))}
+      </>
+    )}
+  </div>
+</Base>
+
+<script>
+  const tag = new URLSearchParams(location.search).get('tag');
+  const note = document.querySelector<HTMLElement>('.gx-filter');
+  if (tag && note) {
+    let n = 0;
+    document.querySelectorAll<HTMLElement>('.gcard').forEach((c) => {
+      const on = (c.dataset.tags ?? '').split(' ').includes(tag);
+      c.closest('li')!.hidden = !on;
+      if (on) n++;
+    });
+    document.querySelectorAll<HTMLElement>('.gx-level').forEach((s) => { s.hidden = !s.querySelector('li:not([hidden])'); });
+    note.querySelector('.gx-tag')!.textContent = `#${tag} (${n})`;
+    note.hidden = false;
+  }
+</script>
+
+<style>
+  .gx { margin: 1.75rem 0 3rem; }
+  .gx .intro { max-width: var(--measure); }
+  .gx-filter { font-family: var(--sans); padding: 0.5rem 0.8rem; border-left: 3px solid var(--accent); background: var(--paper-2); border-radius: 0 6px 6px 0; }
+  .gx-filter[hidden], .gx-level[hidden], .guide-cards li[hidden] { display: none; }
+  .gx-tags { margin: 1rem 0 0; font-family: var(--sans); }
+  .gx-tags summary { cursor: pointer; font-size: 0.9rem; }
+  .tags-all { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3rem 0.4rem; margin: 0.6rem 0 0; padding: 0; font-size: 0.8rem; }
+  .tags-all a { display: inline-block; padding: 0.1rem 0.55rem; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-2); text-decoration: none; }
+  .tags-all a:hover { border-color: var(--accent); color: var(--accent); }
+</style>
