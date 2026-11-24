@@ -108,6 +108,21 @@ export const GUIDES: GuideMeta[] = [
     related: ['guide/apparatus/', 'guide/paratext/', 'witnesses/'],
   },
   {
+    path: 'guide/footnotes/', cover: 'Writing footnotes', section: 'guide', level: 'Going further',
+    summary: 'When a textual footnote is needed, how to word one in a few plain words, and how to enter it in Paratext.',
+    learn: ['When a variant needs a footnote', 'Common formulas, and why they are not a count', 'Footnote, brackets or heading', 'Model footnotes from the worked examples', 'Entering a footnote in Paratext'],
+    before: 'guide/which-variants-matter/', related: ['guide/which-variants-matter/', 'guide/text-policy/', 'guide/examples/john-7-53/', 'guide/explaining-variants/'],
+    verses: ['John 1:18', 'John 7:53–8:11', 'James 2:20', 'Romans 16:7', 'Mark 1:2'],
+    practice: ['guide/examples/john-1-18/', 'guide/examples/john-7-53/'],
+  },
+  {
+    path: 'guide/explaining-variants/', cover: 'Explaining differences', section: 'guide', level: 'Going further',
+    summary: 'What to say when church members or reviewers ask why a verse is missing or a word has changed.',
+    learn: ['How to start from the Bible people know', 'Explaining the policy, not your opinion', 'Footnotes as the bridge', 'Short sample answers for common questions', 'Words to choose with care'],
+    before: 'guide/base-texts/', related: ['guide/base-texts/', 'guide/text-policy/', 'guide/footnotes/', 'background/nt-text/'],
+    verses: ['Acts 8:37', '1 John 5:7–8', 'John 7:53–8:11'],
+  },
+  {
     path: 'guide/paratext/', cover: 'The apparatus in Paratext', section: 'guide', level: 'Start here',
     summary: 'Setting up the Source Language Text window beside your translation and decoding the sigla.',
     learn: ['Opening and installing the texts', 'Arranging the windows', 'Reading the apparatus marks', 'Decoding the sigla'],

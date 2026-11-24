@@ -1,0 +1,164 @@
+---
+// How to word a textual footnote and enter it in Paratext. Model wording is taken from this site's own
+// worked examples and micro modules, so the recommendations stay the same everywhere.
+import Context from '../../layouts/Context.astro';
+import { url } from '../../lib/url';
+const g = (id: string) => url(`glossary/#${id}`);
+const sources = [
+  { cite: 'NIV (2011) footnote at John 1:18, seen by the site owner, 25 Nov 2026, as quoted in this site\'s series part "Compare versions". Quoted for teaching.', checked: true },
+  { cite: 'This site\'s worked examples John 1:18, John 7:53–8:11, James 2:20 and Romans 16:7, and the micro modules Mark 1:2 and 1 John 5:7–8, with their sources: the model footnotes and the counts of manuscripts.', checked: true },
+  { cite: 'This site\'s guides "Which variants deserve your attention" (when to add a footnote; Adapted from Thomas Hemphill, used with permission), "Doubtful passages" and "Two Greek texts behind our Bibles" (how Bibles mark long passages and whole verses).', checked: true },
+  { cite: 'UBS5 Introduction, via Paratext 9 help: the double brackets ⟦ ⟧, as given in this site\'s glossary.', checked: true },
+  { cite: 'Unified Standard Format Markers (USFM) 3.0 documentation, "Footnotes": the \\f … \\f* syntax, the callers + - ?, the markers \\fr, \\ft, \\fq, \\fqa, \\fk, and the example at Mark 1:1 (GNT). https://ubsicap.github.io/usfm/notes_basic/fnotes.html (opened 25 Nov 2026).', checked: true },
+  { cite: 'Paratext 9.5 Training Manual, task 4 "Keyboarding your draft", section 4.8 "Insert Footnotes", SIL Global. https://manual.paratext.org/4.KD (opened 25 Nov 2026).', checked: true },
+];
+---
+<Context title="Writing textual footnotes" label="Guide" lastChecked="2026-11-25" sources={sources}
+  description="When a textual footnote is needed, how to word one in a few plain words, and how to enter it in Paratext.">
+  <p class="lead">A <em>textual footnote</em> tells readers that the manuscripts differ at this place, and gives the other reading. It is short. It does not argue. This page shows when to write one, how to word it, and how to type it in Paratext.</p>
+
+  <h2>When you need one</h2>
+  <p>Most <a href={g('variant')}>variants</a> do not need a footnote. Spelling and small words that leave the meaning alone are not shown to readers. Consider a footnote when:</p>
+  <ul>
+    <li>the variant changes the meaning in your language; or</li>
+    <li>your text differs from a Bible your readers know, such as the regional-language Bible.</li>
+  </ul>
+  <p>See <a href={url('guide/which-variants-matter/#when-to-add-a-footnote')}>When to add a footnote</a> for how to sort variants first. Whether your translation uses footnotes at all, and how a disputed passage is printed, is decided under your project's <a href={url('guide/text-policy/')}>text policy</a>. The Review Committee decides. The footnotes on this site are recommendations.</p>
+
+  <h2>How to word one</h2>
+  <p>Give the other reading in a few words. Readers want to know <em>what</em> is different, not the whole argument.</p>
+  <ul class="rules">
+    <li><strong>Name the other reading.</strong> Quote the words, or say which verses are missing.</li>
+    <li><strong>Keep it short.</strong> One sentence is usually enough. Two at most.</li>
+    <li><strong>Use the same formula every time.</strong> Readers learn what it means.</li>
+    <li><strong>Do not judge.</strong> Say what the manuscripts have, not which Bible is wrong.</li>
+  </ul>
+
+  <h3>Common formulas</h3>
+  <div class="tablewrap">
+    <table class="fn-table">
+      <thead><tr><th scope="col">Use it when</th><th scope="col">Formula</th><th scope="col">Example from this site</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Other manuscripts have different words</th><td>"Some manuscripts read …"<br />"Other manuscripts read …"</td><td>Mark 1:2: "Some manuscripts read 'in the prophets'."</td></tr>
+        <tr><th scope="row">The other reading is in very many manuscripts</th><td>"Many manuscripts read …"</td><td>James 2:20: "Many manuscripts read 'dead'."</td></tr>
+        <tr><th scope="row">Some manuscripts lack the words</th><td>"Some manuscripts do not have …"</td><td>Mark 1:1 in the USFM documentation: "Some manuscripts do not have the Son of God."</td></tr>
+        <tr><th scope="row">Some manuscripts have extra words</th><td>"Some manuscripts add …"</td><td>1 John 5:7–8: "A few late manuscripts add: …"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>These words are not a count</h3>
+  <p>"Some", "other" and "many" tell readers that the manuscripts differ. They do not say how many manuscripts, or how old.</p>
+  <figure class="fn-quote">
+    <blockquote><p>1:18 Some manuscripts <i>but the only Son, who</i></p></blockquote>
+    <figcaption>NIV footnote at John 1:18, quoted for teaching.</figcaption>
+  </figure>
+  <p>"Some manuscripts" here does not mean a few. Most Greek manuscripts read "Son" at John 1:18. The NIV put "God" in its text and "Son" in the footnote. The footnote alone does not show which reading has more manuscripts, or older ones. See the <a href={url('guide/examples/john-1-18/')}>John 1:18 worked example</a> and <a href={url('learn/decisions/compare-versions/')}>Part 1: Compare versions</a>.</p>
+  <p>So read other Bibles' footnotes with care. And when you write your own, think about how readers will hear the words. "The earliest manuscripts do not include this section" is true at John 7:53–8:11, but some readers may take it to mean the story is false.</p>
+
+  <h2>Footnote, brackets or heading?</h2>
+  <p>A footnote is not the only way to show a textual difference. Bibles use three tools.</p>
+  <div class="tools">
+    <section class="tool">
+      <p class="tool-k">Footnote</p>
+      <p>For a word or a phrase, and for whole verses. Most modern Bibles keep the verse number of a missing verse and give its words in a footnote, so verse numbers still match older Bibles. The NIV (1984) does this for sixteen verses.</p>
+    </section>
+    <section class="tool">
+      <p class="tool-k">Brackets</p>
+      <p>For a long passage that stays in its place. The UBS Greek text prints Mark 16:9–20 and John 7:53–8:11 inside <a href={g('double-brackets')}>⟦ ⟧</a>: added later, but very old and important. Many Bibles put such a passage in brackets and add a footnote. Brackets are not used for a one-word difference.</p>
+    </section>
+    <section class="tool">
+      <p class="tool-k">Heading or note</p>
+      <p>Most Bibles keep long passages in place with a heading or a note above or below them.</p>
+    </section>
+  </div>
+  <p>For the verses where your regional-language Bible and the UBS text differ, agree with your project before drafting whether you will leave them out, put them in brackets, or keep them with a footnote. See <a href={url('guide/base-texts/#what-this-means-for-your-work')}>Two Greek texts behind our Bibles</a> and the <a href={url('guide/examples/john-7-53/')}>John 7:53–8:11 worked example</a>.</p>
+
+  <h2>Model footnotes</h2>
+  <p>These are the footnotes this site's worked examples recommend. Adapt the wording to your language. Your Review Committee decides.</p>
+  <ol class="models">
+    <li>
+      <p class="ref"><a href={url('guide/examples/john-1-18/')}>John 1:18</a>: one word, two strong sides</p>
+      <p class="fn">"Other manuscripts read 'the only Son'."</p>
+      <p class="small">If your text has "Son" instead: "Some of the oldest manuscripts read 'God'."</p>
+    </li>
+    <li>
+      <p class="ref"><a href={url('guide/examples/john-7-53/')}>John 7:53–8:11</a>: a whole passage</p>
+      <p class="fn">"Many early manuscripts do not have 7:53–8:11. Some place it after John 7:36, at the end of John, or after Luke 21:38."</p>
+      <p class="small">Use with brackets, if your regional-language Bible or Review Committee marks the passage that way.</p>
+    </li>
+    <li>
+      <p class="ref"><a href={url('guide/examples/james-2-20/')}>James 2:20</a>: optional</p>
+      <p class="fn">"Many manuscripts read 'dead'."</p>
+      <p class="small">Useful if your readers know "dead" from an older Bible.</p>
+    </li>
+    <li>
+      <p class="ref"><a href={url('guide/examples/romans-16-7/')}>Romans 16:7</a>: not a different word, but a different accent</p>
+      <p class="fn">"Some translations read 'Junias', a man's name."</p>
+    </li>
+    <li>
+      <p class="ref"><a href={url('practice/mark-1-2/')}>Mark 1:2</a></p>
+      <p class="fn">"Some manuscripts read 'in the prophets'."</p>
+    </li>
+  </ol>
+
+  <h2>Entering a footnote in Paratext</h2>
+  <p>Paratext stores your text in <em>USFM</em>, a set of markers that start with a backslash. A footnote sits inside the verse, at the place it refers to.</p>
+  <h3>With the menu</h3>
+  <ol>
+    <li>Put the cursor where the footnote belongs, usually after the word or at the end of the verse.</li>
+    <li>Open the <strong>≡</strong> menu of the tab, and under <strong>Insert</strong> choose <strong>Footnote</strong>.</li>
+    <li>Type the footnote text after the <code>\ft</code> marker.</li>
+  </ol>
+  <p>The footnote shows in the text as a small raised letter. Hover over the letter to read the note. Click the letter to change the note. To delete it, delete the letter, or right-click the footnote text and choose <strong>Delete</strong>.</p>
+
+  <h3>The markers</h3>
+  <table class="facts">
+    <tbody>
+      <tr><th scope="row"><code>\f + … \f*</code></th><td>Start and end of the footnote. The <code>+</code> asks Paratext to create the caller (the letter or sign in the text) for you.</td></tr>
+      <tr><th scope="row"><code>\fr</code></th><td>The chapter and verse the note belongs to.</td></tr>
+      <tr><th scope="row"><code>\ft</code></th><td>The text of the note.</td></tr>
+      <tr><th scope="row"><code>\fq</code></th><td>A quotation of words from your own translation.</td></tr>
+      <tr><th scope="row"><code>\fqa</code></th><td>An alternative wording.</td></tr>
+    </tbody>
+  </table>
+  <p>The USFM documentation gives this example from the Good News Translation at Mark 1:1:</p>
+  <pre class="usfm"><code>\f + \fr 1.1: \ft Some manuscripts do not have \fq the Son of God.\f*</code></pre>
+  <p>A footnote for Mark 1:2 in the same pattern could look like this:</p>
+  <pre class="usfm"><code>\f + \fr 1.2: \ft Some manuscripts read \fqa in the prophets.\f*</code></pre>
+
+  <aside class="unverified" aria-labelledby="unv">
+    <h2 id="unv">Not yet verified</h2>
+    <p>These points are kept apart because no source we can name has confirmed them yet. Do not rely on them.</p>
+    <ul>
+      <li>Oral and audio translations cannot use printed footnotes. We have no named source yet for what teams do instead, for example a short spoken note before or after the passage, or a note in printed material that goes with the recording.</li>
+      <li>The USFM example writes the reference as <code>1.1:</code>. Many projects write <code>1:1</code> instead. Check how your project's other footnotes write it.</li>
+      <li>Whether <code>\fqa</code> is the best marker for a textual alternative, or your project uses <code>\fq</code> or plain <code>\ft</code> text. Ask your typesetter or consultant.</li>
+    </ul>
+  </aside>
+</Context>
+
+<style>
+  .rules { padding-left: 1.2rem; }
+  .rules li { margin-bottom: 0.4rem; }
+  .tablewrap { overflow-x: auto; margin: 1rem 0; }
+  .fn-table { border-collapse: collapse; min-width: 34rem; font-size: 0.9rem; }
+  .fn-table th, .fn-table td { text-align: left; vertical-align: top; padding: 0.45rem 0.5rem; border-bottom: 1px solid var(--rule); }
+  .fn-table thead th { font: 600 0.75rem var(--sans); color: var(--ink-2); border-bottom: 2px solid var(--ink-2); }
+  .fn-table tbody th { font-weight: 600; }
+  .fn-quote { margin: 1rem 0; padding: 0.5rem 1rem; border-left: 4px solid var(--rubric); background: var(--paper-2); border-radius: 0 8px 8px 0; }
+  .fn-quote blockquote { margin: 0; font-family: var(--serif); }
+  .fn-quote figcaption { font: 0.8rem var(--sans); color: var(--ink-2); }
+  .tools { display: grid; gap: 0.75rem; margin: 1rem 0; }
+  @media (min-width: 640px) { .tools { grid-template-columns: repeat(3, 1fr); } }
+  .tool { background: var(--paper-2); border: 1px solid var(--rule); border-top: 3px solid var(--rubric); border-radius: 6px; padding: 0.6rem 0.9rem; }
+  .tool p { margin: 0.35rem 0; }
+  .tool-k { font: 600 0.75rem var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--rubric); }
+  .models { list-style: none; padding: 0; display: grid; gap: 0.75rem; }
+  .models li { border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem 1rem; }
+  .models p { margin: 0.25rem 0; }
+  .models .ref { font: 600 0.9rem var(--sans); }
+  .models .fn { font-family: var(--serif); font-style: italic; }
+  .usfm { overflow-x: auto; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px; padding: 0.6rem 0.8rem; font-size: 0.85rem; white-space: pre-wrap; word-break: break-word; }
+  code { font-size: 0.9em; }
+</style>
