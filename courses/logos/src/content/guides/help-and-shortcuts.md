@@ -4,6 +4,7 @@ title: Getting help and working faster
 cover: Help and shortcuts
 level: 1
 summary: Find help inside Logos, use the Command Box instead of menus, put your favourite books and layouts on the toolbar, and learn a few keys.
+tags: [help, shortcuts, command-box, keyboard]
 learn:
   - Three ways to find help
   - What the Command Box can do

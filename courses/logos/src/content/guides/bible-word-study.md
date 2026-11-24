@@ -4,6 +4,7 @@ title: "Bible Word Study: one word, all its uses"
 cover: Bible Word Study
 level: 2
 summary: "Study a Greek, Hebrew or English word: how it is translated, its senses, its root and where else it is used. Start it with a right-click."
+tags: [word-study, lemma, greek, hebrew, translation]
 learn:
   - How to start a word study from a Bible
   - What the translation ring and the senses show

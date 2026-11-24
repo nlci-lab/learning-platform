@@ -4,6 +4,7 @@ title: Internet and download settings
 cover: Internet settings
 level: 1
 summary: Control when Logos uses the internet and downloads books, so it works on a slow or costly connection, and know which features stop working offline.
+tags: [settings, internet, offline, downloads, updates]
 learn:
   - Where Program Settings is
   - How to limit or pause downloads

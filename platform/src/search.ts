@@ -17,7 +17,8 @@ export async function searchIndex(): Promise<SearchEntry[]> {
     const d = g.data;
     // The body is indexed too (Markdown stripped, capped so the index stays small).
     const body = plain((g.body ?? '').replace(/^#+\s.*$/gm, ' ')).slice(0, 4000);
-    out.push({ kind: 'Guide', title: d.title, ctx: d.summary, href: PATHS.guide(d.id), text: plain([d.title, d.cover, d.summary, ...d.learn].join(' ')).toLowerCase() + ' ' + body.toLowerCase() });
+    const tags = d.tags.map((t) => `#${t} ${t.replace(/-/g, ' ')}`).join(' ');
+    out.push({ kind: 'Guide', title: d.title, ctx: `${d.summary} ${d.tags.map((t) => '#' + t).join(' ')}`, href: PATHS.guide(d.id), text: plain([d.title, d.cover, d.summary, ...d.learn].join(' ')).toLowerCase() + ' ' + tags + ' ' + body.toLowerCase() });
     for (const h of (g.rendered?.metadata?.headings ?? []) as { depth: number; slug: string; text: string }[]) {
       if (h.depth === 2 || h.depth === 3)
         out.push({ kind: 'Section', title: h.text, ctx: `Section in “${d.title}”`, href: `${PATHS.guide(d.id)}#${h.slug}`, text: `${h.text} ${d.title}`.toLowerCase() });

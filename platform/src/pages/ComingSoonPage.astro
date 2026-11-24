@@ -1,0 +1,24 @@
+---
+// A placeholder for a section that is not written yet, so its menu link already works.
+// Course route, e.g. src/pages/learn/index.astro:
+//   <ComingSoonPage site={course} title="Learn" nav="learn/" text="…" />
+import Base from '../layouts/Base.astro';
+import type { SiteConfig } from '../config';
+import { url } from '../url';
+import { PATHS } from '../paths';
+interface Props { site: SiteConfig; title: string; nav: string; text?: string }
+const { site, title, nav, text } = Astro.props;
+---
+<Base site={site} title={title} nav={nav} description={`${title}: coming soon.`}>
+  <div class="cs prose">
+    <p class="label">{title}</p>
+    <h1>Coming soon</h1>
+    {text && <p class="lead">{text}</p>}
+    <p>Until then, start with the <a href={url(PATHS.guides)}>guides</a>.</p>
+  </div>
+</Base>
+
+<style>
+  .cs { margin: 2.5rem 0 4rem; }
+  .cs h1 { margin: 0.2rem 0 0.8rem; }
+</style>

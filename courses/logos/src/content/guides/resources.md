@@ -4,6 +4,7 @@ title: "Kinds of resources: what is in your library"
 cover: Kinds of resources
 level: 1
 summary: "Logos and Translator's Workplace hold thousands of books. Learn the main kinds, a few well-known titles of each, and how Logos labels them."
+tags: [resources, lexicons, commentaries, translation-helps, translators-workplace]
 learn:
   - The main kinds of resources and what translators use each for
   - A few well-known titles in each kind

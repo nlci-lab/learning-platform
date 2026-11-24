@@ -4,6 +4,7 @@ title: "Program Settings: make Logos work your way"
 cover: Program Settings
 level: 1
 summary: "Change how Logos looks and behaves for all your books and tools: fonts, text size, what a double-click does, where the toolbar sits, and what opens when Logos starts."
+tags: [settings, fonts, accessibility, text-size, theme]
 learn:
   - How to open Program Settings
   - The settings in Text Display, Accessibility and General that matter most

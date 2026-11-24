@@ -4,6 +4,7 @@ title: "Search: find words in your Bibles and books"
 cover: Search
 level: 2
 summary: Run a Bible search on exact words, limit it to some books of the Bible, and search your other books. Learn the few search words you will use most.
+tags: [search, bible-search, command-box, power-lookup, operators]
 learn:
   - Three places to start a search
   - The search types, and Smart and Precise searching

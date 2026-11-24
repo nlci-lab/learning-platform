@@ -4,6 +4,7 @@ title: "The Exegetical Guide: the words of the original text"
 cover: Exegetical Guide
 level: 3
 summary: The Exegetical Guide looks closely at the Greek or Hebrew of a passage, from textual variants and grammar to each word, with links to lexicons.
+tags: [guides, greek, hebrew, textual-variants, grammar]
 learn:
   - How it differs from the Passage Guide
   - What each main section gives you

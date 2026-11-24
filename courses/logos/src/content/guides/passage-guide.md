@@ -4,6 +4,7 @@ title: "The Passage Guide: everything on one passage"
 cover: Passage Guide
 level: 2
 summary: The Passage Guide gathers what your library says about one passage, from commentaries and cross-references to people, places and media. Learn to open it and shape it.
+tags: [guides, passage, commentaries, cross-references]
 learn:
   - What the Passage Guide shows
   - Three ways to open it

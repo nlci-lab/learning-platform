@@ -11,6 +11,8 @@ import Cover from '../components/Cover.astro';
 import Sources from '../components/Sources.astro';
 import Feedback from '../components/Feedback.astro';
 import Lightbox from '../components/Lightbox.astro';
+import GuideCard from '../components/GuideCard.astro';
+import Tags from '../components/Tags.astro';
 import Unverified from '../components/Unverified.astro';
 import { getGuides, type GuideEntry } from '../data';
 import { levelName, type SiteConfig } from '../config';
@@ -29,13 +31,14 @@ if (g.sources.length) toc.push({ depth: 2, slug: 'sources', text: 'Sources' });
 const PIGMENTS = ['lapis', 'verdigris', 'ochre', 'gall'] as const;
 const pig = (level: number) => PIGMENTS[(level - 1) % 4];
 ---
-<Base site={site} title={g.title} description={g.summary} nav={PATHS.learn}>
+<Base site={site} title={g.title} description={g.summary} nav={PATHS.guides}>
   <section class="book">
     <Cover title={g.cover} kicker="Guide" pigment={pig(g.level)} href="#read" />
     <div class="book-main">
       <p class="label">Guide · {levelName(site, g.level)}{g.draft && ' · draft'}</p>
       <h1>{g.title}</h1>
       <p class="book-lead">{g.summary}</p>
+      <Tags tags={g.tags} />
       <dl class="book-spec">
         {before && <><dt>Read first</dt><dd><a href={url(PATHS.guide(before.id))}>{before.cover}</a></dd></>}
         {g.sources.length > 0 && <><dt>Sources</dt><dd>{g.sources.length}{g.sources.some((s) => !s.checked) && ' (some not yet checked)'}</dd></>}
@@ -69,9 +72,9 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
   {related.length > 0 && (
     <section class="sec" id="related">
       <header><h2>Related</h2></header>
-      <div class="shelf">
-        {related.map((r) => <figure><Cover title={r.cover} kicker="Guide" pigment={pig(r.level)} href={url(PATHS.guide(r.id))} /><figcaption>{levelName(site, r.level)}</figcaption></figure>)}
-      </div>
+      <ul class="guide-cards">
+        {related.map((r) => <li><GuideCard site={site} guide={r} /></li>)}
+      </ul>
     </section>
   )}
   <Lightbox />
@@ -82,6 +85,7 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
   .book > :global(.cover) { width: 11rem; }
   .book h1 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); margin: 0.2rem 0 0.6rem; }
   .book-lead { font-size: var(--step-1); line-height: 1.45; max-width: 40rem; }
+  .book-main :global(.tags) { margin: 0.2rem 0 0.4rem; }
   .book-spec { display: grid; grid-template-columns: auto 1fr; gap: 0.35rem 1rem; margin: 1rem 0; padding: 0.9rem 0; border-block: 1px solid var(--rule); font: 0.875rem/1.45 var(--sans); max-width: 40rem; }
   .book-spec:empty { display: none; }
   .book-spec dt { color: var(--ink-2); }

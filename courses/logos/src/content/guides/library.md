@@ -4,6 +4,7 @@ title: "Your library: find books, set priorities, make collections"
 cover: Your library
 level: 1
 summary: Find any book in your Library, tell Logos which Bibles and dictionaries to open first, and group books into collections you can search.
+tags: [library, filters, collections, prioritize, top-bibles]
 learn:
   - How to open and filter the Library
   - What prioritising changes, and what it does not

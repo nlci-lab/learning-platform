@@ -2,7 +2,7 @@
 // Learn: the course's guides and micro modules, from its content collections.
 // Course route (src/pages/learn/index.astro): <LearnPage site={course} heading="…" intro="…" />
 import Base from '../layouts/Base.astro';
-import Cover from '../components/Cover.astro';
+import GuideCard from '../components/GuideCard.astro';
 import { getModules, getGuides } from '../data';
 import { levelName, type SiteConfig } from '../config';
 import { url } from '../url';
@@ -11,7 +11,6 @@ interface Props { site: SiteConfig; heading?: string; intro?: string }
 const { site, heading = 'Learn step by step', intro } = Astro.props;
 const modules = await getModules();
 const guides = await getGuides();
-const PIGMENTS = ['lapis', 'verdigris', 'ochre', 'gall'] as const;
 ---
 <Base site={site} title="Learn" nav={PATHS.learn} description={`Guides and short guided problems: ${site.description}`}>
   <div class="lx">
@@ -24,14 +23,9 @@ const PIGMENTS = ['lapis', 'verdigris', 'ochre', 'gall'] as const;
     {guides.length > 0 && (
       <section class="sec" id="guides">
         <header><h2>Guides</h2></header>
-        <div class="shelf">
-          {guides.map((g) => (
-            <figure>
-              <Cover title={g.data.cover} kicker="Guide" pigment={PIGMENTS[(g.data.level - 1) % 4]} href={url(PATHS.guide(g.data.id))} />
-              <figcaption>{levelName(site, g.data.level)}</figcaption>
-            </figure>
-          ))}
-        </div>
+        <ul class="guide-cards">
+          {guides.map((g) => <li><GuideCard site={site} guide={g.data} /></li>)}
+        </ul>
       </section>
     )}
 
