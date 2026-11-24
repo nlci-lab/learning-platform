@@ -16,4 +16,8 @@ Scripture quotations marked CSB in screenshots have been taken from the Christia
 
 Scripture quotations marked KJV are from the King James Version.
 
-Screenshots of Paratext in the Textual Criticism series "Making textual decisions" show Paratext's interface (United Bible Societies and SIL Global) and resources opened in it: the Hindi Old Version (re-edited) with the KJV, NIV and NLT; the Translator's Notes display; the UBS Handbook Series; and the apparatus of the UBS Greek New Testament, 5th edition (Deutsche Bibelgesellschaft). They are quoted for teaching, one verse at a time, credited where they are used, and are **not** covered by the CC BY-SA licence above. Notes from the NET Bible are not shown; they are described in our own words, because the NET Bible's published permission covers its text without the notes.
+Scripture quotations marked NRSV in screenshots are from the New Revised Standard Version Bible, copyright © 1989 National Council of the Churches of Christ in the United States of America. Used by permission. All rights reserved worldwide.
+
+Scripture quotations marked CEV in screenshots are from the Contemporary English Version, copyright © 1991, 1992, 1995 by American Bible Society. Used by permission.
+
+Screenshots of Paratext in the Textual Criticism series "Making textual decisions" show Paratext's interface (United Bible Societies and SIL Global) and resources opened in it: the Hindi Old Version (re-edited) with the KJV, NIV and NLT; the Translator's Notes Display, with NRSV and CEV wording; the UBS Handbook Series; and the apparatus of the UBS Greek New Testament, 5th edition (Deutsche Bibelgesellschaft). They are quoted for teaching, one verse at a time, credited where they are used, and are **not** covered by the CC BY-SA licence above. Notes from the NET Bible are not shown; they are described in our own words, because the NET Bible's published permission covers its text without the notes.

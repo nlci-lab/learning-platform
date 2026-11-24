@@ -38,11 +38,12 @@ nodes:
       - { label: "{C}, {D} or ♦", to: study }
       - { label: "{A} or {B}", to: check-rating }
   - id: check-rating
-    kind: step
-    title: Follow the UBS text, but check what the rating covers
-    body: The [Which variants matter](~/guide/which-variants-matter/) guide shows why with Romans 16:7.
+    kind: question
+    title: Does the rating answer your question?
+    body: A rating covers only the question the committee asked. At Romans 16:7 the {A} covers the letters of the name, not whether it is a man's or a woman's name. The [Which variants matter](~/guide/which-variants-matter/) guide explains. The textual commentary tells you what the committee decided.
     options:
-      - { label: "Then", to: follow-ubs }
+      - { label: "Yes", to: follow-ubs }
+      - { label: "No, or the variant is part of a larger problem in the verse", to: study }
   - id: follow-ubs
     kind: outcome
     title: Follow the UBS text
@@ -55,7 +56,7 @@ nodes:
 
       1. [Compare versions](~/learn/decisions/compare-versions/): see that Bibles differ, and how.
       2. [Translation helps](~/learn/decisions/translation-helps/): the Translator's Notes and the UBS Handbook explain the problem.
-      3. [The NET notes](~/learn/decisions/net-notes/): the witnesses and the arguments in one note.
+      3. [The NET notes](~/learn/decisions/net-notes/): the witnesses (the manuscripts and other sources for each reading) and the arguments in one note.
       4. [The apparatus](~/learn/decisions/the-apparatus/): read the evidence yourself in the UBS apparatus.
       5. [Full textual criticism](~/learn/decisions/full-textual-criticism/): compare the manuscripts and weigh every piece of evidence.
     options:
@@ -68,7 +69,7 @@ nodes:
 
       - New Testament: the UBS or Nestle–Aland critical text.
       - Old Testament: the Masoretic Text in BHS, with room for other texts where it is doubtful.
-      - Passages with a long tradition: follow the regional-language Bible.
+      - Passages with a long tradition, such as John 7:53–8:11 (see [Doubtful passages](~/guide/doubtful-passages/)): follow the regional-language Bible. The Review Committee judges which passages these are.
       - The Review Committee decides the base text and disputed passages.
       - Theology never changes the text.
 
