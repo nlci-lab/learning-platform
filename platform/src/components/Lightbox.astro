@@ -1,0 +1,97 @@
+---
+// Shared image viewer. (From the Textual Criticism site.) Include it once on a page.
+// It enlarges two kinds of image:
+// - <Thumb> thumbnails (a.thumb). Without JavaScript a thumbnail is a plain link to the image.
+// - Every image inside an element marked data-zoomable, for example a guide's body. JavaScript wraps
+//   each one in a button; without JavaScript the image simply stays in the page.
+// Click, tap or Enter opens the image at full size in a modal dialog; Esc, the close button or a click
+// on the backdrop closes it, and focus returns to what opened it.
+// The site's hover preview was removed: it could not be hovered or dismissed (WCAG 1.4.13).
+---
+<dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-cap">
+  <figure>
+    <img alt="" />
+    <figcaption id="lightbox-cap"></figcaption>
+  </figure>
+  <button type="button" class="lb-close" aria-label="Close image">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6 10.6 12 5 6.4Z" fill="currentColor"/></svg>
+  </button>
+</dialog>
+
+<script>
+  const dlg = document.getElementById('lightbox') as HTMLDialogElement;
+  const dlgImg = dlg.querySelector('img')!;
+  const dlgCap = dlg.querySelector('figcaption')!;
+  let opener: HTMLElement | null = null;
+
+  function open(from: HTMLElement, src: string, alt: string, caption: string) {
+    opener = from;
+    dlgImg.src = src;
+    dlgImg.alt = alt;
+    dlgCap.textContent = caption;
+    dlg.showModal();
+  }
+
+  if ('showModal' in dlg) {
+    document.querySelectorAll<HTMLAnchorElement>('a.thumb').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        open(a, a.dataset.full!, a.querySelector('img')?.alt ?? '', a.dataset.caption ?? '');
+      });
+    });
+
+    document.querySelectorAll<HTMLImageElement>('[data-zoomable] img').forEach((img) => {
+      if (img.closest('a, button')) return;   // already interactive
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'zoom-btn';
+      b.setAttribute('aria-label', `Enlarge image: ${img.alt}`);
+      img.replaceWith(b);
+      b.append(img);
+      b.insertAdjacentHTML('beforeend', '<span class="zoom-hint" aria-hidden="true">Enlarge</span>');
+      b.addEventListener('click', () => open(b, img.currentSrc || img.src, img.alt, img.alt));
+    });
+  }
+
+  dlg.querySelector('.lb-close')!.addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => { opener?.focus(); });
+</script>
+
+<style>
+  /* Fit the image's own size, up to the window: a screenshot is shown at 100% when it fits. */
+  .lightbox {
+    width: fit-content; max-width: 96vw; max-height: 96dvh; padding: 0; border: 0; overflow: visible;
+    background: transparent; color: var(--ink);
+  }
+  .lightbox[open] { animation: lb-in 180ms ease; }
+  .lightbox::backdrop { background: rgb(10 10 12 / 0.78); backdrop-filter: blur(6px); }
+  .lightbox figure {
+    margin: 0; padding: 10px; border-radius: 16px; background: var(--paper);
+    box-shadow: 0 30px 80px rgb(0 0 0 / 0.45); max-height: 96dvh; overflow: auto;
+  }
+  .lightbox img { display: block; max-width: 100%; height: auto; border-radius: 8px; background: var(--paper-2); }
+  .lightbox figcaption { padding: 10px 6px 4px; font: 0.875rem/1.45 var(--sans); color: var(--ink-2); max-width: 60rem; }
+  .lb-close {
+    position: absolute; top: -14px; right: -14px; width: 40px; height: 40px; border-radius: 999px;
+    display: grid; place-items: center; border: 0; cursor: pointer;
+    color: var(--ink); background: var(--paper); box-shadow: 0 6px 16px rgb(0 0 0 / 0.3), 0 0 0 1px var(--rule);
+  }
+  .lb-close:hover { color: var(--accent); }
+  @media (max-width: 30rem) { .lb-close { top: 8px; right: 8px; } }
+  @keyframes lb-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+
+  /* The button JavaScript puts around a zoomable image. */
+  :global(.zoom-btn) {
+    position: relative; display: block; padding: 0; margin: 0; border: 0; background: none;
+    cursor: zoom-in; border-radius: 6px; max-width: 100%;
+  }
+  :global(.zoom-btn img) { display: block; border-radius: 6px; box-shadow: 0 0 0 1px var(--rule); }
+  :global(.zoom-btn:hover img) { box-shadow: 0 0 0 2px var(--accent); }
+  :global(.zoom-btn .zoom-hint) {
+    position: absolute; right: 8px; bottom: 8px; padding: 2px 8px; border-radius: 999px;
+    font: 600 0.75rem/1.6 var(--sans); color: #fff; background: rgb(0 0 0 / 0.65);
+  }
+  @media (prefers-reduced-motion: reduce) { .lightbox[open] { animation: none; } }
+</style>

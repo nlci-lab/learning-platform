@@ -1,0 +1,46 @@
+# Publishes the master site and every course to GitHub Pages on each push to main (ROADMAP Phase 3).
+# The site is one Pages site: https://nlci-lab.github.io/learning-platform/ with courses under /<id>/.
+# scripts/build-pages.mjs builds everything with the right base paths and fails on any broken internal link.
+name: Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+# Least privilege: the build (and npm's install scripts) only reads; only the deploy job may publish.
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - name: Build the site and check its links
+        run: npm run build:pages
+        env:
+          PAGES_BASE: /learning-platform/
+          SITE_URL: https://nlci-lab.github.io
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

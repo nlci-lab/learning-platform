@@ -1,0 +1,7 @@
+---
+import GuidePage from '@cohorts/platform/pages/GuidePage.astro';
+import { guideStaticPaths } from '@cohorts/platform/data';
+import { course } from '../../course.config';
+export const getStaticPaths = guideStaticPaths;
+---
+<GuidePage site={course} entry={Astro.props.entry} />

@@ -1,0 +1,16 @@
+---
+// A guide's hashtags. Each one links to the Guides page filtered to that tag.
+import { url } from '../url';
+import { PATHS } from '../paths';
+interface Props { tags: string[] }
+const { tags } = Astro.props;
+---
+<ul class="tags" aria-label="Hashtags">
+  {tags.map((t) => <li><a href={url(PATHS.tag(t))} data-tag={t}>#{t}</a></li>)}
+</ul>
+
+<style>
+  .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3rem 0.4rem; margin: 0; padding: 0; font: 0.8rem/1.4 var(--sans); }
+  .tags a { display: inline-block; padding: 0.1rem 0.55rem; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-2); text-decoration: none; background: var(--paper); }
+  .tags a:hover { border-color: var(--accent); color: var(--accent); }
+</style>

@@ -1,0 +1,133 @@
+---
+// A micro module page, built from content data (ADR 0002): a short guided problem, one step at a time.
+// Without JavaScript every step and every answer is visible. With JavaScript a step opens when the
+// previous one is answered. Rebuilt from the Textual Criticism site's MicroModule/MMStep/MMQuestion,
+// which held the steps and questions in the page itself.
+//
+// Course route (src/pages/practice/[id].astro):
+//   export const getStaticPaths = moduleStaticPaths;
+//   <ModulePage site={course} entry={Astro.props.entry} embeds={{ collation: Collation }} />
+import Base from '../layouts/Base.astro';
+import Question from '../components/Question.astro';
+import Sources from '../components/Sources.astro';
+import Feedback from '../components/Feedback.astro';
+import Unverified from '../components/Unverified.astro';
+import { levelName, type SiteConfig } from '../config';
+import type { MicroModule } from '../schemas';
+import { md } from '../markdown';
+import { url } from '../url';
+import { PATHS } from '../paths';
+interface Props {
+  site: SiteConfig;
+  entry: { data: MicroModule };
+  /** Course-specific widgets that steps name in `embed`. */
+  embeds?: Record<string, (props: any) => any>;
+}
+const { site, entry, embeds = {} } = Astro.props;
+const m = entry.data;
+for (const s of m.steps) {
+  if (s.embed && !embeds[s.embed.name]) throw new Error(`Module "${m.id}", step "${s.id}": no component for embed "${s.embed.name}". Pass it in the page's embeds.`);
+}
+const learn = url(PATHS.learn);
+---
+<Base site={site} title={m.title} description={m.description} nav={PATHS.learn}>
+  <article class="mm" data-mm>
+    {m.draft && <p class="tag">Draft: not in the published site</p>}
+    <p class="mm-crumbs small"><a href={learn}>Learn</a> › <a href={`${learn}#modules`}>Micro modules</a> › {m.topic}</p>
+    <p class="label">Micro module · {levelName(site, m.level)} · about {m.minutes} minutes</p>
+    <h1>{m.title}</h1>
+    <p class="lead">{m.lead}</p>
+    <ol class="mm-progress" aria-label="Progress" hidden></ol>
+
+    {m.steps.map((s, i) => {
+      const E = s.embed ? embeds[s.embed.name] : null;
+      return (
+        <section class="mm-step" id={`step-${s.id}`} data-title={s.title} aria-labelledby={`h-${s.id}`}>
+          <p class="mm-n">Step {i + 1}</p>
+          <h2 id={`h-${s.id}`} tabindex="-1">{s.title}</h2>
+          {s.body && <div class="mm-body" set:html={md(s.body)} />}
+          {E && <E {...s.embed!.args} />}
+          {s.question && <Question q={s.question} />}
+          <button type="button" class="btn mm-next" hidden>{i === m.steps.length - 1 ? 'Finish' : 'Next step →'}</button>
+        </section>
+      );
+    })}
+
+    <section class="mm-done">
+      <h2 tabindex="-1">Well done</h2>
+      {m.done ? <div set:html={md(m.done)} /> : <p>You have finished “{m.title}”. Try <a href={`${learn}#modules`}>another micro module</a>.</p>}
+    </section>
+    <Unverified items={m.unverified} />
+    <Sources sources={m.sources} lastChecked={m.last_checked} />
+    <Feedback site={site} title={m.title} />
+  </article>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-mm]').forEach((root) => {
+    root.classList.add('js');
+    const steps = [...root.querySelectorAll<HTMLElement>('.mm-step')];
+    const prog = root.querySelector<HTMLOListElement>('.mm-progress')!;
+    const done = root.querySelector<HTMLElement>('.mm-done')!;
+    done.hidden = true;   // shown on Finish; without JavaScript it stays visible
+    prog.hidden = false;
+    steps.forEach((s, i) => {
+      const li = document.createElement('li');
+      const sr = document.createElement('span');
+      sr.className = 'visually-hidden'; sr.textContent = `Step ${i + 1}: `;
+      li.append(sr, s.dataset.title ?? '');
+      prog.append(li);
+    });
+    const dots = [...prog.children] as HTMLElement[];
+    let open = 0;
+    function show(n: number) {
+      steps.forEach((s, i) => (s.hidden = i > n));
+      dots.forEach((d, i) => { d.classList.toggle('on', i <= n); if (i === n) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current'); });
+    }
+    const behavior: ScrollBehavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    function go(n: number) {
+      if (n >= steps.length) {
+        done.hidden = false;
+        done.scrollIntoView({ behavior, block: 'start' });
+        done.querySelector<HTMLElement>('h2')?.focus({ preventScroll: true });   // announce the end
+        return;
+      }
+      open = Math.max(open, n);
+      show(open);
+      steps[n].scrollIntoView({ behavior, block: 'start' });
+      steps[n].querySelector<HTMLElement>('h2')?.focus({ preventScroll: true });
+    }
+    steps.forEach((step, i) => {
+      const next = step.querySelector<HTMLButtonElement>('.mm-next')!;
+      next.addEventListener('click', () => go(i + 1));
+      // A step without a question can be passed at once; a question step opens Next once checked.
+      if (!step.querySelector('[data-q]')) next.hidden = false;
+      else step.addEventListener('q:checked', () => { next.hidden = false; });
+    });
+    show(0);
+  });
+</script>
+
+<style>
+  .mm { max-width: 46rem; margin: 1.5rem 0 3rem; }
+  .mm-crumbs { font-family: var(--sans); color: var(--ink-2); margin: 0 0 .75rem; }
+  .mm h1 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: .2rem 0 .5rem; }
+  .mm .lead { font-size: 1.15rem; line-height: 1.5; }
+  .mm-progress { list-style: none; counter-reset: p; display: flex; flex-wrap: wrap; gap: .4rem; padding: 0; margin: 1.25rem 0; font: .8rem var(--sans); color: var(--ink-2); }
+  .mm-progress[hidden] { display: none; }
+  .mm-progress :global(li) { counter-increment: p; display: inline-flex; gap: .35rem; align-items: center; padding: .2rem .6rem; border: 1px solid var(--rule); border-radius: 999px; }
+  .mm-progress :global(li)::before { content: counter(p); font-weight: 700; color: var(--accent); }
+  .mm-progress :global(li.on) { border-color: var(--ink); color: var(--ink); }
+  .mm-progress :global(li[aria-current]) { background: var(--ink); color: var(--paper); }
+  .mm-progress :global(li[aria-current])::before { color: var(--paper); }
+  .mm-step { margin: 2rem 0 0; padding-left: 1.1rem; border-left: 2px solid var(--rule); scroll-margin-top: 1rem; }
+  .mm-step[hidden] { display: none; }
+  .mm-n { margin: 0; font: 600 .72rem var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .mm-step h2 { margin: .1rem 0 .6rem; }
+  .mm-step h2:focus { outline: none; }
+  .mm:not(.js) .mm-next { display: none; }
+  .mm-done { margin: 2rem 0; padding: 1rem 1.1rem; border-radius: 10px; background: var(--paper-2); border: 1px solid var(--rule); }
+  .mm-done[hidden] { display: none; }
+  .mm-done h2 { margin-top: 0; }
+  .mm-done h2:focus { outline: none; }
+</style>

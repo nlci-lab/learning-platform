@@ -1,4 +1,4 @@
-# cohorts-cit: working rules
+# learning-platform: working rules
 
 This monorepo holds a shared course platform and the course sites built on it. Read this file at the start of every session. A course's own `CLAUDE.md` (in `courses/<name>/`) adds rules for that course.
 
@@ -11,7 +11,7 @@ This monorepo holds a shared course platform and the course sites built on it. R
 | `courses/<name>/` | One Astro app per course: `course.config.ts` and content. Served at `/<name>/` |
 | `docs/adr/` | Decisions and why. Read them before changing structure |
 
-Run from the repo root: `npm install`, then `npm run dev:site` (port 4320) or `npm run dev:logos` (port 4322). `npm run build` builds every workspace. `npm run check` type-checks them.
+Run from the repo root: `npm install`, then `npm run dev:site` (port 4320) or `npm run dev:logos` (port 4322). `npm run build` builds every workspace. `npm run check` type-checks them. `npm test` checks the platform schemas against the fixtures.
 
 ## Git
 

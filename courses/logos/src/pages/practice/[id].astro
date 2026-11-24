@@ -1,0 +1,7 @@
+---
+import ModulePage from '@cohorts/platform/pages/ModulePage.astro';
+import { moduleStaticPaths } from '@cohorts/platform/data';
+import { course } from '../../course.config';
+export const getStaticPaths = moduleStaticPaths;
+---
+<ModulePage site={course} entry={Astro.props.entry} />

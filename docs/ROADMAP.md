@@ -4,7 +4,7 @@
 
 npm workspaces, working rules (`CLAUDE.md`), ADRs, a minimal platform layout, the master site and an empty Logos course that build and run.
 
-## Phase 1: platform v0
+## Phase 1: platform v0 (done)
 
 Copy the generic pieces out of the Textual Criticism site, leaving that site untouched:
 
@@ -15,7 +15,9 @@ Copy the generic pieces out of the Textual Criticism site, leaving that site unt
 - glossary, Learn and Practice pages, and search
 - the sourced-fact schema helpers and the external-links integration
 
-Define the question schema (ADR 0003).
+Define the question schema (ADR 0003, 0004).
+
+Left for later: a feedback form for each course (the Textual Criticism form belongs to that site), and adding Learn, Glossary and Search to the Logos menu once they have content.
 
 ## Phase 2: Logos course
 
@@ -26,6 +28,8 @@ Before publishing, confirm Faithlife's guidelines on screenshots and use of the 
 ## Phase 3: build and deploy
 
 One workflow builds the master site and every course into one GitHub Pages site, with a link check and Lighthouse. Creating the nlci-lab repo and pushing need the user's go-ahead.
+
+Done so far: the repo `nlci-lab/learning-platform`, CI on every push and pull request, and `.github/workflows/pages.yml`, which runs `scripts/build-pages.mjs` (all sites, base paths, internal link check) and publishes to https://nlci-lab.github.io/learning-platform/. Still to add: Lighthouse.
 
 ## Phase 4: Moodle proof (when the LMS decision comes)
 

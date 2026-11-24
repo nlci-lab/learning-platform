@@ -1,0 +1,66 @@
+---
+// Learn: the course's guides and micro modules, from its content collections.
+// Course route (src/pages/learn/index.astro): <LearnPage site={course} heading="…" intro="…" />
+import Base from '../layouts/Base.astro';
+import GuideCard from '../components/GuideCard.astro';
+import { getModules, getGuides } from '../data';
+import { levelName, type SiteConfig } from '../config';
+import { url } from '../url';
+import { PATHS } from '../paths';
+interface Props { site: SiteConfig; heading?: string; intro?: string }
+const { site, heading = 'Learn step by step', intro } = Astro.props;
+const modules = await getModules();
+const guides = await getGuides();
+---
+<Base site={site} title="Learn" nav={PATHS.learn} description={`Guides and short guided problems: ${site.description}`}>
+  <div class="lx">
+    <header class="lx-head">
+      <p class="label">Learn</p>
+      <h1>{heading}</h1>
+      {intro && <p class="muted">{intro}</p>}
+    </header>
+
+    {guides.length > 0 && (
+      <section class="sec" id="guides">
+        <header><h2>Guides</h2></header>
+        <ul class="guide-cards">
+          {guides.map((g) => <li><GuideCard site={site} guide={g.data} /></li>)}
+        </ul>
+      </section>
+    )}
+
+    <section class="sec" id="modules">
+      <header><h2>Micro modules</h2>{modules.length > 0 && <span class="small muted">About ten minutes each</span>}</header>
+      {modules.length === 0 ? (
+        <p class="muted">The micro modules are in preparation.</p>
+      ) : (
+        <>
+          <p class="muted intro">Short guided problems. At every step you answer a question and see why.</p>
+          <ul class="mods">
+            {modules.map(({ data: m }) => (
+              <li><a class="mod" href={url(PATHS.module(m.id))}>
+                <span class="ref">{m.topic}</span><span class="q">{m.question}</span><span class="sk">{m.skill}</span>
+                <span class="mn">{levelName(site, m.level)} · about {m.minutes} minutes · {m.steps.length} steps{m.draft && ' · draft'}</span>
+              </a></li>
+            ))}
+          </ul>
+        </>
+      )}
+    </section>
+    <slot />
+  </div>
+</Base>
+
+<style>
+  .lx { margin: 1.75rem 0 3rem; }
+  .lx-head p { max-width: var(--measure); }
+  .intro { margin: -.25rem 0 1rem; max-width: var(--measure); }
+  .mods { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
+  .mod { display: flex; flex-direction: column; gap: .35rem; height: 100%; padding: 1rem 1.1rem; border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 10px; color: var(--ink); text-decoration: none; background: var(--paper); }
+  .mod:hover { border-color: var(--ink-2); border-left-color: var(--accent); }
+  .mod:hover .q { text-decoration: underline; text-decoration-thickness: 1px; }
+  .ref { font: 600 .78rem var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  .q { font: 600 1.2rem/1.3 var(--serif); }
+  .sk { font: .85rem var(--sans); color: var(--ink-2); }
+  .mn { margin-top: auto; font: 600 .8rem var(--sans); color: var(--ink-2); }
+</style>

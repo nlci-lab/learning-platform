@@ -3,13 +3,33 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "description": "Shared layouts, components, styles and content schemas for the course sites.",
+  "license": "MIT",
   "exports": {
     "./config": "./src/config.ts",
     "./url": "./src/url.ts",
+    "./paths": "./src/paths.ts",
+    "./schemas": "./src/schemas.ts",
+    "./content": "./src/content.ts",
+    "./data": "./src/data.ts",
+    "./markdown": "./src/markdown.ts",
+    "./search": "./src/search.ts",
+    "./integration": "./src/integration.ts",
     "./layouts/*": "./src/layouts/*",
+    "./components/*": "./src/components/*",
+    "./pages/*": "./src/pages/*",
     "./styles/*": "./src/styles/*"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
   },
   "peerDependencies": {
     "astro": "^5.18.2"
+  },
+  "dependencies": {
+    "marked": "^15.0.12"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.3.2"
   }
 }

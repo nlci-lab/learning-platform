@@ -4,4 +4,14 @@ The text and data of the courses (content files under `courses/*/src/content/` a
 
 Third-party material is not covered by this licence and keeps its own status, given where it is used. This includes screenshots of software, quotations from published editions, and images from other holders.
 
-Logos Bible Software is a product of Faithlife. Its name, interface and screenshots belong to Faithlife and are used for teaching under their guidelines. (The guidelines are still to be confirmed before the Logos course is published.)
+Logos Bible Software is a product of Faithlife. Its name, interface and screenshots belong to Faithlife. Screenshots of Logos are used for teaching under Faithlife's published content permissions (https://www.logos.com/content-permissions), credited "Copyright Logos (https://www.logos.com)", and are **not** covered by the CC BY-SA licence above. Bible text visible in a screenshot belongs to its publisher and is credited with the image. We do not show ESV text, because Crossway does not allow the ESV in publications under a Creative Commons licence.
+
+Scripture quotations marked NIV in screenshots are taken from THE HOLY BIBLE, NEW INTERNATIONAL VERSION®, NIV® Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc.® Used by permission. All rights reserved worldwide.
+
+Scripture quotations marked LEB in screenshots are from the Lexham English Bible. Copyright 2012 Logos Bible Software. Lexham is a registered trademark of Logos Bible Software.
+
+Scripture quotations marked NLT in screenshots are taken from the Holy Bible, New Living Translation, copyright © 1996, 2004, 2015 by Tyndale House Foundation. Used by permission of Tyndale House Publishers, Inc., Carol Stream, Illinois 60188. All rights reserved.
+
+Scripture quotations marked CSB in screenshots have been taken from the Christian Standard Bible®, Copyright © 2017 by Holman Bible Publishers. Used by permission. CSB® is a registered trademark of Holman Bible Publishers.
+
+Scripture quotations marked KJV are from the King James Version.

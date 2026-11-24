@@ -1,0 +1,27 @@
+---
+// A small, lazy-loaded illustration with its credit and licence. (From the Textual Criticism site;
+// the licence is now text passed in, not a fixed list.)
+import { url } from '../url';
+interface Props {
+  /** Path under the site's public/ folder. */
+  file: string; width: number; height: number; alt: string;
+  credit: string; creditUrl: string;
+  /** Licence or permission note (HTML), e.g. 'Marked public domain on Wikimedia Commons.' */
+  licence: string;
+}
+const { file, width, height, alt, credit, creditUrl, licence } = Astro.props;
+---
+<figure class="fig">
+  <a href={creditUrl}>
+    <img src={url(file)} width={width} height={height} alt={alt} loading="lazy" decoding="async" />
+  </a>
+  <figcaption class="small">
+    <slot /> Image: <a href={creditUrl}>{credit} ↗</a>. <span class="muted" set:html={licence} />
+  </figcaption>
+</figure>
+
+<style>
+  .fig { margin: 0.75rem 0 1.25rem; max-width: 22rem; }
+  .fig img { display: block; width: 100%; height: auto; border-radius: 4px; background: var(--paper-2); }
+  .fig figcaption { margin-top: 0.4rem; font-family: var(--sans); line-height: 1.45; }
+</style>

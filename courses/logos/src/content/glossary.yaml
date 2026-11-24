@@ -1,0 +1,164 @@
+# Glossary for the Logos course: Faithlife's terms in plain English. Ids are stable once published.
+# `source` names where the term and its meaning come from; `checked: false` = not yet checked against it.
+
+# --- The Logos screen and its tools ---
+- id: panel
+  term: panel
+  group: screen
+  plain: A box in the Logos window that holds a book or a tool. One panel can hold several books as tabs.
+  source: Faithlife, “Set Up Your Workspace with Layouts”, Logos Help Center; checked in the app (Logos 55)
+  checked: true
+- id: layout
+  term: layout
+  group: screen
+  plain: A saved set of open books and tools, with their panels and tabs. Open a layout to get the same screen again. See [Layouts](~/guides/layouts/).
+  source: Faithlife, “Set Up Your Workspace with Layouts”, Logos Help Center
+  checked: true
+- id: snapshot
+  term: snapshot
+  group: screen
+  plain: A record of how your screen looked at a given time. Logos keeps snapshots by itself. Save one as a named layout to keep it.
+  source: Faithlife, “Set Up Your Workspace with Layouts”, Logos Help Center
+  checked: true
+- id: tile-arrangement
+  term: Tile Arrangement
+  group: screen
+  plain: A button at the top of the Layouts menu that rearranges the open panels into a set pattern. It does not open or close any book.
+  source: Faithlife, “Set Up Your Workspace with Layouts”, Logos Help Center
+  checked: true
+- id: quickstart-layout
+  term: QuickStart Layout
+  group: screen
+  plain: A ready-made layout for a common task, such as Bible and Commentary or Passage Study.
+  source: Faithlife, “Set Up Your Workspace with Layouts”, Logos Help Center
+  checked: true
+- id: link-set
+  term: link set
+  group: screen
+  plain: A letter (A, B, C…) you give to two or more panels so that they move together. See [Link sets](~/guides/link-sets/).
+  source: Faithlife, “How to Link Resources to Scroll Together”, Logos Help Center
+  checked: true
+- id: command-box
+  term: Command Box
+  group: screen
+  plain: The box at the top of the main toolbar. Type a reference, a word or a command, and choose from the list.
+  source: Faithlife, “Toolbar & Navigation”, Logos Help Center; checked in the app (Logos 55)
+  checked: true
+- id: context-menu
+  term: Context Menu
+  group: screen
+  plain: The menu you get when you right-click. The left side lists what you clicked; the right side lists what you can do with it.
+  source: Faithlife, “Context Menu”, Logos Help Center
+  checked: true
+- id: selection-menu
+  term: Selection Menu
+  group: screen
+  plain: A small menu that appears when you select text, with actions such as Study, Add Note and highlighting.
+  source: Faithlife, “Selection Menu”, Logos Help Center
+  checked: true
+- id: dynamic-toolbar
+  term: dynamic toolbar
+  group: screen
+  plain: The row of tabs at the top of a book (Home, Formatting, Notes, View, Search, Tools, Share) with the actions for that book.
+  source: Faithlife, “Where do I find . . . on the dynamic toolbar?”, Logos Help Center
+  checked: true
+- id: application-toolbar
+  term: Application Toolbar
+  group: screen
+  plain: The main toolbar of Logos, with Library, Search, Guides, Tools, Layouts and your shortcuts. It can be on the left or at the top of the window.
+  source: Faithlife, “Adjust the Logos Program Settings”, Logos Help Center; checked in the app (Logos 55)
+  checked: true
+- id: program-settings
+  term: Program Settings
+  group: screen
+  plain: The settings that apply to Logos as a whole, such as fonts, text size and internet use. Open them from the More Actions menu (three dots) on the main toolbar.
+  source: Faithlife, “Adjust the Logos Program Settings”, Logos Help Center
+  checked: true
+- id: guide
+  term: guide (Logos)
+  group: screen
+  plain: A report Logos builds from your library for a passage or a word, such as the Passage Guide, Exegetical Guide or Bible Word Study. Not the same as a guide on this site.
+  source: Faithlife, “Using Guides”, Logos Help Center
+  checked: true
+
+# --- Your library ---
+- id: resource
+  term: resource
+  group: library
+  plain: Faithlife's word for a book, Bible or other item in your Logos library.
+  source: Faithlife, “Find Your Books in the Library”, Logos Help Center
+  checked: true
+- id: resource-type
+  term: type (of a resource)
+  group: library
+  plain: The kind of book Logos says it is, such as Bible, Bible Commentary, Lexicon or Encyclopedia. You can filter the Library by type.
+  source: Faithlife, “Find Your Books in the Library”, Logos Help Center; SIL, Translator's Workplace contents list (June 2025)
+  checked: true
+- id: prioritize
+  term: prioritize
+  group: library
+  plain: To put books in your order of preference. Logos opens the higher books first, in guides and when you look up a word.
+  source: Faithlife, “Prioritize Books”, Logos Help Center
+  checked: true
+- id: top-bibles
+  term: Top Bibles
+  group: library
+  plain: The five Bibles highest in your priority list. Your Top Bible is the first of them.
+  source: Faithlife, “What are Top Bibles, and how do I change them?”, Logos Help Center
+  checked: true
+- id: collection
+  term: collection
+  group: library
+  plain: A named group of books, made from a rule such as type:commentary, from books you choose, or both. You can search a collection.
+  source: Faithlife, “Create and Use Book Collections”, Logos Help Center
+  checked: true
+- id: translators-workplace
+  term: Translator's Workplace (TW)
+  group: library
+  plain: A library for people in Bible translation roles, made by SIL on the Logos platform. It includes Bibles, Greek and Hebrew texts, dictionaries, commentaries and translation handbooks.
+  source: SIL, “Translator's Workplace”, sil.org
+  checked: true
+
+# --- Bible texts and languages ---
+- id: lemma
+  term: lemma
+  group: texts
+  plain: The dictionary form of a word. For example, a Greek verb is listed in a lexicon under one form, whatever form it has in the verse.
+  source: Faithlife, “How Do I Use Lexicons in Logos?”, Logos Help Center
+  checked: true
+- id: tagged-text
+  term: tagged text (morphologically tagged)
+  group: texts
+  plain: A Greek or Hebrew text where each word is marked with its lemma and its grammar. Word studies and grammar searches use it.
+  source: Faithlife, “Studying Words Using the Bible Word Study Guide”, Logos Help Center
+  checked: true
+- id: interlinear
+  term: interlinear
+  group: texts
+  plain: A Greek or Hebrew text with the meaning of each word shown with it.
+  source: Faithlife, “Interlinears”, Logos Help Center
+  checked: true
+- id: reverse-interlinear
+  term: reverse interlinear
+  group: texts
+  plain: An English Bible with the Greek or Hebrew word lined up under each English word.
+  source: Faithlife, “Interlinears”, Logos Help Center
+  checked: true
+- id: base-text
+  term: base text
+  group: texts
+  plain: In Text Comparison, the version that every other version is compared with. See [Text Comparison](~/guides/text-comparison/).
+  source: Faithlife, “Compare Translations with Text Comparison”, Logos Help Center
+  checked: true
+- id: semantic-domain
+  term: semantic domain
+  group: texts
+  plain: A group of words that share an area of meaning. Louw and Nida's Greek lexicon is arranged by semantic domains. (Faithlife's help page also uses the term for the range of meanings of one word.)
+  source: Louw and Nida, Greek-English Lexicon of the New Testament Based on Semantic Domains (UBS), Logos product page; Faithlife, “Semantic Domains”, Logos Help Center
+  checked: true
+- id: apparatus
+  term: apparatus (critical apparatus)
+  group: texts
+  plain: Notes to a Greek or Hebrew text that list the different readings in the manuscripts. Logos files them as the type Bible Apparatus.
+  source: SIL, Translator's Workplace contents list (June 2025); Faithlife, “Study a Passage with the Exegetical Guide”, Logos Help Center
+  checked: true

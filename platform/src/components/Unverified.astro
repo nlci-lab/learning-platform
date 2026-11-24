@@ -1,0 +1,12 @@
+---
+// Claims we could not source yet, kept apart from the sourced facts and clearly labelled.
+interface Props { items: { claim: string; from: string }[]; title?: string }
+const { items, title = 'Not yet verified' } = Astro.props;
+---
+{items.length > 0 && (
+  <aside class="unverified" aria-label={title}>
+    <h2>{title}</h2>
+    <p>These points come from sources we have not checked yet. Do not rely on them.</p>
+    <ul>{items.map((u) => <li>{u.claim} <span class="muted">(from {u.from})</span></li>)}</ul>
+  </aside>
+)}

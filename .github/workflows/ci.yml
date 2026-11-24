@@ -1,0 +1,30 @@
+# Checks every push and pull request: types, schema tests, and a build at the root and under a sub-path.
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - run: npm run build
+      - name: Build Logos under a sub-path (base path must stay a setting)
+        run: npm run build -w @cohorts/logos
+        env:
+          SITE_BASE: /sub-path-test/logos/
+      - name: No internal link may miss the base path
+        run: |
+          if grep -rhoE '(href|src|action)="/[^"]*"' courses/logos/dist | grep -v '"/sub-path-test/' ; then
+            echo "Found internal links without the base path"; exit 1
+          fi
