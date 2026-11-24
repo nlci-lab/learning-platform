@@ -1,0 +1,43 @@
+---
+// The "Making textual decisions" decision tree on a page of its own. The tree is not copied: it is the
+// same data (src/content/trees/textual-decision.yaml) that the series page renders, with its own sources.
+// Without JavaScript every step shows as a section and each answer is a link to the next one.
+import Context from '../../layouts/Context.astro';
+import DecisionTree from '@cohorts/platform/components/DecisionTree.astro';
+import { url } from '../../lib/url';
+const parts = [
+  ['compare-versions', 'Part 1: Compare versions', 'see that Bibles differ, and how.'],
+  ['translation-helps', 'Part 2: Translation helps', 'the Translator\'s Notes and the UBS Handbook explain the problem.'],
+  ['net-notes', 'Part 3: The NET notes', 'the witnesses and the arguments in one note.'],
+  ['the-apparatus', 'Part 4: The apparatus', 'read the evidence yourself in the UBS apparatus.'],
+  ['full-textual-criticism', 'Part 5: Full textual criticism', 'compare the manuscripts and weigh every piece of evidence.'],
+];
+---
+<Context title="Decision tree: does this variant need a decision?" label="Guide" lastChecked="2026-11-25" notice={false}
+  description="A short set of questions that tells you whether a textual variant needs your team's attention, and what to do next.">
+  <p class="lead">Two Bibles differ at a verse you are translating, or your Bible differs from the UBS Greek text. Does your team need to make a decision? Answer a few short questions to find out.</p>
+
+  <h2>How to use it</h2>
+  <ul>
+    <li>Start at the first question. Choose the answer that fits your verse.</li>
+    <li>Each answer takes you to the next question, or to what to do. Stop as soon as you reach an outcome.</li>
+    <li>With JavaScript on, you see one question at a time, with <strong>Back</strong> and <strong>Start again</strong> buttons. With JavaScript off, all the questions are listed below, and each answer is a link that jumps to the next one.</li>
+    <li>The tree gives you a recommendation, not a ruling. Your project's Review Committee decides. See <a href={url('guide/text-policy/')}>Which text should a translation follow?</a></li>
+  </ul>
+  <p>The same steps are written out in the <a href={url('guide/which-variants-matter/#decision-guide')}>Decision guide</a> of <a href={url('guide/which-variants-matter/')}>Which variants deserve your attention</a>. That guide also explains the UBS ratings the tree asks about.</p>
+
+  <DecisionTree id="textual-decision" />
+
+  <h2>If you need to study the variant</h2>
+  <p>The series <a href={url('learn/decisions/')}>Making textual decisions</a> shows five ways to study a variant, all worked on John 1:18. Each part goes deeper. Go only as far as you need.</p>
+  <ol class="parts">
+    {parts.map(([id, title, what]) => <li><a href={url(`learn/decisions/${id}/`)}>{title}</a>: {what}</li>)}
+  </ol>
+  <p>New to all this? Start with <a href={url('guide/what-is-textual-criticism/')}>What is textual criticism?</a></p>
+</Context>
+
+<style>
+  .parts { padding-left: 1.3rem; }
+  .parts li { margin-bottom: 0.5rem; }
+  .parts li::marker { color: var(--rubric); font-weight: 700; }
+</style>

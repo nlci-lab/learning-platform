@@ -55,6 +55,7 @@ const TRY = ['John 1:18', '𝔓66', 'B', '05', 'Mark 16:9–20', 'harder reading
 
   <section class="sec">
     <header><h2>Guides</h2><a href={url('guide/')}>All guides →</a></header>
+    <p class="muted ex-intro">New here? Start with <a href={url('guide/what-is-textual-criticism/')}>What is textual criticism?</a> Have a verse in front of you? Use the <a href={url('guide/decision-tree/')}>decision tree</a>.</p>
     <div class="shelf">{guides.map((g) => <figure><Cover title={g.cover} kicker={KICKER[g.section]} pigment={PIGMENT[g.section]} href={url(g.path)} /><figcaption>{g.level}</figcaption></figure>)}</div>
   </section>
 
