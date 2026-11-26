@@ -302,6 +302,17 @@ const caseAnswers = {
   questions: z.array(question).default([]),
 };
 
+/** Problem ids and question ids are each unique. Used by the case and by its private key file. */
+function checkAnswerIds(c: { id: string; problems: { id: string }[]; questions: { id: string }[] }, ctx: z.RefinementCtx) {
+  const probs = new Set<string>();
+  c.problems.forEach((p, i) => {
+    if (probs.has(p.id)) ctx.addIssue({ code: 'custom', path: ['problems', i, 'id'], message: `duplicate problem id "${p.id}"` });
+    probs.add(p.id);
+  });
+  const qids = c.questions.map((q) => q.id);
+  if (new Set(qids).size !== qids.length) ctx.addIssue({ code: 'custom', path: ['questions'], message: `case "${c.id}" has a question id twice` });
+}
+
 export const caseSchema = z.object({
   id: stableId,
   title: text,
@@ -337,14 +348,10 @@ export const caseSchema = z.object({
     if (segs.has(s.id)) ctx.addIssue({ code: 'custom', path: ['segments', i, 'id'], message: `duplicate segment id "${s.id}"` });
     segs.add(s.id);
   });
-  const probs = new Set<string>();
+  checkAnswerIds(c, ctx);
   c.problems.forEach((p, i) => {
-    if (probs.has(p.id)) ctx.addIssue({ code: 'custom', path: ['problems', i, 'id'], message: `duplicate problem id "${p.id}"` });
-    probs.add(p.id);
     if (!segs.has(p.segment)) ctx.addIssue({ code: 'custom', path: ['problems', i, 'segment'], message: `problem "${p.id}" points to segment "${p.segment}", which does not exist` });
   });
-  const qids = c.questions.map((q) => q.id);
-  if (new Set(qids).size !== qids.length) ctx.addIssue({ code: 'custom', path: ['questions'], message: `case "${c.id}" has a question id twice` });
   if (c.provenance === 'team-anonymised' && !c.permission)
     ctx.addIssue({ code: 'custom', path: ['permission'], message: `case "${c.id}" comes from a team's draft and needs a permission reference` });
   if (c.assessed) {
@@ -359,7 +366,7 @@ export const caseSchema = z.object({
 export type CheckingCase = z.infer<typeof caseSchema>;
 
 /** The private answer file of an assessed case (<id>.key.yaml, git-ignored, for mentors only). */
-export const caseKey = z.object({ id: stableId, ...caseAnswers });
+export const caseKey = z.object({ id: stableId, ...caseAnswers }).superRefine((k, ctx) => checkAnswerIds(k, ctx));
 
 /**
  * Cross-file checks (ADR 0006): every competency id exists, and every `requires` id names content in

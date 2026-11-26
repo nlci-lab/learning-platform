@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import yaml from 'js-yaml';
-import { competencyList, caseSchema, moduleSchema, checkLinks } from '../src/schemas.ts';
+import { competencyList, caseSchema, caseKey, moduleSchema, guide, checkLinks } from '../src/schemas.ts';
 
 const read = (u) => yaml.load(readFileSync(u, 'utf8'));
 const listUrl = new URL('../data/competencies.yaml', import.meta.url);
@@ -48,6 +48,14 @@ test('an assessed case with answers in its public file fails', () => {
   assert.equal(caseSchema.safeParse(c).success, true);
 });
 
+test('a case key with a duplicate problem or question id fails', () => {
+  const c = sample();
+  const key = { id: c.id, problems: c.problems, model_analysis: c.model_analysis, questions: c.questions };
+  assert.equal(caseKey.safeParse(key).success, true);
+  assert.equal(caseKey.safeParse({ ...key, problems: [...c.problems, c.problems[0]] }).success, false);
+  assert.equal(caseKey.safeParse({ ...key, questions: [...c.questions, c.questions[0]] }).success, false);
+});
+
 test('a practice case with only non-problems fails', () => {
   const c = sample(); c.problems = c.problems.filter((p) => p.kind === 'none');
   assert.equal(caseSchema.safeParse(c).success, false);
@@ -69,14 +77,19 @@ test('all content links to known competencies and content', () => {
   const covered = new Set();
   const groups = [{ name: 'fixtures', items: [{ kind: 'case', ...caseSchema.parse(sample()) }] }];
   const coursesDir = new URL('../../courses/', import.meta.url);
+  // Same file selection as the content loaders: recursive; .yaml/.yml; cases skip *.key.*; guides .md/.mdx.
+  const files = (dir, ok) => existsSync(dir)
+    ? readdirSync(dir, { recursive: true }).map(String).filter(ok).map((f) => new URL(f.replaceAll('\\', '/'), dir))
+    : [];
+  const isYaml = (f) => /\.ya?ml$/.test(f);
+  const frontMatter = (u) => yaml.load(readFileSync(u, 'utf8').match(/^---\r?\n([\s\S]*?)\r?\n---/)[1]);
   for (const course of readdirSync(coursesDir)) {
-    const items = [];
-    const mods = new URL(`${course}/src/content/modules/`, coursesDir);
-    if (existsSync(mods)) for (const f of readdirSync(mods).filter((f) => f.endsWith('.yaml')))
-      items.push({ kind: 'module', ...moduleSchema.parse(read(new URL(f, mods))) });
-    const cases = new URL(`${course}/src/content/cases/`, coursesDir);
-    if (existsSync(cases)) for (const f of readdirSync(cases).filter((f) => f.endsWith('.yaml') && !f.endsWith('.key.yaml')))
-      items.push({ kind: 'case', ...caseSchema.parse(read(new URL(f, cases))) });
+    const base = new URL(`${course}/src/content/`, coursesDir);
+    const items = [
+      ...files(new URL('modules/', base), isYaml).map((u) => ({ kind: 'module', ...moduleSchema.parse(read(u)) })),
+      ...files(new URL('cases/', base), (f) => isYaml(f) && !/\.key\.ya?ml$/.test(f)).map((u) => ({ kind: 'case', ...caseSchema.parse(read(u)) })),
+      ...files(new URL('guides/', base), (f) => /\.mdx?$/.test(f)).map((u) => ({ kind: 'guide', ...guide.parse(frontMatter(u)) })),
+    ];
     groups.push({ name: course, items });
   }
   const problems = [];
