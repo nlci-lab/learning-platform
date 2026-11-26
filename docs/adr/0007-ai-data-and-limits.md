@@ -30,7 +30,10 @@ Either on a model we host ourselves, or with a provider whose contract says it k
 
 ## Grounding
 
-Every answer is built from the public content and the curated resources, and nothing else. Every claim names the content id or resource it comes from, so a reader can check it in one step. When those sources do not support an answer, the AI says it does not know. It does not fill the gap from its general training.
+The AI keeps two things apart: the **authorities** it relies on, and the **material it is looking at**.
+
+- **Authorities** are only the public content and the curated resources. Every claim about meaning, language or background names the content id or resource it comes from, so a reader can check it in one step. When the authorities do not support an answer, the AI says it does not know. It does not fill the gap from its general training.
+- **Material under study** is the passage, case or draft the person is working on. The AI may point to a place in it (a verse, or a segment of a back translation) to show what its comment is about. At stage 2 that material may be a team's draft; a reference to a place in a draft is used only inside the stage-2 setting, and the draft is never treated as an authority or stored beyond what that setting allows.
 
 ## What it may never do
 
