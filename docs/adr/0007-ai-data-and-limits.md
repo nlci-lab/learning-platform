@@ -1,6 +1,6 @@
 # AI: what it may read, where it runs, and what it may never do
 
-Status: proposed (2026-11-27). No AI feature is built until this is accepted.
+Status: accepted (2026-11-27).
 
 We plan to try two AI features with people preparing to check translations:
 
@@ -26,7 +26,7 @@ Copyrighted works we hold only for checking and citation are never given to an A
 
 ## Where it runs
 
-Either on a model we host ourselves, or with a provider whose contract says it keeps no data and does not train on it. No key, token or endpoint is stored in this repo. Learners' conversations are stored only in our own system, deleted on request, and kept no longer than the pilot needs.
+Either on a model we host ourselves, or with a provider whose contract says it keeps no data and does not train on it. No key, token or endpoint is stored in this repo. Learners' conversations are stored only in our own system, deleted on request, and deleted after 90 days at the latest.
 
 ## Grounding
 
