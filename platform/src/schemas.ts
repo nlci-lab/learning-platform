@@ -132,6 +132,54 @@ export const question = z.discriminatedUnion('type', [multichoice, truefalse, sh
   });
 export type Question = z.infer<typeof question>;
 
+/* ---------- Competencies (ADR 0006) ----------
+   One shared list in platform/data/competencies.yaml. Content names the competencies it builds. */
+
+/** The eight domains of consultant work. */
+export const domainId = z.enum(['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8']);
+export const domainNames: Record<z.infer<typeof domainId>, string> = {
+  d1: 'Exegesis', d2: 'Translation principles', d3: 'Checking practice', d4: 'Language, culture and community',
+  d5: 'Mentoring and facilitation', d6: 'Project and quality', d7: 'Tools and machine drafts', d8: 'Character, faith and relationships',
+};
+/** The areas of competence in the Forum of Bible Agencies International statement (revision 2024). */
+export const fobaiArea = z.enum([
+  'interpersonal', 'intercultural', 'language', 'translation', 'linguistics', 'biblical-languages',
+  'biblical-studies', 'technology', 'program-planning', 'quality-assurance', 'consultancy',
+]);
+
+export const competency = z.object({
+  id: stableId,
+  domain: domainId,
+  fobai: z.array(fobaiArea).min(1),
+  /** What the person can do, in plain words. */
+  statement: text,
+  /** Ids of sources in the list's `sources`. */
+  src: z.array(stableId).min(1),
+});
+export type Competency = z.infer<typeof competency>;
+
+export const competencyList = z.object({
+  /** Raised whenever the list changes. A changed meaning gets a new id, never a quiet edit. */
+  version: z.number().int().positive(),
+  sources,
+  competencies: z.array(competency).min(1),
+}).superRefine((l, ctx) => {
+  const seen = new Set<string>();
+  l.competencies.forEach((c, i) => {
+    if (seen.has(c.id)) ctx.addIssue({ code: 'custom', path: ['competencies', i, 'id'], message: `duplicate competency id "${c.id}"` });
+    seen.add(c.id);
+  });
+  checkSourceIds(l, ctx);
+});
+
+/** Optional fields every guide, module and case may carry. */
+const linkFields = {
+  /** Ids from platform/data/competencies.yaml. */
+  competencies: z.array(stableId).default([]),
+  /** Ids of content to work through first (guides, modules or cases in the same course). */
+  requires: z.array(stableId).default([]),
+};
+
 /* ---------- Micro modules (ADR 0002, 0004) ---------- */
 
 export const step = z.object({
@@ -168,6 +216,7 @@ export const moduleSchema = z.object({
   /** Drafts are built only in `astro dev`. */
   draft: z.boolean().default(false),
   last_checked: isoDate.optional(),
+  ...linkFields,
 }).superRefine((m, ctx) => {
   const seen = new Set<string>();
   m.steps.forEach((s, i) => {
@@ -224,8 +273,117 @@ export const guide = z.object({
   checked: z.boolean().default(false),
   last_checked: isoDate.optional(),
   draft: z.boolean().default(false),
+  ...linkFields,
 });
 export type Guide = z.infer<typeof guide>;
+
+/* ---------- Checking cases (ADR 0006) ----------
+   One practice checking task per file: src/content/cases/<id>.yaml. The back translation is written
+   by us (or, with permission, from a real team) and has planted problems. */
+
+export const problemKind = z.enum([
+  'addition', 'omission', 'change', 'unnatural', 'figure-literal', 'wrong-interpretation', 'bt-artefact', 'none',
+]);
+
+const caseAnswers = {
+  /** The planted problems, each tied to one segment. A segment with kind 'none' is a deliberate non-problem. */
+  problems: z.array(z.object({
+    id: stableId,
+    segment: stableId,
+    kind: problemKind,
+    /** What is wrong (or why it is fine), with reasons (Markdown). */
+    explanation: text,
+    /** A question a consultant could ask the team, so they see the problem for themselves. */
+    ask_team: z.string().optional(),
+  })).default([]),
+  /** The full worked analysis (Markdown). */
+  model_analysis: z.string().optional(),
+  /** Practice questions (ADR 0004 types). */
+  questions: z.array(question).default([]),
+};
+
+/** Problem ids and question ids are each unique. Used by the case and by its private key file. */
+function checkAnswerIds(c: { id: string; problems: { id: string }[]; questions: { id: string }[] }, ctx: z.RefinementCtx) {
+  const probs = new Set<string>();
+  c.problems.forEach((p, i) => {
+    if (probs.has(p.id)) ctx.addIssue({ code: 'custom', path: ['problems', i, 'id'], message: `duplicate problem id "${p.id}"` });
+    probs.add(p.id);
+  });
+  const qids = c.questions.map((q) => q.id);
+  if (new Set(qids).size !== qids.length) ctx.addIssue({ code: 'custom', path: ['questions'], message: `case "${c.id}" has a question id twice` });
+}
+
+export const caseSchema = z.object({
+  id: stableId,
+  title: text,
+  /** The Bible reference, e.g. 'Mark 4:35–41'. */
+  passage: text,
+  genre: z.enum(['narrative', 'teaching', 'epistle', 'poetry', 'prophecy', 'law', 'wisdom', 'apocalyptic']),
+  /** worked: analysis shown step by step. open: find the problems first. triage: decide what matters most. */
+  kind: z.enum(['worked', 'open', 'triage']),
+  level: z.number().int().min(1).max(4),
+  order: z.number().int().optional(),
+  minutes: z.number().int().positive(),
+  /** One or two sentences for the case's card. */
+  description: text,
+  /** The team, the language, the stage of work (Markdown). */
+  situation: text,
+  /** The back translation, in segments the problems point to. */
+  segments: z.array(z.object({ id: stableId, ref: text, bt: text })).min(1),
+  hints: z.array(text).default([]),
+  ...caseAnswers,
+  /** Where the back translation came from. team-anonymised needs a permission reference. */
+  provenance: z.enum(['constructed', 'team-anonymised']),
+  permission: z.string().optional(),
+  /** Answers live in a git-ignored <id>.key.yaml for mentors, not in this file. */
+  assessed: z.boolean().default(false),
+  review: z.enum(['draft', 'reviewed', 'published']).default('draft'),
+  sources,
+  unverified,
+  last_checked: isoDate.optional(),
+  ...linkFields,
+}).superRefine((c, ctx) => {
+  const segs = new Set<string>();
+  c.segments.forEach((s, i) => {
+    if (segs.has(s.id)) ctx.addIssue({ code: 'custom', path: ['segments', i, 'id'], message: `duplicate segment id "${s.id}"` });
+    segs.add(s.id);
+  });
+  checkAnswerIds(c, ctx);
+  c.problems.forEach((p, i) => {
+    if (!segs.has(p.segment)) ctx.addIssue({ code: 'custom', path: ['problems', i, 'segment'], message: `problem "${p.id}" points to segment "${p.segment}", which does not exist` });
+  });
+  if (c.provenance === 'team-anonymised' && !c.permission)
+    ctx.addIssue({ code: 'custom', path: ['permission'], message: `case "${c.id}" comes from a team's draft and needs a permission reference` });
+  if (c.assessed) {
+    if (c.problems.length || c.model_analysis || c.questions.length)
+      ctx.addIssue({ code: 'custom', path: ['assessed'], message: `assessed case "${c.id}" must keep its answers in ${c.id}.key.yaml, not in the public file` });
+  } else {
+    if (!c.problems.some((p) => p.kind !== 'none')) ctx.addIssue({ code: 'custom', path: ['problems'], message: `case "${c.id}" needs at least one real problem` });
+    if (!c.model_analysis) ctx.addIssue({ code: 'custom', path: ['model_analysis'], message: `case "${c.id}" needs a model analysis` });
+  }
+  checkSourceIds(c, ctx);
+});
+export type CheckingCase = z.infer<typeof caseSchema>;
+
+/** The private answer file of an assessed case (<id>.key.yaml, git-ignored, for mentors only). */
+export const caseKey = z.object({ id: stableId, ...caseAnswers }).superRefine((k, ctx) => checkAnswerIds(k, ctx));
+
+/**
+ * Cross-file checks (ADR 0006): every competency id exists, and every `requires` id names content in
+ * the same course. Returns problems as text; an empty list means all is well.
+ */
+export function checkLinks(
+  items: { kind: string; id: string; competencies: string[]; requires: string[] }[],
+  competencyIds: Set<string>,
+): string[] {
+  const ids = new Set(items.map((i) => i.id));
+  const out: string[] = [];
+  for (const it of items) {
+    for (const c of it.competencies) if (!competencyIds.has(c)) out.push(`${it.kind} "${it.id}" names unknown competency "${c}"`);
+    for (const r of it.requires) if (!ids.has(r)) out.push(`${it.kind} "${it.id}" requires "${r}", which is not in this course`);
+  }
+  return out;
+}
 
 /* ---------- Series: guides meant to be read in order (src/content/series.yaml) ---------- */
 
