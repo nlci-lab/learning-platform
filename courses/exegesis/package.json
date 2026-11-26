@@ -1,0 +1,15 @@
+{
+  "name": "@cohorts/exegesis",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 4324",
+    "build": "astro build",
+    "preview": "astro preview --port 4324",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@cohorts/platform": "*",
+    "astro": "^5.18.2"
+  }
+}
