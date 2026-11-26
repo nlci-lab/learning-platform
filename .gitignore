@@ -5,3 +5,7 @@ dist/
 docs/review/
 docs/drafts/
 _site/
+
+# Answer keys of assessed checking cases: mentors only, never committed (ADR 0006)
+*.key.yaml
+*.key.yml

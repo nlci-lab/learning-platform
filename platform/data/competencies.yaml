@@ -1,0 +1,79 @@
+# The shared list of consultant competencies (ADR 0006). Every course's guides, modules and cases
+# name ids from here. A changed meaning gets a new id; raise `version` whenever the list changes.
+# Competencies describe practice on the sites. They are not a certification.
+#
+# Domains: d1 Exegesis · d2 Translation principles · d3 Checking practice · d4 Language, culture and
+# community · d5 Mentoring and facilitation · d6 Project and quality · d7 Tools and machine drafts ·
+# d8 Character, faith and relationships. Only d1–d3 are filled in so far.
+version: 1
+
+sources:
+  - id: fobai-2024
+    cite: "Forum of Bible Agencies International, Statement of Qualifications for Translation Consultants, revision 2024"
+    url: https://forum-intl.org/wp-content/uploads/2024/04/Statement-of-Qualifications-for-Translation-Consultants-revision-2024.pdf
+    checked: true
+  - id: barnwell-2020
+    cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (Dallas: SIL International, 2020)"
+    checked: true
+
+competencies:
+  # D1 Exegesis
+  - id: read-passage-in-context
+    domain: d1
+    fobai: [biblical-studies]
+    statement: Read a passage closely in its setting (the book, the section, the paragraph) before judging a translation of it.
+    src: [fobai-2024, barnwell-2020]
+  - id: weigh-interpretations
+    domain: d1
+    fobai: [biblical-studies]
+    statement: Notice when an expression can be understood in more than one way, weigh the options with exegetical helps, and choose one with reasons.
+    src: [fobai-2024]
+  - id: use-discourse-features
+    domain: d1
+    fobai: [biblical-studies, linguistics]
+    statement: Use discourse features (connections, participant reference, prominence, paragraph structure) to understand what a passage means.
+    src: [fobai-2024, barnwell-2020]
+  - id: use-original-languages
+    domain: d1
+    fobai: [biblical-languages]
+    statement: Use the Greek or Hebrew text, with tools such as interlinears and lexicons, to settle a question of meaning.
+    src: [fobai-2024]
+
+  # D2 Translation principles
+  - id: judge-accuracy-clarity-naturalness
+    domain: d2
+    fobai: [translation]
+    statement: Judge whether a translation is accurate, clear and natural for its audience.
+    src: [fobai-2024, barnwell-2020]
+  - id: handle-implicit-information
+    domain: d2
+    fobai: [translation]
+    statement: Decide when information that the original leaves implicit should be made explicit, and when not.
+    src: [barnwell-2020]
+  - id: handle-figures-of-speech
+    domain: d2
+    fobai: [translation]
+    statement: Recognise figures of speech and rhetorical questions, find their meaning, and judge how a translation conveys it.
+    src: [barnwell-2020]
+
+  # D3 Checking practice
+  - id: read-back-translation
+    domain: d3
+    fobai: [quality-assurance, consultancy]
+    statement: Read a back translation and tell a problem in the translation from a problem in the back translation.
+    src: [fobai-2024, barnwell-2020]
+  - id: find-changes-of-meaning
+    domain: d3
+    fobai: [quality-assurance]
+    statement: Find additions, omissions and changes of meaning in a draft, and leave alone what is only different in form.
+    src: [barnwell-2020]
+  - id: ask-the-team
+    domain: d3
+    fobai: [consultancy, interpersonal]
+    statement: Ask questions that help a team see a problem for themselves, rather than telling them the answer.
+    src: [fobai-2024]
+  - id: write-checking-report
+    domain: d3
+    fobai: [consultancy, quality-assurance]
+    statement: Record a checking decision and its reasons in a short, clear report.
+    src: [fobai-2024]

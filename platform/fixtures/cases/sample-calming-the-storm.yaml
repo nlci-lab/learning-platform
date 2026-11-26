@@ -1,0 +1,71 @@
+# A test fixture for the case schema (ADR 0006). Constructed: the back translation is invented for
+# practice and comes from no real team. Not reviewed; not for publishing.
+id: sample-calming-the-storm
+title: Jesus calms the storm
+passage: Mark 4:37–39
+genre: narrative
+kind: worked
+level: 2
+minutes: 15
+description: A short back translation with three planted problems and one segment that is fine.
+situation: |
+  A team is drafting Mark for a language with no word for "lake". The back translation was made by a
+  speaker who did not take part in the drafting. You are checking the draft for the first time.
+segments:
+  - id: s1
+    ref: "4:37"
+    bt: "A strong wind came, and the waves were breaking into the boat."
+  - id: s2
+    ref: "4:38a"
+    bt: "Jesus was in the back part of the boat, sleeping on a cushion."
+  - id: s3
+    ref: "4:38b"
+    bt: "They woke him and asked, \"Teacher, do you care whether we die?\""
+  - id: s4
+    ref: "4:39"
+    bt: "He got up and told the wind to stop, and he said to the water, \"Be quiet!\" The wind stopped and it became calm."
+hints:
+  - Compare each segment with two English versions. Look for anything missing, added or changed.
+  - In 4:38b, ask what the disciples expected Jesus to say.
+problems:
+  - id: p1
+    segment: s1
+    kind: omission
+    explanation: The draft leaves out that the boat was nearly filling with water (Greek *ēdē gemizesthai to ploion*). This is part of the danger the story builds.
+    ask_team: What happened to the boat when the waves broke into it?
+  - id: p2
+    segment: s2
+    kind: none
+    explanation: This segment is fine. "Back part of the boat" is a good way to say "stern" where boats have no named stern.
+  - id: p3
+    segment: s3
+    kind: change
+    explanation: The Greek question expects the answer "yes, you care" in form, but it is a complaint, not a request for information. The draft turns it into a neutral question about whether Jesus cares. The disciples' rebuke is lost.
+    ask_team: How do people in your language complain to someone who seems not to care?
+  - id: p4
+    segment: s4
+    kind: bt-artefact
+    explanation: The draft uses one verb for "rebuke" with the wind; the back translator chose "told … to stop". Ask the team before treating it as a problem.
+    ask_team: What word did you use when Jesus spoke to the wind?
+model_analysis: |
+  Two segments need work. In 4:37 the draft omits that the boat was filling, so the danger is weaker
+  than in Mark. In 4:38b the complaint has become a neutral question. Segment 4:38a is fine. In 4:39
+  the problem may lie in the back translation, not the draft, so check before asking for a change.
+questions:
+  - id: q-which-is-fine
+    type: multichoice
+    prompt: Which segment needs no change?
+    options:
+      - text: "4:37"
+        feedback: No. The boat filling with water is missing.
+      - text: "4:38a"
+        correct: true
+        feedback: Yes. "Back part of the boat" conveys "stern".
+      - text: "4:38b"
+        feedback: No. The complaint has become a neutral question.
+provenance: constructed
+sources:
+  - id: barnwell-2020
+    cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (SIL International, 2020), ch. 35 (rhetorical questions)"
+    checked: true
+competencies: [read-back-translation, find-changes-of-meaning, handle-figures-of-speech, ask-the-team]
