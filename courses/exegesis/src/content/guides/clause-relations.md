@@ -14,7 +14,7 @@ related: [small-words, more-than-one-meaning]
 competencies: [use-discourse-features]
 sources:
   - id: ta-connect
-    cite: "unfoldingWord® Translation Academy, \"Connecting Words and Phrases\" and the \"Connect\" articles on time, logical, conditional and exception relationships (CC BY-SA 4.0), https://git.door43.org/unfoldingWord/en_ta, read at commit 9c88e81 (25 November 2026). Ideas adapted in our own words; Bible examples chosen from those articles."
+    cite: "Translation Academy (original work by unfoldingWord), \"Connecting Words and Phrases\" and the \"Connect\" articles on time, logical, conditional and exception relationships (CC BY-SA 4.0), https://git.door43.org/unfoldingWord/en_ta, read at commit 9c88e81 (25 November 2026). Ideas adapted in our own words; Bible examples chosen from those articles."
     checked: true
   - id: ult
     cite: "unfoldingWord® Literal Text (ULT), CC BY-SA 4.0, as quoted in Translation Academy: Matthew 8:24a; Judges 6:11b; Acts 1:10; Revelation 10:10b; Luke 22:27"
@@ -108,4 +108,4 @@ Look for these common errors:
 
 Often the source gives no connecting word. Greek may join clauses with a participle or a simple "and" (*kai*), and the reader must find the relation from the context. When the context allows two relations and scholars disagree, weigh them as in [When a passage can mean more than one thing](~/guides/more-than-one-meaning/).
 
-*This guide adapts ideas from unfoldingWord® Translation Academy, CC BY-SA 4.0, in our own words. Barnwell gives an introduction to sentence connections.*
+*This guide adapts ideas from Translation Academy, rewritten in our own words. The original work by unfoldingWord is available from [unfoldingword.org/uta](https://www.unfoldingword.org/uta) under CC BY-SA 4.0. Barnwell gives an introduction to sentence connections.*

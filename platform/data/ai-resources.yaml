@@ -1,0 +1,62 @@
+# Curated AI resources (ADR 0007). The only works an AI service, or an AI tool used to build the Hub,
+# may read beyond the Hub's own public content. Anything not listed here is not given to AI.
+# A work is added only when its licence allows AI use. Raise `version` whenever the list changes.
+#
+# Not listed, so never given to AI: published books and handbooks held for checking, team material
+# that mostly adapts such a book, the NET Bible notes, and Bible versions whose terms exclude AI use
+# (e.g. the NIV). Team chapters are added one by one, with `scope`, once the team agrees.
+version: 1
+
+resources:
+  - id: translation-academy
+    title: unfoldingWord Translation Academy (English)
+    kind: reference
+    licence: CC BY-SA 4.0
+    basis: "An open licence that allows any use, including by AI tools, with attribution and share-alike."
+    url: https://git.door43.org/unfoldingWord/en_ta
+    credit: "Derivative work: remove the unfoldingWord® trademark, say what was changed, and credit: \"The original work by unfoldingWord is available from unfoldingword.org/uta.\" Share alike under CC BY-SA 4.0."
+    checked_by: maintainer (LICENSE.md in the repository, commit 9c88e81)
+    checked_on: 2026-11-27
+  - id: ult
+    title: unfoldingWord Literal Text (ULT)
+    kind: bible
+    licence: CC BY-SA 4.0
+    basis: "An open licence that allows any use, including by AI tools, with attribution and share-alike."
+    url: https://unfoldingword.org/ult
+    credit: "As in LICENSE-CONTENT.md: original work by unfoldingWord, available from unfoldingword.org/ult, CC BY-SA 4.0."
+    checked_by: maintainer (notice in LICENSE-CONTENT.md; licence file not re-read)
+    checked_on: 2026-11-27
+  - id: ust
+    title: unfoldingWord Simplified Text (UST)
+    kind: bible
+    licence: CC BY-SA 4.0
+    basis: "An open licence that allows any use, including by AI tools, with attribution and share-alike."
+    url: https://unfoldingword.org/ust
+    credit: "As in LICENSE-CONTENT.md: original work by unfoldingWord, available from unfoldingword.org/ust, CC BY-SA 4.0."
+    checked_by: maintainer (notice in LICENSE-CONTENT.md; licence file not re-read)
+    checked_on: 2026-11-27
+  - id: kjv
+    title: King James Version
+    kind: bible
+    licence: public domain (outside the United Kingdom)
+    basis: "No copyright restricts its use outside the UK, where Crown rights apply."
+    credit: "(KJV) after each quotation."
+    checked_by: maintainer (notice in LICENSE-CONTENT.md)
+    checked_on: 2026-11-27
+  - id: ylt
+    title: Young's Literal Translation (1898)
+    kind: bible
+    licence: public domain
+    basis: "No copyright restricts its use."
+    credit: "(YLT) after each quotation."
+    checked_by: maintainer (notice in LICENSE-CONTENT.md)
+    checked_on: 2026-11-27
+  - id: web
+    title: World English Bible
+    kind: bible
+    licence: public domain
+    basis: "Dedicated to the public domain by its publisher; no copyright restricts its use."
+    url: https://ebible.org/web/
+    credit: "(WEB) after each quotation."
+    checked_by: maintainer (notice in LICENSE-CONTENT.md)
+    checked_on: 2026-11-27
