@@ -27,7 +27,7 @@ const signs = (await getGlossaryEntries()).filter((t) => t.style === 'sign');   
       {g.intro && <p class="muted">{g.intro}</p>}
       <dl class="gloss">
         {g.entries.map((t) => (
-          <div id={t.id} class="g-item" data-text={`${t.term} ${t.plain}`.toLowerCase()}>
+          <div id={t.id} class="g-item" data-preview-title={t.term} data-preview={t.plain} data-text={`${t.term} ${t.plain}`.toLowerCase()}>
             <dt><span class:list={['g-term', { sign: g.style === 'sign' }]}>{t.term}</span></dt>
             <dd>
               <p>{t.plain}</p>
