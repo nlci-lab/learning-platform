@@ -75,11 +75,11 @@ We also use AI tools while we write and check the Hub, for example a coding assi
 | Public content of the Hub | Yes |
 | Open-licensed works whose licence allows this use (for example unfoldingWord's Translation Academy, ULT and UST, and public-domain Bibles) | Yes. Credit them as their licence requires. |
 | Works listed in `platform/data/ai-resources.yaml` with a licence that allows AI use | Yes |
-| Material the team holds the copyright to, such as its own chapters and its own back translations | Yes, once the team agrees. Record that agreement and the parts it covers in the curated list. |
+| Published or teaching material the team holds the copyright to, such as its own book chapters and the back translations printed in them | Yes, once the team agrees. Record that agreement and the parts it covers in the curated list. This never covers private teaching data or a team's unpublished draft or back translation (last row). |
 | Copyrighted works held only for checking and citation: published books, translation handbooks, and team material that is mostly an adaptation of such a book | No. A person reads them and writes notes in their own words. A tool may then work from those notes. |
 | NET Bible notes | No, unless the publisher grants a licence for AI use (root rules) |
 | Bible versions whose terms exclude AI use, such as the NIV | No. A person checks quotations from these versions. |
-| Private teaching data and teams' unpublished drafts | No (see above) |
+| Private teaching data and teams' unpublished drafts, including their back translations | No (see above). This row applies even where another row seems to allow the material. |
 
 Where a book mixes the team's own chapters with adapted copyrighted chapters, we split it by chapter: only the team's own chapters may go to a tool. The split is recorded in the curated list.
 
