@@ -3,7 +3,7 @@
 // The site passes its config; the platform supplies header, menu, theme switch, footer and base styles.
 import '../styles/base.css';
 import type { SiteConfig } from '../config';
-import { url } from '../url';
+import { url, hubUrl } from '../url';
 import gentiumRegular from '../fonts/GentiumBookPlus-Regular.woff2?url';
 interface Props { site: SiteConfig; title: string; description?: string; nav?: string }
 const { site, title, description = site.description, nav } = Astro.props;
@@ -38,6 +38,7 @@ const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
   )}
   <header class="site-head">
     <div class="wrap">
+      {site.id !== 'site' && <a class="hub" href={hubUrl()}><span aria-hidden="true">←</span> Learning Hub</a>}
       <a class="brand" href={url()}>{site.mark && <i aria-hidden="true">{site.mark}</i>}{site.title}</a>
       {site.nav.length > 0 && (
         <nav aria-label="Main">

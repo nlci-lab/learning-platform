@@ -24,6 +24,7 @@ Run from the repo root: `npm install`, then `npm run dev:site` (port 4320), `npm
 - Generic code goes in `platform/`. Course-specific code stays in its course. If something is needed by a second course, move it to the platform.
 - A platform change must build every course (`npm run build` at the root) before it is committed.
 - Every internal link goes through the platform's `url()` helper. The base path is a build setting (`SITE_BASE`), never hard-coded.
+- Link between courses where a topic meets: `courseUrl('logos', 'guides/search/')` or `hubUrl()` in code, `~hub/logos/guides/search/` in Markdown. These resolve only in the full build (`npm run build:pages`), which checks them.
 - Pages must read with JavaScript off. JavaScript only enhances them.
 
 ## Content rules (ADR 0002, 0003)
