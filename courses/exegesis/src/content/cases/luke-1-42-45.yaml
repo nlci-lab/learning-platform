@@ -1,0 +1,84 @@
+# Constructed for practice: the back translation is invented and comes from no real team.
+id: luke-1-42-45
+title: Elizabeth greets Mary
+passage: Luke 1:42–45
+genre: narrative
+kind: worked
+level: 3
+order: 2
+minutes: 20
+description: Elizabeth's words to Mary hold a hoti that can be read two ways, and the draft adds to the meaning. Work through it step by step.
+situation: |
+  A team is checking their draft of Luke 1. The back translator is a church member who reads the
+  language well but has not studied the passage. Use an interlinear for verse 45.
+segments:
+  - id: s42
+    ref: "1:42"
+    bt: "She shouted loudly, \"God has blessed you more than every woman in the whole world, and he has blessed the child you will give birth to!\""
+  - id: s43
+    ref: "1:43"
+    bt: "\"Who am I, that the mother of my Lord should come to me?\""
+  - id: s44
+    ref: "1:44"
+    bt: "\"As soon as I heard your greeting, the baby inside me jumped because he was happy.\""
+  - id: s45
+    ref: "1:45"
+    bt: "\"You are blessed, because you believed, because what the Lord told you will happen.\""
+hints:
+  - In 1:42, compare "among women" in two versions with "more than every woman in the whole world".
+  - In 1:45, look at the two "because" clauses. Do both give reasons?
+problems:
+  - id: p-add
+    segment: s42
+    kind: addition
+    explanation: |
+      "Blessed among women" is a Hebrew-style way of saying "most blessed of women". "More than every woman in the
+      whole world" goes further than that and adds "the whole world". The meaning is stretched. A natural way to say
+      "most blessed of women" in the language is enough.
+    ask_team: How would you say that someone is the most blessed of all women, without saying "the whole world"?
+  - id: p-ok-43
+    segment: s43
+    kind: none
+    explanation: This verse is fine. The question of surprise and humility comes through.
+  - id: p-ok-44
+    segment: s44
+    kind: none
+    explanation: This verse is fine. "Jumped because he was happy" conveys "leaped for joy".
+  - id: p-hoti
+    segment: s45
+    kind: wrong-interpretation
+    explanation: |
+      In the Greek, *hoti* introduces the fulfilment. It can give the **content** of what she believed ("you believed
+      **that** what the Lord said will happen") or the **reason** she is blessed ("blessed… **because** it will happen").
+      The draft uses "because" twice, so it is unclear which belief and which reason are meant. The team should choose one
+      reading, say it clearly, and consider a footnote for the other.
+    ask_team: What did Mary believe? And why is she called blessed?
+model_analysis: |
+  1. **1:42: addition.** "The whole world" stretches "among women". Use a natural "most blessed of women".
+  2. **1:43 and 1:44: fine.**
+  3. **1:45: a connector with two readings.** The two "because" clauses blur it. Help the team decide whether *hoti*
+     gives what she believed or why she is blessed, and write one clear sentence. The NIV takes the first ("believed that…").
+     If the team takes the second, a footnote can give the first.
+questions:
+  - id: q-hoti
+    type: multichoice
+    prompt: In the draft of 1:45, what is the main problem?
+    options:
+      - text: It leaves out that Mary believed.
+        feedback: No. "You believed" is there.
+      - text: Two "because" clauses make it unclear what she believed and why she is blessed.
+        correct: true
+        feedback: Yes. The second "because" may be a reading of hoti as "that", or as a reason. The team must choose.
+      - text: It should follow the Greek word order.
+        feedback: No. The order of the receptor language should be natural.
+provenance: constructed
+review: draft
+sources:
+  - id: niv
+    cite: "The Holy Bible, New International Version (2011), Luke 1:42–45"
+    checked: false
+unverified:
+  - claim: "'Blessed among women' reflects a Semitic way of expressing the superlative ('most blessed of women')."
+    from: "Background knowledge; to check against the UBS Translator's Handbook on Luke 1:42."
+competencies: [read-back-translation, find-changes-of-meaning, use-original-languages, weigh-interpretations, ask-the-team]
+requires: [small-words]
