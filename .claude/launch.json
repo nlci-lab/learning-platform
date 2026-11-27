@@ -27,6 +27,15 @@
         "dev:tc"
       ],
       "port": 4323
+    },
+    {
+      "name": "exegesis",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev:exegesis"
+      ],
+      "port": 4324
     }
   ]
 }

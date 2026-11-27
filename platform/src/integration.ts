@@ -2,6 +2,7 @@
 import type { AstroIntegration } from 'astro';
 import externalLinks from './integrations/external-links.mjs';
 import { rehypeInternalLinks } from './integrations/internal-links.mjs';
+import { rehypeTableScroll } from './integrations/table-scroll.mjs';
 import previews from './integrations/previews.mjs';
 import mdx from '@astrojs/mdx';
 
@@ -9,7 +10,7 @@ const internalLinks: AstroIntegration = {
   name: 'internal-links',
   hooks: {
     'astro:config:setup': ({ config, updateConfig }) => {
-      updateConfig({ markdown: { rehypePlugins: [[rehypeInternalLinks, { base: config.base }]] } });
+      updateConfig({ markdown: { rehypePlugins: [[rehypeInternalLinks, { base: config.base }], rehypeTableScroll] } });
     },
   },
 };
