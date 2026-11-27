@@ -1,0 +1,64 @@
+id: method-steps
+title: The six steps for weighing readings
+topic: Method
+question: What do you do when a passage has two readings?
+skill: Applying the method in order
+level: 2
+order: 2
+minutes: 10
+description: Put the method for weighing interpretations into practice, one step at a time.
+lead: Practise the six steps for deciding between readings, and writing down the decision.
+competencies: [weigh-interpretations, write-checking-report]
+requires: [weighing-interpretations]
+steps:
+  - id: order
+    title: The steps in order
+    question:
+      id: q-match-steps
+      type: matching
+      prompt: Match each step with what you do in it.
+      pairs:
+        - item: List the readings
+          match: Find them in versions, helps and commentaries
+        - item: Test each reading
+          match: Check grammar, context, book, the author's usage and the first hearers
+        - item: Decide
+          match: Translate the stronger reading; footnote a close second
+        - item: Record the decision
+          match: Write the readings, the choice and the reasons in a short note
+      distractors:
+        - Follow the version your church uses
+  - id: tests
+    title: The five tests
+    question:
+      id: q-not-a-test
+      type: multichoice
+      prompt: Which of these is NOT one of the five tests?
+      options:
+        - text: Does the Greek or Hebrew allow it?
+          feedback: This is the grammar test.
+        - text: Does it fit the paragraph?
+          feedback: This is the context test.
+        - text: Is it the reading most people in my church know?
+          correct: true
+          feedback: Right. What is familiar is not a test of what the author meant.
+        - text: Would the first hearers have understood it this way?
+          feedback: This is the first-hearers test.
+  - id: note
+    title: Write the note
+    body: |
+      A team chose "in my Father's house" in Luke 2:49 and added a footnote.
+    question:
+      id: q-note
+      type: essay
+      prompt: Write the decision note for Luke 2:49 in three or four lines.
+      model_answer: |
+        Luke 2:49. Readings: "in my Father's house" / "about my Father's business".
+        Chosen: house. Reasons: the parents find him in the temple (2:46); their question is about where he has been.
+        Footnote: "Or *about my Father's business*."
+done: |
+  You put the steps in order, picked out the real tests, and wrote a decision note that others can check.
+sources:
+  - id: barnwell-11
+    cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (Dallas: SIL International, 2020), ch. 11"
+    checked: true

@@ -1,0 +1,65 @@
+id: hoti-that-or-because
+title: "hoti: that or because?"
+topic: Greek connectors
+question: Does hoti give the reason or the content?
+skill: Reading a Greek connector
+level: 3
+order: 3
+minutes: 10
+description: Tell the two common uses of the Greek word hoti apart, and see how a draft shows the choice.
+lead: The short Greek word hoti can mean "that" or "because". Practise telling them apart.
+competencies: [use-original-languages, use-discourse-features]
+requires: [small-words]
+steps:
+  - id: content
+    title: '"that": what someone thought'
+    body: |
+      Luke 24:21 (NIV): "but we had hoped **that** he was the one who was going to redeem Israel".
+    question:
+      id: q-24-21
+      type: multichoice
+      prompt: In Luke 24:21, what does hoti introduce?
+      options:
+        - text: The content of what they hoped
+          correct: true
+          feedback: Yes. It tells us what they had hoped.
+        - text: The reason they hoped
+          feedback: No. "Because he was the one" would not fit "we had hoped".
+  - id: open
+    title: When both fit
+    body: |
+      Luke 1:45 (NIV): "Blessed is she who has believed that the Lord would fulfill his promises to her!"
+      In the Greek, *hoti* introduces the fulfilment. It can be read as what she believed ("that it will be fulfilled")
+      or as the reason she is blessed ("because it will be fulfilled").
+    question:
+      id: q-1-45
+      type: truefalse
+      prompt: In Luke 1:45 both readings of hoti fit the context, so the team has to choose.
+      answer: true
+      if_true: Yes. Most languages must mark the difference, so the team chooses and may footnote the other.
+      if_false: Look again. Both "believed that" and "blessed because" make sense here.
+  - id: bt
+    title: Reading a back translation
+    body: |
+      A back translation of a draft of Luke 1:45 says: "You are blessed, because you believed, because what the Lord said will happen."
+    question:
+      id: q-bt
+      type: multichoice
+      prompt: What should a checker ask the team?
+      options:
+        - text: Nothing. The draft is fine.
+          feedback: Two "because" clauses in a row are worth a question. Do both give reasons?
+        - text: Whether the second "because" gives the reason she is blessed, or what she believed.
+          correct: true
+          feedback: Yes. The question helps the team see the choice and say what they meant.
+        - text: Why they did not follow the NIV word for word.
+          feedback: Following a version word for word is not the goal. Ask about meaning.
+done: |
+  You read hoti as content and as reason, saw where both fit, and asked a team a useful question.
+sources:
+  - id: niv
+    cite: "The Holy Bible, New International Version (2011), Luke 1:45; Luke 24:21"
+    checked: false
+unverified:
+  - claim: "Some versions and commentators read hoti in Luke 1:45 as causal ('because'), others as content ('that')."
+    from: "Background knowledge; to check against the UBS Translator's Handbook and SIL Translator's Notes on Luke 1:45."
