@@ -81,7 +81,7 @@ Barnwell notes that metonymy and synecdoche can work as idioms when the form is 
 
 ## How translations handle it
 
-Barnwell says the translator must understand and communicate the actual meaning. He warns that a word-for-word rendering of these figures can be nonsense in the receptor language (ch. 34.6). The common options:
+Barnwell says the translator must understand and communicate the actual meaning. She warns that a word-for-word rendering of these figures can be nonsense in the receptor language (ch. 34.6). The common options:
 
 - **Keep the figure** if the receptor language uses the same association with the same meaning. "Throne" for rule may work in a language with kings.
 - **Say the meaning plainly:** "will make him king like his ancestor David"; "I have come to bring division".
