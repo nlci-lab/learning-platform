@@ -10,7 +10,7 @@ learn:
   - The labels used in books on semantic structure, so you can read them
   - Which part is the head and which part supports it
   - Questions that show whether a draft kept the relation
-related: [small-words, more-than-one-meaning]
+related: [small-words, more-than-one-meaning, events-participants]
 competencies: [use-discourse-features]
 image:
   file: img/bthub/girl-umbrella.webp

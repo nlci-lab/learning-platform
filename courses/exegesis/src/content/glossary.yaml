@@ -100,7 +100,7 @@
   group: meaning
   plain: An action, process or happening. Greek, Hebrew and English often say an event with a noun, such as "forgiveness"; many languages need a verb, such as "God forgives".
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 26
-  checked: true
+  checked: false
 - id: genitive-construction
   term: genitive construction
   group: meaning
@@ -314,13 +314,13 @@
 - id: agent
   term: agent
   group: meaning
-  plain: "In an event, the one who does the action. In \"the servants gave him bread\", the servants are the agent. A passive verb often leaves the agent unnamed."
+  plain: "In an event, the one who does the action. In \"the king's servants gave Jeremiah bread\", the servants are the agent. A passive verb often leaves the agent unnamed."
   source: "Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: patient
   term: patient (affected)
   group: meaning
-  plain: "In an event, the one the action is done to, or that changes. In \"the servants gave him bread\", the bread is the patient. Some books call it the affected."
+  plain: "In an event, the person or thing the action is done to, or that changes. In \"someone tore down the altar\", the altar is the patient. Some books call it the affected."
   source: "Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: abstract-noun

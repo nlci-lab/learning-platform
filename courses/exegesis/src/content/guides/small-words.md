@@ -11,7 +11,7 @@ learn:
   - How a preposition such as en can leave the meaning open
   - How to check what a team did with them
 before: weighing-interpretations
-related: [more-than-one-meaning, clause-relations]
+related: [more-than-one-meaning, clause-relations, events-participants]
 competencies: [use-original-languages, weigh-interpretations, use-discourse-features]
 sources:
   - id: niv
