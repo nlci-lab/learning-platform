@@ -19,7 +19,7 @@ const courses = readdirSync(join(root, 'courses')).filter((d) => existsSync(join
 function build(dir, siteBase) {
   const pkg = JSON.parse(readFileSync(join(root, dir, 'package.json'), 'utf8')).name;
   console.log(`\n▶ ${pkg} at ${siteBase}`);
-  execSync(`npm run build -w ${pkg}`, { cwd: root, stdio: 'inherit', env: { ...process.env, SITE_BASE: siteBase, SITE_URL: site } });
+  execSync(`npm run build -w ${pkg}`, { cwd: root, stdio: 'inherit', env: { ...process.env, SITE_BASE: siteBase, SITE_URL: site, HUB_BASE: base } });
   return join(root, dir, 'dist');
 }
 
