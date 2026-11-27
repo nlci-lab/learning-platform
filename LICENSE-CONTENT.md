@@ -12,6 +12,8 @@ Scripture quoted by permission. Quotations designated (NET) are from the NET Bib
 
 Quotations marked ULT and UST are from the unfoldingWord® Literal Text and the unfoldingWord® Simplified Text, original work by unfoldingWord, available from https://unfoldingword.org/ult and https://unfoldingword.org/ust, licensed CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Quotations are unchanged unless stated.
 
+Some pages adapt ideas from unfoldingWord® Translation Academy (https://git.door43.org/unfoldingWord/en_ta), original work by unfoldingWord, licensed CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). The adapted text is rewritten in our own words, and each page that draws on it says so.
+
 Scripture quotations marked KJV (King James Version), YLT (Young's Literal Translation, 1898) and WEB (World English Bible) are in the public domain.
 
 Scripture quotations marked LEB in screenshots are from the Lexham English Bible. Copyright 2012 Logos Bible Software. Lexham is a registered trademark of Logos Bible Software.

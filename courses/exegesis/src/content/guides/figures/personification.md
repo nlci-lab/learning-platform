@@ -50,7 +50,7 @@ In some languages these sound natural. In others they sound odd, or readers may 
 
 ## Bible examples
 
-**Mark 5:34.** "Thy faith hath made thee whole" (KJV). Faith is spoken of as the one who healed. The meaning is that the woman was healed because she believed. Barnwell reports that the CEV reorders this so that she is well because of her faith, and he suggests forms with a verb such as "because you believed" (ch. 34.7). The checker should notice who did the healing in the translation. A wrong form could suggest faith is a power of its own.
+**Mark 5:34.** "Thy faith hath made thee whole" (KJV). Faith is spoken of as the one who healed. The meaning is that the woman was healed because she believed. Barnwell reports that the CEV reorders this so that she is well because of her faith, and she suggests forms with a verb such as "because you believed" (ch. 34.7). The checker should notice who did the healing in the translation. A wrong form could suggest faith is a power of its own.
 
 **Psalm 23:6.** "Surely goodness and mercy shall follow me all the days of my life" (KJV). Goodness and mercy are spoken of as companions who follow. The meaning is that God will be good and kind to the speaker all through life. Barnwell lists this verse as one to re-express where personification is not possible (ch. 34.7).
 

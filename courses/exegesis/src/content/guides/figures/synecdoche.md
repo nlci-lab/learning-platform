@@ -55,7 +55,7 @@ Synecdoche is a close relative of [metonymy](~/learn/figures/metonymy/). Both us
 
 **Romans 3:15.** "Their feet are swift to shed blood" (KJV). The feet stand for the people, and their speed shows how eager they are to kill. "Shed blood" is itself a figure for killing. The checker should notice that there are two figures in one short line.
 
-**Matthew 3:5.** "Then went out to him Jerusalem, and all Judaea" (KJV). The places stand for the people living there. The NIV says that people went out from these places. Barnwell lists this verse among his metonymy and synecdoche exercises (ch. 34.6, exercise 7).
+**Matthew 3:5.** "Then went out to him Jerusalem, and all Judaea" (KJV). The places stand for the people living there. The NIV says that people went out from these places. Barnwell lists this verse among her metonymy and synecdoche exercises (ch. 34.6, exercise 7).
 
 ## Not to be confused with
 

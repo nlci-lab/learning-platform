@@ -11,7 +11,7 @@ learn:
   - How a preposition such as en can leave the meaning open
   - How to check what a team did with them
 before: weighing-interpretations
-related: [more-than-one-meaning]
+related: [more-than-one-meaning, clause-relations]
 competencies: [use-original-languages, weigh-interpretations, use-discourse-features]
 sources:
   - id: niv
@@ -19,7 +19,7 @@ sources:
     checked: false
   - id: barnwell-41
     cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (Dallas: SIL International, 2020), ch. 41 (sentence connections, logical relations)"
-    checked: true
+    checked: false
 unverified:
   - claim: "Some versions and commentators read hoti in Luke 1:45 as causal ('because'), others as content ('that')."
     from: "Background knowledge; to check against the UBS Translator's Handbook and SIL Translator's Notes on Luke 1:45."
