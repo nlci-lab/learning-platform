@@ -305,3 +305,33 @@
   plain: "A part that gives the reason, means, time, setting or other help for the head. It matters, but it is not the main point."
   source: "Beekman and Callow; Larson (see semantic structure)"
   checked: false
+- id: participant
+  term: participant
+  group: meaning
+  plain: "A person or thing that takes part in an event, such as the one who acts or the one the action is done to. A translation may need to name a participant the source leaves unstated."
+  source: "Beekman and Callow; Larson (see semantic structure)"
+  checked: false
+- id: agent
+  term: agent
+  group: meaning
+  plain: "In an event, the one who does the action. In \"the servants gave him bread\", the servants are the agent. A passive verb often leaves the agent unnamed."
+  source: "Beekman and Callow; Larson (see semantic structure)"
+  checked: false
+- id: patient
+  term: patient (affected)
+  group: meaning
+  plain: "In an event, the one the action is done to, or that changes. In \"the servants gave him bread\", the bread is the patient. Some books call it the affected."
+  source: "Beekman and Callow; Larson (see semantic structure)"
+  checked: false
+- id: abstract-noun
+  term: abstract noun
+  group: meaning
+  plain: "A noun for an idea that cannot be seen or touched, such as an event (\"salvation\") or a quality (\"joy\"). Many languages say these ideas with a verb or an adjective instead."
+  source: "Translation Academy (original work by unfoldingWord), \"Abstract Nouns\" (CC BY-SA 4.0), adapted in our own words"
+  checked: true
+- id: empty-verb
+  term: empty verb
+  group: meaning
+  plain: "A verb that carries little meaning on its own, so that the real event is in the noun after it: \"give an answer\" means answer, \"make haste\" means hurry."
+  source: "Background knowledge; to check against Beekman and Callow or Larson"
+  checked: false
