@@ -57,7 +57,7 @@ Metonymy involves no comparison. That is the main difference from [metaphor](~/l
 
 **Matthew 27:4.** Judas says he has "betrayed innocent blood" (NIV). Blood stands for the life of a person, here an innocent person who will be killed. A word-for-word rendering may make no sense, or may suggest that blood was literally handed over.
 
-**Acts 15:21.** "Moses of old time hath in every city them that preach him" (KJV). Moses stands for the law that Moses wrote. Barnwell lists this verse among his metonymy exercises (ch. 34.6, exercise 7). Some versions make "the law of Moses" explicit.
+**Acts 15:21.** "Moses of old time hath in every city them that preach him" (KJV). Moses stands for the law that Moses wrote. Barnwell lists this verse among her metonymy exercises (ch. 34.6, exercise 7). Some versions make "the law of Moses" explicit.
 
 ## Not to be confused with
 
