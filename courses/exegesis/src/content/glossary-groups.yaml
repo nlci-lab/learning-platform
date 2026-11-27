@@ -1,0 +1,13 @@
+# Glossary groups for the Exegesis course. Ids are stable once published.
+- id: basics
+  title: Translating and checking
+  intro: The basic ideas behind every check.
+  order: 1
+- id: meaning
+  title: Finding the meaning
+  intro: Words for the parts of meaning a checker looks at, from words to whole sentences.
+  order: 2
+- id: figures
+  title: Figures of speech and questions
+  intro: Ways of saying something other than its plain meaning.
+  order: 3

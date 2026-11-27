@@ -1,0 +1,34 @@
+---
+// The course map: a short list of units by level, with links for the units that are ready.
+import { url } from '@cohorts/platform/url';
+import { COURSE_MAP } from '../data/course-map';
+interface Props { heading?: string }
+const { heading = 'The course, level by level' } = Astro.props;
+---
+<section class="map" id="map" aria-labelledby="map-h">
+  <h2 id="map-h">{heading}</h2>
+  <p class="muted">Exegesis works at every level, from a single word to a whole passage. Each level is one unit.</p>
+  <ol class="units">
+    {COURSE_MAP.map((u) => (
+      <li class={u.href ? 'ready' : 'soon'}>
+        <span class="lvl">{u.level}</span>
+        <span class="ttl">{u.href ? <a href={url(u.href)}>{u.title}</a> : u.title}</span>
+        <span class="tp">{u.topics}</span>
+        <span class="st">{u.href ? 'Ready' : 'In preparation'}</span>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .map { margin: 2.5rem 0; max-width: 46rem; }
+  .units { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: .6rem; counter-reset: u; }
+  .units li { counter-increment: u; display: grid; grid-template-columns: 2rem minmax(0, 1fr); column-gap: .75rem; row-gap: .15rem; padding: .8rem 1rem; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); }
+  .units li::before { content: counter(u); grid-row: span 4; font: 700 1.3rem var(--serif); color: var(--accent); }
+  .lvl { font: 600 .75rem var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  .ttl { font: 600 1.1rem/1.3 var(--serif); }
+  .tp { font-size: .95rem; color: var(--ink-2); }
+  .st { font: 600 .78rem var(--sans); color: var(--ink-2); }
+  .units li.ready { border-left: 4px solid var(--accent); }
+  .units li.soon .ttl { color: var(--ink-2); }
+</style>

@@ -1,0 +1,189 @@
+# Glossary for the Exegesis course, in plain English. Ids are stable once published.
+# `source` names where the term and its meaning come from; `checked: false` = not yet checked against it.
+# Sources: Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (SIL International, 2020).
+
+# --- Translating and checking ---
+- id: exegesis
+  term: exegesis
+  group: basics
+  plain: Finding out what the original author meant, by careful study of the text in its setting. The first step of translating, and of checking. See [When a passage can mean more than one thing](~/guides/more-than-one-meaning/).
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 11
+  checked: true
+- id: re-expression
+  term: re-expression
+  group: basics
+  plain: Saying the meaning found by exegesis in the receptor language, clearly and naturally. The second step of translating.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 10 and 12
+  checked: true
+- id: exegetical-accuracy
+  term: exegetical accuracy
+  group: basics
+  plain: A translation is accurate when it says the same meaning as the original, with nothing added, nothing left out and nothing changed. Being close in form is not the same as being accurate.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 5
+  checked: true
+- id: addition
+  term: addition
+  group: basics
+  plain: A translation error where the draft says more than the original means.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 5
+  checked: true
+- id: omission
+  term: omission
+  group: basics
+  plain: A translation error where part of the original meaning is missing from the draft.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 5
+  checked: true
+- id: change-of-meaning
+  term: change of meaning
+  group: basics
+  plain: A translation error where the draft says something different from what the original means.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 5
+  checked: true
+- id: back-translation
+  term: back translation
+  group: basics
+  plain: A close translation of a draft back into a language the checker reads, made by someone other than the translator. It shows the checker what the draft says. A problem can be in the draft or only in the back translation.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 18
+  checked: true
+- id: receptor-language
+  term: receptor language
+  group: basics
+  plain: The language a translation is made into. Also called the target language.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 1
+  checked: true
+- id: source-text
+  term: source text
+  group: basics
+  plain: The text being translated. The Hebrew, Aramaic and Greek texts are the final authority; versions in other languages are used as helps.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 1 and 3
+  checked: true
+
+# --- Finding the meaning ---
+- id: sense
+  term: sense
+  group: meaning
+  plain: One of the meanings a word can have. The context shows which sense the author meant.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 21
+  checked: true
+- id: components-of-meaning
+  term: components of meaning
+  group: meaning
+  plain: The parts that make up a word's meaning. Comparing a word with words close to it shows which parts it has and which it lacks. Also called componential analysis.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 21
+  checked: true
+- id: unknown-concept
+  term: unknown concept
+  group: meaning
+  plain: Something in the Bible that readers of the translation do not know, such as an animal, a custom or a measure. It can often be said with a short description.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 22
+  checked: true
+- id: key-biblical-term
+  term: key biblical term
+  group: meaning
+  plain: A word with special importance in the Bible, such as covenant, priest or Messiah. Key terms are studied carefully and translated consistently.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 24
+  checked: true
+- id: idiom
+  term: idiom
+  group: meaning
+  plain: A fixed group of words whose meaning is not the sum of its words. It looks like a phrase but works like one word. Idioms rarely carry over word for word into another language.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 4
+  checked: true
+- id: tear
+  term: TEAR
+  group: meaning
+  plain: "A way to remember four classes of concept: Thing, Event, Attribute (a quality, such as large or quickly) and Relation (how two concepts link, such as because or in)."
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 26
+  checked: true
+- id: event-idea
+  term: event idea
+  group: meaning
+  plain: An action, process or happening. Greek, Hebrew and English often say an event with a noun, such as "forgiveness"; many languages need a verb, such as "God forgives".
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 26
+  checked: true
+- id: genitive-construction
+  term: genitive construction
+  group: meaning
+  plain: Two nouns joined so that one depends on the other, as in English "the love of God" or "God's love". The link can mean many different things, so the context must decide.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 27
+  checked: true
+- id: passive
+  term: passive
+  group: meaning
+  plain: A verb form where the subject is the one the action is done to, as in "John was arrested". The one who acted may not be named. Many languages rarely use the passive, so the actor must be found and named.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 28
+  checked: true
+- id: implicit-information
+  term: implicit information
+  group: meaning
+  plain: Meaning the author expected the hearers to understand without saying it. A translation may need to state it when its readers would miss it.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 7 and 8
+  checked: true
+- id: explicit-information
+  term: explicit information
+  group: meaning
+  plain: Meaning that is stated in words.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 7
+  checked: true
+
+# --- Figures of speech and questions ---
+- id: figure-of-speech
+  term: figure of speech
+  group: figures
+  plain: A creative use of words that means more than, or other than, the plain words, to catch attention or make a point. Unlike an idiom, it is not a fixed phrase.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 33 and 34
+  checked: true
+- id: simile
+  term: simile
+  group: figures
+  plain: A comparison that says it is a comparison, often with "like" or "as".
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 33
+  checked: true
+- id: metaphor
+  term: metaphor
+  group: figures
+  plain: A comparison that does not say it is one, as in "Benjamin is a ravenous wolf". Find the topic, the picture and the point they share.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 33
+  checked: true
+- id: euphemism
+  term: euphemism
+  group: figures
+  plain: A mild or indirect way of saying something that would sound harsh or rude, such as "fell asleep" for "died".
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
+  checked: true
+- id: litotes
+  term: litotes
+  group: figures
+  plain: Saying something strongly by denying its opposite, as in "not a little comforted" for "greatly comforted".
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
+  checked: true
+- id: hyperbole
+  term: hyperbole
+  group: figures
+  plain: A deliberate exaggeration for emphasis, not meant to be taken literally.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
+  checked: true
+- id: metonymy
+  term: metonymy
+  group: figures
+  plain: Using a word for something closely linked to what is meant, such as "the sword" for fighting.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
+  checked: true
+- id: synecdoche
+  term: synecdoche
+  group: figures
+  plain: Using a part for the whole, or the whole for a part, such as "my tongue" for "I".
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
+  checked: true
+- id: personification
+  term: personification
+  group: figures
+  plain: Speaking of a thing or an idea as if it were a person.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
+  checked: true
+- id: rhetorical-question
+  term: rhetorical question
+  group: figures
+  plain: A question that does not ask for information. It may stress a point, rebuke, express surprise or open a topic. Many languages use such questions differently, so the purpose must be found first.
+  source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 35
+  checked: true
