@@ -1,6 +1,6 @@
 ---
 // The course map: a short list of units by level, with links for the units that are ready.
-import { url } from '@cohorts/platform/url';
+import { url, hubUrl } from '@cohorts/platform/url';
 import { COURSE_MAP } from '../data/course-map';
 interface Props { heading?: string }
 const { heading = 'The course, level by level' } = Astro.props;
@@ -13,7 +13,7 @@ const { heading = 'The course, level by level' } = Astro.props;
       <li class={u.href ? 'ready' : 'soon'}>
         <span class="lvl">{u.level}</span>
         <span class="ttl">{u.href ? <a href={url(u.href)}>{u.title}</a> : u.title}</span>
-        <span class="tp">{u.topics}</span>
+        <span class="tp">{u.topics}{u.also && <> See also: <a href={hubUrl(u.also.path)}>{u.also.label}</a> (Logos course).</>}</span>
         <span class="st">{u.href ? 'Ready' : 'In preparation'}</span>
       </li>
     ))}

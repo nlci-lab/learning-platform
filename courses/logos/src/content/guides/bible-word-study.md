@@ -69,6 +69,6 @@ The sections include **Hebrew Words** and **Greek Words**, shown as a ring chart
 
 ## For translators
 
-The translation ring answers a common question: how have translators rendered this word, and how often each way? Compare it with the senses before you choose a word in your own language.
+The translation ring answers a common question: how have translators rendered this word, and how often each way? Compare it with the senses before you choose a word in your own language. For the method of studying a word, see the word level in the [Exegesis course](~hub/exegesis/#map).
 
 What you see depends on your Logos plan. Some sections may be missing.
