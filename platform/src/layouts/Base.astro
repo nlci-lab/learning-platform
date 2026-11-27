@@ -4,6 +4,7 @@
 import '../styles/base.css';
 import type { SiteConfig } from '../config';
 import { url, hubUrl } from '../url';
+import LinkPreview from '../components/LinkPreview.astro';
 import gentiumRegular from '../fonts/GentiumBookPlus-Regular.woff2?url';
 interface Props { site: SiteConfig; title: string; description?: string; nav?: string }
 const { site, title, description = site.description, nav } = Astro.props;
@@ -11,7 +12,7 @@ const accent = site.accent;
 const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
 ---
 <!doctype html>
-<html lang={site.lang} data-theme="light">
+<html lang={site.lang} data-theme="light" data-base={url()} data-hub={hubUrl()}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -49,6 +50,7 @@ const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
     </div>
   </header>
   <main class="wrap" id="main" tabindex="-1"><slot /></main>
+  <LinkPreview />
   <footer class="site-foot">
     <div class="wrap">
       {site.footer && <p set:html={site.footer} />}

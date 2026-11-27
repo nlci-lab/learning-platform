@@ -6,7 +6,7 @@
 import Base from '../layouts/Base.astro';
 import Feedback from '../components/Feedback.astro';
 import { getGlossary } from '../data';
-import { mdInline } from '../markdown';
+import { mdInline, plain } from '../markdown';
 import type { SiteConfig } from '../config';
 import { PATHS } from '../paths';
 interface Props { site: SiteConfig; lead?: string; placeholder?: string }
@@ -34,7 +34,7 @@ const signs = groups.filter((g) => g.style === 'sign').flatMap((g) => g.entries)
             {g.intro && <p class="muted">{g.intro}</p>}
             <dl class="gloss">
               {g.entries.map((t) => (
-                <div id={t.id} class="g-item" data-text={`${t.term} ${t.plain}`.toLowerCase()}>
+                <div id={t.id} class="g-item" data-preview-title={t.term} data-preview={plain(t.plain)} data-text={`${t.term} ${t.plain}`.toLowerCase()}>
                   <dt><span class:list={['g-term', { sign: g.style === 'sign' }]}>{t.term}</span></dt>
                   <dd>
                     <p set:html={mdInline(t.plain)} />
