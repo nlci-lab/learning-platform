@@ -86,7 +86,7 @@
 - id: idiom
   term: idiom
   group: meaning
-  plain: A fixed group of words whose meaning is not the sum of its words. It looks like a phrase but works like one word. Idioms rarely carry over word for word into another language.
+  plain: A fixed group of words whose meaning is not the sum of its words. It looks like a phrase but works like one word. Idioms rarely carry over word for word into another language. See [Idioms](~/learn/figures/idioms/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 4
   checked: true
 - id: tear
@@ -130,60 +130,60 @@
 - id: figure-of-speech
   term: figure of speech
   group: figures
-  plain: A creative use of words that means more than, or other than, the plain words, to catch attention or make a point. Unlike an idiom, it is not a fixed phrase.
+  plain: A creative use of words that means more than, or other than, the plain words, to catch attention or make a point. Unlike an idiom, it is not a fixed phrase. See [What is a figure of speech?](~/learn/figures/what-is-a-figure/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 33 and 34
   checked: true
 - id: simile
   term: simile
   group: figures
-  plain: A comparison that says it is a comparison, often with "like" or "as".
+  plain: A comparison that says it is a comparison, often with "like" or "as". See [Simile](~/learn/figures/simile/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 33
   checked: true
 - id: metaphor
   term: metaphor
   group: figures
-  plain: A comparison that does not say it is one, as in "Benjamin is a ravenous wolf". Find the topic, the picture and the point they share.
+  plain: A comparison that does not say it is one, as in "Benjamin is a ravenous wolf". Find the topic, the picture and the point they share. See [Metaphor](~/learn/figures/metaphor/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 33
   checked: true
 - id: euphemism
   term: euphemism
   group: figures
-  plain: A mild or indirect way of saying something that would sound harsh or rude, such as "fell asleep" for "died".
+  plain: A mild or indirect way of saying something that would sound harsh or rude, such as "fell asleep" for "died". See [Euphemism](~/learn/figures/euphemism/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
   checked: true
 - id: litotes
   term: litotes
   group: figures
-  plain: Saying something strongly by denying its opposite, as in "not a little comforted" for "greatly comforted".
+  plain: Saying something strongly by denying its opposite, as in "not a little comforted" for "greatly comforted". See [Litotes](~/learn/figures/litotes/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
   checked: true
 - id: hyperbole
   term: hyperbole
   group: figures
-  plain: A deliberate exaggeration for emphasis, not meant to be taken literally.
+  plain: A deliberate exaggeration for emphasis, not meant to be taken literally. See [Hyperbole](~/learn/figures/hyperbole/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
   checked: true
 - id: metonymy
   term: metonymy
   group: figures
-  plain: Using a word for something closely linked to what is meant, such as "the sword" for fighting.
+  plain: Using a word for something closely linked to what is meant, such as "the sword" for fighting. See [Metonymy](~/learn/figures/metonymy/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
   checked: true
 - id: synecdoche
   term: synecdoche
   group: figures
-  plain: Using a part for the whole, or the whole for a part, such as "my tongue" for "I".
+  plain: Using a part for the whole, or the whole for a part, such as "my tongue" for "I". See [Synecdoche](~/learn/figures/synecdoche/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
   checked: true
 - id: personification
   term: personification
   group: figures
-  plain: Speaking of a thing or an idea as if it were a person.
+  plain: Speaking of a thing or an idea as if it were a person. See [Personification](~/learn/figures/personification/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 34
   checked: true
 - id: rhetorical-question
   term: rhetorical question
   group: figures
-  plain: A question that does not ask for information. It may stress a point, rebuke, express surprise or open a topic. Many languages use such questions differently, so the purpose must be found first.
+  plain: A question that does not ask for information. It may stress a point, rebuke, express surprise or open a topic. Many languages use such questions differently, so the purpose must be found first. See [Rhetorical questions](~/learn/figures/rhetorical-questions/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 35
   checked: true
