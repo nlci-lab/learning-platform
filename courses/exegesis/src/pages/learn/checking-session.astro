@@ -1,0 +1,19 @@
+---
+// A scripted practice checking session (decision tree): rehearse how a checker asks, listens and decides.
+import Base from '@cohorts/platform/layouts/Base.astro';
+import DecisionTree from '@cohorts/platform/components/DecisionTree.astro';
+import { url } from '@cohorts/platform/url';
+import { course } from '../../course.config';
+---
+<Base site={course} title="A checking session: Luke 2:49" nav="learn/" description="A scripted practice checking session on Luke 2:49: choose what to say, and see how the team responds.">
+  <article class="cs">
+    <p class="small"><a href={url('learn/')}>Learn</a> › Practice session</p>
+    <p class="label">Practice session · Level 2 · about 10 minutes</p>
+    <DecisionTree id="checking-session-luke-2-49" />
+    <p class="muted small">The team and its answers are invented for practice.</p>
+  </article>
+</Base>
+
+<style>
+  .cs { max-width: 46rem; margin: 1.5rem 0 3rem; }
+</style>

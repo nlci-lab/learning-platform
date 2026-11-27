@@ -1,0 +1,7 @@
+---
+import CasePage from '@cohorts/platform/pages/CasePage.astro';
+import { caseStaticPaths } from '@cohorts/platform/data';
+import { course } from '../../course.config';
+export const getStaticPaths = caseStaticPaths;
+---
+<CasePage site={course} entry={Astro.props.entry} />
