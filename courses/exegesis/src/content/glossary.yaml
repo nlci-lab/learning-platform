@@ -187,3 +187,107 @@
   plain: A question that does not ask for information. It may stress a point, rebuke, express surprise or open a topic. Many languages use such questions differently, so the purpose must be found first. See [Rhetorical questions](~/learn/figures/rhetorical-questions/).
   source: Barnwell, Bible Translation, 4th ed. (SIL International, 2020), ch. 35
   checked: true
+
+# --- How clauses relate (unit 3) ---
+- id: clause-relation
+  term: relation between clauses
+  group: relations
+  plain: "How two clauses, sentences or longer parts of a text link in meaning: in time, by cause, by purpose, by contrast, and so on. A connecting word such as \"because\" may show it, or the text may leave it unmarked. See [How clauses relate](~/guides/clause-relations/)."
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connecting Words and Phrases\""
+  checked: true
+- id: sequential-time
+  term: sequential time
+  group: relations
+  plain: "One event happens, then the other. Words such as \"then\", \"after\" and \"before\" can show it. The order of telling may differ from the order of happening."
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Sequential Time Relationship\""
+  checked: true
+- id: simultaneous-time
+  term: simultaneous time
+  group: relations
+  plain: "Two or more events happen at the same time, as with \"while\" or \"during\". Neither causes the other; if one does, the relation is reason and result."
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Simultaneous Time Relationship\""
+  checked: true
+- id: background-relation
+  term: background
+  group: relations
+  plain: "An ongoing situation gives the time or setting for the main event, which begins during it: \"When Solomon was old, he worshipped other gods.\""
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Background Information\""
+  checked: true
+- id: reason-result
+  term: reason and result
+  group: relations
+  plain: "One event causes another. Words such as \"because\", \"so\", \"therefore\" and \"for\" can show it. Languages differ in whether the reason must come first. Semantic-structure books also call it cause–effect, or reason–result."
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Reason-and-Result Relationship\"; John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  checked: false
+- id: goal-purpose
+  term: goal (purpose)
+  group: relations
+  plain: "Someone does one thing intending that a second thing will happen: \"in order to\", \"so that\". Unlike a result, the second event is intended and may not happen. Semantic-structure books call it means–purpose."
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Goal (Purpose) Relationship\"; John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  checked: false
+- id: means-result
+  term: means and result
+  group: relations
+  plain: "One action is the way another is done or achieved: \"By working hard, he passed.\" Greek often states the means with a participle and no connecting word."
+  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  checked: false
+- id: contrast-relation
+  term: contrast
+  group: relations
+  plain: "One event or item stands against another, or something happens that was not expected: \"but\", \"yet\", \"although\". Semantic-structure books split this: simple contrast (two things set side by side) and concession–contraexpectation (\"although X, Y\", where X would lead us to expect not-Y)."
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Contrast Relationship\"; John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  checked: false
+- id: concession-contraexpectation
+  term: concession–contraexpectation
+  group: relations
+  plain: "A semantic-structure label for \"although X, still Y\": X would lead the hearer to expect the opposite of Y. A kind of contrast."
+  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  checked: false
+- id: hypothetical-condition
+  term: hypothetical condition
+  group: relations
+  plain: "The second event happens only if the first one does: \"if ... then\". Semantic-structure books call it condition–consequence."
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Hypothetical Conditions\"; John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  checked: false
+- id: factual-condition
+  term: factual condition
+  group: relations
+  plain: "An \"if\" clause the speaker treats as true, as when Elijah tells the people to follow the LORD if he is God (1 Kings 18:21). Some languages must say it as a fact (\"since\") so that readers do not take it as doubtful."
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Factual Conditions\""
+  checked: true
+- id: contrary-to-fact-condition
+  term: contrary-to-fact condition
+  group: relations
+  plain: "An \"if\" clause the speaker knows is not true, used to make a point. Usually no word marks it; the reader must know from the context."
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Contrary to Fact Conditions\""
+  checked: true
+- id: exception-relation
+  term: exception
+  group: relations
+  plain: "A clause takes one or more members out of a group: \"except\", \"unless\", \"besides\". In some languages \"no one ... except\" sounds like a contradiction, so it is said with \"only\"."
+  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Exception Clauses\""
+  checked: true
+- id: grounds-conclusion
+  term: grounds and conclusion
+  group: relations
+  plain: "A fact is given, and the speaker draws a conclusion from it: \"He is not here, so he must have left.\" Close to reason and result, but the second part is something the speaker concludes, not something the first part caused."
+  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  checked: false
+- id: support-relation
+  term: support relations
+  group: relations
+  plain: "Relations where one part does not move the thought forward but helps another part: it restates it, makes it clearer, adds detail, gives a comment, or compares it with something. Semantic-structure books name them restatement, amplification, clarification, comment and comparison."
+  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  checked: false
+- id: head-proposition
+  term: head
+  group: relations
+  plain: "In a pair or group of linked clauses, the part that carries the main point. The other parts support it. A draft can go wrong by making a support part sound like the main point."
+  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  checked: false
+- id: support-proposition
+  term: support
+  group: relations
+  plain: "A part that gives the reason, means, purpose, setting or other help for the head. It matters, but it is not the main point."
+  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  checked: false
