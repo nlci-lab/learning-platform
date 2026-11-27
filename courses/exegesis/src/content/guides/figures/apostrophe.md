@@ -68,8 +68,10 @@ Every language has its own ways of calling someone. A translator can notice how 
 | Figure | What happens | Example |
 |---|---|---|
 | Apostrophe | The speaker turns to address someone or something | "O grave, where is your victory?" |
-| [Personification](~/learn/figures/personification/) | A thing acts like a person, but no one speaks to it | "The grave opened its mouth." |
+| [Personification](~/learn/figures/personification/) | A thing or idea is spoken of as a person; it may or may not also be addressed | "The grave opened its mouth." |
 | [Rhetorical question](~/learn/figures/rhetorical-questions/) | A question that expects no answer | "Who can stand before him?" |
+
+These figures often come together. When a speaker addresses a thing, as in Psalm 24:7, apostrophe and personification work at the same time.
 
 Apostrophe often occurs together with these figures. Name each one, then check that the translation keeps all of them clear.
 

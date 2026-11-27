@@ -48,7 +48,7 @@ One question may have more than one function. There are also other functions (ch
 - **The answer is obvious** to everyone in the scene.
 - **A command or statement follows**, which shows what the question really meant (James 5:13).
 - **A string of questions** often shows strong emotion (Mark 6:2–3).
-- **The form implies the answer.** In English a negative question implies a positive answer, and a positive question implies a negative answer (ch. 35.3.1). "Am not I a Philistine?" (1 Samuel 17:8, KJV) means "I am certainly a Philistine." "Am I a Jew?" (John 18:35, KJV) means "I am certainly not a Jew."
+- **The form can point to the answer, but context decides.** In questions like these, a negative form often expects "yes" and a positive form often expects "no" (ch. 35.3.1): "Am not I a Philistine?" (1 Samuel 17:8, KJV) means "I am certainly a Philistine"; "Am I a Jew?" (John 18:35, KJV) means "I am certainly not a Jew." This is not a fixed rule. Some positive questions expect agreement, and some questions are invitations or requests with no implied answer. Always read the context to find what the speaker meant.
 - **A new speech-introducing clause** may mark a change from rhetorical to real questions, as in Genesis 20:9–10 (ch. 35.3.5).
 
 ## Everyday examples
