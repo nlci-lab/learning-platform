@@ -14,5 +14,6 @@ export const site = defineSite({
 // Courses listed on the master page. A course's path is its id; `built` = it is in courses/ and published.
 export const courses = [
   { id: 'logos', title: 'Logos Bible Software', blurb: 'Using Logos for exegesis and translation work.', status: 'In preparation', built: true },
+  { id: 'exegesis', title: 'Exegesis for Translation Checking', blurb: 'Finding what the original author meant, and checking that a translation says it.', status: 'Under construction', built: true },
   { id: 'textual-criticism', title: 'Textual Criticism', blurb: 'The manuscripts, the printed editions and their apparatus, and how to weigh the evidence.', status: 'Under construction', built: true },
 ] as const;

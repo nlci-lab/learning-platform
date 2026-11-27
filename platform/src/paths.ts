@@ -3,6 +3,8 @@
 export const PATHS = {
   learn: 'learn/',
   module: (id: string) => `practice/${id}/`,
+  /** A checking case (ADR 0006). */
+  case: (id: string) => `cases/${id}/`,
   guides: 'guides/',
   guide: (id: string) => `guides/${id}/`,
   /** The Guides page filtered to one hashtag (the filter needs JavaScript; without it all guides show). */

@@ -1,0 +1,87 @@
+# A scripted practice checking session (ADR 0006, proposal step 3). Constructed: the team and its answers
+# are invented for practice. It rehearses how a checker asks, listens and decides, on Luke 2:49.
+id: checking-session-luke-2-49
+title: "A checking session: Luke 2:49"
+intro: |
+  You are the checker. The team translated Luke 2:49 as "I must be doing my Father's work" (see the case
+  *The boy Jesus in the temple*). Three translators are present; the senior translator is also a pastor.
+  At each step, choose what you would do.
+start: open
+nodes:
+  - id: open
+    kind: question
+    title: How do you raise verse 49?
+    body: You think the team chose the weaker of two readings, and there is no footnote.
+    options:
+      - label: "Tell them: \"This is wrong. It should be 'my Father's house'.\""
+        to: tell
+      - label: "Ask: \"What were Mary and Joseph looking for, and where did they find it?\""
+        to: ask
+      - label: "Skip it. Both readings are possible."
+        to: skip
+  - id: tell
+    kind: step
+    title: The room goes quiet
+    body: |
+      The younger translators look at the pastor. He says, "We followed our national language Bible."
+      Telling the answer has put the team on the defensive, and you have not learned why they chose it.
+      Try again, with a question.
+    options:
+      - label: Go back and ask a question instead
+        to: ask
+  - id: skip
+    kind: step
+    title: A missed chance
+    body: |
+      Both readings are possible, but they are not equal here, and readers deserve to know there is a choice.
+      A checker who lets it pass also misses the chance to teach the method. Go back.
+    options:
+      - label: Go back
+        to: open
+  - id: ask
+    kind: question
+    title: "The pastor answers: \"They were looking for the boy. They found him in the temple.\""
+    body: One younger translator adds quietly, "So he is answering about the place?"
+    options:
+      - label: "\"Yes, exactly. So change it to 'house'.\""
+        to: too-fast
+      - label: "\"That's a good observation. What do the helps say about this phrase?\""
+        to: helps
+  - id: too-fast
+    kind: step
+    title: Too fast
+    body: |
+      You took the decision away from the team just as they were finding it. Let them look at the evidence and
+      decide; then their translation stays theirs. Go back.
+    options:
+      - label: Go back
+        to: ask
+  - id: helps
+    kind: question
+    title: They open the Translator's Notes
+    body: |
+      The notes give both readings and say the context favours the house. The pastor says, "Our people know
+      'my Father's work' from preaching. Can we keep it?"
+    options:
+      - label: "\"Yes, keep it, and add a footnote with 'my Father's house'.\""
+        to: footnote-other
+      - label: "\"Let's weigh it: which fits the story better? Then put the other in a footnote.\""
+        to: weigh
+  - id: footnote-other
+    kind: outcome
+    title: An acceptable outcome
+    body: |
+      Keeping the familiar reading with a footnote is defensible, and the team owns the choice. But you did not
+      help them weigh the context, so they may not use the method next time. Record the decision and the reasons
+      in your report.
+  - id: weigh
+    kind: outcome
+    title: A good outcome
+    body: |
+      The team weighs the story, chooses "my Father's house", and adds "Or *doing my Father's work*" as a footnote.
+      They decided, using the evidence; you asked and listened. Write the decision note in your report:
+      the readings, the choice, the reasons, the footnote.
+sources:
+  - id: tn-luke
+    cite: "SIL International, Translator's Notes on Luke, at Luke 2:49 (in Paratext). The scripted session paraphrases them as giving both readings and favouring 'house'; not yet checked against the notes."
+    checked: false

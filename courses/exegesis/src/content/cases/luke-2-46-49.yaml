@@ -1,0 +1,94 @@
+# Constructed for practice: the back translation is invented and comes from no real team.
+id: luke-2-46-49
+title: The boy Jesus in the temple
+passage: Luke 2:46–49
+genre: narrative
+kind: worked
+level: 2
+order: 1
+minutes: 20
+description: A first draft chose one reading of Jesus' answer without saying so. Work through the check step by step.
+situation: |
+  A team is drafting Luke. They have just finished chapter 2. The back translation below was made
+  by a speaker of the language who did not take part in the drafting. Compare it with the NIV and
+  at least one other version, and with the helps for Luke 2.
+segments:
+  - id: s46
+    ref: "2:46"
+    bt: "After three days they found him in the temple, sitting with the teachers."
+  - id: s47
+    ref: "2:47"
+    bt: "Everyone who heard him was amazed at how much he understood and at his answers."
+  - id: s48
+    ref: "2:48"
+    bt: "When his parents saw him, they were surprised. His mother said, \"Son, why did you do this to us? Your father and I were very worried and searched for you.\""
+  - id: s49
+    ref: "2:49"
+    bt: "He said, \"Why did you search for me? Didn't you know that I must be doing my Father's work?\""
+hints:
+  - Read verse 46 in two versions. Is anything about what Jesus was doing missing?
+  - In verse 49, what did the team understand by "the things of my Father"? Is that the only reading?
+problems:
+  - id: p-omit
+    segment: s46
+    kind: omission
+    explanation: The draft leaves out that Jesus was **listening to the teachers and asking them questions**. Verse 47 depends on it ("his answers"), so the omission weakens the scene.
+    ask_team: What was Jesus doing while he sat with the teachers?
+  - id: p-ok
+    segment: s47
+    kind: none
+    explanation: This verse is fine. "How much he understood" is a natural way to say "his understanding".
+  - id: p-ok-48
+    segment: s48
+    kind: none
+    explanation: This verse is fine. "Very worried" conveys the parents' anxiety well.
+  - id: p-reading
+    segment: s49
+    kind: wrong-interpretation
+    explanation: |
+      The Greek says "in the [things] of my Father" without saying what things. The team chose "doing my Father's work".
+      That reading is possible, but the context favours a **place**: the parents searched for him and found him in the
+      temple (verses 44–46), and Jesus answers their search. Many versions read "in my Father's house". The team should
+      either change to the stronger reading or keep theirs, and in both cases give the other reading in a footnote.
+    ask_team: What were Mary and Joseph looking for, and where did they find it? How does Jesus' answer respond to that?
+model_analysis: |
+  **Two segments need work; two are fine.**
+
+  1. **2:46: omission.** Restore "listening to them and asking them questions". Without it, the "answers" in 2:47 have no lead-in.
+  2. **2:47 and 2:48: fine.** Leave them. A checker who changes good wording loses the team's trust.
+  3. **2:49: a choice between readings.** "My Father's work" is possible, but "my Father's house" fits the search-and-find
+     story better. Discuss it with the team using the questions above. Whatever they choose, add a footnote with the other reading.
+
+  **Decision note:**
+  > Luke 2:49. Readings: "in my Father's house" / "doing my Father's work". Team now chooses: house. Reasons: answers the
+  > parents' search; found in the temple (2:46). Footnote added: "Or *doing my Father's work*."
+questions:
+  - id: q-which-fine
+    type: multichoice
+    single: false
+    prompt: Which verses need no change? (Choose all that apply.)
+    options:
+      - text: "2:46"
+        feedback: No. It leaves out that Jesus was listening and asking questions.
+      - text: "2:47"
+        correct: true
+        feedback: Yes. This verse is fine.
+      - text: "2:48"
+        correct: true
+        feedback: Yes. This verse is fine.
+      - text: "2:49"
+        feedback: No. The team chose a weaker reading without a footnote.
+  - id: q-report
+    type: essay
+    prompt: Write the decision note for 2:49 as you would put it in a checking report.
+    model_answer: |
+      Luke 2:49. Readings: "in my Father's house" / "doing my Father's work". Chosen: house. Reasons: Jesus answers
+      the parents' search; they found him in the temple (2:46). Footnote: "Or *doing my Father's work*."
+provenance: constructed
+review: draft
+sources:
+  - id: niv
+    cite: "The Holy Bible, New International Version (2011), Luke 2:41–51"
+    checked: false
+competencies: [read-back-translation, find-changes-of-meaning, weigh-interpretations, ask-the-team, write-checking-report]
+requires: [more-than-one-meaning, weighing-interpretations]

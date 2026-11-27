@@ -1,0 +1,69 @@
+id: luke-2-49
+title: "Luke 2:49: house or business?"
+topic: Luke 2:49
+question: Where did Jesus say he had to be?
+skill: Spotting and weighing two readings
+level: 2
+order: 1
+minutes: 10
+description: Two English versions read Jesus' answer in the temple in two ways. Find out why, and weigh the readings.
+lead: When Mary and Joseph find the boy Jesus in the temple, his answer can be read in two ways. Work out which reading fits best.
+competencies: [weigh-interpretations, read-passage-in-context]
+requires: [more-than-one-meaning]
+steps:
+  - id: compare
+    title: Two versions
+    body: |
+      Compare Luke 2:49 in two versions:
+
+      - NIV: "Didn't you know I had to be **in my Father's house**?"
+      - KJV: "wist ye not that I must be **about my Father's business**?"
+    question:
+      id: q-why-differ
+      type: multichoice
+      prompt: Why do the two versions differ here?
+      options:
+        - text: One of them has made a mistake.
+          feedback: Not necessarily. Both readings can come from the same Greek words.
+        - text: The Greek does not say what "things" of the Father are meant, so translators must decide.
+          correct: true
+          feedback: Yes. Word for word the Greek says "in the [things] of my Father". Each version fills the gap.
+        - text: They follow different Greek manuscripts.
+          feedback: No. This is a question of meaning, not of the text.
+  - id: context
+    title: Read the context
+    body: |
+      Read Luke 2:41–51. Note where the parents find Jesus (verse 46) and what they ask him (verse 48).
+    question:
+      id: q-context
+      type: multichoice
+      prompt: Which detail in the context gives the most weight to "in my Father's house"?
+      options:
+        - text: They find him in the temple courts.
+          correct: true
+          feedback: Yes. The temple is the place, and the parents' search is about where he has been.
+        - text: He is sitting with the teachers, asking questions.
+          feedback: This can support "business" too, so it does not decide between the readings.
+        - text: His mother treasured these things in her heart.
+          feedback: This comes after his answer and does not decide its meaning.
+  - id: decide
+    title: Decide and record
+    body: |
+      A team chose "in my Father's house". The other reading is still reasonable.
+    question:
+      id: q-footnote
+      type: truefalse
+      prompt: The team should give the other reading in a footnote.
+      answer: true
+      if_true: Yes. When two readings are both reasonable, a footnote shows readers the other one.
+      if_false: Think again. The other reading is still reasonable, so a footnote helps readers.
+done: |
+  You noticed two readings, used the context to weigh them, and decided how to show the other one.
+  See [Weighing interpretations](../../guides/weighing-interpretations/) for the full method.
+sources:
+  - id: niv
+    cite: "The Holy Bible, New International Version (2011), Luke 2:41–51"
+    checked: false
+  - id: kjv
+    cite: "The Holy Bible, King James Version (1611), Luke 2:49"
+    checked: false

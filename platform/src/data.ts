@@ -70,6 +70,24 @@ export async function getGlossary() {
   return groups.map((g) => ({ ...g, entries: entries.filter((e) => e.group === g.id) }));
 }
 
+/** Checking cases (ADR 0006). A case not yet reviewed is a draft: shown in `astro dev`, left out of
+    production builds. Fails the build if two questions in the course's cases share an id. */
+export async function getCases() {
+  const all = (await getCollection('cases')).filter((c) => import.meta.env.DEV || c.data.review !== 'draft');
+  const seen = new Map<string, string>();
+  for (const c of all) for (const q of c.data.questions) {
+    if (seen.has(q.id)) throw new Error(`Question id "${q.id}" is used in case "${seen.get(q.id)}" and case "${c.data.id}".`);
+    seen.set(q.id, c.data.id);
+  }
+  const ord = (c: CaseEntry) => c.data.order ?? Number.MAX_SAFE_INTEGER;
+  return all.sort((a, b) => ord(a) - ord(b) || a.data.level - b.data.level || a.data.title.localeCompare(b.data.title, 'en'));
+}
+export type CaseEntry = CollectionEntry<'cases'>;
+/** getStaticPaths for src/pages/cases/[id].astro */
+export async function caseStaticPaths() {
+  return (await getCases()).map((entry) => ({ params: { id: entry.data.id }, props: { entry } }));
+}
+
 export type ModuleEntry = CollectionEntry<'modules'>;
 export type GuideEntry = CollectionEntry<'guides'>;
 

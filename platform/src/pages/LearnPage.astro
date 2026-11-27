@@ -3,7 +3,7 @@
 // Course route (src/pages/learn/index.astro): <LearnPage site={course} heading="…" intro="…" />
 import Base from '../layouts/Base.astro';
 import GuideCard from '../components/GuideCard.astro';
-import { getModules, getGuides } from '../data';
+import { getModules, getGuides, getCases } from '../data';
 import { levelName, type SiteConfig } from '../config';
 import { url } from '../url';
 import { PATHS } from '../paths';
@@ -11,6 +11,8 @@ interface Props { site: SiteConfig; heading?: string; intro?: string }
 const { site, heading = 'Learn step by step', intro } = Astro.props;
 const modules = await getModules();
 const guides = await getGuides();
+const cases = await getCases();
+const KIND = { worked: 'Worked case', open: 'Find the problems', triage: 'Triage' } as const;
 ---
 <Base site={site} title="Learn" nav={PATHS.learn} description={`Guides and short guided problems: ${site.description}`}>
   <Fragment slot="head"><slot name="head" /></Fragment>
@@ -48,6 +50,20 @@ const guides = await getGuides();
         </>
       )}
     </section>
+    {cases.length > 0 && (
+      <section class="sec" id="cases">
+        <header><h2>Checking cases</h2><span class="small muted">About twenty minutes each</span></header>
+        <p class="muted intro">Practise checking: read a back translation, find where the meaning changed, and decide what to ask the team.</p>
+        <ul class="mods">
+          {cases.map(({ data: c }) => (
+            <li><a class="mod" href={url(PATHS.case(c.id))}>
+              <span class="ref">{c.passage}</span><span class="q">{c.title}</span><span class="sk">{KIND[c.kind]}</span>
+              <span class="mn">{levelName(site, c.level)} · about {c.minutes} minutes{c.review === 'draft' && ' · draft'}</span>
+            </a></li>
+          ))}
+        </ul>
+      </section>
+    )}
     <slot />
   </div>
 </Base>

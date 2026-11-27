@@ -1,0 +1,11 @@
+---
+import Base from '@cohorts/platform/layouts/Base.astro';
+import { url } from '@cohorts/platform/url';
+import { course } from '../course.config';
+---
+<Base site={course} title={course.title}>
+  <h1>{course.title}</h1>
+  <p>{course.description}</p>
+  <p>Exegesis means discovering what the original author meant. A translation checker needs it at every step: to see whether a draft says the same thing, and to know when a passage can be read in more than one way.</p>
+  <p><em>This course is in preparation.</em> Start with <a href={url('learn/')}>Learn</a>.</p>
+</Base>

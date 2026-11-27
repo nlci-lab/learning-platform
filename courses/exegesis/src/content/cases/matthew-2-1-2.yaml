@@ -1,0 +1,91 @@
+# Constructed for practice: the back translation is invented and comes from no real team.
+id: matthew-2-1-2
+title: The Magi arrive
+passage: Matthew 2:1–2
+genre: narrative
+kind: open
+level: 3
+order: 3
+minutes: 25
+description: Find the problems yourself first, then open the model analysis. One phrase can be read in two ways.
+situation: |
+  A team has drafted Matthew 2. You are preparing for a checking session. Read the back translation,
+  mark every segment you would ask about, and decide what kind of problem each one is. Then open the analysis.
+segments:
+  - id: s1a
+    ref: "2:1a"
+    bt: "Jesus was born in the town of Bethlehem in Judea, when Herod was king."
+  - id: s1b
+    ref: "2:1b"
+    bt: "After that, some magicians came to Jerusalem from the east."
+  - id: s2a
+    ref: "2:2a"
+    bt: "They asked, \"Where is the child who was born to be king?\""
+  - id: s2b
+    ref: "2:2b"
+    bt: "\"We saw his star in the eastern country, and we have come to worship him.\""
+hints:
+  - Look at the word the draft uses for the visitors. What does it mean in everyday speech?
+  - Compare 2:2a with two versions. Is anything missing?
+  - "In 2:2b, what does the Greek en tē anatolē mean? Is \"in the eastern country\" the only reading?"
+problems:
+  - id: p-ok
+    segment: s1a
+    kind: none
+    explanation: This segment is fine.
+  - id: p-magi
+    segment: s1b
+    kind: change
+    explanation: |
+      "Magicians" usually means people who do tricks or harmful magic. The *magoi* were learned men who studied the
+      stars. The word changes how readers see them. Versions use "Magi", "wise men" or "men who studied the stars".
+    ask_team: When people hear this word, what kind of person do they picture?
+  - id: p-omit
+    segment: s2a
+    kind: omission
+    explanation: The draft leaves out "**of the Jews**". It matters in Matthew, where Jesus is called "king of the Jews" again at the cross.
+    ask_team: King of whom?
+  - id: p-rising
+    segment: s2b
+    kind: wrong-interpretation
+    explanation: |
+      *En tē anatolē* can mean "in the east" or "at its rising". The draft says "in the eastern country", which reads it
+      as a place, and also suggests the star was in a country. The NIV reads "when it rose". Help the team choose, say
+      it clearly, and consider a footnote.
+    ask_team: Does the phrase tell us where they were, or when they saw the star?
+model_analysis: |
+  **Three segments need work; one is fine.**
+
+  1. **2:1a: fine.**
+  2. **2:1b: change of meaning.** "Magicians" gives the wrong picture. Find a word for learned men who studied the stars.
+  3. **2:2a: omission.** Restore "of the Jews"; it links to Matthew 27:37.
+  4. **2:2b: two readings.** "In the east" (place) or "when it rose" (time). "In the eastern country" mixes in a country.
+     Choose one reading, say it clearly, and footnote the other.
+
+  How did you do? If you marked 2:1a as a problem, look again: not every difference from English is an error.
+questions:
+  - id: q-kinds
+    type: matching
+    prompt: Match each segment with the kind of problem in it.
+    pairs:
+      - item: "2:1b, \"magicians\""
+        match: Change of meaning
+      - item: "2:2a, \"born to be king\""
+        match: Omission
+      - item: "2:2b, \"in the eastern country\""
+        match: A choice between readings
+    distractors:
+      - Back-translation artefact
+provenance: constructed
+review: draft
+sources:
+  - id: niv
+    cite: "The Holy Bible, New International Version (2011), Matthew 2:1–2; 27:37"
+    checked: false
+unverified:
+  - claim: "In Matthew 2:2 en tē anatolē is read by some versions as 'in the east' and by others as 'when it rose' or 'at its rising'."
+    from: "Background knowledge; to check against current English versions and the helps."
+  - claim: "The magoi were learned men associated with the study of the stars."
+    from: "Background knowledge; to check against a Bible dictionary and the helps on Matthew 2:1."
+competencies: [read-back-translation, find-changes-of-meaning, use-original-languages, weigh-interpretations, ask-the-team]
+requires: [small-words]

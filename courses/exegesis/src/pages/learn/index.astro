@@ -1,0 +1,11 @@
+---
+import LearnPage from '@cohorts/platform/pages/LearnPage.astro';
+import { url } from '@cohorts/platform/url';
+import { course } from '../../course.config';
+---
+<LearnPage site={course} heading="Learn exegesis for checking" intro="Short guides, then guided problems and checking cases where you practise what the guides explain.">
+  <section class="sec" id="session">
+    <header><h2>Practice session</h2></header>
+    <p class="muted">Rehearse a checking session: choose what to say to the team, and see how they respond. <a href={url('learn/checking-session/')}>A checking session: Luke 2:49</a></p>
+  </section>
+</LearnPage>

@@ -1,0 +1,119 @@
+---
+// A checking case page (ADR 0006), built from content data. The reader sees the situation and the back
+// translation, tries the questions, and opens hints, the problem for each segment and the model analysis.
+// Everything reads without JavaScript: answers sit in "Show" boxes. For an open case, the analysis comes
+// after a prompt to find the problems first.
+//
+// Course route (src/pages/cases/[id].astro):
+//   export const getStaticPaths = caseStaticPaths;
+//   <CasePage site={course} entry={Astro.props.entry} />
+import Base from '../layouts/Base.astro';
+import Question from '../components/Question.astro';
+import Sources from '../components/Sources.astro';
+import Feedback from '../components/Feedback.astro';
+import Unverified from '../components/Unverified.astro';
+import { levelName, type SiteConfig } from '../config';
+import type { CheckingCase } from '../schemas';
+import { md } from '../markdown';
+import { url } from '../url';
+import { PATHS } from '../paths';
+interface Props { site: SiteConfig; entry: { data: CheckingCase } }
+const { site, entry } = Astro.props;
+const c = entry.data;
+const learn = url(PATHS.learn);
+const KIND = { worked: 'Worked case', open: 'Find the problems', triage: 'Triage' } as const;
+const PROBLEM: Record<string, string> = {
+  addition: 'Addition', omission: 'Omission', change: 'Change of meaning', unnatural: 'Unnatural wording',
+  'figure-literal': 'Figure of speech taken literally', 'wrong-interpretation': 'A choice between readings',
+  'bt-artefact': 'Problem in the back translation only', none: 'No problem',
+};
+const bySeg = new Map(c.segments.map((s) => [s.id, c.problems.filter((p) => p.segment === s.id)]));
+---
+<Base site={site} title={c.title} description={c.description} nav={PATHS.learn}>
+  <article class="case">
+    {c.review === 'draft' && <p class="tag">Draft: not yet reviewed, not in the published site</p>}
+    <p class="crumbs small"><a href={learn}>Learn</a> › <a href={`${learn}#cases`}>Checking cases</a> › {c.passage}</p>
+    <p class="label">{KIND[c.kind]} · {levelName(site, c.level)} · about {c.minutes} minutes</p>
+    <h1>{c.title}</h1>
+    <p class="lead">{c.description}</p>
+
+    <section>
+      <h2>The situation</h2>
+      <div set:html={md(c.situation)} />
+      {c.provenance === 'constructed' && <p class="small muted">This back translation was written for practice. It comes from no real team.</p>}
+    </section>
+
+    <section>
+      <h2>The back translation: {c.passage}</h2>
+      <div class="segs-wrap">
+        <table class="segs">
+          <thead><tr><th scope="col">Verse</th><th scope="col">Back translation</th></tr></thead>
+          <tbody>{c.segments.map((s) => <tr id={`seg-${s.id}`}><th scope="row">{s.ref}</th><td>{s.bt}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </section>
+
+    {c.hints.length > 0 && (
+      <details class="box">
+        <summary>Hints</summary>
+        <ul>{c.hints.map((h) => <li set:html={md(h)} />)}</ul>
+      </details>
+    )}
+
+    {c.kind === 'open' && (
+      <p class="try">Before you read on: mark every verse you would ask the team about, and say what kind of problem it is.</p>
+    )}
+
+    {c.questions.length > 0 && (
+      <section>
+        <h2>Questions</h2>
+        {c.questions.map((q) => <Question q={q} />)}
+      </section>
+    )}
+
+    {c.problems.length > 0 && (
+      <section>
+        <h2>Verse by verse</h2>
+        {c.segments.map((s) => (bySeg.get(s.id) ?? []).map((p) => (
+          <details class={`box prob prob-${p.kind}`}>
+            <summary><strong>{s.ref}</strong>: show the analysis</summary>
+            <p class="label">{PROBLEM[p.kind]}</p>
+            <div set:html={md(p.explanation)} />
+            {p.ask_team && <p><strong>A question for the team:</strong> {p.ask_team}</p>}
+          </details>
+        )))}
+      </section>
+    )}
+
+    {c.model_analysis && (
+      <details class="box model">
+        <summary>Model analysis</summary>
+        <div set:html={md(c.model_analysis)} />
+      </details>
+    )}
+
+    {c.assessed && <p class="muted">This is an assessed case. The analysis is kept by mentors.</p>}
+
+    <Unverified items={c.unverified} />
+    <Sources sources={c.sources} lastChecked={c.last_checked} />
+    <Feedback site={site} title={c.title} />
+  </article>
+</Base>
+
+<style>
+  .case { max-width: 46rem; margin: 1.5rem 0 3rem; }
+  .crumbs { font-family: var(--sans); color: var(--ink-2); margin: 0 0 .75rem; }
+  .case h1 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: .2rem 0 .5rem; }
+  .case .lead { font-size: 1.15rem; line-height: 1.5; }
+  .case section { margin-top: 2rem; }
+  .segs-wrap { overflow-x: auto; }
+  .segs { width: 100%; border-collapse: collapse; font-size: 1rem; }
+  .segs th, .segs td { text-align: left; vertical-align: top; padding: .55rem .6rem; border-bottom: 1px solid var(--rule); }
+  .segs th[scope="row"] { white-space: nowrap; font: 600 .9rem var(--sans); color: var(--accent); }
+  .segs thead th { font: 600 .8rem var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+  .box { margin: .75rem 0; padding: .7rem 1rem; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); }
+  .box summary { cursor: pointer; font-family: var(--sans); }
+  .box[open] summary { margin-bottom: .5rem; }
+  .model { background: var(--paper-2); }
+  .try { margin: 1.5rem 0; padding: .8rem 1rem; border-left: 4px solid var(--accent); background: var(--paper-2); font-family: var(--sans); }
+</style>
