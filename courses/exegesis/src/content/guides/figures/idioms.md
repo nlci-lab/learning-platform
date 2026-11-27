@@ -13,6 +13,15 @@ learn:
 series: { id: figures, part: 14 }
 related: [metaphor, euphemism, translating-figures]
 competencies: [handle-figures-of-speech, find-changes-of-meaning, judge-accuracy-clarity-naturalness]
+image:
+  file: img/bthub/raining-cats-dogs.webp
+  width: 720
+  height: 346
+  alt: "One person says \"raining cats and dogs\" and pictures animals falling from a cloud; the listener understands it as very heavy rain. An idiom means something different from its words."
+  caption: "The words say cats and dogs. The meaning is heavy rain."
+  credit: BT Training Hub Image Library
+  creditUrl: https://bttraininghub.notion.site/bthub
+  licence: "CC BY-SA 4.0."
 sources:
   - id: barnwell-04
     cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (Dallas: SIL International, 2020), ch. 4"

@@ -13,6 +13,16 @@ learn:
 series: { id: figures, part: 2 }
 related: [simile, personification, translating-figures]
 competencies: [handle-figures-of-speech, ask-the-team, judge-accuracy-clarity-naturalness]
+image:
+  file: img/bthub/strong-tower.webp
+  width: 720
+  height: 402
+  alt: "A tall stone tower on a rocky hill above a walled city, with guards on top. A metaphor can call someone a strong tower: a safe place to run to."
+  caption: "A strong tower: a picture of safety that a metaphor can borrow."
+  credit: BT Training Hub Image Library
+  creditUrl: https://bttraininghub.notion.site/bthub
+  licence: "CC BY-SA 4.0."
+  ai: true
 sources:
   - id: barnwell-33
     cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (Dallas: SIL International, 2020), ch. 33"

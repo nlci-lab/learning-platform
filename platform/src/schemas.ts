@@ -315,8 +315,8 @@ export const guide = z.object({
     credit: text,
     creditUrl: z.string().url(),
     licence: text,
-    /** true when the image was made with AI; the caption then says so. */
-    ai: z.boolean(),
+    /** true when the image was made with AI (the caption then says so); leave out when the source does not say. */
+    ai: z.boolean().optional(),
   }).optional(),
   /** Part of a series (see `series`): the series id and this guide's place in it, 1 first. */
   series: z.object({ id: stableId, part: z.number().int().positive() }).optional(),

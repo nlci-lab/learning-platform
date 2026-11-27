@@ -13,6 +13,15 @@ learn:
 series: { id: figures, part: 5 }
 related: [metonymy, hyperbole, translating-figures]
 competencies: [handle-figures-of-speech, read-passage-in-context, judge-accuracy-clarity-naturalness]
+image:
+  file: img/bthub/lips-singing.webp
+  width: 720
+  height: 720
+  alt: "A pair of red lips singing, with musical notes flowing out. A part of the body, the lips, stands for the whole person who praises."
+  caption: "\"Lips\" can stand for the whole person who speaks or sings."
+  credit: BT Training Hub Image Library
+  creditUrl: https://bttraininghub.notion.site/bthub
+  licence: "CC BY-SA 4.0."
 sources:
   - id: barnwell-34
     cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (Dallas: SIL International, 2020), ch. 34, sec. 34.6"

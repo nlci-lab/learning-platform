@@ -12,6 +12,15 @@ learn:
   - Questions that show whether a draft kept the relation
 related: [small-words, more-than-one-meaning]
 competencies: [use-discourse-features]
+image:
+  file: img/bthub/girl-umbrella.webp
+  width: 720
+  height: 591
+  alt: "Two panels: a storm cloud with rain and lightning, then a girl under the same cloud holding an umbrella. The rain is the reason; opening the umbrella is the result."
+  caption: "Rain, so she opens her umbrella: reason and result."
+  credit: BT Training Hub Image Library
+  creditUrl: https://bttraininghub.notion.site/bthub
+  licence: "CC BY-SA 4.0."
 sources:
   - id: ta-connect
     cite: "Translation Academy (original work by unfoldingWord), \"Connecting Words and Phrases\" and the \"Connect\" articles on time, logical, conditional and exception relationships (CC BY-SA 4.0), https://git.door43.org/unfoldingWord/en_ta, read at commit 9c88e81 (25 November 2026). Ideas adapted in our own words; Bible examples chosen from those articles."
