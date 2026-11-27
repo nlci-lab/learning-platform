@@ -10,7 +10,7 @@ These rules add to the root `CLAUDE.md`.
   - KJV, YLT (Young's Literal Translation, 1898) and WEB (World English Bible): public domain.
   - ULT and UST (unfoldingWord Literal and Simplified Texts): CC BY-SA 4.0, credited in the footer.
   - NIV: within Biblica's General Use Guidelines (500 verses across the whole site, no complete book, under 25% of the text).
-  - NET: Bible text only, never the NET notes (paraphrase them instead); non-commercial use; "(NET)" after each quote, linked to https://netbible.org: write `([NET](https://netbible.org))`.
+  - NET: Bible text only. The NET notes may be used only as the root `CLAUDE.md` guardrails allow (paraphrase, cite, never quote); non-commercial use; "(NET)" after each quote, linked to https://netbible.org: write `([NET](https://netbible.org))`.
   - Other versions (NLT, GNT, CEV, REB, The Message and others) are described in our own words, never quoted. Never ESV.
   - Check every quoted wording against an online Bible before marking its source `checked: true`.
 - **Levels:** Level 1 · First steps, Level 2 · Working level, Level 3 · Deeper study, Level 4 · Advanced (set in `course.config.ts`).
