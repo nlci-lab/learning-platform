@@ -5,7 +5,7 @@
 # Not listed, so never given to AI: published books and handbooks held for checking, team material
 # that mostly adapts such a book, the NET Bible notes, and Bible versions whose terms exclude AI use
 # (e.g. the NIV). Team chapters are added one by one, with `scope`, once the team agrees.
-version: 1
+version: 2
 
 resources:
   - id: translation-academy
@@ -59,4 +59,14 @@ resources:
     url: https://ebible.org/web/
     credit: "(WEB) after each quotation."
     checked_by: maintainer (notice in LICENSE-CONTENT.md)
+    checked_on: 2026-11-27
+  - id: bt-training-hub
+    title: BT Training Hub (resources and image library)
+    kind: reference
+    licence: CC BY-SA 4.0
+    basis: "All materials on the site are CC BY-SA 4.0, an open licence that allows any use, including by AI tools."
+    scope: "The site's text and resources. Images only where the image's own License column says CC BY-SA or an open equivalent; check each image's License and Source before use."
+    url: https://bttraininghub.notion.site/bthub
+    credit: "The Hub waives attribution for its own work; ShareAlike still applies. Pages derived from unfoldingWord need: \"Contains content derived from unfoldingWord (CC BY-SA 4.0).\" Third-party images (e.g. Sweet Publishing) are credited to their source; images marked as AI-made are labelled so."
+    checked_by: maintainer (Licensing Information page and Image Library notice on the site)
     checked_on: 2026-11-27
