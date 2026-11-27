@@ -1,42 +1,62 @@
 ---
-// The two steps of translation as a simple diagram: the source text's meaning is found (step 1, exegesis),
-// then said again in the receptor language (step 2, re-expression). Our own drawing, built from text boxes
-// so it stays readable at any width: a row on wide screens, a column on phones. Colours follow the theme.
+// The two steps of translation, drawn in the classic way: the meaning (a circle) sits inside the source text's
+// form (a square); step 1 draws the meaning out; step 2 puts the same meaning into the receptor text's form
+// (an octagon). The forms differ; the meaning keeps its shape. Our own drawing; colours follow the theme.
+// The SVG holds only a few large words so it stays readable on phones; the step names are text below it.
+const oct = (cx: number, cy: number, r: number) =>
+  Array.from({ length: 8 }, (_, i) => {
+    const a = (Math.PI / 8) * (2 * i + 1);
+    return `${(cx + r * Math.cos(a)).toFixed(1)},${(cy + r * Math.sin(a)).toFixed(1)}`;
+  }).join(' ');
 ---
-<figure class="two-steps" aria-labelledby="ts-cap">
-  <ol class="ts-flow">
-    <li class="ts-box">
-      <span class="ts-name">Source text</span>
-      <span class="ts-sub">in the original languages</span>
-    </li>
-    <li class="ts-arrow" aria-hidden="true"><span class="ts-step">1 · Exegesis: find the meaning</span></li>
-    <li class="ts-box ts-meaning">
-      <span class="ts-name">Meaning</span>
-      <span class="ts-sub">what the author meant</span>
-    </li>
-    <li class="ts-arrow" aria-hidden="true"><span class="ts-step">2 · Re-express the meaning</span></li>
-    <li class="ts-box ts-receptor">
-      <span class="ts-name">Receptor text</span>
-      <span class="ts-sub">in the new language</span>
-    </li>
+<figure class="two-steps">
+  <svg viewBox="0 0 640 340" role="img" aria-labelledby="ts-title ts-desc">
+    <title id="ts-title">The two steps of translation</title>
+    <desc id="ts-desc">On the left, a circle labelled Meaning sits inside a square: the source text. An arrow marked 1 leads down to a circle labelled Meaning in the middle. An arrow marked 2 leads up to the right, to a circle labelled Meaning inside an octagon: the receptor text. The square and the octagon differ; the circle is the same in all three places.</desc>
+    <defs>
+      <marker id="ts-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" class="ts-head" />
+      </marker>
+    </defs>
+
+    <text x="125" y="34" class="ts-label">Source text</text>
+    <rect x="35" y="52" width="180" height="180" class="ts-form" />
+    <circle cx="125" cy="142" r="66" class="ts-meaning" />
+    <text x="125" y="151" class="ts-word">Meaning</text>
+
+    <text x="515" y="34" class="ts-label">Receptor text</text>
+    <polygon points={oct(515, 142, 98)} class="ts-form" />
+    <circle cx="515" cy="142" r="66" class="ts-meaning" />
+    <text x="515" y="151" class="ts-word">Meaning</text>
+
+    <circle cx="320" cy="270" r="64" class="ts-meaning ts-centre" />
+    <text x="320" y="279" class="ts-word">Meaning</text>
+
+    <path d="M150,205 C185,250 215,268 250,270" class="ts-line" marker-end="url(#ts-arrow)" />
+    <path d="M390,270 C425,268 455,250 490,205" class="ts-line" marker-end="url(#ts-arrow)" />
+    <circle cx="196" cy="262" r="19" class="ts-badge" /><text x="196" y="271" class="ts-num">1</text>
+    <circle cx="444" cy="262" r="19" class="ts-badge" /><text x="444" y="271" class="ts-num">2</text>
+  </svg>
+  <ol class="ts-steps">
+    <li><strong>Discover the meaning</strong> in the source text. This is exegesis.</li>
+    <li><strong>Re-express the meaning</strong> in the receptor language.</li>
   </ol>
-  <figcaption id="ts-cap" class="small muted">Step 1, exegesis, finds the meaning in the source text. Step 2 says the same meaning in the new language. This course is about step 1.</figcaption>
+  <figcaption class="small muted">The square and the octagon stand for the form of each language: its words and grammar. They are different, as two languages are. The circle stands for the meaning. It keeps its shape from start to end: the meaning must not change in translation. This course is about step 1.</figcaption>
 </figure>
 
 <style>
-  .two-steps { margin: 1.5rem 0; max-width: 46rem; }
-  .two-steps figcaption { margin-top: .75rem; }
-  .ts-flow { list-style: none; padding: 0; margin: 0; display: grid; gap: .4rem; justify-items: stretch; }
-  .ts-box { display: grid; gap: .15rem; padding: .7rem 1rem; border: 1.5px solid var(--ink-2); border-radius: 10px; background: var(--paper-2); text-align: center; }
-  .ts-meaning { border: 2.5px solid var(--accent); border-radius: 999px; background: var(--paper); }
-  .ts-receptor { border-radius: 22px; }
-  .ts-name { font: 600 1.05rem var(--sans); color: var(--ink); }
-  .ts-sub { font: .85rem var(--sans); color: var(--ink-2); }
-  .ts-arrow { display: grid; justify-items: center; gap: .1rem; color: var(--accent); }
-  .ts-arrow::before { content: "↓"; font: 700 1.4rem/1 var(--sans); }
-  .ts-step { font: 600 .9rem var(--sans); color: var(--ink); text-align: center; }
-  @media (min-width: 720px) {
-    .ts-flow { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: .5rem; }
-    .ts-arrow::before { content: "→"; }
-  }
+  .two-steps { margin: 1.5rem 0; max-width: 40rem; }
+  .two-steps svg { width: 100%; height: auto; display: block; }
+  .ts-form { fill: var(--paper-2); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+  .ts-meaning { fill: var(--paper); stroke: var(--accent); stroke-width: 3.5; }
+  .ts-centre { stroke-width: 4.5; }
+  .ts-line { fill: none; stroke: var(--accent); stroke-width: 3.5; }
+  .ts-head { fill: var(--accent); }
+  .ts-badge { fill: var(--accent); }
+  .ts-label { font: 600 28px var(--sans); fill: var(--ink); text-anchor: middle; }
+  .ts-word { font: 600 26px var(--sans); fill: var(--ink); text-anchor: middle; }
+  .ts-num { font: 700 24px var(--sans); fill: var(--paper); text-anchor: middle; }
+  .ts-steps { margin: .75rem 0 .5rem; padding-left: 1.5rem; }
+  .ts-steps li { margin-bottom: .25rem; }
+  .two-steps figcaption { margin-top: .5rem; }
 </style>
