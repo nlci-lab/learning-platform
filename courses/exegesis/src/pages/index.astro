@@ -2,10 +2,31 @@
 import Base from '@cohorts/platform/layouts/Base.astro';
 import { url } from '@cohorts/platform/url';
 import { course } from '../course.config';
+import TwoSteps from '../components/TwoSteps.astro';
+import CourseMap from '../components/CourseMap.astro';
 ---
 <Base site={course} title={course.title}>
-  <h1>{course.title}</h1>
-  <p>{course.description}</p>
-  <p>Exegesis means discovering what the original author meant. A translation checker needs it at every step: to see whether a draft says the same thing, and to know when a passage can be read in more than one way.</p>
-  <p><em>This course is in preparation.</em> Start with <a href={url('learn/')}>Learn</a>.</p>
+  <div class="home">
+    <h1>{course.title}</h1>
+    <p class="lead">{course.description}</p>
+    <p><em>This course is in preparation.</em> Start with <a href={url('learn/')}>Learn</a>.</p>
+
+    <h2>Two steps in translating, two things to check</h2>
+    <p>Translating happens in two steps. First, find what the original author meant: that is <a href={url('glossary/#exegesis')}>exegesis</a>. Then say that same meaning in the new language: that is <a href={url('glossary/#re-expression')}>re-expression</a>.</p>
+    <TwoSteps />
+    <p>A translation check looks at both steps, one after the other:</p>
+    <ol>
+      <li><strong>The exegesis.</strong> Did the team understand the passage correctly? Where it can be read in more than one way, did they choose well?</li>
+      <li><strong>The re-expression.</strong> Does the draft say that meaning clearly and naturally, with nothing added, left out or changed?</li>
+    </ol>
+    <p>This course is about the first: the exegesis a checker needs. Re-expression comes in only where it shows whether the meaning was understood, for example when the same meaning can be said in more than one way.</p>
+
+    <CourseMap />
+  </div>
 </Base>
+
+<style>
+  .home { max-width: 46rem; }
+  .home .lead { font-size: 1.15rem; line-height: 1.5; }
+  .home h2 { margin-top: 2rem; }
+</style>

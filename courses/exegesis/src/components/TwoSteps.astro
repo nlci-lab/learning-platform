@@ -1,0 +1,42 @@
+---
+// The two steps of translation as a simple diagram: the source text's meaning is found (step 1, exegesis),
+// then said again in the receptor language (step 2, re-expression). Our own drawing, built from text boxes
+// so it stays readable at any width: a row on wide screens, a column on phones. Colours follow the theme.
+---
+<figure class="two-steps" aria-labelledby="ts-cap">
+  <ol class="ts-flow">
+    <li class="ts-box">
+      <span class="ts-name">Source text</span>
+      <span class="ts-sub">in the original languages</span>
+    </li>
+    <li class="ts-arrow" aria-hidden="true"><span class="ts-step">1 · Exegesis: find the meaning</span></li>
+    <li class="ts-box ts-meaning">
+      <span class="ts-name">Meaning</span>
+      <span class="ts-sub">what the author meant</span>
+    </li>
+    <li class="ts-arrow" aria-hidden="true"><span class="ts-step">2 · Re-express the meaning</span></li>
+    <li class="ts-box ts-receptor">
+      <span class="ts-name">Receptor text</span>
+      <span class="ts-sub">in the new language</span>
+    </li>
+  </ol>
+  <figcaption id="ts-cap" class="small muted">Step 1, exegesis, finds the meaning in the source text. Step 2 says the same meaning in the new language. This course is about step 1.</figcaption>
+</figure>
+
+<style>
+  .two-steps { margin: 1.5rem 0; max-width: 46rem; }
+  .two-steps figcaption { margin-top: .75rem; }
+  .ts-flow { list-style: none; padding: 0; margin: 0; display: grid; gap: .4rem; justify-items: stretch; }
+  .ts-box { display: grid; gap: .15rem; padding: .7rem 1rem; border: 1.5px solid var(--ink-2); border-radius: 10px; background: var(--paper-2); text-align: center; }
+  .ts-meaning { border: 2.5px solid var(--accent); border-radius: 999px; background: var(--paper); }
+  .ts-receptor { border-radius: 22px; }
+  .ts-name { font: 600 1.05rem var(--sans); color: var(--ink); }
+  .ts-sub { font: .85rem var(--sans); color: var(--ink-2); }
+  .ts-arrow { display: grid; justify-items: center; gap: .1rem; color: var(--accent); }
+  .ts-arrow::before { content: "↓"; font: 700 1.4rem/1 var(--sans); }
+  .ts-step { font: 600 .9rem var(--sans); color: var(--ink); text-align: center; }
+  @media (min-width: 720px) {
+    .ts-flow { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: .5rem; }
+    .ts-arrow::before { content: "→"; }
+  }
+</style>
