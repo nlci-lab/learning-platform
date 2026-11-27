@@ -189,105 +189,119 @@
   checked: true
 
 # --- How clauses relate (unit 3) ---
+# TA = unfoldingWord Translation Academy (CC BY-SA 4.0), https://git.door43.org/unfoldingWord/en_ta, commit 9c88e81.
+# SEM = Beekman and Callow, Translating the Word of God (1974), ch. 17–18; Larson, Meaning-Based Translation, 2nd ed. (1998), chapters on propositional relations. Not yet checked.
 - id: clause-relation
   term: relation between clauses
   group: relations
   plain: "How two clauses, sentences or longer parts of a text link in meaning: in time, by cause, by purpose, by contrast, and so on. A connecting word such as \"because\" may show it, or the text may leave it unmarked. See [How clauses relate](~/guides/clause-relations/)."
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connecting Words and Phrases\""
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connecting Words and Phrases\""
   checked: true
+- id: semantic-structure
+  term: semantic structure
+  group: relations
+  plain: "The meaning of a text set out as a set of simple statements, with the relations between them named. Books on semantic structure give each relation a technical label, such as reason–result."
+  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974); Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998)"
+  checked: false
 - id: sequential-time
   term: sequential time
   group: relations
   plain: "One event happens, then the other. Words such as \"then\", \"after\" and \"before\" can show it. The order of telling may differ from the order of happening."
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Sequential Time Relationship\""
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Sequential Time Relationship\""
   checked: true
 - id: simultaneous-time
   term: simultaneous time
   group: relations
-  plain: "Two or more events happen at the same time, as with \"while\" or \"during\". Neither causes the other; if one does, the relation is reason and result."
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Simultaneous Time Relationship\""
+  plain: "Two or more events happen at the same time, as with \"while\" or \"during\". Neither causes the other. If one does, the relation is reason and result."
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Simultaneous Time Relationship\""
   checked: true
 - id: background-relation
   term: background
   group: relations
-  plain: "An ongoing situation gives the time or setting for the main event, which begins during it: \"When Solomon was old, he worshipped other gods.\""
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Background Information\""
+  plain: "An ongoing situation gives the time or setting for a main event, which begins during it. For example, Solomon was old, and during that time he began to worship other gods. The main event is in focus."
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Background Information\""
   checked: true
 - id: reason-result
   term: reason and result
   group: relations
-  plain: "One event causes another. Words such as \"because\", \"so\", \"therefore\" and \"for\" can show it. Languages differ in whether the reason must come first. Semantic-structure books also call it cause–effect, or reason–result."
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Reason-and-Result Relationship\"; John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  plain: "One event causes another. Words such as \"because\", \"so\", \"therefore\" and \"for\" can show it. Languages differ in whether the reason must come first. Books on [semantic structure](~/glossary/#semantic-structure) call it reason–result or cause–effect."
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Reason-and-Result Relationship\"; Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: goal-purpose
   term: goal (purpose)
   group: relations
-  plain: "Someone does one thing intending that a second thing will happen: \"in order to\", \"so that\". Unlike a result, the second event is intended and may not happen. Semantic-structure books call it means–purpose."
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Goal (Purpose) Relationship\"; John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  plain: "Someone does one thing intending that a second thing will happen: \"in order to\", \"so that\". Books on semantic structure call it means–purpose: the action is the means, the intended event is the purpose."
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Goal (Purpose) Relationship\"; Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: means-result
   term: means and result
   group: relations
-  plain: "One action is the way another is done or achieved: \"By working hard, he passed.\" Greek often states the means with a participle and no connecting word."
-  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  plain: "One action is the way another is done or achieved: \"By working hard, he passed.\" Greek may state the means with a participle (a verb form, like English \"working\", that adds an action to the main verb)."
+  source: "Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: contrast-relation
   term: contrast
   group: relations
-  plain: "One event or item stands against another, or something happens that was not expected: \"but\", \"yet\", \"although\". Semantic-structure books split this: simple contrast (two things set side by side) and concession–contraexpectation (\"although X, Y\", where X would lead us to expect not-Y)."
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Contrast Relationship\"; John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  plain: "One event or item stands against another: \"but\", \"yet\", \"although\". Books on semantic structure split this in two. Simple contrast sets two things side by side. Concession–contraexpectation means \"although X, Y\", where X makes us expect the opposite of Y."
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Contrast Relationship\"; Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: concession-contraexpectation
   term: concession–contraexpectation
   group: relations
   plain: "A semantic-structure label for \"although X, still Y\": X would lead the hearer to expect the opposite of Y. A kind of contrast."
-  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  source: "Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: hypothetical-condition
   term: hypothetical condition
   group: relations
-  plain: "The second event happens only if the first one does: \"if ... then\". Semantic-structure books call it condition–consequence."
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Hypothetical Conditions\"; John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  plain: "The second event happens only if the first one does: \"if ... then\". Books on semantic structure call all conditions condition–consequence."
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Hypothetical Conditions\"; Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: factual-condition
   term: factual condition
   group: relations
-  plain: "An \"if\" clause the speaker treats as true, as when Elijah tells the people to follow the LORD if he is God (1 Kings 18:21). Some languages must say it as a fact (\"since\") so that readers do not take it as doubtful."
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Factual Conditions\""
+  plain: "An \"if\" clause the speaker treats as true. Elijah sets the LORD and Baal side by side in \"if\" clauses, though he himself holds that the LORD is God (1 Kings 18:21). Some languages must say a factual condition as a fact (\"since\"), so that readers do not take it as a doubt."
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Factual Conditions\""
   checked: true
 - id: contrary-to-fact-condition
   term: contrary-to-fact condition
   group: relations
-  plain: "An \"if\" clause the speaker knows is not true, used to make a point. Usually no word marks it; the reader must know from the context."
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Contrary to Fact Conditions\""
+  plain: "An \"if\" clause the speaker knows is not true, used to make a point. Usually no word shows this. The reader must tell from the context."
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Contrary to Fact Conditions\""
   checked: true
 - id: exception-relation
   term: exception
   group: relations
   plain: "A clause takes one or more members out of a group: \"except\", \"unless\", \"besides\". In some languages \"no one ... except\" sounds like a contradiction, so it is said with \"only\"."
-  source: "unfoldingWord Translation Academy (CC BY-SA 4.0), \"Connect — Exception Clauses\""
+  source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Exception Clauses\""
   checked: true
 - id: grounds-conclusion
   term: grounds and conclusion
   group: relations
   plain: "A fact is given, and the speaker draws a conclusion from it: \"He is not here, so he must have left.\" Close to reason and result, but the second part is something the speaker concludes, not something the first part caused."
-  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  source: "Beekman and Callow; Larson (see semantic structure)"
+  checked: false
+- id: grounds-exhortation
+  term: grounds and exhortation
+  group: relations
+  plain: "A fact is given, and a command or appeal follows from it, often with \"therefore\". Common in the New Testament letters."
+  source: "Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: support-relation
   term: support relations
   group: relations
-  plain: "Relations where one part does not move the thought forward but helps another part: it restates it, makes it clearer, adds detail, gives a comment, or compares it with something. Semantic-structure books name them restatement, amplification, clarification, comment and comparison."
-  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  plain: "Relations where one part does not move the thought forward but helps another part. Labels in books on semantic structure include restatement, amplification, comment, comparison, illustration and manner."
+  source: "Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: head-proposition
   term: head
   group: relations
-  plain: "In a pair or group of linked clauses, the part that carries the main point. The other parts support it. A draft can go wrong by making a support part sound like the main point."
-  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  plain: "In many pairs or groups of linked clauses, the part that carries the main point. The other parts support it. A draft can go wrong by making a support part sound like the main point."
+  source: "Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: support-proposition
   term: support
   group: relations
-  plain: "A part that gives the reason, means, purpose, setting or other help for the head. It matters, but it is not the main point."
-  source: "John Beekman and John Callow, Translating the Word of God (Zondervan, 1974), ch. 17–18; Mildred L. Larson, Meaning-Based Translation, 2nd ed. (University Press of America, 1998), ch. 25–27"
+  plain: "A part that gives the reason, means, time, setting or other help for the head. It matters, but it is not the main point."
+  source: "Beekman and Callow; Larson (see semantic structure)"
   checked: false
