@@ -8,6 +8,12 @@ Logos Bible Software is a product of Faithlife. Its name, interface and screensh
 
 Scripture quotations marked NIV, in screenshots and quoted in the text (including NIV footnotes), are taken from THE HOLY BIBLE, NEW INTERNATIONAL VERSION®, NIV® Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc.® All rights reserved worldwide. Quoted without written permission under Biblica’s General Use Guidelines (https://www.biblica.com/general-use-guidelines/): no more than 500 verses across the whole site, no complete book, and less than 25% of the text. If our use ever goes beyond those limits, we must ask Biblica for written permission first.
 
+Scripture quoted by permission. Quotations designated (NET) are from the NET Bible® copyright ©1996, 2019 by Biblical Studies Press, L.L.C. http://netbible.com All rights reserved. We quote the NET Bible text only, never the NET notes, in non-commercial use, under the terms at https://netbible.com/copyright/.
+
+Quotations marked ULT and UST are from the unfoldingWord® Literal Text and the unfoldingWord® Simplified Text, original work by unfoldingWord, available from https://unfoldingword.org/ult and https://unfoldingword.org/ust, licensed CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Quotations are unchanged unless stated.
+
+Scripture quotations marked KJV (King James Version), YLT (Young's Literal Translation, 1898) and WEB (World English Bible) are in the public domain.
+
 Scripture quotations marked LEB in screenshots are from the Lexham English Bible. Copyright 2012 Logos Bible Software. Lexham is a registered trademark of Logos Bible Software.
 
 Scripture quotations marked NLT in screenshots are taken from the Holy Bible, New Living Translation, copyright © 1996, 2004, 2015 by Tyndale House Foundation. Used by permission of Tyndale House Publishers, Inc., Carol Stream, Illinois 60188. All rights reserved.

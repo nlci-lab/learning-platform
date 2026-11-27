@@ -35,6 +35,12 @@ Run from the repo root: `npm install`, then `npm run dev:site` (port 4320), `npm
 - **Scholars: evidence, not conclusions.** Cite scholars for data. Never adopt their conclusions about the reliability of Scripture as the site's own voice.
 - **Generic audience.** The sites are for Bible translators and consultants in general. Do not mention or link a specific training course or cohort from the public pages.
 - Do not reproduce copyrighted material beyond short quotations for teaching, with attribution.
+- **NET Bible notes** (translator's "tn", text-critical "tc" and study "sn" notes) are a welcome source in every course, under these guardrails. NET's published permission covers its Bible text only, not the notes.
+  1. **Ideas, not structure.** Report one point at a time in our own words, with our own explanation, and cite it, e.g. "NET note at John 1:18 (tc)". Never rework the notes note by note or in their order.
+  2. **Check textual facts at their source.** For manuscript evidence, check the UBS/NA apparatus, Metzger or another primary source, and cite that. The NET note is a pointer and a second voice.
+  3. **Evidence, not conclusions.** Report "the NET translators judge…"; never adopt a note's view, especially on doctrine, as the site's voice.
+  4. **Never to AI.** The notes are not given to any AI tool unless the NET publisher grants a licence for that (ADR 0007).
+  5. **No word-for-word quotes** until the publisher gives written permission to quote the notes.
 
 ## Writing
 
