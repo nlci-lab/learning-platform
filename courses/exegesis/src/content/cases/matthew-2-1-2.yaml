@@ -83,6 +83,8 @@ sources:
     cite: "The Holy Bible, New International Version (2011), Matthew 2:1–2; 27:37"
     checked: false
 unverified:
+  - claim: "In Matthew 2:2 en tē anatolē is read by some versions as 'in the east' and by others as 'when it rose' or 'at its rising'."
+    from: "Background knowledge; to check against current English versions and the helps."
   - claim: "The magoi were learned men associated with the study of the stars."
     from: "Background knowledge; to check against a Bible dictionary and the helps on Matthew 2:1."
 competencies: [read-back-translation, find-changes-of-meaning, use-original-languages, weigh-interpretations, ask-the-team]

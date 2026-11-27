@@ -78,6 +78,8 @@ sources:
     cite: "The Holy Bible, New International Version (2011), Luke 1:42–45"
     checked: false
 unverified:
+  - claim: "Some versions and commentators read hoti in Luke 1:45 as causal ('because'), others as content ('that')."
+    from: "Background knowledge; to check against the UBS Translator's Handbook and SIL Translator's Notes on Luke 1:45."
   - claim: "'Blessed among women' reflects a Semitic way of expressing the superlative ('most blessed of women')."
     from: "Background knowledge; to check against the UBS Translator's Handbook on Luke 1:42."
 competencies: [read-back-translation, find-changes-of-meaning, use-original-languages, weigh-interpretations, ask-the-team]

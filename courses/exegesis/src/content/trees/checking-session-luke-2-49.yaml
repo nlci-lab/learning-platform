@@ -81,4 +81,7 @@ nodes:
       The team weighs the story, chooses "my Father's house", and adds "Or *doing my Father's work*" as a footnote.
       They decided, using the evidence; you asked and listened. Write the decision note in your report:
       the readings, the choice, the reasons, the footnote.
-sources: []
+sources:
+  - id: tn-luke
+    cite: "SIL International, Translator's Notes on Luke, at Luke 2:49 (in Paratext). The scripted session paraphrases them as giving both readings and favouring 'house'; not yet checked against the notes."
+    checked: false
