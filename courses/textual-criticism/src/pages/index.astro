@@ -9,6 +9,8 @@ import Tour from '../components/Tour.astro';
 import { aliasIndex, allWitnesses } from '../lib/witnesses';
 import { GUIDES, PIGMENT, KICKER, EXAMPLES } from '../data/guides';
 import { url } from '../lib/url';
+import CourseMap from '@cohorts/platform/components/CourseMap.astro';
+import { COURSE_MAP } from '../data/course-map';
 const index = await aliasIndex();
 const all = await allWitnesses();
 const keys = Object.fromEntries([...index].map(([k, v]) => [k, v.map((e) => e.id)]));
@@ -47,6 +49,8 @@ const TRY = ['John 1:18', '𝔓66', 'B', '05', 'Mark 16:9–20', 'harder reading
       <p class="stats-line">{all.length} witnesses profiled · {guides.length} guides · {EXAMPLES.length} worked examples · Old Testament pages being added</p>
     </div>
   </section>
+
+  <CourseMap units={COURSE_MAP} heading="The course, step by step" intro="From where the text comes from to deciding a variant and writing it up. Each step links to where it starts." />
 
   <section class="sec">
     <header><h2>Witnesses</h2><a href={url('witnesses/')}>All {all.length}, with filters →</a></header>
