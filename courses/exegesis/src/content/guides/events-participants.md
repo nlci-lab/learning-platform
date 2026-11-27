@@ -60,7 +60,7 @@ Other roles include the one who receives something (Jeremiah, in the first sente
 
 ## Events hidden in nouns
 
-Greek, Hebrew and English often name an event with a noun: "salvation", "forgiveness", "repentance". These are **[abstract nouns](~/glossary/#abstract-noun)**. Many languages say the same idea with a verb. When you change the noun to a verb, you must also say who does it and to whom.
+Greek, Hebrew and English often name an event with a noun: "salvation", "forgiveness", "repentance". These are **[abstract nouns](~/glossary/#abstract-noun)**. Many languages say the same idea with a verb. When you change the noun to a verb, first ask which participants the event has: who does it, and to whom, if anyone. Then decide which of them the language must name. Some wordings, such as a passive, can leave a participant unnamed, and some events, such as *repent*, have no one they are done to.
 
 "Today salvation has come to this house …" (Luke 19:9a, ULT). "Salvation" is the event *save*. To say it with a verb, you must answer two questions. Who is saved? Most take it to be Zacchaeus and his household. Who saves? The verse does not say. A translator must find the answer in the context, or choose a wording that does not need it, such as "Today the people of this household have been saved". If the language has no such form, the translator must name the agent. That is a question about meaning, not just grammar. Look for the answer in the context and the commentaries.
 
@@ -83,7 +83,7 @@ A literal draft may keep the empty verb and the noun. In many languages this sou
 
 ## Passive verbs: who did it?
 
-When a verb is **active**, its subject is the one who acts: "The king's servants gave Jeremiah bread." When it is **[passive](~/glossary/#passive)**, its subject is the one something happens to: "A loaf of bread was given him every day …" (Jeremiah 37:21b, ULT). The passive often does not say who acted.
+Voice (active or passive) is grammar; agent and patient are roles in the event. They often line up, but not always. In the active "The king's servants gave Jeremiah bread", the subject is the agent. In the passive form of the same event, the subject is the thing given: "A loaf of bread was given him every day …" (Jeremiah 37:21b, ULT). The passive often does not say who acted.
 
 An author may use the passive for several reasons:
 
@@ -118,7 +118,7 @@ Look for these common errors:
 - an agent named where the source leaves the agent open;
 - an empty verb kept word for word, so the reader misses the real event.
 
-**An example.** This draft and its back translation are invented for teaching. Source: "Today salvation has come to this house …" (Luke 19:9a, ULT). The back translation of a draft reads: "Today they have saved this house." Ask "Who are 'they'?" A reader says: "Jesus and his disciples." The source does not name the disciples, so "they" has misled the reader. The draft has also lost the people: "this house" sounds like a building. A better draft might say "Today the people of this household have been saved". If the language must name an agent, the team should look at the context. Then they should agree on that choice with the consultant.
+**An example.** This draft and its back translation are invented for teaching. Source: "Today salvation has come to this house …" (Luke 19:9a, ULT). The back translation of a draft reads: "Today they have saved this house." Ask "Who are 'they'?" A reader says: "Jesus and his disciples." The source does not name the disciples, so "they" has misled the reader. Then ask a second question: "What does 'this house' mean here?" If readers think of a building, the draft needs "household" or "family". If the language uses "house" for the people who live in it, the draft is fine and only the back translation looks odd. One possible draft: "Today the people of this household have been saved". If the language must name an agent, the team should look at the context. Then they should agree on that choice with the consultant.
 
 ## Where the text does not say
 
