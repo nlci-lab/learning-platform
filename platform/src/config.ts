@@ -25,6 +25,9 @@ export interface SiteConfig {
   levels?: [string, string, string, string];
   /** false when the course has no platform Guides page (guides/): hashtags then show as plain labels. Default true. */
   guidesPage?: boolean;
+  /** true: guides in lists (Guides page, Learn, related guides) show as small book covers beside their title,
+      in the same colour as the cover on the guide's own page. Default false: plain cards. */
+  guideCovers?: boolean;
 }
 
 export interface FeedbackForm {
