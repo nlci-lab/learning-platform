@@ -44,8 +44,10 @@ const books = site.guideCovers === true;
   .gcard :global(.tags) { margin-top: auto; padding-top: 0.25rem; }
   /* Book style: a small cover beside the text, no card frame. */
   .gbook { flex-direction: row; align-items: flex-start; gap: 1rem; padding: 0.25rem 0; border: 0; background: none; border-radius: 0; }
-  .gcover { flex: 0 0 6.5rem; display: block; text-decoration: none; }
-  .gcover :global(.cover) { padding: 0.7rem 0.6rem 0.6rem 1rem; }
+  /* Every cover the same size: a fixed width, and long words break with a hyphen instead of widening it. */
+  .gcover { flex: 0 0 6.5rem; width: 6.5rem; min-width: 0; display: block; text-decoration: none; }
+  .gcover :global(.cover) { width: 100%; min-width: 0; box-sizing: border-box; padding: 0.7rem 0.6rem 0.6rem 1rem; }
+  .gcover :global(.cover .t) { hyphens: auto; overflow-wrap: anywhere; }
   .gcover :global(.cover::after) { inset: 0.3rem 0.3rem 0.3rem 0.6rem; }
   .gcover :global(.cover .k) { font-size: 0.55rem; }
   .gcover :global(.cover .t) { font-size: 0.92rem; line-height: 1.15; }

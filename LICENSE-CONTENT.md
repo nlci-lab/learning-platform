@@ -6,7 +6,7 @@ Third-party material is not covered by this licence and keeps its own status, gi
 
 Logos Bible Software is a product of Faithlife. Its name, interface and screenshots belong to Faithlife. Screenshots of Logos are used for teaching under Faithlife's published content permissions (https://www.logos.com/content-permissions), credited "Copyright Logos (https://www.logos.com)", and are **not** covered by the CC BY-SA licence above. Bible text visible in a screenshot belongs to its publisher and is credited with the image. We do not show ESV text, because Crossway does not allow the ESV in publications under a Creative Commons licence.
 
-Scripture quotations marked NIV, in screenshots and quoted in the text (including NIV footnotes), are taken from THE HOLY BIBLE, NEW INTERNATIONAL VERSION®, NIV® Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc.® Used by permission. All rights reserved worldwide.
+Scripture quotations marked NIV, in screenshots and quoted in the text (including NIV footnotes), are taken from THE HOLY BIBLE, NEW INTERNATIONAL VERSION®, NIV® Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc.® All rights reserved worldwide. Quoted without written permission under Biblica’s General Use Guidelines (https://www.biblica.com/general-use-guidelines/): no more than 500 verses across the whole site, no complete book, and less than 25% of the text. If our use ever goes beyond those limits, we must ask Biblica for written permission first.
 
 Scripture quotations marked LEB in screenshots are from the Lexham English Bible. Copyright 2012 Logos Bible Software. Lexham is a registered trademark of Logos Bible Software.
 
