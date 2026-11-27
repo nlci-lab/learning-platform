@@ -15,7 +15,7 @@ Find places where the content disagrees with itself or with the rest of the cour
 - **Existing course content:** other guides, `glossary-groups.yaml`, `series.yaml`, and the course map in `src/data/course-map.ts`.
 - **Terminology:** for example "back translation" with or without a hyphen, "receptor language", relation names, levels, tags and ids.
 - **References a reader cannot follow:** promises of guides that do not exist yet, "this unit", or an unnamed course.
-- **`related` and `before` links:** missing or one-way.
+- **`related` and `before` links:** `related` links that should go both ways but go one way; `before` links that point to a guide that does not exist, or that form a cycle. A `before` link names a prerequisite, so it is one-way by design.
 - **Pronouns for cited authors:** Katharine Barnwell is she/her. If an author's pronouns are not known, use the name, not a guessed pronoun. Check the whole course for this, not only the changed files.
 
 ## Rules for every reviewer

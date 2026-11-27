@@ -18,7 +18,7 @@ List each factual claim and label it:
 
 Report SUSPECT items and the notable PLAUSIBLE-UNCHECKED items in detail.
 
-You may use your own knowledge to raise a doubt. You may never use it to confirm a claim: what you recall from a book we don't hold is PLAUSIBLE-UNCHECKED at best. Check Bible wording against a local copy if one is given. Otherwise mark it unchecked.
+You may use your own knowledge to raise a doubt. You may never use it to confirm a claim: what you recall from a book we don't hold is PLAUSIBLE-UNCHECKED at best. Check Bible wording against a local copy if one is given and its licence allows AI use (open texts such as KJV, WEB, ULT, UST). Otherwise mark it unchecked. Never open copyrighted works held only for checking, or the NET notes (ADR 0007).
 
 ## Rules for every reviewer
 
