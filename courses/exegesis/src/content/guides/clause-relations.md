@@ -67,7 +67,7 @@ We sort the relations into three groups:
 - **[Means and result](~/glossary/#means-result).** One action is the **way** another is achieved. tA has no separate name for this. Greek may state the means with a **participle**: a verb form, like English "working", that adds an action to the main verb. A participle can carry several other relations too, such as time or reason.
 - **[Grounds and conclusion](~/glossary/#grounds-conclusion).** A fact is stated, and the speaker draws a conclusion from it. The fact does not cause the conclusion; it is the evidence for it. When the grounds lead to a command, as often with "therefore" in the letters, the technical books call it **[grounds and exhortation](~/glossary/#grounds-exhortation)**.
 - **Condition.** The technical books call all of these condition–consequence. tA splits them in three:
-  - a **[hypothetical condition](~/glossary/#hypothetical-condition)**: one event happens only if another does;
+  - a **[hypothetical condition](~/glossary/#hypothetical-condition)**: if one event happens, another will follow;
   - a **[factual condition](~/glossary/#factual-condition)**: the form is "if", but the speaker treats it as true;
   - a **[contrary-to-fact condition](~/glossary/#contrary-to-fact-condition)**: the form is "if", but the speaker knows it is false.
 

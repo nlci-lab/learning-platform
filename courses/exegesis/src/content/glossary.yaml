@@ -254,7 +254,7 @@
 - id: hypothetical-condition
   term: hypothetical condition
   group: relations
-  plain: "The second event happens only if the first one does: \"if ... then\". Books on semantic structure call all conditions condition–consequence."
+  plain: "If the first event happens, the second will follow: \"if ... then\". The condition does not say what happens when the first event does not take place. Books on semantic structure call all conditions condition–consequence."
   source: "unfoldingWord® Translation Academy (CC BY-SA 4.0), \"Connect — Hypothetical Conditions\"; Beekman and Callow; Larson (see semantic structure)"
   checked: false
 - id: factual-condition
