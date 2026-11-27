@@ -1,7 +1,8 @@
 ---
 import GuidePage from '@cohorts/platform/pages/GuidePage.astro';
+import MovedPage from '@cohorts/platform/pages/MovedPage.astro';
 import { guideStaticPaths } from '@cohorts/platform/data';
 import { course } from '../../course.config';
 export const getStaticPaths = guideStaticPaths;
 ---
-<GuidePage site={course} entry={Astro.props.entry} />
+{Astro.props.redirect ? <MovedPage entry={Astro.props.entry} /> : <GuidePage site={course} entry={Astro.props.entry} />}

@@ -11,6 +11,8 @@ learn:
   - How to turn a passive into an active and find the one who acts
   - Questions that show whether a draft names the right participants
 related: [clause-relations, small-words, more-than-one-meaning]
+series: { id: meaning, part: 2 }
+movedFromGuides: true
 competencies: [handle-implicit-information, read-back-translation, find-changes-of-meaning]
 sources:
   - id: ta-events
@@ -49,7 +51,7 @@ This is easy when the source uses a verb with a subject: "Zacchaeus came down". 
 
 ## Two sets of names
 
-As in [How clauses relate](~/guides/clause-relations/), we give the plain name first and the technical label from books on [semantic structure](~/glossary/#semantic-structure) after it.
+As in [How clauses relate](~/learn/meaning/clause-relations/), we give the plain name first and the technical label from books on [semantic structure](~/glossary/#semantic-structure) after it.
 
 Barnwell and the books on semantic structure sort concepts into four classes: Thing, Event, Attribute and Relation. Their first letters spell **[TEAR](~/glossary/#tear)**. An **[event](~/glossary/#event-idea)** is an action, a process or a happening. These books also name the part each participant plays in an event. The two you need most are:
 

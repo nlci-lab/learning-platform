@@ -11,6 +11,8 @@ learn:
   - Which part is the head and which part supports it
   - Questions that show whether a draft kept the relation
 related: [small-words, more-than-one-meaning, events-participants]
+series: { id: meaning, part: 1 }
+movedFromGuides: true
 competencies: [use-discourse-features]
 image:
   file: img/bthub/girl-umbrella.webp
