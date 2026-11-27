@@ -13,6 +13,16 @@ learn:
 series: { id: figures, part: 6 }
 related: [apostrophe, metaphor, translating-figures]
 competencies: [handle-figures-of-speech, find-changes-of-meaning, judge-accuracy-clarity-naturalness]
+image:
+  file: img/rivers-clap-hands.webp
+  width: 720
+  height: 538
+  alt: "A river winds through green hills. Two hands made of water rise from it and clap, throwing up splashes. Poetry pictures rivers and trees praising God as if they were people."
+  caption: "Rivers that clap their hands (Psalm 98:8): creation pictured as people praising."
+  credit: Learning Hub
+  creditUrl: https://nlci-lab.github.io/learning-platform/
+  licence: "CC BY-SA 4.0."
+  ai: true
 sources:
   - id: barnwell-34
     cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (Dallas: SIL International, 2020), ch. 34.7"
