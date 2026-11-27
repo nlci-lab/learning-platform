@@ -117,3 +117,9 @@ test('team material without a scope fails', () => {
   delete l.resources.at(-1).scope;
   assert.equal(aiResourceList.safeParse(l).success, false);
 });
+
+test('team material with a blank scope fails', () => {
+  const l = read(aiUrl);
+  l.resources.push({ ...l.resources[0], id: 'team-y', kind: 'team', scope: '   ' });
+  assert.equal(aiResourceList.safeParse(l).success, false);
+});

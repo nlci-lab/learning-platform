@@ -205,7 +205,7 @@ export const aiResourceList = z.object({
   l.resources.forEach((r, i) => {
     if (seen.has(r.id)) ctx.addIssue({ code: 'custom', path: ['resources', i, 'id'], message: `duplicate resource id "${r.id}"` });
     seen.add(r.id);
-    if (r.kind === 'team' && !r.scope) ctx.addIssue({ code: 'custom', path: ['resources', i, 'scope'], message: 'team material must name the parts it covers' });
+    if (r.kind === 'team' && !r.scope?.trim()) ctx.addIssue({ code: 'custom', path: ['resources', i, 'scope'], message: 'team material must name the parts it covers' });
   });
 });
 
