@@ -1,7 +1,10 @@
 ---
 // One guide as a card: level, title, description (the guide's summary) and hashtags.
 // Cards sit in a grid that wraps onto new lines (.guide-cards); there is no sideways scrolling.
+// With site.guideCovers, the card leads with a small book cover in the guide's level colour (the same cover
+// its guide page shows), and the title link stays the card's heading.
 import Tags from './Tags.astro';
+import Cover from './Cover.astro';
 import { levelName, type SiteConfig } from '../config';
 import type { Guide } from '../schemas';
 import { url } from '../url';
@@ -11,22 +14,42 @@ interface Props { site: SiteConfig; guide: Guide; part?: number; headingLevel?: 
 const { site, guide: g, part, headingLevel = 3 } = Astro.props;
 const href = (await getGuidePaths()).get(g.id)!;
 const H = `h${headingLevel}` as 'h2' | 'h3';
+// Same colour per level as the cover on the guide page (GuidePage.astro).
+const PIGMENTS = ['lapis', 'verdigris', 'ochre', 'gall'] as const;
+const books = site.guideCovers === true;
 ---
-<article class="gcard" data-tags={g.tags.join(' ')}>
-  <p class="gk">{part && `Part ${part} · `}{levelName(site, g.level)}{g.draft && ' · draft'}</p>
-  <H><a href={url(href)}>{g.title}</a></H>
-  <p class="gd">{g.summary}</p>
-  <Tags tags={g.tags} links={site.guidesPage !== false} />
+<article class:list={['gcard', { gbook: books }]} data-tags={g.tags.join(' ')}>
+  {books && (
+    <a class="gcover" href={url(href)} tabindex="-1" aria-hidden="true">
+      <Cover title={g.cover} kicker={part ? `Part ${part}` : 'Guide'} pigment={PIGMENTS[(g.level - 1) % 4]} />
+    </a>
+  )}
+  <div class="gbody">
+    <p class="gk">{part && `Part ${part} · `}{levelName(site, g.level)}{g.draft && ' · draft'}</p>
+    <H><a href={url(href)}>{g.title}</a></H>
+    <p class="gd">{g.summary}</p>
+    <Tags tags={g.tags} links={site.guidesPage !== false} />
+  </div>
 </article>
 
 <style>
   .gcard { display: flex; flex-direction: column; gap: 0.45rem; height: 100%; padding: 1rem 1.1rem; border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 10px; background: var(--paper); }
   .gcard[hidden] { display: none; }
+  .gbody { display: flex; flex-direction: column; gap: 0.45rem; min-width: 0; flex: 1; }
   .gk { margin: 0; font: 600 0.75rem var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
   .gcard :is(h2, h3) { margin: 0; font: 600 1.15rem/1.3 var(--serif); }
   .gcard :is(h2, h3) a { color: var(--ink); text-decoration: none; }
   .gcard :is(h2, h3) a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
   .gd { margin: 0; font: 0.9rem/1.45 var(--sans); color: var(--ink-2); }
   .gcard :global(.tags) { margin-top: auto; padding-top: 0.25rem; }
+  /* Book style: a small cover beside the text, no card frame. */
+  .gbook { flex-direction: row; align-items: flex-start; gap: 1rem; padding: 0.25rem 0; border: 0; background: none; border-radius: 0; }
+  .gcover { flex: 0 0 6.5rem; display: block; text-decoration: none; }
+  .gcover :global(.cover) { padding: 0.7rem 0.6rem 0.6rem 1rem; }
+  .gcover :global(.cover::after) { inset: 0.3rem 0.3rem 0.3rem 0.6rem; }
+  .gcover :global(.cover .k) { font-size: 0.55rem; }
+  .gcover :global(.cover .t) { font-size: 0.92rem; line-height: 1.15; }
+  .gcover :global(.cover .orn) { font-size: 1rem; }
+  .gcover:hover :global(.cover .t) { text-decoration: underline; text-decoration-thickness: 1px; }
   :global(.guide-cards) { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
 </style>
