@@ -108,11 +108,10 @@ img { max-width: 100%; height: auto; }
 .facts th { width: 8.5rem; padding-right: 1rem; font: 600 0.8125rem/1.5 var(--sans); color: var(--ink-2); }
 
 /* Tables written in Markdown (comparison tables in guides): left-aligned, ruled rows, first column as the row label.
-   On a narrow screen the table scrolls sideways instead of squeezing the columns. */
-.prose table:not([class]) {
-  display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse;
-  margin-block: 1.25rem; font-size: 0.9375em; line-height: 1.45;
-}
+   On a narrow screen the table scrolls sideways inside its focusable wrapper (added by table-scroll.mjs). */
+.prose .table-scroll { max-width: 100%; overflow-x: auto; margin-block: 1.25rem; }
+.prose .table-scroll:focus-visible { outline: 2px solid var(--ink-2); outline-offset: 2px; }
+.prose table:not([class]) { border-collapse: collapse; font-size: 0.9375em; line-height: 1.45; }
 .prose table:not([class]) th, .prose table:not([class]) td {
   text-align: left !important; vertical-align: top; padding: 0.55rem 0.9rem 0.55rem 0.6rem;
   border-bottom: 1px solid var(--rule); min-width: 7rem;
