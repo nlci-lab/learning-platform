@@ -24,6 +24,8 @@ The sites never call an AI service. Pages still read and work with JavaScript of
 
 Copyrighted works we hold only for checking and citation are never given to an AI service. A work joins the curated list only when its licence allows it; each entry records the licence and who checked it.
 
+**Bible texts need a licence that allows AI use.** Permission to quote a Bible version on the site does not cover AI. For example, Biblica lets websites quote the NIV within its General Use Guidelines, but says that any use of its text with artificial intelligence, machine learning, language models or chatbots needs a licence from Biblica that expressly permits it (biblica.com/permissions, read 2026-11-27). So the NIV, and any version under similar terms, is never given to an AI service, nor shown in an AI answer, without such a licence. Where an AI feature needs a Bible text, it uses one whose licence allows this (for example a text under an open licence that permits it), and the curated list records which.
+
 ## Where it runs
 
 Either on a model we host ourselves, or with a provider whose contract says it keeps no data and does not train on it. No key, token or endpoint is stored in this repo. Learners' conversations are stored only in our own system, deleted on request, and deleted after 90 days at the latest.
