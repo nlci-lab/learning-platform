@@ -14,6 +14,8 @@ Quotations marked ULT and UST are from the unfoldingWord® Literal Text and the 
 
 Some pages adapt ideas from Translation Academy. The original work by unfoldingWord is available from unfoldingword.org/uta (https://www.unfoldingword.org/uta), licensed CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). As that licence asks of adapted work, we do not use the unfoldingWord® trademark for it. The adapted text is rewritten in our own words, and each page that draws on it says so.
 
+Illustrations in some Exegesis guides (files under `courses/exegesis/public/img/bthub/`) come from the BT Training Hub Image Library (https://bttraininghub.notion.site/bthub), licensed CC BY-SA 4.0. They are resized and converted to WebP; the pictures are not otherwise changed. Images the library marks as made with AI are labelled so in their caption.
+
 Scripture quotations marked KJV (King James Version), YLT (Young's Literal Translation, 1898) and WEB (World English Bible) are in the public domain.
 
 Scripture quotations marked LEB in screenshots are from the Lexham English Bible. Copyright 2012 Logos Bible Software. Lexham is a registered trademark of Logos Bible Software.

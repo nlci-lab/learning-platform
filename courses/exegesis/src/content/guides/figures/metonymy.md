@@ -13,6 +13,15 @@ learn:
 series: { id: figures, part: 4 }
 related: [synecdoche, metaphor, translating-figures]
 competencies: [handle-figures-of-speech, read-passage-in-context, judge-accuracy-clarity-naturalness]
+image:
+  file: img/bthub/throne.webp
+  width: 590
+  height: 720
+  alt: "A tall, ornate royal throne in red and gold. In metonymy, \"the throne\" can stand for the king or his rule."
+  caption: "The throne stands for the one who rules from it."
+  credit: BT Training Hub Image Library
+  creditUrl: https://bttraininghub.notion.site/bthub
+  licence: "CC BY-SA 4.0."
 sources:
   - id: barnwell-34
     cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (Dallas: SIL International, 2020), ch. 34, sec. 34.6"

@@ -13,6 +13,15 @@ learn:
 series: { id: figures, part: 9 }
 related: [litotes, irony, translating-figures]
 competencies: [handle-figures-of-speech, read-passage-in-context, judge-accuracy-clarity-naturalness]
+image:
+  file: img/bthub/camel-needle.webp
+  width: 509
+  height: 720
+  alt: "A camel squeezing through the eye of a sewing needle: an impossible picture that makes a point by exaggeration."
+  caption: "A camel through the eye of a needle: deliberate exaggeration."
+  credit: BT Training Hub Image Library
+  creditUrl: https://bttraininghub.notion.site/bthub
+  licence: "CC BY-SA 4.0."
 sources:
   - id: barnwell-34
     cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (Dallas: SIL International, 2020), ch. 34, sec. 34.4"

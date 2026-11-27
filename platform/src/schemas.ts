@@ -302,6 +302,22 @@ export const guide = z.object({
   /** Ids of guides to read first and related guides. */
   before: stableId.optional(),
   related: z.array(stableId).default([]),
+  /** One teaching illustration, shown at the top of the guide with its credit and licence (ADR 0007:
+      only openly licensed images). The file lives under the course's public/ folder. */
+  image: z.object({
+    file: z.string().min(1),
+    width: z.number().int().positive(),
+    height: z.number().int().positive(),
+    /** What the picture shows, literally, and what it illustrates. */
+    alt: text,
+    /** Optional caption shown before the credit (Markdown not supported). */
+    caption: z.string().optional(),
+    credit: text,
+    creditUrl: z.string().url(),
+    licence: text,
+    /** true when the image was made with AI (the caption then says so); leave out when the source does not say. */
+    ai: z.boolean().optional(),
+  }).optional(),
   /** Part of a series (see `series`): the series id and this guide's place in it, 1 first. */
   series: z.object({ id: stableId, part: z.number().int().positive() }).optional(),
   sources,

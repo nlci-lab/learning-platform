@@ -13,6 +13,15 @@ learn:
 series: { id: figures, part: 13 }
 related: [irony, sarcasm, translating-figures]
 competencies: [handle-figures-of-speech, read-passage-in-context, judge-accuracy-clarity-naturalness, ask-the-team]
+image:
+  file: img/bthub/what-were-you-thinking.webp
+  width: 720
+  height: 720
+  alt: "A mother on a sofa shouts \"What were you thinking?\" at a child who covers his ears. She does not want an answer; the question is a rebuke."
+  caption: "\"What were you thinking?\" asks for no answer. It scolds."
+  credit: BT Training Hub Image Library
+  creditUrl: https://bttraininghub.notion.site/bthub
+  licence: "CC BY-SA 4.0."
 sources:
   - id: barnwell-35
     cite: "Katharine Barnwell, Bible Translation: An Introductory Course in Translation Principles, 4th ed. (Dallas: SIL International, 2020), ch. 35"
