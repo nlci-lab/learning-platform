@@ -1,19 +1,21 @@
 ---
-// The course map: a short list of units by level, with links for the units that are ready.
-import { url, hubUrl } from '@cohorts/platform/url';
-import { COURSE_MAP } from '../data/course-map';
-interface Props { heading?: string }
-const { heading = 'The course, level by level' } = Astro.props;
+// A course map: the course's units in order, each with its level, topics and status.
+// A unit with `href` is ready and links to where it starts; one without is in preparation.
+// `also` points to a related page in another course (a path under the Learning Hub).
+import { url, hubUrl } from '../url';
+export type MapUnit = { level: string; title: string; topics: string; href?: string; also?: { label: string; path: string } };
+interface Props { units: MapUnit[]; heading?: string; intro?: string }
+const { units, heading = 'Course map', intro } = Astro.props;
 ---
 <section class="map" id="map" aria-labelledby="map-h">
   <h2 id="map-h">{heading}</h2>
-  <p class="muted">Exegesis works at every level, from a single word to a whole passage. Each level is one unit.</p>
+  {intro && <p class="muted">{intro}</p>}
   <ol class="units">
-    {COURSE_MAP.map((u) => (
+    {units.map((u) => (
       <li class={u.href ? 'ready' : 'soon'}>
         <span class="lvl">{u.level}</span>
         <span class="ttl">{u.href ? <a href={url(u.href)}>{u.title}</a> : u.title}</span>
-        <span class="tp">{u.topics}{u.also && <> See also: <a href={hubUrl(u.also.path)}>{u.also.label}</a> (Logos course).</>}</span>
+        <span class="tp">{u.topics}{u.also && <> See also: <a href={hubUrl(u.also.path)}>{u.also.label}</a>.</>}</span>
         <span class="st">{u.href ? 'Ready' : 'In preparation'}</span>
       </li>
     ))}

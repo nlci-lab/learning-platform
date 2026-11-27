@@ -1,9 +1,12 @@
 ---
 import Base from '@cohorts/platform/layouts/Base.astro';
 import { course } from '../course.config';
+import CourseMap from '@cohorts/platform/components/CourseMap.astro';
+import { COURSE_MAP } from '../data/course-map';
 ---
 <Base site={course} title={course.title}>
   <h1>{course.title}</h1>
   <p>{course.description}</p>
   <p><em>This course is in preparation.</em></p>
+  <CourseMap units={COURSE_MAP} heading="The course, step by step" intro="From setting Logos up to studying a passage and a word. Each step links to its first guide." />
 </Base>

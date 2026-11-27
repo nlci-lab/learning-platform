@@ -3,7 +3,8 @@ import Base from '@cohorts/platform/layouts/Base.astro';
 import { url } from '@cohorts/platform/url';
 import { course } from '../course.config';
 import TwoSteps from '../components/TwoSteps.astro';
-import CourseMap from '../components/CourseMap.astro';
+import CourseMap from '@cohorts/platform/components/CourseMap.astro';
+import { COURSE_MAP } from '../data/course-map';
 ---
 <Base site={course} title={course.title}>
   <div class="home">
@@ -21,7 +22,7 @@ import CourseMap from '../components/CourseMap.astro';
     </ol>
     <p>This course is about the first: the exegesis a checker needs. Re-expression comes in only where it shows whether the meaning was understood, for example when the same meaning can be said in more than one way.</p>
 
-    <CourseMap />
+    <CourseMap units={COURSE_MAP} heading="The course, level by level" intro="Exegesis works at every level, from a single word to a whole passage. Each level is one unit." />
   </div>
 </Base>
 
