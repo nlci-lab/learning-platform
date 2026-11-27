@@ -12,8 +12,24 @@ export const site = defineSite({
 });
 
 // Courses listed on the master page. A course's path is its id; `built` = it is in courses/ and published.
+// `pigment` and `mark` set its book cover on the home page; `inside` lists what a reader finds there.
 export const courses = [
-  { id: 'logos', title: 'Logos Bible Software', blurb: 'Using Logos for exegesis and translation work.', status: 'In preparation', built: true },
-  { id: 'exegesis', title: 'Exegesis for Translation Checking', blurb: 'Finding what the original author meant, and checking that a translation says it.', status: 'Under construction', built: true },
-  { id: 'textual-criticism', title: 'Textual Criticism', blurb: 'The manuscripts, the printed editions and their apparatus, and how to weigh the evidence.', status: 'Under construction', built: true },
+  {
+    id: 'exegesis', title: 'Exegesis for Translation Checking', cover: 'Exegesis',
+    blurb: 'Finding what the original author meant, and checking that a translation says it.',
+    status: 'Under construction', built: true, pigment: 'verdigris', mark: '§',
+    inside: ['Guides and a series on figures of speech', 'Micro modules and checking cases', 'Glossary of checking terms'],
+  },
+  {
+    id: 'textual-criticism', title: 'Textual Criticism', cover: 'Textual Criticism',
+    blurb: 'The manuscripts, the printed editions and their apparatus, and how to weigh the evidence.',
+    status: 'Under construction', built: true, pigment: 'lapis', mark: '𝔓',
+    inside: ['Guides and worked examples', 'Profiles of the manuscripts', 'A series on making textual decisions'],
+  },
+  {
+    id: 'logos', title: 'Logos Bible Software', cover: 'Logos',
+    blurb: 'Using Logos for exegesis and translation work.',
+    status: 'In preparation', built: true, pigment: 'ochre', mark: 'Λ',
+    inside: ['Step-by-step guides', 'Glossary of Logos terms'],
+  },
 ] as const;

@@ -1,16 +1,96 @@
 ---
+// The Learning Hub's home page: a small library of courses. Each course is a book cover in its own pigment,
+// with what is inside and its status. Reads fully without JavaScript.
 import Base from '@cohorts/platform/layouts/Base.astro';
+import Cover from '@cohorts/platform/components/Cover.astro';
 import { url } from '@cohorts/platform/url';
 import { site, courses } from '../site.config';
+const WAYS = [
+  { title: 'Read', text: 'Short guides that explain one idea at a time, with examples from the Bible and from life.' },
+  { title: 'Practise', text: 'Micro modules and checking cases: answer a question, see why, and try it on a passage.' },
+  { title: 'Look up', text: 'Glossaries in plain English, background pages and search, for when you need a quick answer.' },
+];
 ---
-<Base site={site} title={site.title}>
-  <h1>{site.title}</h1>
-  <p>{site.description}</p>
-  <ul>
-    {courses.map((c) => (
-      <li>
-        {c.built ? <a href={url(`${c.id}/`)}><strong>{c.title}</strong></a> : <strong>{c.title}</strong>}: {c.blurb} <em>({c.status})</em>
-      </li>
-    ))}
-  </ul>
+<Base site={site} title={site.title} description={site.description}>
+  <div class="home">
+    <header class="hero">
+      <p class="label">Learning Hub</p>
+      <h1>Short courses for Bible translators and consultants</h1>
+      <p class="lead">Free, practical help for the work of translating and checking Scripture: finding the meaning of a passage, weighing the evidence of the manuscripts, and using the tools of the trade.</p>
+      <p class="muted">Written in plain English. Works on a phone, on a slow connection, and without JavaScript.</p>
+    </header>
+
+    <section class="shelf-sec" aria-labelledby="courses-h">
+      <h2 id="courses-h">Courses</h2>
+      <ul class="courses">
+        {courses.map((c) => (
+          <li class="course">
+            <a class="course-link" href={c.built ? url(`${c.id}/`) : undefined} aria-label={c.title}>
+              <Cover title={c.cover} kicker={c.status} pigment={c.pigment} ornament={c.mark} />
+            </a>
+            <div class="course-body">
+              <h3>{c.built ? <a href={url(`${c.id}/`)}>{c.title}</a> : c.title}</h3>
+              <p>{c.blurb}</p>
+              <ul class="inside" aria-label={`In ${c.title}`}>
+                {c.inside.map((i) => <li>{i}</li>)}
+              </ul>
+              <p class="status"><span class="chip">{c.status}</span></p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="ways" aria-labelledby="ways-h">
+      <h2 id="ways-h">How the courses work</h2>
+      <ol class="ways-list">
+        {WAYS.map((w) => (
+          <li><h3>{w.title}</h3><p>{w.text}</p></li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="note" aria-labelledby="note-h">
+      <h2 id="note-h">Free to use and share</h2>
+      <p>The text of every course is free to use and adapt under the Creative Commons Attribution-ShareAlike licence. Quotations from Bible versions and screenshots keep their own terms, given on each course. The courses are still growing: what you see here will change.</p>
+    </section>
+  </div>
 </Base>
+
+<style>
+  .home { padding-block: 1.75rem 1rem; }
+  .hero { max-width: 46rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); }
+  .hero h1 { font-size: clamp(1.9rem, 5vw, 2.9rem); margin: .3rem 0 .8rem; }
+  .hero .lead { margin: 0 0 .6rem; }
+  .hero .muted { margin: 0; font-family: var(--sans); font-size: var(--step--1); }
+
+  .home h2 { margin: 2.25rem 0 1rem; }
+  .courses { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.75rem; }
+  .course { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.1rem; align-items: start; }
+  .course-link { display: block; text-decoration: none; }
+  .course-link :global(.cover) { width: 100%; box-sizing: border-box; padding: .8rem .7rem .7rem 1.1rem; }
+  .course-link :global(.cover .t) { font-size: 1.05rem; hyphens: auto; overflow-wrap: anywhere; }
+  .course-link :global(.cover .k) { font-size: .58rem; }
+  .course-link:hover :global(.cover .t) { text-decoration: underline; text-decoration-thickness: 1px; }
+  .course-body { min-width: 0; display: grid; gap: .45rem; }
+  .course-body h3 { margin: 0; font-size: 1.3rem; }
+  .course-body h3 a { color: var(--ink); text-decoration: none; }
+  .course-body h3 a:hover { color: var(--accent); text-decoration: underline; }
+  .course-body p { margin: 0; }
+  .inside { margin: 0; padding-left: 1.1rem; font: .95rem/1.5 var(--sans); color: var(--ink-2); }
+  .status { font-family: var(--sans); }
+  .chip { display: inline-block; font-size: .78rem; padding: .15rem .6rem; border-radius: 999px; background: var(--chip); color: var(--ink-2); }
+  @media (min-width: 760px) {
+    .courses { grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); gap: 2rem 2.25rem; }
+    .course { grid-template-columns: 9rem minmax(0, 1fr); }
+  }
+
+  .ways-list { list-style: none; counter-reset: w; padding: 0; margin: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+  .ways-list li { counter-increment: w; padding: 1rem 1.1rem; border-top: 3px solid var(--ink); background: var(--paper-2); border-radius: 0 0 8px 8px; }
+  .ways-list h3 { margin: 0 0 .35rem; font-size: 1.15rem; }
+  .ways-list h3::before { content: counter(w) " · "; color: var(--ink-2); font-family: var(--sans); font-size: .95rem; }
+  .ways-list p { margin: 0; font-size: .97rem; }
+
+  .note { max-width: 46rem; }
+  .note p { margin: 0; color: var(--ink-2); }
+</style>
