@@ -10,7 +10,10 @@ import { PATHS } from '../paths';
 interface Props { site: SiteConfig; heading?: string; intro?: string }
 const { site, heading = 'Learn step by step', intro } = Astro.props;
 const modules = await getModules();
-const guides = await getGuides();
+const allGuides = await getGuides();
+// Parts of a series are listed on their series page; Learn shows one entry per series instead.
+const guides = allGuides.filter((g) => !g.data.series);
+const seriesList = allGuides.series.map((x) => ({ ...x, parts: allGuides.filter((g) => g.data.series?.id === x.id).length }));
 const cases = await getCases();
 const KIND = { worked: 'Worked case', open: 'Find the problems', triage: 'Triage' } as const;
 ---
@@ -22,6 +25,19 @@ const KIND = { worked: 'Worked case', open: 'Find the problems', triage: 'Triage
       <h1>{heading}</h1>
       {intro && <p class="muted">{intro}</p>}
     </header>
+
+    {seriesList.length > 0 && (
+      <section class="sec" id="series">
+        <header><h2>Series</h2></header>
+        <ul class="mods">
+          {seriesList.map((x) => (
+            <li><a class="mod" href={url(x.path)}>
+              <span class="ref">Series · {x.parts} parts</span><span class="q">{x.title}</span><span class="sk">{x.summary}</span>
+            </a></li>
+          ))}
+        </ul>
+      </section>
+    )}
 
     {guides.length > 0 && (
       <section class="sec" id="guides">
