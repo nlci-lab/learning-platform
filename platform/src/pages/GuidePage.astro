@@ -14,6 +14,7 @@ import Cover from '../components/Cover.astro';
 import Sources from '../components/Sources.astro';
 import Feedback from '../components/Feedback.astro';
 import Lightbox from '../components/Lightbox.astro';
+import Figure from '../components/Figure.astro';
 import GuideCard from '../components/GuideCard.astro';
 import Tags from '../components/Tags.astro';
 import Unverified from '../components/Unverified.astro';
@@ -81,6 +82,11 @@ const pig = (level: number) => PIGMENTS[(level - 1) % 4];
     <article class="ctx prose" data-zoomable>
       {!g.checked && (
         <p class="notice"><span class="tag">not yet checked</span> Written from the sources listed at the end, but not yet checked line by line against them. Use it as a guide, not as a source.</p>
+      )}
+      {g.image && (
+        <Figure file={g.image.file} width={g.image.width} height={g.image.height} alt={g.image.alt}
+          credit={g.image.credit} creditUrl={g.image.creditUrl}
+          licence={g.image.licence + (g.image.ai ? ' Made with AI.' : '')}>{g.image.caption}</Figure>
       )}
       <Content />
       <Unverified items={g.unverified} />
