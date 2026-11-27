@@ -64,6 +64,29 @@ The tutor pilot also has go/no-go rules, fixed before it starts: the tutor goes 
 
 No test makes errors impossible. The aim is that errors are rare, easy to see, and caught by people.
 
+## AI tools used to build the Hub
+
+*Added 2026-11-27.*
+
+We also use AI tools while we write and check the Hub, for example a coding assistant that drafts content and reviewer agents that check drafts. The data rules above apply to them too: a copyrighted work held only for checking is not given to an AI service just because the work is for us and not for learners. In detail:
+
+| Material | May a writing or review tool read it? |
+|---|---|
+| Public content of the Hub | Yes |
+| Open-licensed works whose licence allows this use (for example unfoldingWord's Translation Academy, ULT and UST, and public-domain Bibles) | Yes. Credit them as their licence requires. |
+| Works listed in `platform/data/ai-resources.yaml` with a licence that allows AI use | Yes |
+| Published or teaching material the team holds the copyright to, such as its own book chapters and the back translations printed in them | Yes, once the team agrees. Record that agreement and the parts it covers in the curated list. This never covers private teaching data or a team's unpublished draft or back translation (last row). |
+| Copyrighted works held only for checking and citation: published books, translation handbooks, and team material that is mostly an adaptation of such a book | No. A person reads them and writes notes in their own words. A tool may then work from those notes. |
+| NET Bible notes | No, unless the publisher grants a licence for AI use (root rules) |
+| Bible versions whose terms exclude AI use, such as the NIV | No. A person checks quotations from these versions. |
+| Private teaching data and teams' unpublished drafts, including their back translations | No (see above). This row applies even where another row seems to allow the material. |
+
+Where a book mixes the team's own chapters with adapted copyrighted chapters, we split it by chapter: only the team's own chapters may go to a tool. The split is recorded in the curated list.
+
+A reviewer tool that suspects copied wording from a work it may not read flags the passage for a person to compare. It does not open the work.
+
+Earlier internal notes, made before this section, used AI to read such a work. They stay internal. Content drawn from them is rewritten in our own words and checked by a person, and new work follows this section.
+
 ## Not decided here
 
 The model and the provider; the design of the services; how the curated list is chosen beyond its licence rule; and the consent policy for real drafts, which this record requires but does not write.
