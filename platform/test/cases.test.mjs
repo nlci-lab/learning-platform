@@ -101,3 +101,25 @@ test('all content links to known competencies and content', () => {
   const open = list.filter((c) => !covered.has(c.id)).map((c) => c.id);
   if (open.length) console.log(`Competencies no course content covers yet (${open.length}): ${open.join(', ')}`);
 });
+
+// Curated AI resources (ADR 0007).
+import { aiResourceList } from '../src/schemas.ts';
+const aiUrl = new URL('../data/ai-resources.yaml', import.meta.url);
+
+test('the AI resource list is valid', () => {
+  const r = aiResourceList.safeParse(read(aiUrl));
+  assert.ok(r.success, r.success ? '' : JSON.stringify(r.error.issues, null, 2));
+});
+
+test('team material without a scope fails', () => {
+  const l = read(aiUrl);
+  l.resources.push({ ...l.resources[0], id: 'team-x', kind: 'team' });
+  delete l.resources.at(-1).scope;
+  assert.equal(aiResourceList.safeParse(l).success, false);
+});
+
+test('team material with a blank scope fails', () => {
+  const l = read(aiUrl);
+  l.resources.push({ ...l.resources[0], id: 'team-y', kind: 'team', scope: '   ' });
+  assert.equal(aiResourceList.safeParse(l).success, false);
+});

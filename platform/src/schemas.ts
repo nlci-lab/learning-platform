@@ -172,6 +172,43 @@ export const competencyList = z.object({
   checkSourceIds(l, ctx);
 });
 
+/* ---------- Curated AI resources (ADR 0007) ----------
+   One shared list in platform/data/ai-resources.yaml: the works an AI service or an AI tool used to
+   build the Hub may read. Anything not listed is not given to AI. */
+
+export const aiResource = z.object({
+  id: stableId,
+  title: text,
+  /** bible: a Bible text; reference: a book or article; team: material the team holds the copyright to. */
+  kind: z.enum(['bible', 'reference', 'team']),
+  /** The licence or status, e.g. 'CC BY-SA 4.0' or 'public domain'. */
+  licence: text,
+  /** Why AI use is allowed, in plain words. */
+  basis: text,
+  /** Which parts are covered, when not the whole work (e.g. chapters of a mixed book). */
+  scope: z.string().optional(),
+  url: z.string().url().optional(),
+  /** How it must be credited when used. */
+  credit: text,
+  /** Who checked the licence (a role, not a person's name) and when. */
+  checked_by: text,
+  checked_on: isoDate,
+});
+export type AiResource = z.infer<typeof aiResource>;
+
+export const aiResourceList = z.object({
+  /** Raised whenever the list changes. */
+  version: z.number().int().positive(),
+  resources: z.array(aiResource),
+}).superRefine((l, ctx) => {
+  const seen = new Set<string>();
+  l.resources.forEach((r, i) => {
+    if (seen.has(r.id)) ctx.addIssue({ code: 'custom', path: ['resources', i, 'id'], message: `duplicate resource id "${r.id}"` });
+    seen.add(r.id);
+    if (r.kind === 'team' && !r.scope?.trim()) ctx.addIssue({ code: 'custom', path: ['resources', i, 'scope'], message: 'team material must name the parts it covers' });
+  });
+});
+
 /** Optional fields every guide, module and case may carry. */
 const linkFields = {
   /** Ids from platform/data/competencies.yaml. */
