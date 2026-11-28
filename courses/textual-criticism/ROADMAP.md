@@ -30,7 +30,7 @@
 
 ## Enhancements (each its own PR)
 
-- Workbench follow-ups: a guide to the six steps (with the step-2 tools: Text Collection/Text Comparison, commentaries, NET notes, UBS apparatus, CNTR collation's three levels); fuller guides on external and internal evidence; check what Paratext's red callers (*, letter, number) each mean.
+- Workbench follow-up: fuller guides on external and internal evidence, if *How to weigh the evidence* proves too short for the workbench's steps 3–4.
 
 - Timeline view; map view (plain SVG); compare two witnesses.
 - Paratext bridge: one-page siglum cheat sheet; URL pattern `/w/{id}/` and `/{siglum}/` for bookmarks.

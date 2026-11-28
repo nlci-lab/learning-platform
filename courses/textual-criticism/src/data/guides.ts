@@ -47,6 +47,13 @@ export const GUIDES: GuideMeta[] = [
     practice: ['guide/examples/romans-16-7/', 'guide/examples/john-7-53/'],
   },
   {
+    path: 'guide/six-steps/', cover: 'The six steps', section: 'guide', level: 'Start here',
+    summary: 'The six steps for working through a textual problem: what to ask at each one, where to look, and where this site explains it.',
+    learn: ['The six steps, in order', 'Where to look for the readings, from easiest to deepest', 'The six questions about the witnesses', 'The rules of thumb for internal evidence', 'How to end with a recommendation'],
+    before: 'guide/what-is-textual-criticism/', related: ['guide/weighing-evidence/', 'guide/decision-tree/', 'guide/which-variants-matter/'],
+    practice: ['guide/examples/john-1-18/'],
+  },
+  {
     path: 'guide/decision-tree/', cover: 'Decision tree', section: 'guide', level: 'Start here',
     summary: 'A few short questions that tell you whether a variant needs a decision, and what to do next.',
     learn: ['When you can simply follow the UBS text', 'When a variant needs study', 'Where to study it', 'How the decision is made with your Review Committee'],
