@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 import WitnessTile from '../components/WitnessTile.astro';
 import { allWitnesses, aliasIndex } from '../lib/witnesses';
 import { GROUPS } from '../lib/coverage';
+import { url } from '../lib/url';
 const ws = await allWitnesses();
 // Siglum lookup follows ADR 0003 (B*, B², Bᵛⁱᵈ all mean B), using the same alias index as the home search.
 const keys = Object.fromEntries([...(await aliasIndex())].map(([k, v]) => [k, v.map((e) => e.id)]));
@@ -23,7 +24,7 @@ const DATES: [string, string][] = [['early', 'Before 300'], ['mid', '300–499']
   <div class="g-head">
     <p class="label">Witnesses</p>
     <h1>Manuscripts, fathers and text groups</h1>
-    <p class="muted g-intro">Every witness the site profiles, in the order the UBS apparatus cites them. Filter by kind, date or the books a witness contains, or type a siglum. More profiles follow after review.</p>
+    <p class="muted g-intro">Every witness the site profiles, in the order the UBS apparatus cites them. Filter by kind, date or the books a witness contains, or type a siglum. More profiles follow after review. To print them on one page, use the <a href={url('cheat-sheet/')}>siglum cheat sheet</a>.</p>
   </div>
 
   <div class="g-body">
