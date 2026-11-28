@@ -43,8 +43,8 @@ const ACTIONS = [
   ['footnote', 'Footnote'], ['brackets', 'Brackets'], ['wording', 'Wording'], ['committee', 'Review Committee'],
   ['consult', 'Consult'], ['record', 'Record it'], ['none', 'Not needed'],
 ];
-const favours = (name: string) =>
-  `<select name="${name}" data-favours><option value="">Favours…</option><option value="even">Even</option><option value="unclear">Unclear</option></select>`;
+const favours = (name: string, q: string) =>
+  `<select name="${name}" data-favours aria-label="${q} Which reading it favours"><option value="">Favours…</option><option value="even">Even</option><option value="unclear">Unclear</option></select>`;
 ---
 <Base title="Workbench" nav="workbench/" selfContained description="Work through one textual problem step by step, keep your findings, and download them as a file.">
   <div class="wb">
@@ -136,7 +136,7 @@ const favours = (name: string) =>
           {EXTERNAL.map(([k, q, h]) => (
             <div class="q">
               <div><b>{q}</b> <span class="small muted">{h}</span></div>
-              <Fragment set:html={favours(`issue.external.${k}.favours`)} />
+              <Fragment set:html={favours(`issue.external.${k}.favours`, q)} />
               <textarea name={`issue.external.${k}.note`} data-sigla rows="1" dir="auto" aria-label={`${q} notes`}></textarea>
             </div>
           ))}
@@ -152,7 +152,7 @@ const favours = (name: string) =>
           {INTERNAL.map(([k, q, h]) => (
             <div class="q">
               <div><b>{q}</b> <span class="small muted">{h}</span></div>
-              <Fragment set:html={favours(`issue.internal.${k}.favours`)} />
+              <Fragment set:html={favours(`issue.internal.${k}.favours`, q)} />
               <textarea name={`issue.internal.${k}.note`} data-sigla rows="2" dir="auto" aria-label={`${q} notes`}></textarea>
             </div>
           ))}
@@ -213,7 +213,7 @@ const favours = (name: string) =>
       </li>
     </template>
 
-    <div class="keys no-print" id="sigla-keys" hidden role="group" aria-label="Siglum symbols">
+    <div class="wb-keys no-print" id="sigla-keys" hidden role="group" aria-label="Siglum symbols">
       <p class="small muted">Tap a symbol, or type <kbd>P66</kbd>, <kbd>aleph</kbd>, <kbd>theta</kbd>, <kbd>f13</kbd>: they change to 𝔓⁶⁶, א, Θ, ƒ¹³ when you leave the box. Tap <b>x²</b> to type small raised numbers.</p>
       <div class="krow">
         {['𝔓', 'א', 'ƒ', 'ℓ', '*', 'ᶜ', 'ᵛⁱᵈ', 'ˢᵘᵖᵖ', 'Byz', 'Lect'].map((k) => <button type="button" data-k={k}>{k}</button>)}
@@ -281,7 +281,19 @@ const favours = (name: string) =>
     const f = (n: string) => li.querySelector<HTMLInputElement>(`[data-f="${n}"]`)!;
     f('text').value = r?.text ?? ''; f('gloss').value = r?.gloss ?? ''; f('support').value = r?.support ?? '';
     f('inUbsText').checked = !!r?.inUbsText;
-    li.querySelector('.r-del')!.addEventListener('click', () => { if (list.children.length > 1) { li.remove(); relabel(); save(); } });
+    li.querySelector('.r-del')!.addEventListener('click', () => {
+      if (list.children.length < 2) return;
+      // Letters shift after a removal: B becomes A, and so on. Move the choices with them.
+      const gone = [...list.children].indexOf(li);
+      document.querySelectorAll<HTMLSelectElement>('select[data-favours]').forEach((sel) => {
+        const i = LABELS.indexOf(sel.value);
+        if (!sel.value || i < 0) return;
+        if (i === gone) sel.value = ''; else if (i > gone) sel.dataset.next = LABELS[i - 1];
+      });
+      li.remove(); relabel();
+      document.querySelectorAll<HTMLSelectElement>('select[data-next]').forEach((sel) => { sel.value = sel.dataset.next!; delete sel.dataset.next; });
+      save();
+    });
     li.querySelectorAll('textarea').forEach(grow);
   }
 
@@ -299,6 +311,13 @@ const favours = (name: string) =>
       }
       s.value = keep;
     });
+  }
+
+  function valid(d: any): d is Doc {
+    const obj = (x: unknown) => !!x && typeof x === 'object' && !Array.isArray(x);
+    if (!obj(d) || d.schema !== SCHEMA || !obj(d.issue) || (d.about !== undefined && !obj(d.about))) return false;
+    const rs = d.issue.readings;
+    return rs === undefined || (Array.isArray(rs) && rs.length <= LABELS.length && rs.every(obj));
   }
 
   function fill(d: Doc) {
@@ -355,9 +374,11 @@ const favours = (name: string) =>
     if (!file) return;
     try {
       const d = JSON.parse(await file.text());
-      if (d?.schema !== SCHEMA) throw new Error('not a workbench file');
+      if (!valid(d)) throw new Error('not a workbench file');
       if (!confirm('Replace what is on the page with this file?')) return;
-      fill(d); save(); say(`Opened ${file.name}.`);
+      const before = collect();
+      try { fill(d); } catch (err) { fill(before); throw err; }
+      save(); say(`Opened ${file.name}.`);
     } catch { say(`${file.name} is not a workbench file.`); }
   });
 
@@ -394,8 +415,11 @@ const favours = (name: string) =>
     const t = e.target as HTMLTextAreaElement;
     if (!t.hasAttribute?.('data-sigla')) return;
     const v = tidy(t.value); if (v !== t.value) { t.value = v; save(); }
-    setTimeout(() => { if (document.activeElement !== target) keys.hidden = true; }, 0);
+    hideLater();
   });
+  // Keep the keypad open while focus is in the box or on its own buttons (keyboard users tab into it).
+  function hideLater() { setTimeout(() => { const a = document.activeElement; if (a !== target && !keys.contains(a)) keys.hidden = true; }, 0); }
+  keys.addEventListener('focusout', hideLater);
   keys.addEventListener('mousedown', (e) => e.preventDefault());   // keep the cursor in the box
   keys.addEventListener('click', (e) => {
     const b = (e.target as HTMLElement).closest('button'); if (!b || !target) return;
@@ -419,7 +443,7 @@ const favours = (name: string) =>
     navigator.serviceWorker.register(sw, { scope }).then(async () => {
       const urls = [location.pathname, ...performance.getEntriesByType('resource').map((r) => r.name)]
         .filter((u) => new URL(u, location.href).origin === location.origin);
-      const c = await caches.open('tc-workbench-v2');
+      const c = await caches.open('tc-workbench-v3');
       await Promise.all(urls.map((u) => c.add(u).catch(() => {})));
     }).catch(() => {});
   }
@@ -437,10 +461,11 @@ const favours = (name: string) =>
   .bar .btn { display: inline-block; margin: 0; font: 600 .9rem var(--sans); color: var(--ink); line-height: normal; }
   .bar button, .bar .btn { min-height: 2.4rem; }
   ::placeholder { color: var(--ink-2); opacity: .65; font-style: italic; }
-  .q .keys { grid-column: 1 / -1; margin-top: 0; }
-  .keys { margin: -.4rem 0 .8rem; padding: .5rem .6rem; border: 1px dashed var(--rule); border-radius: 8px; background: var(--paper-2); }
-  .keys p { margin: 0 0 .4rem; }
-  .keys kbd { font: .85em var(--sans); padding: 0 .2rem; border: 1px solid var(--rule); border-radius: 3px; }
+  .q .wb-keys { grid-column: 1 / -1; margin-top: 0; }
+  .wb-keys { margin: -.4rem 0 .8rem; padding: .5rem .6rem; border: 1px dashed var(--rule); border-radius: 8px; background: var(--paper-2); }
+  .wb-keys p { margin: 0 0 .4rem; }
+  .wb-keys kbd { font: .85em var(--sans); padding: 0 .2rem; border: 1px solid var(--rule); border-radius: 3px; }
+  .wb-keys[hidden], .krow[hidden] { display: none; }
   .krow { display: flex; flex-wrap: wrap; gap: .3rem; }
   .krow + .krow { margin-top: .3rem; }
   .krow button { min-width: 2.4rem; min-height: 2.4rem; padding: .2rem .45rem; font: 400 1.05rem var(--sigla); background: var(--paper); }

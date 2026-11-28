@@ -28,7 +28,8 @@ for (const name of readdirSync(dir).filter((f) => f.toLowerCase().endsWith('.jso
 }
 
 const cols = [...new Set(rows.flatMap(Object.keys))];
-const cell = (v) => { const s = v === undefined || v === null ? '' : String(v); return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+// A leading = + - @ (or tab/CR) would run as a formula in Excel: prefix ' so it stays text.
+const cell = (v) => { let s = v === undefined || v === null ? '' : String(v); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
 // BOM so Excel reads Greek and Indic text as UTF-8.
 process.stdout.write('﻿' + [cols, ...rows.map((r) => cols.map((c) => r[c]))].map((r) => r.map(cell).join(',')).join('\r\n') + '\r\n');
 console.error(`${rows.length} file(s)`);
