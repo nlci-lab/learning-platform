@@ -51,7 +51,7 @@ const favours = (name: string, q: string) =>
     <header class="wb-head">
       <p class="label">Workbench</p>
       <h1>Work through a textual problem</h1>
-      <p class="muted">Bring one doubtful passage. Go through the same six steps as the <a href={g('guide/examples/')}>worked examples</a>, and at the end you have a decision to record. Your work is saved in this browser as you type. Download it to keep it or to send it to someone.</p>
+      <p class="muted">Bring one doubtful passage. Go through <a href={g('guide/six-steps/')}>the six steps</a> the <a href={g('guide/examples/')}>worked examples</a> use, and at the end you have a decision to record. Your work is saved in this browser as you type. Download it to keep it or to send it to someone.</p>
     </header>
 
     <div class="bar no-print" role="toolbar" aria-label="File">
@@ -120,7 +120,7 @@ const favours = (name: string, q: string) =>
           {SOURCES.map(([k, l, h]) => (
             <label class="check"><input type="checkbox" name={`issue.sources.${k}`} /><span><b>{l}</b> <span class="small muted">{h}</span></span></label>
           ))}
-          <p class="small muted">Paratext marks variants with different callers (*, a letter, a number). What each one means is <span class="tag">not yet checked</span>.</p>
+          <p class="small muted">In Paratext, a red number after a Greek word is a textual apparatus entry. A letter or * is not about variants: see <a href={g('guide/paratext/')}>The apparatus in Paratext</a>.</p>
         </fieldset>
         <ol class="readings" id="readings"></ol>
         <button type="button" id="add-reading" class="no-print">Add a reading</button>

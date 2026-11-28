@@ -1,0 +1,137 @@
+---
+// The six steps every worked example, micro module, series part and the workbench follow, on one page.
+// It teaches nothing new: each step gathers what the course already says and points to where it says it.
+import Context from '../../layouts/Context.astro';
+import { url } from '../../lib/url';
+const g = (p: string) => url(p);
+const part = (id: string) => url(`learn/decisions/${id}/`);
+const ex = (n: number, slug: string) => url(`guide/examples/john-1-18/#step-${n}-${slug}`);
+const sources = [
+  { cite: "This site's guides: How to weigh the evidence; Which variants deserve your attention; How to read a UBS apparatus entry; The apparatus in Paratext; Which text should a translation follow?; Writing textual footnotes.", checked: true },
+  { cite: "This site's series Making textual decisions (parts 1–5) and the worked example John 1:18, with their own sources.", checked: true },
+];
+---
+<Context title="The six steps" label="Guide" description="The six steps for working through a textual problem, what to do at each one, and where this site explains it." sources={sources} notice={false} lastChecked="2026-11-28">
+  <p class="lead">Every worked example on this site follows the same six steps. Use them whenever you meet a place where the manuscripts differ. Each step below says what to ask, what to do, and where to read more.</p>
+  <p>To work through your own passage step by step and keep a record, use the <a href={g('workbench/')}>Workbench</a>.</p>
+
+  <ol class="route" aria-label="The steps">
+    <li><a href="#find">Find the problem</a></li>
+    <li><a href="#list">List the readings</a></li>
+    <li><a href="#external">External evidence</a></li>
+    <li><a href="#internal">Internal evidence</a></li>
+    <li><a href="#weigh">Weigh it up</a></li>
+    <li><a href="#decide">Decide for your translation</a></li>
+  </ol>
+
+  <h2 id="find"><span class="n">1</span> Find the problem</h2>
+  <p class="ask">What exactly differs between the manuscripts?</p>
+  <ul>
+    <li>You may notice it in the UBS apparatus, in a footnote of another Bible, or because your regional-language Bible says something different.</li>
+    <li>Say in one sentence what differs: a word, a word order, a phrase, or a whole verse.</li>
+    <li>Ask two questions. Does it change the meaning <em>in your language</em>? How sure were the UBS editors (the <a href={g('glossary/#rating')}>rating</a>)?</li>
+    <li>If it changes nothing in your language and no Bible your readers use differs, follow the UBS text and stop here. The <a href={g('guide/decision-tree/')}>decision tree</a> helps you decide.</li>
+  </ul>
+  <p class="see">Read more: <a href={g('guide/which-variants-matter/')}>Which variants deserve your attention</a> · <a href={ex(1, 'find-the-problem')}>John 1:18, step 1</a></p>
+
+  <h2 id="list"><span class="n">2</span> List the readings</h2>
+  <p class="ask">Which readings are there, and who supports each one?</p>
+  <p>Write each reading down with its meaning in your language, and the witnesses for it. Look in these places, from the easiest to the deepest. Stop when you have what you need.</p>
+  <ol class="tools">
+    <li>
+      <h3>Compare other Bibles</h3>
+      <p>Put your regional-language Bible beside a few English Bibles. In Paratext use a text collection; in Logos, Text Comparison. Footnotes such as "Some manuscripts have…" point to a variant. Not every difference is textual: some are only different ways to translate.</p>
+      <p class="see">Read more: <a href={part('compare-versions')}>Part 1: Compare versions</a></p>
+    </li>
+    <li>
+      <h3>Read translation helps and commentaries</h3>
+      <p>The Translator's Notes (TNN) and the UBS Handbook explain the problem in plain English and suggest how to translate it. In Logos, many commentaries discuss textual problems.</p>
+      <p class="see">Read more: <a href={part('translation-helps')}>Part 2: Translation helps</a></p>
+    </li>
+    <li>
+      <h3>Read the NET notes</h3>
+      <p>The NET Bible's text-critical notes name the main witnesses for each reading and give the arguments on both sides. They are one team's judgement, so check manuscript facts in the apparatus.</p>
+      <p class="see">Read more: <a href={part('net-notes')}>Part 3: The NET notes</a></p>
+    </li>
+    <li>
+      <h3>Read the UBS apparatus</h3>
+      <p>In Paratext, open the Source Language Text. Small red marks show the entries: a number (1–9) after a Greek word is an entry in the textual apparatus, and ♦ marks a place where no decision was possible. A letter (a–z) is a discourse segmentation entry, and * at the start of a verse is a cross-reference, so those two are not about variants. To see why the editors chose their text, read Metzger's <i>Textual Commentary</i> or Omanson's <i>Textual Guide</i> (available in Logos).</p>
+      <p class="see">Read more: <a href={g('guide/paratext/')}>The apparatus in Paratext</a> · <a href={g('guide/apparatus/')}>How to read a UBS apparatus entry</a> · <a href={part('the-apparatus')}>Part 4: The apparatus</a></p>
+    </li>
+    <li>
+      <h3>Look at the manuscripts</h3>
+      <p>The Center for New Testament Restoration (CNTR) publishes transcriptions of the Greek manuscripts. Its collation puts them side by side at a verse. From there you can open one witness's transcription, and from the transcription, a picture of the page. <span class="tag">not yet checked</span> This site's collation cards show some verses in the same way.</p>
+      <p class="see">Read more: <a href={part('full-textual-criticism')}>Part 5: Full textual criticism</a> · <a href={g('witnesses/')}>Witnesses</a></p>
+    </li>
+  </ol>
+  <p class="see">See it done: <a href={ex(2, 'list-the-readings')}>John 1:18, step 2</a></p>
+
+  <h2 id="external"><span class="n">3</span> External evidence</h2>
+  <p class="ask">What do the witnesses tell us?</p>
+  <p>A witness is any source for the text: a Greek manuscript, an early translation (a version), or a quotation in a church writer (a father). Ask these six questions for each reading, in this order.</p>
+  <ol class="checks">
+    <li><b>How old?</b> Look at the earliest witness for each reading.</li>
+    <li><b>From where?</b> Which group of manuscripts does each witness belong to? Some groups have known habits.</li>
+    <li><b>How careful?</b> Was the witness copied carefully, or in a hurry?</li>
+    <li><b>How widespread?</b> When witnesses from different places agree, one local mistake can hardly explain it.</li>
+    <li><b>Independent?</b> Or was one copied from another?</li>
+    <li><b>How many?</b> This comes last. Many late copies of one ancestor count as one witness.</li>
+  </ol>
+  <p class="see">Read more: <a href={g('guide/weighing-evidence/')}>How to weigh the evidence</a> · <a href={g('witnesses/')}>Witness profiles</a> · <a href={ex(3, 'external-evidence')}>John 1:18, step 3</a></p>
+
+  <h2 id="internal"><span class="n">4</span> Internal evidence</h2>
+  <p class="ask">What would a scribe do, and what would the author write?</p>
+  <ul>
+    <li><b>What was a scribe likely to do?</b> Scribes slipped with eye and hand. They also made changes on purpose: they explained hard wording, smoothed grammar, and made one passage match another.</li>
+    <li><b>What was the author likely to write?</b> Does the reading fit this writer's words, style and thought?</li>
+  </ul>
+  <p>Rules of thumb. Each is a guide, not a law.</p>
+  <ul class="rules">
+    <li><b>The rule behind the rules:</b> prefer the reading that best explains how the others arose.</li>
+    <li><b>The harder reading.</b> Scribes removed difficulties more often than they made them. But a reading can be hard because it is a plain mistake.</li>
+    <li><b>The shorter reading.</b> Scribes added explaining words more often than they removed words. But they also dropped words by accident. Never use this rule alone.</li>
+    <li><b>Harmonization.</b> A reading that makes a verse match a nearby verse, or one Gospel match another, is often the later one.</li>
+    <li><b>The author's style.</b> Prefer the reading that fits the author. But a scribe can also "correct" a text toward the author's style.</li>
+  </ul>
+  <p>Say which rule you use, and why. Someone who has already chosen an answer can argue any of these rules either way.</p>
+  <p class="see">Read more: <a href={g('guide/weighing-evidence/')}>How to weigh the evidence</a> · <a href={ex(4, 'internal-evidence')}>John 1:18, step 4</a></p>
+
+  <h2 id="weigh"><span class="n">5</span> Weigh it up</h2>
+  <p class="ask">Which reading came first, and how sure can we be?</p>
+  <ul>
+    <li>Put steps 3 and 4 side by side. Do they point the same way, or pull apart?</li>
+    <li>Name the reading you think came first, and say how sure you are.</li>
+    <li>Compare the UBS rating, where there is one. A rating is the committee's opinion, and it answers only the question the committee asked.</li>
+  </ul>
+  <p class="see">Read more: <a href={g('guide/apparatus/#ratings')}>What the ratings do and do not tell you</a> · <a href={ex(5, 'weigh-it-up')}>John 1:18, step 5</a></p>
+
+  <h2 id="decide"><span class="n">6</span> Decide for your translation</h2>
+  <p class="ask">What will you print, and what will you tell your readers?</p>
+  <ul>
+    <li><b>Check your text policy first.</b> For NLCI teams: translate from the UBS text, follow the regional-language Bible for passages with a long tradition, and let the Review Committee decide where the two differ.</li>
+    <li><b>Compare.</b> Note what the UBS text prints and how your regional-language Bible handles the verse.</li>
+    <li><b>Consider your options.</b> How would each reading sound in your language? Do you need brackets, a footnote, or different wording?</li>
+    <li><b>Write a recommendation.</b> Give the reading you propose, the main reasons, and, if the variant is significant, a draft footnote. Your Review Committee makes the decision.</li>
+  </ul>
+  <p class="see">Read more: <a href={g('guide/text-policy/')}>Which text should a translation follow?</a> · <a href={g('guide/footnotes/')}>Writing textual footnotes</a> · <a href={ex(6, 'decide-for-your-translation')}>John 1:18, step 6</a></p>
+
+  <h2 id="practise">Practise</h2>
+  <ul>
+    <li>Follow the steps on real verses in the <a href={g('guide/examples/')}>worked examples</a>.</li>
+    <li>Try a short guided problem in <a href={g('learn/')}>Learn</a>.</li>
+    <li>Bring your own passage to the <a href={g('workbench/')}>Workbench</a>, and download your record at the end.</li>
+  </ul>
+</Context>
+<style>
+  .lead { font-size: var(--step-1); line-height: 1.45; }
+  .route { display: flex; flex-wrap: wrap; gap: .35rem 1rem; padding-left: 1.4rem; font: .95rem var(--sans); }
+  .route li { margin-right: .5rem; }
+  h2 .n { display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; margin-right: .35rem; border-radius: 50%; border: 1.5px solid var(--rubric); color: var(--rubric); font: 600 .95rem var(--sans); vertical-align: .15em; }
+  .ask { font-style: italic; color: var(--ink-2); margin-top: -.25rem; }
+  .see { font: .9rem var(--sans); color: var(--ink-2); }
+  .tools { padding-left: 1.4rem; }
+  .tools li { margin-bottom: .9rem; }
+  .tools h3 { margin: 0 0 .25rem; font-size: 1.05rem; }
+  .tools p { margin: 0 0 .3rem; }
+  .checks li, .rules li { margin-bottom: .4rem; }
+</style>
