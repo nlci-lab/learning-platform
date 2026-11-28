@@ -95,17 +95,20 @@ const site = new URL(url(''), Astro.site).href;
   .addr b { color: var(--rubric); }
   button { font: 600 .9rem var(--sans); padding: .45rem .85rem; border-radius: 8px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer; }
   .cols { display: grid; gap: 1.5rem 2.5rem; }
-  @media (min-width: 860px) { .cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  @media (min-width: 1000px) { .cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   h2 { font-size: var(--step-1); margin: 0 0 .25rem; border-bottom: 2px solid var(--ink); padding-bottom: .2rem; }
   h3 { font: 600 .78rem var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--rubric); margin: 1rem 0 .3rem; }
-  .wt { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  /* Fixed layout: the table never grows past its column (long father dates wrap instead). */
+  .wt { width: 100%; border-collapse: collapse; font-size: .92rem; table-layout: fixed; }
+  .wt th { width: 5.5rem; } .wt .date { width: 32%; } .wt .sa { width: 6.5rem; overflow-wrap: anywhere; }
+  .wt td, .wt th { overflow-wrap: anywhere; }
   .wt th, .wt td { text-align: left; vertical-align: baseline; padding: .28rem .5rem .28rem 0; border-bottom: 1px solid var(--rule); }
-  .wt th { white-space: nowrap; font-weight: 400; }
+  .wt th { font-weight: 400; }
   .wt .siglum { font-size: 1.1rem; text-decoration: none; }
   .ga { font: .75rem var(--sans); color: var(--ink-2); }
-  .date { color: var(--ink-2); white-space: nowrap; }
+  .date { color: var(--ink-2); }
   .sa code { font-size: .8rem; color: var(--ink-2); }
-  @media (max-width: 480px) { .date { white-space: normal; } .wt { font-size: .85rem; } }
+  @media (max-width: 480px) { .wt { font-size: .85rem; } .wt th { width: 4.3rem; } .wt .sa { width: 5.2rem; } }
   .st { margin: 0; }
   .st div { display: grid; grid-template-columns: 6.5rem 1fr; gap: .6rem; padding: .28rem 0; border-bottom: 1px solid var(--rule); font-size: .92rem; }
   .st dt { font-family: var(--sigla); }
