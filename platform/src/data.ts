@@ -96,8 +96,11 @@ export async function moduleStaticPaths() {
   return (await getModules()).map((entry) => ({ params: { id: entry.data.id }, props: { entry } }));
 }
 /** getStaticPaths for src/pages/guides/[id].astro: every guide that is not part of a series. */
+// A series part with `movedFromGuides` also gets a redirect page here (props.redirect), so old links keep working.
 export async function guideStaticPaths() {
-  return (await getGuides()).filter((g) => !g.data.series).map((entry) => ({ params: { id: entry.data.id }, props: { entry } }));
+  return (await getGuides())
+    .filter((g) => !g.data.series || g.data.movedFromGuides)
+    .map((entry) => ({ params: { id: entry.data.id }, props: { entry, redirect: !!entry.data.series } }));
 }
 /** getStaticPaths for a series' part pages, e.g. src/pages/learn/decisions/[id].astro. */
 export function seriesStaticPaths(seriesId: string) {

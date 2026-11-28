@@ -320,6 +320,8 @@ export const guide = z.object({
   }).optional(),
   /** Part of a series (see `series`): the series id and this guide's place in it, 1 first. */
   series: z.object({ id: stableId, part: z.number().int().positive() }).optional(),
+  /** A series part first published at guides/<id>/: true keeps a redirect page at that old address. */
+  movedFromGuides: z.boolean().optional(),
   sources,
   unverified,
   /** true once checked line by line against its sources. */

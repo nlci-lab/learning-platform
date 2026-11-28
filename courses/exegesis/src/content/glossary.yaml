@@ -194,7 +194,7 @@
 - id: clause-relation
   term: relation between clauses
   group: relations
-  plain: "How two clauses, sentences or longer parts of a text link in meaning: in time, by cause, by purpose, by contrast, and so on. A connecting word such as \"because\" may show it, or the text may leave it unmarked. See [How clauses relate](~/guides/clause-relations/)."
+  plain: "How two clauses, sentences or longer parts of a text link in meaning: in time, by cause, by purpose, by contrast, and so on. A connecting word such as \"because\" may show it, or the text may leave it unmarked. See [How clauses relate](~/learn/meaning/clause-relations/)."
   source: "Translation Academy (original work by unfoldingWord) (CC BY-SA 4.0), \"Connecting Words and Phrases\""
   checked: true
 - id: semantic-structure

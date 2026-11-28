@@ -1,0 +1,8 @@
+---
+// The parts of "More on discovering the meaning" (guides with series: meaning).
+import GuidePage from '@cohorts/platform/pages/GuidePage.astro';
+import { seriesStaticPaths } from '@cohorts/platform/data';
+import { course } from '../../../course.config';
+export const getStaticPaths = seriesStaticPaths('meaning');
+---
+<GuidePage site={course} entry={Astro.props.entry} />

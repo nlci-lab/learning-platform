@@ -1,0 +1,24 @@
+---
+// A guide that moved into a series: a small page at its old address (guides/<id>/) that sends the reader
+// to the new one. Works without JavaScript (meta refresh), and shows a plain link too.
+// Search engines are told the new page is the real one (canonical) and not to index this one.
+import { getGuidePaths, type GuideEntry } from '../data';
+import { url } from '../url';
+interface Props { entry: GuideEntry }
+const { entry } = Astro.props;
+const to = url((await getGuidePaths()).get(entry.data.id)!);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{entry.data.title} has moved</title>
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href={to} />
+  <meta http-equiv="refresh" content={`0; url=${to}`} />
+</head>
+<body>
+  <p>This guide has moved to <a href={to}>{entry.data.title}</a>.</p>
+</body>
+</html>
