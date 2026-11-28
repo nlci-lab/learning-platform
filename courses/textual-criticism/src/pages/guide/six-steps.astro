@@ -3,6 +3,7 @@
 // It teaches nothing new: each step gathers what the course already says and points to where it says it.
 import Context from '../../layouts/Context.astro';
 import { url } from '../../lib/url';
+import WorkbenchStep from '../../components/WorkbenchStep.astro';
 const g = (p: string) => url(p);
 const part = (id: string) => url(`learn/decisions/${id}/`);
 const ex = (n: number, slug: string) => url(`guide/examples/john-1-18/#step-${n}-${slug}`);
@@ -26,6 +27,7 @@ const sources = [
   </ol>
 
   <h2 id="find"><span class="n">1</span> Find the problem</h2>
+  <WorkbenchStep n={1} />
   <p class="ask">What exactly differs between the manuscripts?</p>
   <ul>
     <li>You may notice it in the UBS apparatus, in a footnote of another Bible, or because your regional-language Bible says something different.</li>
@@ -36,6 +38,7 @@ const sources = [
   <p class="see">Read more: <a href={g('guide/which-variants-matter/')}>Which variants deserve your attention</a> · <a href={ex(1, 'find-the-problem')}>John 1:18, step 1</a></p>
 
   <h2 id="list"><span class="n">2</span> List the readings</h2>
+  <WorkbenchStep n={2} />
   <p class="ask">Which readings are there, and who supports each one?</p>
   <p>Write each reading down with its meaning in your language, and the witnesses for it. Look in these places, from the easiest to the deepest. Stop when you have what you need.</p>
   <ol class="tools">
@@ -61,13 +64,14 @@ const sources = [
     </li>
     <li>
       <h3>Look at the manuscripts</h3>
-      <p>The Center for New Testament Restoration (CNTR) publishes transcriptions of the Greek manuscripts. Its collation puts them side by side at a verse. From there you can open one witness's transcription, and from the transcription, a picture of the page. <span class="tag">not yet checked</span> This site's collation cards show some verses in the same way.</p>
+      <p>The Center for New Testament Restoration (CNTR) publishes transcriptions of the Greek manuscripts. Its collation puts them side by side at a verse. From there you can open one witness's transcription, and from the transcription, a picture of the page. This site's collation cards show some verses in the same way.</p>
       <p class="see">Read more: <a href={part('full-textual-criticism')}>Part 5: Full textual criticism</a> · <a href={g('witnesses/')}>Witnesses</a></p>
     </li>
   </ol>
   <p class="see">See it done: <a href={ex(2, 'list-the-readings')}>John 1:18, step 2</a></p>
 
   <h2 id="external"><span class="n">3</span> External evidence</h2>
+  <WorkbenchStep n={3} />
   <p class="ask">What do the witnesses tell us?</p>
   <p>A witness is any source for the text: a Greek manuscript, an early translation (a version), or a quotation in a church writer (a father). Ask these six questions for each reading, in this order.</p>
   <ol class="checks">
@@ -81,6 +85,7 @@ const sources = [
   <p class="see">Read more: <a href={g('guide/weighing-evidence/')}>How to weigh the evidence</a> · <a href={g('witnesses/')}>Witness profiles</a> · <a href={ex(3, 'external-evidence')}>John 1:18, step 3</a></p>
 
   <h2 id="internal"><span class="n">4</span> Internal evidence</h2>
+  <WorkbenchStep n={4} />
   <p class="ask">What would a scribe do, and what would the author write?</p>
   <ul>
     <li><b>What was a scribe likely to do?</b> Scribes slipped with eye and hand. They also made changes on purpose: they explained hard wording, smoothed grammar, and made one passage match another.</li>
@@ -98,6 +103,7 @@ const sources = [
   <p class="see">Read more: <a href={g('guide/weighing-evidence/')}>How to weigh the evidence</a> · <a href={ex(4, 'internal-evidence')}>John 1:18, step 4</a></p>
 
   <h2 id="weigh"><span class="n">5</span> Weigh it up</h2>
+  <WorkbenchStep n={5} />
   <p class="ask">Which reading came first, and how sure can we be?</p>
   <ul>
     <li>Put steps 3 and 4 side by side. Do they point the same way, or pull apart?</li>
@@ -107,6 +113,7 @@ const sources = [
   <p class="see">Read more: <a href={g('guide/apparatus/#ratings')}>What the ratings do and do not tell you</a> · <a href={ex(5, 'weigh-it-up')}>John 1:18, step 5</a></p>
 
   <h2 id="decide"><span class="n">6</span> Decide for your translation</h2>
+  <WorkbenchStep n={6} />
   <p class="ask">What will you print, and what will you tell your readers?</p>
   <ul>
     <li><b>Check your text policy first.</b> For NLCI teams: translate from the UBS text, follow the regional-language Bible for passages with a long tradition, and let the Review Committee decide where the two differ.</li>

@@ -108,7 +108,7 @@ const favours = (name: string, q: string) =>
           </label>
         </div>
         <label>The problem in your own words<textarea name="issue.problem" rows="3" dir="auto" placeholder="What is different, and how did you notice it?"></textarea></label>
-        <p class="see small">See: <a href={g('guide/which-variants-matter/')}>Which variants matter</a> · <a href={g('guide/decision-tree/')}>Decision tree</a> · <a href={g('guide/apparatus/')}>Reading an apparatus entry</a> · <a href={ex(1, 'find-the-problem')}>Example: John 1:18</a></p>
+        <p class="see small">See: <a href={g('guide/which-variants-matter/')}>Which variants matter</a> · <a href={g('guide/decision-tree/')}>Decision tree</a> · <a href={g('guide/apparatus/')}>Reading an apparatus entry</a> · <a href={ex(1, 'find-the-problem')}>Example: John 1:18</a> · Practise: <a href={g('practice/mark-1-2/#step-find')}>Mark 1:2</a>, <a href={g('practice/1-john-5-7/#step-find')}>1 John 5:7–8</a></p>
       </section>
 
       <section class="step" id="s2">
@@ -125,7 +125,7 @@ const favours = (name: string, q: string) =>
         <ol class="readings" id="readings"></ol>
         <button type="button" id="add-reading" class="no-print">Add a reading</button>
         <label>Notes from your sources<textarea name="issue.sourceNotes" data-sigla rows="3" dir="auto"></textarea></label>
-        <p class="see small">See: <a href={g('guide/paratext/')}>The apparatus in Paratext</a> · <a href={g('witnesses/')}>Witnesses</a> · <a href={ex(2, 'list-the-readings')}>Example: John 1:18</a></p>
+        <p class="see small">See: <a href={g('guide/paratext/')}>The apparatus in Paratext</a> · <a href={g('witnesses/')}>Witnesses</a> · <a href={ex(2, 'list-the-readings')}>Example: John 1:18</a> · Practise: <a href={g('practice/mark-1-2/#step-list')}>Mark 1:2</a>, <a href={g('practice/1-john-5-7/#step-list')}>1 John 5:7–8</a></p>
       </section>
 
       <section class="step" id="s3">
@@ -141,7 +141,7 @@ const favours = (name: string, q: string) =>
             </div>
           ))}
         </div>
-        <p class="see small">See: <a href={g('guide/weighing-evidence/')}>Weighing the evidence</a> · <a href={ex(3, 'external-evidence')}>Example: John 1:18</a></p>
+        <p class="see small">See: <a href={g('guide/weighing-evidence/')}>Weighing the evidence</a> · <a href={ex(3, 'external-evidence')}>Example: John 1:18</a> · Practise: <a href={g('practice/mark-1-2/#step-external')}>Mark 1:2</a>, <a href={g('practice/1-john-5-7/#step-external')}>1 John 5:7–8</a></p>
       </section>
 
       <section class="step" id="s4">
@@ -162,7 +162,7 @@ const favours = (name: string, q: string) =>
           {RULES.map(([k, l]) => <label class="check"><input type="checkbox" name={`issue.internal.rules.${k}`} /><span>{l}</span></label>)}
           <p class="small muted">Each rule is a guide, not a law. Say which rule you use and why.</p>
         </fieldset>
-        <p class="see small">See: <a href={g('guide/weighing-evidence/')}>Weighing the evidence</a> · <a href={ex(4, 'internal-evidence')}>Example: John 1:18</a></p>
+        <p class="see small">See: <a href={g('guide/weighing-evidence/')}>Weighing the evidence</a> · <a href={ex(4, 'internal-evidence')}>Example: John 1:18</a> · Practise: <a href={g('practice/mark-1-2/#step-internal')}>Mark 1:2</a>, <a href={g('practice/1-john-5-7/#step-internal')}>1 John 5:7–8</a></p>
       </section>
 
       <section class="step" id="s5">
@@ -178,7 +178,7 @@ const favours = (name: string, q: string) =>
           </label>
         </div>
         <label>Your reasons<textarea name="issue.weigh.reasons" data-sigla rows="3" dir="auto" placeholder="Put the external and internal evidence together. Compare the UBS rating."></textarea></label>
-        <p class="see small">See: <a href={g('guide/apparatus/#ratings')}>What the ratings tell you</a> · <a href={ex(5, 'weigh-it-up')}>Example: John 1:18</a></p>
+        <p class="see small">See: <a href={g('guide/apparatus/#ratings')}>What the ratings tell you</a> · <a href={ex(5, 'weigh-it-up')}>Example: John 1:18</a> · Practise: <a href={g('practice/mark-1-2/#step-weigh')}>Mark 1:2</a>, <a href={g('practice/1-john-5-7/#step-weigh')}>1 John 5:7–8</a></p>
       </section>
 
       <section class="step" id="s6">
@@ -197,7 +197,7 @@ const favours = (name: string, q: string) =>
         </fieldset>
         <label class="verdict">Verdict<textarea name="issue.decide.verdict" rows="3" dir="auto" placeholder="What you will print, and why."></textarea></label>
         <label>Draft footnote<textarea name="issue.decide.footnote" rows="2" dir="auto" placeholder="e.g. Some manuscripts have …"></textarea></label>
-        <p class="see small">See: <a href={g('guide/text-policy/')}>Which text should a translation follow?</a> · <a href={g('guide/footnotes/')}>Writing textual footnotes</a> · <a href={ex(6, 'decide-for-your-translation')}>Example: John 1:18</a></p>
+        <p class="see small">See: <a href={g('guide/text-policy/')}>Which text should a translation follow?</a> · <a href={g('guide/footnotes/')}>Writing textual footnotes</a> · <a href={ex(6, 'decide-for-your-translation')}>Example: John 1:18</a> · Practise: <a href={g('practice/mark-1-2/#step-decide')}>Mark 1:2</a>, <a href={g('practice/1-john-5-7/#step-decide')}>1 John 5:7–8</a></p>
       </section>
     </form>
 

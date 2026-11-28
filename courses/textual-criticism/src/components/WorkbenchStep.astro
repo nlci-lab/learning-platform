@@ -1,0 +1,13 @@
+---
+// A pointer from a step of a worked example (or guide) to the same step of the Workbench,
+// so readers can do that step on their own passage. Steps 1–6 are the Workbench's #s1–#s6.
+import { url } from '../lib/url';
+interface Props { n: 1 | 2 | 3 | 4 | 5 | 6 }
+const { n } = Astro.props;
+---
+<p class="wb-step no-print"><a href={url(`workbench/#s${n}`)}>Your own passage: Workbench, step {n} →</a></p>
+<style>
+  .wb-step { margin: -.25rem 0 .75rem; font: 600 .85rem var(--sans); }
+  .wb-step a { text-decoration: none; border-bottom: 1px dashed currentColor; }
+  @media print { .wb-step { display: none; } }
+</style>
