@@ -1,0 +1,147 @@
+---
+// Siglum cheat sheet: one printable page to keep beside Paratext. Built from the witness profiles and the
+// glossary signs, so it never drifts from them. Each witness shows its short address (the [alias] route).
+import Base from '../layouts/Base.astro';
+import { allWitnesses } from '../lib/witnesses';
+import { getGlossary } from '@cohorts/platform/data';
+import { url } from '../lib/url';
+
+const ascii = (s: string) => /^[A-Za-z0-9-]+$/.test(s);
+const fold = (s: string) => (s.length === 1 ? s : s.toLowerCase());
+const all = await allWitnesses();
+const short = (w: (typeof all)[number]) => {
+  if (ascii(w.siglum)) return fold(w.siglum);
+  if (w.greek_ms?.category === 'papyrus') return w.greek_ms.ga.toLowerCase();
+  const a = w.aliases.find((x) => ascii(x) && !/^\d+$/.test(x)) ?? w.greek_ms?.ga ?? w.id;
+  return fold(a);
+};
+const KIND: [string, string, (w: (typeof all)[number]) => boolean][] = [
+  ['papyri', 'Papyri', (w) => w.greek_ms?.category === 'papyrus'],
+  ['majuscules', 'Majuscules', (w) => w.greek_ms?.category === 'majuscule'],
+  ['groups', 'Groups', (w) => w.kind === 'group'],
+  ['fathers', 'Church fathers', (w) => w.kind === 'father'],
+];
+const sections = KIND.map(([id, title, test]) => ({ id, title, ws: all.filter(test) })).filter((s) => s.ws.length);
+const firstSentence = (s: string) => (s.match(/^.*?[.!?](?=\s|$)/)?.[0] ?? s);
+const signs = (await getGlossary()).filter((g) => g.style === 'sign');
+const site = new URL(url(''), Astro.site).href;
+---
+<Base title="Siglum cheat sheet" nav="witnesses/" description="One printable page of the witnesses and apparatus signs on this site, with the short address of each profile, to keep beside Paratext.">
+  <article class="cs">
+    <header class="cs-head">
+      <p class="label no-print">Cheat sheet</p>
+      <h1>Siglum cheat sheet</h1>
+      <p class="lead">The witnesses and apparatus signs on this site, on one page. Keep it beside Paratext.</p>
+      <p class="addr">To open a profile, type the site address and the short name: <code>{site}<b>B</b>/</code> · <code>{site}<b>p66</b>/</code> · <code>{site}<b>aleph</b>/</code></p>
+      <p class="no-print"><button type="button" id="cs-print">Print or save as PDF</button></p>
+    </header>
+
+    <div class="cols">
+      <section class="block" aria-labelledby="cs-w">
+        <h2 id="cs-w">Witnesses</h2>
+        {sections.map((s) => (
+          <>
+            <h3>{s.title}</h3>
+            <table class="wt">
+              <thead class="visually-hidden"><tr><th scope="col">Siglum</th><th scope="col">Name</th><th scope="col">Date</th><th scope="col">Short address</th></tr></thead>
+              <tbody>
+                {s.ws.map((w) => (
+                  <tr>
+                    <th scope="row"><a class="siglum" href={url(`w/${w.id}/`)} lang={w.siglum_lang} dir="ltr">{w.siglum}</a>{w.greek_ms && !/^P/.test(w.greek_ms.ga) && <span class="ga"> {w.greek_ms.ga}</span>}</th>
+                    <td>{w.names[0]}</td>
+                    <td class="date">{w.date?.label}</td>
+                    <td class="sa"><code>/{short(w)}/</code></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        ))}
+        <p class="note">These are the witnesses that have a profile so far. The list is <span class="tag">not yet checked</span> against the printed UBS5 introduction. More are being added: see <a href={url('witnesses/')}>Witnesses</a>.</p>
+      </section>
+
+      <section class="block" aria-labelledby="cs-s">
+        <h2 id="cs-s">Apparatus signs</h2>
+        {signs.map((g) => (
+          <>
+            <h3>{g.title}</h3>
+            <dl class="st">
+              {g.entries.map((t) => (
+                <div>
+                  <dt><a href={url(`glossary/#${t.id}`)}>{t.term}</a></dt>
+                  <dd>{firstSentence(t.plain)}{!t.checked && <> <span class="tag">not yet checked</span></>}</dd>
+                </div>
+              ))}
+            </dl>
+          </>
+        ))}
+        <p class="note">Short forms of the <a href={url('glossary/')}>glossary</a>, which gives each sign's source.</p>
+      </section>
+    </div>
+    <p class="foot">Textual Criticism · {site}cheat-sheet/ · Text CC BY-SA 4.0</p>
+  </article>
+</Base>
+
+<script>
+  document.getElementById('cs-print')?.addEventListener('click', () => print());
+</script>
+
+<style>
+  .cs { margin: 1.5rem 0 3rem; }
+  .cs-head p { max-width: var(--measure); }
+  .lead { font-size: var(--step-1); line-height: 1.45; margin-bottom: .5rem; }
+  .addr { font: .9rem var(--sans); color: var(--ink-2); overflow-wrap: anywhere; }
+  .addr code { font-size: .85rem; }
+  .addr b { color: var(--rubric); }
+  button { font: 600 .9rem var(--sans); padding: .45rem .85rem; border-radius: 8px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer; }
+  .cols { display: grid; gap: 1.5rem 2.5rem; }
+  @media (min-width: 1000px) { .cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  h2 { font-size: var(--step-1); margin: 0 0 .25rem; border-bottom: 2px solid var(--ink); padding-bottom: .2rem; }
+  h3 { font: 600 .78rem var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--rubric); margin: 1rem 0 .3rem; }
+  /* Fixed layout: the table never grows past its column (long father dates wrap instead). */
+  .wt { width: 100%; border-collapse: collapse; font-size: .92rem; table-layout: fixed; }
+  .wt th { width: 5.5rem; } .wt .date { width: 32%; } .wt .sa { width: 6.5rem; overflow-wrap: anywhere; }
+  .wt td, .wt th { overflow-wrap: anywhere; }
+  .wt th, .wt td { text-align: left; vertical-align: baseline; padding: .28rem .5rem .28rem 0; border-bottom: 1px solid var(--rule); }
+  .wt th { font-weight: 400; }
+  .wt .siglum { font-size: 1.1rem; text-decoration: none; }
+  .ga { font: .75rem var(--sans); color: var(--ink-2); }
+  .date { color: var(--ink-2); }
+  .sa code { font-size: .8rem; color: var(--ink-2); }
+  @media (max-width: 480px) { .wt { font-size: .85rem; } .wt th { width: 4.3rem; } .wt .sa { width: 5.2rem; } }
+  .st { margin: 0; }
+  .st div { display: grid; grid-template-columns: 6.5rem 1fr; gap: .6rem; padding: .28rem 0; border-bottom: 1px solid var(--rule); font-size: .92rem; }
+  .st dt { font-family: var(--sigla); }
+  .st dt a { text-decoration: none; color: var(--rubric); }
+  .st dd { margin: 0; }
+  .note, .foot { font: .82rem var(--sans); color: var(--ink-2); margin-top: .6rem; }
+  .foot { display: none; }
+
+  @media print {
+    @page { size: A4; margin: 11mm 11mm 10mm; }
+    :global(.construction), :global(.site-head), :global(.site-foot), :global(.feedback), .no-print { display: none !important; }
+    /* Paper is white whatever theme was on screen: reset the palette, not just the body colour. */
+    :global(html), :global(html[data-theme]) {
+      --paper: #fff !important; --paper-2: #f2f2f2 !important; --ink: #000 !important; --ink-2: #3d3d3d !important;
+      --rule: #b5b5b5 !important; --accent: #9d2a1f !important; --rubric: #9d2a1f !important;
+      --warn-bg: #fbf1d9 !important; --warn-ink: #5c4300 !important; color-scheme: light;
+    }
+    :global(html), :global(body) { background: #fff !important; color: #000 !important; }
+    .cs { margin: 0; font-size: 8.4pt; line-height: 1.25; }
+    h1 { font-size: 15pt; margin: 0; }
+    .lead { font-size: 9pt; margin: .1rem 0; }
+    .addr { font-size: 8pt; margin: 0 0 .3rem; }
+    .cols { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 0 6mm; }
+    .wt { table-layout: fixed; }
+    .wt th { width: 4.2rem; white-space: normal; } .wt .date { width: 30%; white-space: normal; } .wt .sa { width: 5.2rem; }
+    h2 { font-size: 10.5pt; }
+    h3 { font-size: 7pt; margin: .45rem 0 .1rem; }
+    .wt, .st div { font-size: 8pt; }
+    .wt th, .wt td, .st div { padding-top: .08rem; padding-bottom: .08rem; }
+    .wt .siglum { font-size: 9.5pt; }
+    .st div { grid-template-columns: 3.6rem 1fr; gap: .3rem; line-height: 1.2; }
+    a { color: inherit !important; text-decoration: none !important; }
+    .note { font-size: 7pt; }
+    .foot { display: block; font-size: 7pt; margin-top: .4rem; border-top: 1px solid #999; padding-top: .2rem; }
+  }
+</style>
