@@ -1,0 +1,528 @@
+---
+// TC workbench: one textual issue at a time, in the six steps of the worked examples.
+// Saves in the browser and downloads one self-contained JSON file per issue.
+// File format: scripts/workbench-json.md. Works offline after one visit (public/workbench/sw.js).
+// Field names here are the JSON paths; change them only together with that document.
+import Base from '../../layouts/Base.astro';
+import { url } from '../../lib/url';
+
+const g = (p: string) => url(p);
+const ex = (n: number, slug: string) => url(`guide/examples/john-1-18/#step-${n}-${slug}`);
+
+// Step 3: the six questions from "Weighing the evidence", in its order and words.
+const EXTERNAL = [
+  ['age', 'How old?', 'Look at the earliest witness for each reading.'],
+  ['place', 'From where?', 'Which group of manuscripts does each witness belong to?'],
+  ['care', 'How careful?', 'Were the witnesses copied carefully?'],
+  ['spread', 'How widespread?', 'Do witnesses from different places agree?'],
+  ['independent', 'Independent?', 'Or was one copied from another?'],
+  ['number', 'How many?', 'This comes last.'],
+];
+// Step 4: the two questions and the rules of thumb, from the same guide.
+const INTERNAL = [
+  ['scribe', 'What was a scribe likely to do?', 'Slips of eye and hand; explaining hard wording, smoothing grammar, making passages match.'],
+  ['author', 'What was the author likely to write?', "Does the reading fit this writer's words, style and thought?"],
+];
+const RULES = [
+  ['explains', 'Prefer the reading that best explains the others'],
+  ['harder', 'The harder reading'],
+  ['shorter', 'The shorter reading (never use alone)'],
+  ['harmonization', 'Harmonization'],
+  ['style', "The author's style"],
+];
+// Step 2: places to look (the user's list for this workbench).
+const SOURCES = [
+  ['translations', 'Other translations', 'Paratext: Text Collection. Logos: Text Comparison.'],
+  ['commentaries', 'Commentaries', "Paratext: UBS Handbook, Translator's Notes. Logos: search for “textual criticism”."],
+  ['net', 'NET Bible notes', 'The translators’ notes often discuss the variant.'],
+  ['apparatus', 'UBS apparatus', 'Paratext: Source Language Tools; words with variants have a red caller. Logos: Metzger or Omanson.'],
+  ['cntr', 'CNTR collation', 'greekcntr.org/collation: the collation, then each witness’s transcription, then the page image.'],
+];
+// Step 6: the action kinds of the worked examples (DecideStep).
+const ACTIONS = [
+  ['footnote', 'Footnote'], ['brackets', 'Brackets'], ['wording', 'Wording'], ['committee', 'Review Committee'],
+  ['consult', 'Consult'], ['record', 'Record it'], ['none', 'Not needed'],
+];
+const favours = (name: string, q: string) =>
+  `<select name="${name}" data-favours aria-label="${q} Which reading it favours"><option value="">Favours…</option><option value="even">Even</option><option value="unclear">Unclear</option></select>`;
+---
+<Base title="Workbench" nav="workbench/" selfContained description="Work through one textual problem step by step, keep your findings, and download them as a file.">
+  <div class="wb">
+    <header class="wb-head">
+      <p class="label">Workbench</p>
+      <h1>Work through a textual problem</h1>
+      <p class="muted">Bring one doubtful passage. Go through the same six steps as the <a href={g('guide/examples/')}>worked examples</a>, and at the end you have a decision to record. Your work is saved in this browser as you type. Download it to keep it or to send it to someone.</p>
+    </header>
+
+    <div class="bar no-print" role="toolbar" aria-label="File">
+      <button type="button" id="wb-download" class="primary">Download file</button>
+      <label class="btn">Open a file<input type="file" id="wb-open" accept=".json,application/json" class="visually-hidden" /></label>
+      <button type="button" id="wb-print">Print</button>
+      <button type="button" id="wb-new">New issue</button>
+      <p class="status small muted" id="wb-status" role="status" aria-live="polite"></p>
+    </div>
+    <noscript><p class="warn">The workbench needs JavaScript to save your work. You can still print the empty form.</p></noscript>
+
+    <form id="wb" autocomplete="off" spellcheck="false">
+      <details class="card about" id="about" open>
+        <summary><h2>About this work <span class="small muted">(optional)</span></h2></summary>
+        <p class="small muted">Saved with every issue, so each file says whose work it is.</p>
+        <div class="grid">
+          <label>Your name<input name="about.name" dir="auto" /></label>
+          <label>Bible or translation you are comparing<input name="about.bible" dir="auto" placeholder="e.g. your draft, or a Bible your readers use" /></label>
+          <label>Its language<input name="about.language" dir="auto" /></label>
+          <label>Its base text<input name="about.baseText" dir="auto" placeholder="e.g. UBS5, Textus Receptus" /></label>
+        </div>
+      </details>
+
+      <section class="step" id="s1">
+        <span class="n">Step 1</span>
+        <h2>Find the problem</h2>
+        <p class="ask">What exactly differs between the manuscripts?</p>
+        <div class="grid">
+          <label>Reference<input name="issue.reference" required dir="auto" placeholder="e.g. John 1:18" /></label>
+          <label>Kind of variant
+            <select name="issue.kind">
+              <option value="">Choose…</option>
+              <option value="spelling">Spelling</option>
+              <option value="small-words">Small words</option>
+              <option value="meaning">Change of meaning</option>
+              <option value="long-passage">Long passage</option>
+            </select>
+          </label>
+          <label>Does it change the meaning in your language?
+            <select name="issue.changesMeaning">
+              <option value="">Choose…</option><option value="yes">Yes</option><option value="no">No</option><option value="unsure">Not sure</option>
+            </select>
+          </label>
+          <label>UBS rating
+            <select name="issue.ubsRating">
+              <option value="">Choose…</option>
+              <option value="A">{'{A}'} certain</option>
+              <option value="B">{'{B}'} almost certain</option>
+              <option value="C">{'{C}'} difficulty deciding</option>
+              <option value="D">{'{D}'} great difficulty</option>
+              <option value="diamond">♦ no decision possible</option>
+              <option value="none">Not in the UBS apparatus</option>
+            </select>
+          </label>
+        </div>
+        <label>The problem in your own words<textarea name="issue.problem" rows="3" dir="auto" placeholder="What is different, and how did you notice it?"></textarea></label>
+        <p class="see small">See: <a href={g('guide/which-variants-matter/')}>Which variants matter</a> · <a href={g('guide/decision-tree/')}>Decision tree</a> · <a href={g('guide/apparatus/')}>Reading an apparatus entry</a> · <a href={ex(1, 'find-the-problem')}>Example: John 1:18</a></p>
+      </section>
+
+      <section class="step" id="s2">
+        <span class="n">Step 2</span>
+        <h2>List the readings</h2>
+        <p class="ask">Which readings are there, and who supports each one?</p>
+        <fieldset class="sources">
+          <legend>Where did you look?</legend>
+          {SOURCES.map(([k, l, h]) => (
+            <label class="check"><input type="checkbox" name={`issue.sources.${k}`} /><span><b>{l}</b> <span class="small muted">{h}</span></span></label>
+          ))}
+          <p class="small muted">Paratext marks variants with different callers (*, a letter, a number). What each one means is <span class="tag">not yet checked</span>.</p>
+        </fieldset>
+        <ol class="readings" id="readings"></ol>
+        <button type="button" id="add-reading" class="no-print">Add a reading</button>
+        <label>Notes from your sources<textarea name="issue.sourceNotes" data-sigla rows="3" dir="auto"></textarea></label>
+        <p class="see small">See: <a href={g('guide/paratext/')}>The apparatus in Paratext</a> · <a href={g('witnesses/')}>Witnesses</a> · <a href={ex(2, 'list-the-readings')}>Example: John 1:18</a></p>
+      </section>
+
+      <section class="step" id="s3">
+        <span class="n">Step 3</span>
+        <h2>External evidence</h2>
+        <p class="ask">Ask the six questions about the witnesses. Number comes last.</p>
+        <div class="qs">
+          {EXTERNAL.map(([k, q, h]) => (
+            <div class="q">
+              <div><b>{q}</b> <span class="small muted">{h}</span></div>
+              <Fragment set:html={favours(`issue.external.${k}.favours`, q)} />
+              <textarea name={`issue.external.${k}.note`} data-sigla rows="1" dir="auto" aria-label={`${q} notes`}></textarea>
+            </div>
+          ))}
+        </div>
+        <p class="see small">See: <a href={g('guide/weighing-evidence/')}>Weighing the evidence</a> · <a href={ex(3, 'external-evidence')}>Example: John 1:18</a></p>
+      </section>
+
+      <section class="step" id="s4">
+        <span class="n">Step 4</span>
+        <h2>Internal evidence</h2>
+        <p class="ask">What would a scribe do, and what would the author write?</p>
+        <div class="qs">
+          {INTERNAL.map(([k, q, h]) => (
+            <div class="q">
+              <div><b>{q}</b> <span class="small muted">{h}</span></div>
+              <Fragment set:html={favours(`issue.internal.${k}.favours`, q)} />
+              <textarea name={`issue.internal.${k}.note`} data-sigla rows="2" dir="auto" aria-label={`${q} notes`}></textarea>
+            </div>
+          ))}
+        </div>
+        <fieldset>
+          <legend>Rules of thumb you used</legend>
+          {RULES.map(([k, l]) => <label class="check"><input type="checkbox" name={`issue.internal.rules.${k}`} /><span>{l}</span></label>)}
+          <p class="small muted">Each rule is a guide, not a law. Say which rule you use and why.</p>
+        </fieldset>
+        <p class="see small">See: <a href={g('guide/weighing-evidence/')}>Weighing the evidence</a> · <a href={ex(4, 'internal-evidence')}>Example: John 1:18</a></p>
+      </section>
+
+      <section class="step" id="s5">
+        <span class="n">Step 5</span>
+        <h2>Weigh it up</h2>
+        <p class="ask">Which reading came first, and how sure can we be?</p>
+        <div class="grid">
+          <label>The reading that came first<select name="issue.weigh.original" data-favours data-plain><option value="">Choose…</option><option value="unclear">Cannot decide</option></select></label>
+          <label>How sure are you?
+            <select name="issue.weigh.confidence">
+              <option value="">Choose…</option><option value="sure">Sure</option><option value="fairly-sure">Fairly sure</option><option value="unsure">Unsure</option>
+            </select>
+          </label>
+        </div>
+        <label>Your reasons<textarea name="issue.weigh.reasons" data-sigla rows="3" dir="auto" placeholder="Put the external and internal evidence together. Compare the UBS rating."></textarea></label>
+        <p class="see small">See: <a href={g('guide/apparatus/#ratings')}>What the ratings tell you</a> · <a href={ex(5, 'weigh-it-up')}>Example: John 1:18</a></p>
+      </section>
+
+      <section class="step" id="s6">
+        <span class="n">Step 6</span>
+        <h2>Decide for your translation</h2>
+        <p class="ask">What will you print, and what will you tell your readers?</p>
+        <p class="small muted">Your project's text policy comes first. A decision here is a recommendation: your Review Committee decides.</p>
+        <label>What the UBS text prints<textarea name="issue.decide.ubs" rows="2" dir="auto"></textarea></label>
+        <label>How your Bible handles it<textarea name="issue.decide.yourBible" rows="2" dir="auto" placeholder="Which reading does it follow? Brackets, footnote?"></textarea></label>
+        <label>Translation options<textarea name="issue.decide.options" rows="3" dir="auto" placeholder="Ways you could render each reading in your language."></textarea></label>
+        <fieldset>
+          <legend>Suggested actions</legend>
+          <div class="acts">
+            {ACTIONS.map(([k, l]) => <label class="check"><input type="checkbox" name={`issue.decide.actions.${k}`} /><span>{l}</span></label>)}
+          </div>
+        </fieldset>
+        <label class="verdict">Verdict<textarea name="issue.decide.verdict" rows="3" dir="auto" placeholder="What you will print, and why."></textarea></label>
+        <label>Draft footnote<textarea name="issue.decide.footnote" rows="2" dir="auto" placeholder="e.g. Some manuscripts have …"></textarea></label>
+        <p class="see small">See: <a href={g('guide/text-policy/')}>Which text should a translation follow?</a> · <a href={g('guide/footnotes/')}>Writing textual footnotes</a> · <a href={ex(6, 'decide-for-your-translation')}>Example: John 1:18</a></p>
+      </section>
+    </form>
+
+    <template id="reading-tpl">
+      <li class="reading">
+        <div class="r-head"><b class="r-label"></b><button type="button" class="r-del no-print">Remove</button></div>
+        <div class="grid">
+          <label>Reading (Greek or other)<input data-f="text" dir="auto" lang="grc" /></label>
+          <label>Meaning in your language<input data-f="gloss" dir="auto" /></label>
+        </div>
+        <label>Who supports it<textarea data-f="support" data-sigla rows="2" placeholder="e.g. 𝔓⁶⁶ 𝔓⁷⁵ א* B"></textarea></label>
+        <label class="check"><input type="checkbox" data-f="inUbsText" /><span>This is the reading the UBS text prints</span></label>
+      </li>
+    </template>
+
+    <div class="wb-keys no-print" id="sigla-keys" hidden role="group" aria-label="Siglum symbols">
+      <p class="small muted">Tap a symbol, or type <kbd>P66</kbd>, <kbd>aleph</kbd>, <kbd>theta</kbd>, <kbd>f13</kbd>: they change to 𝔓⁶⁶, א, Θ, ƒ¹³ when you leave the box. Tap <b>x²</b> to type small raised numbers.</p>
+      <div class="krow">
+        {['𝔓', 'א', 'ƒ', 'ℓ', '*', 'ᶜ', 'ᵛⁱᵈ', 'ˢᵘᵖᵖ', 'Byz', 'Lect'].map((k) => <button type="button" data-k={k}>{k}</button>)}
+        <button type="button" data-sup aria-pressed="false" title="Raised numbers on or off">x²</button>
+      </div>
+      <div class="krow">
+        {['Γ', 'Δ', 'Θ', 'Λ', 'Ξ', 'Π', 'Σ', 'Φ', 'Ψ', 'Ω', '⟦', '⟧', '♦'].map((k) => <button type="button" data-k={k}>{k}</button>)}
+      </div>
+      <div class="krow sup" hidden>
+        {['¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', '⁰'].map((k) => <button type="button" data-k={k}>{k}</button>)}
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script define:vars={{ sw: url('workbench/sw.js'), scope: url('workbench/') }}>
+  window.__wbSw = { sw, scope };
+</script>
+<script>
+  // Data lives in one object; form fields are named by their JSON path.
+  const KEY = 'tc-workbench';
+  const SCHEMA = 'tc-workbench/1';
+  type Reading = { label: string; text: string; gloss: string; support: string; inUbsText: boolean };
+  type Doc = { schema: string; saved: string; about: Record<string, string>; issue: any };
+
+  const form = document.getElementById('wb') as HTMLFormElement;
+  const list = document.getElementById('readings') as HTMLOListElement;
+  const tpl = document.getElementById('reading-tpl') as HTMLTemplateElement;
+  const status = document.getElementById('wb-status')!;
+  const LABELS = 'ABCDEFGHIJ';
+
+  const blank = (about: Record<string, string> = {}): Doc => ({
+    schema: SCHEMA, saved: '', about,
+    issue: { readings: [{ text: '', gloss: '', support: '', inUbsText: true }, { text: '', gloss: '', support: '', inUbsText: false }] },
+  });
+
+  const get = (o: any, path: string) => path.split('.').reduce((a, k) => (a == null ? undefined : a[k]), o);
+  const set = (o: any, path: string, v: unknown) => {
+    const ks = path.split('.'); let a = o;
+    ks.slice(0, -1).forEach((k) => (a = a[k] ??= {}));
+    a[ks[ks.length - 1]] = v;
+  };
+
+  function readings(): Reading[] {
+    return [...list.children].map((li, i) => {
+      const f = (n: string) => li.querySelector<HTMLInputElement>(`[data-f="${n}"]`)!;
+      return { label: LABELS[i], text: f('text').value, gloss: f('gloss').value, support: f('support').value, inUbsText: f('inUbsText').checked };
+    });
+  }
+
+  function collect(): Doc {
+    const d = blank(); d.issue = {};
+    for (const el of form.elements as any as HTMLInputElement[]) {
+      if (!el.name) continue;
+      set(d, el.name, el.type === 'checkbox' ? el.checked : el.value);
+    }
+    d.issue.readings = readings();
+    d.saved = new Date().toISOString();
+    return d;
+  }
+
+  function addReading(r?: Partial<Reading>) {
+    const li = (tpl.content.cloneNode(true) as DocumentFragment).firstElementChild as HTMLLIElement;
+    list.append(li);
+    const f = (n: string) => li.querySelector<HTMLInputElement>(`[data-f="${n}"]`)!;
+    f('text').value = r?.text ?? ''; f('gloss').value = r?.gloss ?? ''; f('support').value = r?.support ?? '';
+    f('inUbsText').checked = !!r?.inUbsText;
+    li.querySelector('.r-del')!.addEventListener('click', () => {
+      if (list.children.length < 2) return;
+      // Letters shift after a removal: B becomes A, and so on. Move the choices with them.
+      const gone = [...list.children].indexOf(li);
+      document.querySelectorAll<HTMLSelectElement>('select[data-favours]').forEach((sel) => {
+        const i = LABELS.indexOf(sel.value);
+        if (!sel.value || i < 0) return;
+        if (i === gone) sel.value = ''; else if (i > gone) sel.dataset.next = LABELS[i - 1];
+      });
+      li.remove(); relabel();
+      document.querySelectorAll<HTMLSelectElement>('select[data-next]').forEach((sel) => { sel.value = sel.dataset.next!; delete sel.dataset.next; });
+      save();
+    });
+    li.querySelectorAll('textarea').forEach(grow);
+  }
+
+  // Reading letters, and the "favours" lists that name them.
+  function relabel() {
+    [...list.children].forEach((li, i) => { li.querySelector('.r-label')!.textContent = `Reading ${LABELS[i]}`; });
+    const n = list.children.length;
+    document.querySelectorAll<HTMLSelectElement>('select[data-favours]').forEach((s) => {
+      const keep = s.value;
+      s.querySelectorAll('option[data-r]').forEach((o) => o.remove());
+      const first = s.options[0];
+      for (let i = n - 1; i >= 0; i--) {
+        const o = new Option(`Reading ${LABELS[i]}`, LABELS[i]); o.dataset.r = '1';
+        first.after(o);
+      }
+      s.value = keep;
+    });
+  }
+
+  function valid(d: any): d is Doc {
+    const obj = (x: unknown) => !!x && typeof x === 'object' && !Array.isArray(x);
+    if (!obj(d) || d.schema !== SCHEMA || !obj(d.issue) || (d.about !== undefined && !obj(d.about))) return false;
+    const rs = d.issue.readings;
+    return rs === undefined || (Array.isArray(rs) && rs.length <= LABELS.length && rs.every(obj));
+  }
+
+  function fill(d: Doc) {
+    list.replaceChildren();
+    const rs: Reading[] = d.issue?.readings?.length ? d.issue.readings : blank().issue.readings;
+    rs.forEach(addReading);
+    relabel();
+    for (const el of form.elements as any as HTMLInputElement[]) {
+      if (!el.name) continue;
+      const v = get(d, el.name);
+      if (el.type === 'checkbox') el.checked = !!v; else el.value = v ?? '';
+    }
+    form.querySelectorAll('textarea').forEach(grow);
+  }
+
+  function grow(t: HTMLTextAreaElement) { t.style.height = 'auto'; t.style.height = t.scrollHeight + 2 + 'px'; }
+
+  let timer = 0;
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(collect())); say('Saved in this browser.'); }
+    catch { say('Could not save in this browser. Download a file to keep your work.'); }
+  }
+  function say(t: string) { status.textContent = t; }
+
+  form.addEventListener('input', (e) => {
+    const t = e.target as HTMLElement;
+    if (t instanceof HTMLTextAreaElement) grow(t);
+    clearTimeout(timer); timer = window.setTimeout(save, 400);
+  });
+  form.addEventListener('change', save);
+  document.getElementById('add-reading')!.addEventListener('click', () => {
+    if (list.children.length >= LABELS.length) return;
+    addReading(); relabel(); save();
+    (list.lastElementChild!.querySelector('input') as HTMLInputElement).focus();
+  });
+
+  function fileName(d: Doc) {
+    const ref = (d.issue.reference || 'issue').normalize('NFKD').replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '').toLowerCase();
+    return `${ref || 'issue'}_${d.saved.slice(0, 10)}.json`;
+  }
+
+  document.getElementById('wb-download')!.addEventListener('click', () => {
+    const d = collect();
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' }));
+    a.download = fileName(d);
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    say(`Downloaded ${a.download}.`);
+  });
+
+  document.getElementById('wb-open')!.addEventListener('change', async (e) => {
+    const inp = e.target as HTMLInputElement; const file = inp.files?.[0]; inp.value = '';
+    if (!file) return;
+    try {
+      const d = JSON.parse(await file.text());
+      if (!valid(d)) throw new Error('not a workbench file');
+      if (!confirm('Replace what is on the page with this file?')) return;
+      const before = collect();
+      try { fill(d); } catch (err) { fill(before); throw err; }
+      save(); say(`Opened ${file.name}.`);
+    } catch { say(`${file.name} is not a workbench file.`); }
+  });
+
+  document.getElementById('wb-new')!.addEventListener('click', () => {
+    if (!confirm('Start a new issue? Download this one first if you want to keep it. Your "About this work" stays.')) return;
+    fill(blank(collect().about)); save(); window.scrollTo(0, 0);
+  });
+  document.getElementById('wb-print')!.addEventListener('click', () => { (document.getElementById('about') as HTMLDetailsElement).open = true; print(); });
+  addEventListener('beforeprint', () => { (document.getElementById('about') as HTMLDetailsElement).open = true; form.querySelectorAll('textarea').forEach(grow); });
+
+  let start = blank();
+  try { const s = localStorage.getItem(KEY); if (s) start = JSON.parse(s); } catch {}
+  fill(start);
+  if (start.saved) say('Your last work is back from this browser.');
+
+  // Siglum help: a keypad under the focused "who supports it" box, and P66 -> 𝔓⁶⁶ when leaving it.
+  const keys = document.getElementById('sigla-keys')!;
+  const supRow = keys.querySelector<HTMLElement>('.sup')!;
+  const supBtn = keys.querySelector<HTMLButtonElement>('[data-sup]')!;
+  const SUP = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+  const GREEK: Record<string, string> = { gamma: 'Γ', delta: 'Δ', theta: 'Θ', lambda: 'Λ', xi: 'Ξ', pi: 'Π', sigma: 'Σ', phi: 'Φ', psi: 'Ψ', omega: 'Ω' };
+  const sup = (d: string) => [...d].map((c) => SUP[+c]).join('');
+  let target: HTMLTextAreaElement | null = null;
+  const tidy = (s: string) => s
+    .replace(/(^|[\s,;(])[Pp𝔓]\s?(\d+)(?=$|[\s,;)*])/gu, (_, a, d) => a + '𝔓' + sup(d))
+    .replace(/(^|[\s,;(])(?:aleph|alef|ℵ)(?=$|[\s,;)*\d²¹³⁰-⁹])/giu, '$1א')
+    .replace(/(^|[\s,;(])(gamma|delta|theta|lambda|xi|pi|sigma|phi|psi|omega)(?=$|[\s,;)*])/giu, (_, a, w) => a + GREEK[w.toLowerCase()])
+    .replace(/(^|[\s,;(])(?:f|ƒ|fam)\s?(1|13)(?=$|[\s,;)])/gu, (_, a, d) => a + 'ƒ' + sup(d));
+  form.addEventListener('focusin', (e) => {
+    const t = e.target as HTMLElement;
+    if (t instanceof HTMLTextAreaElement && t.hasAttribute('data-sigla')) { target = t; (t.closest('label') ?? t).after(keys); keys.hidden = false; }
+  });
+  form.addEventListener('focusout', (e) => {
+    const t = e.target as HTMLTextAreaElement;
+    if (!t.hasAttribute?.('data-sigla')) return;
+    const v = tidy(t.value); if (v !== t.value) { t.value = v; save(); }
+    hideLater();
+  });
+  // Keep the keypad open while focus is in the box or on its own buttons (keyboard users tab into it).
+  function hideLater() { setTimeout(() => { const a = document.activeElement; if (a !== target && !keys.contains(a)) keys.hidden = true; }, 0); }
+  keys.addEventListener('focusout', hideLater);
+  keys.addEventListener('mousedown', (e) => e.preventDefault());   // keep the cursor in the box
+  keys.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest('button'); if (!b || !target) return;
+    if (b.hasAttribute('data-sup')) { supRow.hidden = !supRow.hidden; b.setAttribute('aria-pressed', String(!supRow.hidden)); target.focus(); return; }
+    target.focus();
+    target.setRangeText(b.dataset.k!, target.selectionStart ?? target.value.length, target.selectionEnd ?? target.value.length, 'end');
+    target.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  // Typed digits become raised while x² is on.
+  form.addEventListener('beforeinput', (e) => {
+    const t = e.target as HTMLTextAreaElement;
+    if (t !== target || supRow.hidden || e.inputType !== 'insertText' || !e.data || !/^\d+$/.test(e.data)) return;
+    e.preventDefault();
+    t.setRangeText(sup(e.data), t.selectionStart!, t.selectionEnd!, 'end');
+    t.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+
+  // Offline: a service worker scoped to this page; seed its cache with what this page just loaded.
+  const { sw, scope } = (window as any).__wbSw;
+  if ('serviceWorker' in navigator && 'caches' in window) {
+    navigator.serviceWorker.register(sw, { scope }).then(async () => {
+      const urls = [location.pathname, ...performance.getEntriesByType('resource').map((r) => r.name)]
+        .filter((u) => new URL(u, location.href).origin === location.origin);
+      const c = await caches.open('tc-workbench-v3');
+      await Promise.all(urls.map((u) => c.add(u).catch(() => {})));
+    }).catch(() => {});
+  }
+</script>
+
+<style>
+  .wb { margin: 1.75rem 0 3rem; max-width: 52rem; }
+  .wb-head p { max-width: var(--measure); }
+  .bar { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; padding: .6rem 0; margin-bottom: 1rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .status { margin: 0 0 0 .25rem; flex-basis: 100%; min-height: 1.2em; }
+  @media (min-width: 700px) { .status { flex-basis: auto; } }
+  button, .btn { font: 600 .9rem var(--sans); padding: .45rem .85rem; border-radius: 8px; border: 1px solid var(--rule); background: var(--paper-2); color: var(--ink); cursor: pointer; }
+  button:hover, .btn:hover { border-color: var(--ink-2); }
+  .btn:focus-within { outline: 2px solid var(--rubric); outline-offset: 2px; }
+  .bar .btn { display: inline-block; margin: 0; font: 600 .9rem var(--sans); color: var(--ink); line-height: normal; }
+  .bar button, .bar .btn { min-height: 2.4rem; }
+  ::placeholder { color: var(--ink-2); opacity: .65; font-style: italic; }
+  .q .wb-keys { grid-column: 1 / -1; margin-top: 0; }
+  .wb-keys { margin: -.4rem 0 .8rem; padding: .5rem .6rem; border: 1px dashed var(--rule); border-radius: 8px; background: var(--paper-2); }
+  .wb-keys p { margin: 0 0 .4rem; }
+  .wb-keys kbd { font: .85em var(--sans); padding: 0 .2rem; border: 1px solid var(--rule); border-radius: 3px; }
+  .wb-keys[hidden], .krow[hidden] { display: none; }
+  .krow { display: flex; flex-wrap: wrap; gap: .3rem; }
+  .krow + .krow { margin-top: .3rem; }
+  .krow button { min-width: 2.4rem; min-height: 2.4rem; padding: .2rem .45rem; font: 400 1.05rem var(--sigla); background: var(--paper); }
+  .krow [aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .warn { background: var(--warn-bg); color: var(--warn-ink); padding: .6rem .8rem; border-radius: 6px; }
+
+  .card, .step { border: 1px solid var(--rule); border-radius: 10px; padding: 1rem 1.1rem 1.1rem; margin: 0 0 1.25rem; background: var(--paper); }
+  .about summary { cursor: pointer; list-style-position: outside; }
+  .about summary h2 { display: inline; font-size: var(--step-1); }
+  .step h2 { margin: .15rem 0 .25rem; font-size: var(--step-1); }
+  .n { font: 600 .78rem var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--rubric); }
+  .ask { margin: 0 0 .9rem; font-style: italic; color: var(--ink-2); }
+  .see { margin: .9rem 0 0; padding-top: .6rem; border-top: 1px solid var(--rule); }
+
+  label { display: block; font: 600 .85rem var(--sans); color: var(--ink-2); margin-bottom: .75rem; }
+  input:not([type="checkbox"]):not([type="file"]), select, textarea {
+    display: block; width: 100%; box-sizing: border-box; margin-top: .25rem; padding: .45rem .55rem;
+    font: 400 1rem/1.4 var(--serif); color: var(--ink); background: var(--paper-2);
+    border: 1px solid var(--rule); border-radius: 6px;
+  }
+  select { font-family: var(--sans); font-size: .9rem; }
+  :global(:root[data-theme="dark"]) :is(input, select, textarea) { color-scheme: dark; }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme="light"])) :is(input, select, textarea) { color-scheme: dark; } }
+  textarea { resize: vertical; min-height: 2.4rem; overflow: hidden; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--rubric); outline-offset: 1px; border-color: transparent; }
+  .grid { display: grid; gap: 0 1rem; }
+  @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+  fieldset { border: 0; padding: 0; margin: 0 0 .9rem; }
+  legend { font: 600 .85rem var(--sans); color: var(--ink-2); margin-bottom: .4rem; }
+  .check { display: flex; gap: .55rem; align-items: baseline; font: 400 .95rem var(--sans); color: var(--ink); margin-bottom: .45rem; }
+  .check input { flex: none; width: 1.05rem; height: 1.05rem; accent-color: var(--rubric); }
+  .acts { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: 0 1rem; }
+
+  .readings { list-style: none; padding: 0; margin: 0 0 .75rem; display: grid; gap: .75rem; }
+  .reading { border: 1px solid var(--rule); border-left: 4px solid var(--lapis); border-radius: 8px; padding: .7rem .8rem .2rem; background: var(--paper); }
+  .r-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .4rem; }
+  .r-label { font: 600 .9rem var(--sans); }
+  .r-del { font-size: .8rem; padding: .2rem .55rem; }
+  [lang="grc"] { font-family: var(--serif); }
+
+  .qs { display: grid; gap: .8rem; margin-bottom: .9rem; }
+  .q { display: grid; gap: .35rem; padding-top: .7rem; border-top: 1px solid var(--rule); }
+  .q:first-child { border-top: 0; padding-top: 0; }
+  .q select, .q textarea { margin-top: 0; }
+  @media (min-width: 640px) { .q { grid-template-columns: 1fr 9rem; } .q textarea { grid-column: 1 / -1; } }
+
+  .verdict { color: var(--ink); }
+  .verdict textarea { border: 1.5px solid var(--ink); }
+
+  @media print {
+    :global(.construction), :global(.site-head), :global(.site-foot), .no-print, .bar, .see { display: none !important; }
+    .wb { margin: 0; max-width: none; }
+    .step, .card { break-inside: avoid-page; border-color: #999; padding: .5rem .7rem; margin-bottom: .6rem; }
+    input:not([type="checkbox"]):not([type="file"]), select, textarea { background: none; border: 0; border-bottom: 1px solid #999; border-radius: 0; padding: .15rem 0; appearance: none; overflow: visible; }
+    textarea { resize: none; }
+    .about summary { list-style: none; }
+  }
+</style>

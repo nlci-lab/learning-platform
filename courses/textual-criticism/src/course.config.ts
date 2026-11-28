@@ -14,6 +14,7 @@ export const course = defineSite({
     ['guide/examples/', 'Examples'],
     ['learn/', 'Learn'],
     ['background/', 'Background'],
+    ['workbench/', 'Workbench'],
   ],
   // Rubrication red: the site's only accent, kept for sigla and links (AA on paper in both themes).
   accent: { light: '#9d2a1f', dark: '#f08b7c' },
