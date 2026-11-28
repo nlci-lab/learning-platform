@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Collect workbench files (docs/workbench-json.md) from one folder into a CSV on stdout.
+// Collect workbench files (scripts/workbench-json.md) from one folder into a CSV on stdout.
 // Usage: node scripts/workbench-to-csv.mjs <folder> > results.csv
 // One row per file. Files that are not workbench files are skipped with a note on stderr.
 import { readdirSync, readFileSync } from 'node:fs';
