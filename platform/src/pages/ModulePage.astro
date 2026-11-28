@@ -106,6 +106,13 @@ const learn = url(PATHS.learn);
       else step.addEventListener('q:checked', () => { next.hidden = false; });
     });
     show(0);
+    // A link to #step-<id> opens the steps up to that one and goes there (e.g. from a course tool).
+    function fromHash() {
+      const i = steps.findIndex((s) => location.hash === `#${s.id}`);
+      if (i > 0) go(i);
+    }
+    fromHash();
+    addEventListener('hashchange', fromHash);
   });
 </script>
 
