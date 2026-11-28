@@ -1,5 +1,6 @@
 ---
 // Worked example in the step-by-step format: the same order the guides teach.
+import WorkbenchStep from '../../../components/WorkbenchStep.astro';
 import Context from '../../../layouts/Context.astro';
 import { url } from '../../../lib/url';
 import ExampleStyles from '../../../components/ExampleStyles.astro';
@@ -34,6 +35,7 @@ const A = '<span class="siglum" lang="he" dir="ltr">א</span>';
   <section class="step">
     <span class="n">Step 1</span>
     <h2 id="step-1-find-the-problem">Find the problem</h2>
+    <WorkbenchStep n={1} />
     <p class="ask">What exactly differs between the manuscripts?</p>
     <div class="banner">
       <span class="ref">Romans 16:7 · UBS5 text</span>
@@ -51,6 +53,7 @@ const A = '<span class="siglum" lang="he" dir="ltr">א</span>';
   <section class="step">
     <span class="n">Step 2</span>
     <h2 id="step-2-list-the-readings">List the readings</h2>
+    <WorkbenchStep n={2} />
     <p class="ask">Which readings are there, and who supports each one?</p>
     <ul class="readings">
       <li class="reading printed">
@@ -82,6 +85,7 @@ const A = '<span class="siglum" lang="he" dir="ltr">א</span>';
   <section class="step">
     <span class="n">Step 3</span>
     <h2 id="step-3-external-evidence">External evidence</h2>
+    <WorkbenchStep n={3} />
     <p class="ask">What do the witnesses themselves tell us? Take the six questions in order; number comes last.</p>
     <h3>The letters: Junia(s) or Julia?</h3>
     <table class="qtable">
@@ -103,6 +107,7 @@ const A = '<span class="siglum" lang="he" dir="ltr">א</span>';
   <section class="step">
     <span class="n">Step 4</span>
     <h2 id="step-4-internal-evidence">Internal evidence</h2>
+    <WorkbenchStep n={4} />
     <p class="ask">Which reading best explains how the others arose? And which name did Paul most likely mean?</p>
     <h3>What would a scribe do?</h3>
     <p>"Julia" may be a slip influenced by the Julia greeted in verse 15. It is harder to see why anyone would change a familiar Julia into a rare Junia.</p>
@@ -131,6 +136,7 @@ const A = '<span class="siglum" lang="he" dir="ltr">א</span>';
   <section class="step">
     <span class="n">Step 5</span>
     <h2 id="step-5-weigh-it-up">Weigh it up</h2>
+    <WorkbenchStep n={5} />
     <p class="ask">Putting the steps together, which reading came first, and how sure can we be?</p>
     <ul class="scale">
       <li><b>The letters</b><span class="lean a">ΙΟΥΝΙΑΝ</span><span>Almost all witnesses; Julia is explained as a slip.</span></li>
@@ -151,6 +157,7 @@ const A = '<span class="siglum" lang="he" dir="ltr">א</span>';
   <section class="step">
     <span class="n">Step 6</span>
     <h2 id="step-6-decide-for-your-translation">Decide for your translation</h2>
+    <WorkbenchStep n={6} />
     <DecideStep
       ubs={`<span lang="grc">Ἰουνίαν</span> with the feminine accent: Junia. The letters are rated {A}; the accent is not rated.`}
       lwc={`Check it. Translations differ: “Junia” in the NIV 2011, ESV, NRSV and NET; “Junias” in the NIV 1984, NASB and NJB.`}

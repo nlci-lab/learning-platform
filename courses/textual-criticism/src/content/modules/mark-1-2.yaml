@@ -18,7 +18,7 @@ sources:
   - id: cntr
     cite: "Manuscript and edition texts: Alan Bunning, Center for New Testament Restoration, transcriptions, CC BY-SA 4.0."
     checked: true
-done: You have worked through Mark 1:2 in the same steps the [worked examples](~/guide/examples/) use. Try [another micro module](~/learn/#modules), or read the [list of doubtful passages](~/guide/doubtful-passages/).
+done: You have worked through Mark 1:2 in the same steps the [worked examples](~/guide/examples/) use. Try [another micro module](~/learn/#modules), or read the [list of doubtful passages](~/guide/doubtful-passages/). Then bring a passage of your own to the [Workbench](~/workbench/) and work through the same six steps.
 steps:
   - id: find
     title: Find the problem

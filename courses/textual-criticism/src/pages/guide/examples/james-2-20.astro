@@ -1,5 +1,6 @@
 ---
 // Worked example in the step-by-step format: the same order the guides teach.
+import WorkbenchStep from '../../../components/WorkbenchStep.astro';
 import Context from '../../../layouts/Context.astro';
 import { url } from '../../../lib/url';
 import ExampleStyles from '../../../components/ExampleStyles.astro';
@@ -31,6 +32,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 1</span>
     <h2 id="step-1-find-the-problem">Find the problem</h2>
+    <WorkbenchStep n={1} />
     <p class="ask">What exactly differs between the manuscripts?</p>
     <div class="banner">
       <span class="ref">James 2:20 · UBS5 text</span>
@@ -43,6 +45,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 2</span>
     <h2 id="step-2-list-the-readings">List the readings</h2>
+    <WorkbenchStep n={2} />
     <p class="ask">Which readings are there, and who supports each one?</p>
     <ul class="readings">
       <li class="reading printed">
@@ -68,6 +71,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 3</span>
     <h2 id="step-3-external-evidence">External evidence</h2>
+    <WorkbenchStep n={3} />
     <p class="ask">What do the witnesses themselves tell us? Take the six questions in order; number comes last.</p>
     <table class="qtable">
       <thead><tr><th scope="col">Question</th><th scope="col">"Useless"</th><th scope="col">"Dead"</th><th scope="col">Leans</th></tr></thead>
@@ -87,6 +91,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 4</span>
     <h2 id="step-4-internal-evidence">Internal evidence</h2>
+    <WorkbenchStep n={4} />
     <p class="ask">Which reading best explains how the others arose? And which would James have written?</p>
     <div class="weigh">
       <section class="side">
@@ -114,6 +119,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 5</span>
     <h2 id="step-5-weigh-it-up">Weigh it up</h2>
+    <WorkbenchStep n={5} />
     <p class="ask">Putting the steps together, which reading came first, and how sure can we be?</p>
     <ul class="scale">
       <li><b>External evidence</b><span class="lean even">even</span><span>Strong early witnesses on both sides.</span></li>
@@ -132,6 +138,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 6</span>
     <h2 id="step-6-decide-for-your-translation">Decide for your translation</h2>
+    <WorkbenchStep n={6} />
     <DecideStep
       ubs={`<span lang="grc">ἀργή</span>, “useless”, rated {B}.`}
       lwc={`Bibles that follow the Textus Receptus, such as the KJV, have “dead”. Check what yours has.`}

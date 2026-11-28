@@ -1,6 +1,7 @@
 ---
 // Worked example in the step-by-step format: the same order the guides teach.
 // Facts come from the UBS5 entry and the Metzger/Omanson summaries already on guide/apparatus/.
+import WorkbenchStep from '../../../components/WorkbenchStep.astro';
 import Context from '../../../layouts/Context.astro';
 import { url } from '../../../lib/url';
 import ExampleStyles from '../../../components/ExampleStyles.astro';
@@ -36,6 +37,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 1</span>
     <h2 id="step-1-find-the-problem">Find the problem</h2>
+    <WorkbenchStep n={1} />
     <p class="ask">What exactly differs between the manuscripts?</p>
     <div class="banner">
       <span class="ref">John 1:18 · UBS5 text (part)</span>
@@ -49,6 +51,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 2</span>
     <h2 id="step-2-list-the-readings">List the readings</h2>
+    <WorkbenchStep n={2} />
     <p class="ask">Which readings are there, and who supports each one?</p>
     <ul class="readings">
       <li class="reading printed">
@@ -85,6 +88,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 3</span>
     <h2 id="step-3-external-evidence">External evidence</h2>
+    <WorkbenchStep n={3} />
     <p class="ask">What do the witnesses themselves tell us? Take the six questions in order; number comes last. We compare the two main readings: "God" (with or without the article) and "Son".</p>
     <table class="qtable">
       <thead><tr><th scope="col">Question</th><th scope="col">"God"</th><th scope="col">"Son"</th><th scope="col">Leans</th></tr></thead>
@@ -104,6 +108,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 4</span>
     <h2 id="step-4-internal-evidence">Internal evidence</h2>
+    <WorkbenchStep n={4} />
     <p class="ask">Which reading best explains how the others arose? And which would John have written?</p>
     <div class="weigh">
       <section class="side">
@@ -131,6 +136,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 5</span>
     <h2 id="step-5-weigh-it-up">Weigh it up</h2>
+    <WorkbenchStep n={5} />
     <p class="ask">Putting the steps together, which reading came first, and how sure can we be?</p>
     <ul class="scale">
       <li><b>External evidence</b><span class="lean a">"God"</span><span>The oldest Greek witnesses; "Son" is far more widespread.</span></li>
@@ -149,6 +155,7 @@ const sources = [
   <section class="step">
     <span class="n">Step 6</span>
     <h2 id="step-6-decide-for-your-translation">Decide for your translation</h2>
+    <WorkbenchStep n={6} />
     <DecideStep
       ubs={`<span lang="grc">μονογενὴς θεός</span>, “only God”, rated {B}.`}
       lwc={`Check it. Bibles that follow the Textus Receptus, such as the KJV, have “only begotten Son”; the RSV, NJB and REB also have “Son”. Many newer Bibles have “God”.`}
